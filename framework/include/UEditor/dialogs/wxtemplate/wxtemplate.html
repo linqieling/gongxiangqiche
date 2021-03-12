@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<link rel="stylesheet" href="css/spectrum.css" type="text/css">
+<link rel="stylesheet" href="css/docs.css" type="text/css">
+<script type="text/javascript" src="../internal.js"></script>
+</head>
+<style type="text/css">
+  html,body{overflow:hidden;}
+  .edui-icon {
+	width:0px!important;
+	height:0px!important;
+}
+</style>
+<body>
+<div style="padding:10px 20px;">
+  <div style="width:100%; overflow:hidden; margin:0 auto 10px auto;">
+    <input type="hidden" id="mycatid" value="0">
+    <div id="mytabs"></div>
+  </div>
+  <div style=" width:100%; overflow:hidden;">
+    <div style="width:478px;height:500px; float:left; background-color:#FFF; overflow-y:scroll; border:1px solid #848484;" id="templatelist"></div>
+    <div style="width:414px;height:500px; border:1px solid #848484; float:right; background-color:#fff;">
+      <input type="hidden" class="templateid" name="templateid" value="">
+      <!--<input type="hidden" name="templateid" value="" class="sp-input">-->
+      <div class="element_item" data-color=""></div>
+      <div style="width:100%; overflow:hidden; border-bottom: 1px solid rgb(212, 212, 212); ">
+        <input type="hidden" id="colorcode">
+      </div>
+      <div class="element-preview">
+        <div id="preview_content" contenteditable="true" style="float:left;  width:394px; height: 250px; overflow-y: auto;overflow-x: hidden;background: white;margin:10px;padding:0px;"> </div>
+      </div>
+    </div>
+  </div>
+  <div id="insertwtpbox" style="width:100%; overflow:hidden; margin-top:10px;">
+    <input type="button" style="padding:3px 15px; float:right;" id="insertwtp" value="插入" >
+  </div>
+</div>
+<script type='text/javascript' src='js/jquery-1.9.1.js'></script>
+<script type='text/javascript' src='js/spectrum.js'></script>
+<script type='text/javascript' src='js/jquery.cookies.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var localization = $.spectrum.localization["fi"] = {
+        cancelText: "默认",
+        chooseText: "记录颜色"
+  };
+  $.extend($.fn.spectrum.defaults, localization);
+
+  //打开的时候自动装入颜色
+  var init_colorcode = $.cookie("colorcode");
+  var colorpickerInput = $("#colorcode");
+
+  function toggleButtonState() {
+	  var options = colorpickerInput.spectrum("option");
+	  $(".toggleBtn").each(function() {
+		  $(this).toggleClass("active", !!options[$(this).data("rule")]);
+	  });
+  }
+
+  $(document).on("click", ".toggleBtn", function() {
+	  var option = $(this).data("rule");
+	  var existing = colorpickerInput.spectrum("option", option);
+
+	  colorpickerInput.spectrum("option", option, !existing);
+	  toggleButtonState();
+  });
+
+  colorpickerInput.spectrum({
+	  color: (init_colorcode == "" || init_colorcode == undefined || init_colorcode == null) ? "#428BD3" : init_colorcode,
+	  flat: true,
+	  showInput: true,
+	  className: "full-spectrum",
+	  showInitial: true,
+	  showPalette: true,
+	  showSelectionPalette: true,
+	  maxPaletteSize: 10,
+	  maxSelectionSize : 10,
+	  preferredFormat: "hex",
+	  localStorageKey: "spectrum.example",
+	  move: function (color) {
+		  var getcolor = color.toHexString();
+		  colorSelected(getcolor);
+		  
+		  $("#templateboxlist li .selectImg").each(function(key, val) {
+			var colorattr = $(this).attr("datacolor");;
+			if (colorattr == undefined || colorattr == "") {
+			
+			}else{	
+			  var cas = colorattr.split(';');
+			  for (var i = 0; i < cas.length; i++) {
+				var ca = cas[i];
+				if (ca == undefined || ca == "") {
+					continue;
+				}
+				var cai = ca.split(':');
+				if (cai.length < 2) {
+					continue;
+				}
+				$('#templateboxlist li .selectImg ').eq(key).find(cai[0]).css(cai[1], $('.sp-input').val());
+			  }
+			}
+		  });
+		  
+	  },
+	  show: function () {
+
+	  },
+	  beforeShow: function () {
+
+	  },
+	  hide: function (color) {
+	  },
+	  change: function(color) {
+		  var getcolor = color.toHexString();
+		  colorSelected(getcolor);
+		  
+		  $("#templateboxlist li .selectImg").each(function(key, val) {
+			var colorattr = $(this).attr("datacolor");;
+			if (colorattr == undefined || colorattr == "") {
+			
+			}else{	
+			  var cas = colorattr.split(';');
+			  for (var i = 0; i < cas.length; i++) {
+				var ca = cas[i];
+				if (ca == undefined || ca == "") {
+					continue;
+				}
+				var cai = ca.split(':');
+				if (cai.length < 2) {
+					continue;
+				}
+				$('#templateboxlist li .selectImg ').eq(key).find(cai[0]).css(cai[1], $('.sp-input').val());
+			  }
+			}
+		  });
+		  
+	  },
+	  palette: [
+		  ["rgb(0, 0, 0)", "rgb(67, 67, 67)", "rgb(102, 102, 102)", "rgb(153, 153, 153)","rgb(183, 183, 183)",
+		  "rgb(204, 204, 204)", "rgb(217, 217, 217)", "rgb(239, 239, 239)", "rgb(243, 243, 243)", "rgb(255, 255, 255)"],
+		  ["rgb(152, 0, 0)", "rgb(255, 0, 0)", "rgb(255, 153, 0)", "rgb(255, 255, 0)", "rgb(0, 255, 0)",
+		  "rgb(0, 255, 255)", "rgb(74, 134, 232)", "rgb(0, 0, 255)", "rgb(153, 0, 255)", "rgb(255, 0, 255)"],
+		  ["rgb(230, 184, 175)", "rgb(244, 204, 204)", "rgb(252, 229, 205)", "rgb(255, 242, 204)", "rgb(217, 234, 211)",
+		  "rgb(208, 224, 227)", "rgb(201, 218, 248)", "rgb(207, 226, 243)", "rgb(217, 210, 233)", "rgb(234, 209, 220)",
+		  "rgb(221, 126, 107)", "rgb(234, 153, 153)", "rgb(249, 203, 156)", "rgb(255, 229, 153)", "rgb(182, 215, 168)",
+		  "rgb(162, 196, 201)", "rgb(164, 194, 244)", "rgb(159, 197, 232)", "rgb(180, 167, 214)", "rgb(213, 166, 189)",
+		  "rgb(204, 65, 37)", "rgb(224, 102, 102)", "rgb(246, 178, 107)", "rgb(255, 217, 102)", "rgb(147, 196, 125)",
+		  "rgb(118, 165, 175)", "rgb(109, 158, 235)", "rgb(111, 168, 220)", "rgb(142, 124, 195)", "rgb(194, 123, 160)",
+		  "rgb(166, 28, 0)", "rgb(204, 0, 0)", "rgb(230, 145, 56)", "rgb(241, 194, 50)", "rgb(106, 168, 79)",
+		  "rgb(69, 129, 142)", "rgb(60, 120, 216)", "rgb(61, 133, 198)", "rgb(103, 78, 167)", "rgb(166, 77, 121)",
+		  "rgb(133, 32, 12)", "rgb(153, 0, 0)", "rgb(180, 95, 6)", "rgb(191, 144, 0)", "rgb(56, 118, 29)",
+		  "rgb(19, 79, 92)", "rgb(17, 85, 204)", "rgb(11, 83, 148)", "rgb(53, 28, 117)", "rgb(116, 27, 71)",/**/
+		  "rgb(91, 15, 0)", "rgb(102, 0, 0)", "rgb(120, 63, 4)", "rgb(127, 96, 0)", "rgb(39, 78, 19)",
+		  "rgb(12, 52, 61)", "rgb(28, 69, 135)", "rgb(7, 55, 99)", "rgb(32, 18, 77)", "rgb(76, 17, 48)"]
+	  ]
+  });
+
+  toggleButtonState();
+  
+  //打开的时候自动装入最近的数据
+  var $init_url;
+  if($_GET['catid']>0){
+     $init_url = getRootPath() + 'do.php?ac=ajax&op=getwxtemplate&catid='+$_GET['catid'];
+  }else{
+	 $init_url = getRootPath() + 'do.php?ac=ajax&op=getwxtemplate&recently='+$.cookie("recently");
+  }
+  
+  $.ajax({           
+	type: "get",     
+	url: $init_url,
+	dataType: "json",
+	data: {r:Math.random()}, 
+	async:true,
+	success: function(data){
+	  var html = '';
+	  if(data){
+		if($("#mycatid").val()=="11"){
+		  html=html+"<ul id='templateboxlist' style='width:98%; margin:10px auto;'>";
+		  $.each(data, function(key, val) {
+			html=html+'<li style="width:50px; line-height:30px; height:30px; text-align:center; margin:0px 5px; float:left; cursor:pointer; "><div class="selectImg" style="border:1px solid #fff; padding:0px;" alt="' + val.name + '" rel="' + val.id + '" code="' + encodeURIComponent(val.code) + '" datacolor="' + val.datacolor + '" >'+val.code+'</div>';
+			html=html+'</li>';
+		  }); 
+		  html=html+"</ul>";
+		}else{
+		  html=html+"<ul id='templateboxlist' style='width:98%; margin:10px auto;'>";
+		  $.each(data, function(key, val) {
+			html=html+'<li style="width:444px; margin:0px 5px; float:left; cursor:pointer; "><div class="selectImg" style="border:1px solid #fff; padding:10px;" alt="' + val.name + '" rel="' + val.id + '" code="' + encodeURIComponent(val.code) + '" datacolor="' + val.datacolor + '" >'+val.code+'</div>';
+			html=html+'</li>';
+		  }); 
+		  html=html+"</ul>";
+		}
+		$('#templatelist').html(html);
+	  }else{
+		$('#templatelist').html('暂无数据');
+	  }
+	  $.each(data, function(key, val) {
+		var colorattr = val.datacolor;
+		if (colorattr == undefined || colorattr == "") {
+		
+		}else{	
+		  var cas = colorattr.split(';');
+		  for (var i = 0; i < cas.length; i++) {
+			var ca = cas[i];
+			if (ca == undefined || ca == "") {
+				continue;
+			}
+			var cai = ca.split(':');
+			if (cai.length < 2) {
+				continue;
+			}
+			$('#templateboxlist li .selectImg ').eq(key).find(cai[0]).css(cai[1], $('.sp-input').val());
+		  }
+		}
+	  });
+	  $('#templateboxlist').on('click','.selectImg',function(event){
+		$('.selectImg').css('border', '1px solid #fff');
+		$(this).css('border', '1px solid #F00');
+		$('.templateid').val($(this).attr('rel'));
+		$('.element_item').attr('datacolor',$(this).attr('datacolor'));
+		$('#preview_content').html(decodeURIComponent($(this).attr('code')));
+		colorSelected($('.sp-input').val());
+	  });
+	}
+  });
+  
+  //AJAX读取分类数据
+  /*$.ajax({           
+	  type: "get",     
+	  url: getRootPath() + "do.php?ac=ajax&op=getwxtemplatecate", 
+	  dataType: "json",
+	  data: {r:Math.random()}, 
+	  async:true,
+	  success: function(data){
+		var mytabshtml = '';
+		mytabshtml='<div class="mytabspage" style="float:left; border:#848484 2px solid; padding:3px; cursor:pointer;" rel="0">最近用过</div>';
+		$.each(data, function(index, value) {
+		  mytabshtml = mytabshtml + '<div class="mytabspage" style="float:left; border:#848484 2px solid; padding:3px; margin-left:5px; cursor:pointer;" rel="' + value.id + '">' + value.name + '</div>';
+		});
+		$("#mytabs").append(mytabshtml);
+		$(".mytabspage").each(function(){
+		  if($(this).attr("rel") == $_GET['catid']){	
+		  	$(this).css("border-color","#FF6633");
+		  }
+		});	
+	  }
+  });
+  */
+
+  var category_data='[{"id":"6","uid":"0","weight":"99","name":"\u6807\u9898","dateline":"0","updatetime":"0"},{"id":"9","uid":"0","weight":"98","name":"\u56fe\u6587","dateline":"0","updatetime":"0"},{"id":"4","uid":"0","weight":"97","name":"\u6b63\u6587\u6587\u672c","dateline":"0","updatetime":"0"},{"id":"2","uid":"0","weight":"96","name":"\u9876\u90e8\u5173\u6ce8","dateline":"0","updatetime":"0"},{"id":"3","uid":"0","weight":"95","name":"\u5e95\u90e8\u539f\u6587","dateline":"0","updatetime":"0"},{"id":"1","uid":"0","weight":"94","name":"\u6587\u672c\u80cc\u666f","dateline":"0","updatetime":"0"},{"id":"10","uid":"0","weight":"93","name":"\u4e8c\u7ef4\u7801","dateline":"0","updatetime":"0"},{"id":"5","uid":"0","weight":"92","name":"\u5206\u5272\u7ebf","dateline":"0","updatetime":"0"},{"id":"8","uid":"0","weight":"91","name":"\u8868\u60c5","dateline":"0","updatetime":"0"},{"id":"11","uid":"0","weight":"90","name":"\u7279\u6b8a\u7b26\u53f7","dateline":"0","updatetime":"0"},{"id":"7","uid":"0","weight":"88","name":"\u5176\u4ed6","dateline":"0","updatetime":"0"}]';
+  var mytabshtml = '';
+  mytabshtml='<div class="mytabspage" style="float:left; border:#848484 2px solid; padding:3px; cursor:pointer;" rel="0">最近用过</div>';
+  $.each(JSON.parse(category_data), function(index, value) {
+	mytabshtml = mytabshtml + '<div class="mytabspage" style="float:left; border:#848484 2px solid; padding:3px; margin-left:5px; cursor:pointer;" rel="' + value.id + '">' + value.name + '</div>';
+  });
+  $("#mytabs").append(mytabshtml);
+  $(".mytabspage").each(function(){
+	if($(this).attr("rel") == $_GET['catid']){	
+	  $(this).css("border-color","#FF6633");
+	}
+  });
+  
+  //触发按下分类的操作
+  $('#mytabs').on('click','.mytabspage',function(event){
+  	$("#mycatid").val($(this).attr("rel"));
+	$('.mytabspage').css("border-color","#848484")
+	$(this).css("border-color","#FF6633");
+	if($(this).attr("rel")==0){
+	   var gettplurl = getRootPath() + 'do.php?ac=ajax&op=getwxtemplate&recently='+$.cookie("recently");
+	}else{
+	   var gettplurl = getRootPath() + 'do.php?ac=ajax&op=getwxtemplate&catid='+$(this).attr("rel");
+	}
+	$("#preview_content").html("");
+	$.ajax({           
+	  type: "get",     
+	  url: gettplurl, 
+	  dataType: "json",
+	  data: {r:Math.random()}, 
+	  async:true,
+	  success: function(data){
+	  	var html = '';
+		if(data){
+		  if($("#mycatid").val()=="11"){
+			html=html+"<ul id='templateboxlist' style='width:98%; margin:10px auto;'>";
+			$.each(data, function(key, val) {
+			  html=html+'<li style="width:50px; line-height:30px; height:30px; text-align:center; margin:0px 5px; float:left; cursor:pointer; "><div class="selectImg" style="border:1px solid #fff; padding:0px;" alt="' + val.name + '" rel="' + val.id + '" code="' + encodeURIComponent(val.code) + '" datacolor="' + val.datacolor + '" >'+val.code+'</div>';
+			  html=html+'</li>';
+			}); 
+			html=html+"</ul>";
+		  }else{
+			html=html+"<ul id='templateboxlist' style='width:98%; margin:10px auto;'>";
+			$.each(data, function(key, val) {
+			  html=html+'<li style="width:444px; margin:0px 5px; float:left; cursor:pointer; "><div class="selectImg" style="border:1px solid #fff; padding:10px;" alt="' + val.name + '" rel="' + val.id + '" code="' + encodeURIComponent(val.code) + '" datacolor="' + val.datacolor + '" >'+val.code+'</div>';
+			  html=html+'</li>';
+			}); 
+			html=html+"</ul>";
+		  }
+		  $('#templatelist').html(html);
+		}else{
+		  $('#templatelist').html('暂无数据');
+		}
+		$.each(data, function(key, val) {
+		  var colorattr = val.datacolor;
+		  if (colorattr == undefined || colorattr == "") {
+		  
+		  }else{	
+			var cas = colorattr.split(';');
+			for (var i = 0; i < cas.length; i++) {
+			  var ca = cas[i];
+			  if (ca == undefined || ca == "") {
+				  continue;
+			  }
+			  var cai = ca.split(':');
+			  if (cai.length < 2) {
+				  continue;
+			  }
+			  $('#templateboxlist li .selectImg ').eq(key).find(cai[0]).css(cai[1], $('.sp-input').val());
+			}
+		  }
+		});
+		$('#templateboxlist').on('click','.selectImg',function(event){
+		  $('.selectImg').css('border', '1px solid #fff');
+		  $(this).css('border', '1px solid #F00');
+		  $('.templateid').val($(this).attr('rel'));
+		  $('.element_item').attr('datacolor',$(this).attr('datacolor'));
+		  $('#preview_content').html(decodeURIComponent($(this).attr('code')));
+		  colorSelected($('.sp-input').val());
+		});
+	  }
+	  
+	});
+  });
+  
+  $('#insertwtpbox').on('click','#insertwtp',function(event){
+ 	
+	dialog.close(true);
+  });
+  
+  dialog.onok = function(){
+	// 插入内容到编辑器
+	$.cookie("colorcode",$(".sp-input").val(),{expires:7,path:"/"}); 
+	preview_content = $('#preview_content'); 
+	templateid = $('[name="templateid"]').val();
+	if(templateid.length>0){
+		var code="";
+		code = preview_content.html();
+		var recently="";
+		if($.cookie("recently")){
+		   recently=$.cookie("recently");
+		}
+		if((recently.length)>0){
+			var recently_array= recently.split(",");
+			recently_array.unshift(templateid);
+			recently_array=unique(recently_array);
+			if(recently_array.length>8){
+			  recently_array.pop()
+			}
+			recently = recently_array.join(",");
+			$.cookie("recently",recently,{expires:7,path:"/"}); 
+		}else{
+			$.cookie("recently",templateid,{expires:7,path:"/"}); 
+		}
+	}
+	editor.execCommand('inserthtml',$('#preview_content').html());	
+  }
+  
+	  
+});
+
+function colorSelected(color) {
+  var colorattr = $(".element_item").attr("datacolor");
+  if (colorattr == undefined || colorattr == "") {
+	  return;
+  }
+  var cas = colorattr.split(';');
+  for (var i = 0; i < cas.length; i++) {
+	var ca = cas[i];
+	if (ca == undefined || ca == "") {
+		continue;
+	}
+	var cai = ca.split(':');
+	if (cai.length < 2) {
+		continue;
+	}
+	$('#preview_content ' + cai[0]).css(cai[1], color);
+  }
+}
+
+function getRootPath() {
+  var strFullPath = window.document.location.href;        
+  var strPath = window.document.location.pathname;        
+  var pos = strFullPath.indexOf(strPath);        
+  var prePath = strFullPath.substring(0, pos);        
+  var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);        
+  return (prePath +  '/');    
+}
+
+function unique(arr) {
+  var result = [], hash = {};
+  for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+	if (!hash[elem]) {
+	  result.push(elem);
+	  hash[elem] = true;
+	}
+  }
+  return result;
+}
+
+var $_GET = (function(){
+    var url = window.document.location.href.toString();
+    var u = url.split("?");
+    if(typeof(u[1]) == "string"){
+        u = u[1].split("&");
+        var get = {};
+        for(var i in u){
+            var j = u[i].split("=");
+            get[j[0]] = j[1];
+        }
+        return get;
+    } else {
+        return {};
+    }
+})();
+</script>
+<!--<script type="text/javascript" src="wxtemplate.js"></script>
+--></body>
+</html>

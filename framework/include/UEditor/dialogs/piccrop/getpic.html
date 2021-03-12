@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+<meta http-equiv="expires" content="0">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<title>图片裁剪</title>
+</head>
+<script src="js/jquery.min.js"></script>
+<script>
+  $(function(){
+	  
+	var imageUrl=$(window.parent.document).find("#imageUrl").val();
+	var imageWidth=$(window.parent.document).find("#imageWidth").val();
+	var imageHeight=$(window.parent.document).find("#imageHeight").val();
+	//$("#showpic").attr("src",getRootPath() +imageUrl);
+	
+	/*console.log(imageWidth);
+	console.log(imageHeight);
+	*/
+	if(imageUrl.indexOf("http://") >= 0 || imageUrl.indexOf("https://") >= 0){
+	  $("#showpic").attr("src", imageUrl);
+	  //$("#cropbox").hide();
+    }else{
+	  $("#showpic").attr("src", getRootPath() + imageUrl);	
+	}
+	
+	$('img').load(function(){
+	  //setTimeout(function() {
+		$(window.parent.document).find("#loaddingmsg").html("处理中,请等待");
+	  //},3000);
+	});
+
+  });
+  
+  function getRootPath() {        
+	var strFullPath = window.document.location.href;        
+	var strPath = window.document.location.pathname;        
+	var pos = strFullPath.indexOf(strPath);        
+	var prePath = strFullPath.substring(0, pos);        
+	var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);        
+	return (prePath + '/');    
+  }
+</script>
+<body>
+    <img src="" id="showpic">
+</body>
+</html>

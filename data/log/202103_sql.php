@@ -1,0 +1,1 @@
+<?PHP exit;?>	2021-03-02 12:26:51	176.103.84.112	Unknown	0	/	error:Table 'share_huidin.hd_down' doesn't exist; sql:SELECT down.*,category.catname FROM hd_down as down  		  left join hd_category as category on down.catid=category.catid  		  where 1 and down.pass=1 and down.catid=5 order by topdateline desc, dateline desc limit 0,5

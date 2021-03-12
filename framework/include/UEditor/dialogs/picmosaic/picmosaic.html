@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta charset="utf-8" />
+<meta http-equiv="pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+<meta http-equiv="expires" content="0">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="../internal.js"></script>
+<style type="text/css">
+    html,body{overflow:hidden;}
+</style>
+</head>
+<body>
+<link href="css/jquery.jcrop.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.jcrop.js"></script>
+<script src="js/jquery.myjcrop.js"></script>
+<script>
+$(function(){
+  
+  //加载图片
+  var img = editor.selection.getRange().getClosedNode();
+  if (img) {
+ 	 src =  (img.getAttribute('_src') || img.getAttribute("src", 2).replace("&amp;", "&"));
+	 width = img.width || '';
+	 height = img.height || '';
+  }
+  
+  var imageUrl = src;
+  var imageWidth = width;
+  var imageHeight = height;
+
+  $("#imageUrl").val(src);
+  $("#imageWidth").val(width);
+  $("#imageHeight").val(height);
+
+  if(imageUrl.indexOf("http://") >= 0 || imageUrl.indexOf("https://") >= 0){
+	$("#cropbox").attr("src", imageUrl);
+  }else{
+	$("#cropbox").attr("src", getRootPath() + imageUrl);	
+  }
+  
+  var realWidth;//真实的宽度 
+  var realHeight;//真实的高度 //这里做下说明，$("<img/>")这里是创建一个临时的img标签，类似js创建一个new Image()对象！ 
+  $("<img/>").attr("src", $("#cropbox").attr("src")).load(function() { 
+	  realWidth = this.width; 
+	  realHeight = this.height; //如果真实的宽度大于浏览器的宽度就按照100%显示 
+	  //alert(realWidth);
+	  if(realWidth>=700){ $("#cropbox").css("width","700px;").css("height","auto"); }
+  }); 
+
+  //$("#cropbox").attr("src", getRootPath() + imageUrl);
+  //$("#cropbox").attr("width",imageWidth);
+  //$("#cropbox").attr("height",imageHeight);
+  $("#url").val(imageUrl);
+  if(imageUrl=="http://"){
+	$("#cropbox").hide();
+  }else{
+	$("#cropbox").show();
+  }
+  
+  //alert(imageUrl);
+  $('#x').val('');
+  $('#y').val('');
+  $('#w').val('');
+  $('#h').val('');
+  <!--$("#url").val(imageUrl);-->
+  $('#cropbox').Jcrop({
+	onSelect: updateCoords
+  });
+
+
+  dialog.onok = function(){
+	//console.log($("#url").val());
+	//editor.selection.clear();
+	//editor.execCommand( 'inserthtml', "<p>");
+	//editor.execCommand( 'inserthtml', "</p>");
+  } 
+  
+  $('#picmosaicwrap').on('click','#comfirmcrop',function(event){
+	 $('#loading').css("display","block");
+	 $.ajax({  
+		type: "post",
+		url: getRootPath() + "do.php?ac=ajax&op=mosaicpic",
+		cache: false, 
+		data:{url:encodeURIComponent($("#url").val()),deep:$("#deep").val(),x:$("#x").val(),y:$("#y").val(),w:$("#w").val(),h:$("#h").val(),r:Math.random()},
+		dataType: "json",  
+		async:false,
+		error: function() { alert("error!") },  
+		success: function(data){/**/
+		  document.getElementById("ke-textarea-picmosaic").src= "getpic.html";
+		  $("#resultw").val(data.picwidth);
+		  $("#resulth").val(data.picheight);
+		  $("#url").val(data.picfilepath);
+		  //重新设置图片的宽和高
+		  document.getElementById('ke-textarea-picmosaic').contentWindow.location.reload(true); 
+          setInterval("mycolse()",2000);
+		  /*document.getElementById("ke-textarea-piccrop").src= "getpic.html";
+		  $("#resultw").val(data.picwidth);
+		  $("#resulth").val(data.picheight);
+		  $("#url").val(data.picfilepath);
+		  //重新设置图片的宽和高
+		  document.getElementById('ke-textarea-picmosaic').contentWindow.location.reload(true); 
+		  setTimeout(function() {
+		   dialog.close(true);
+		  },2500);*/
+		}       
+	  });
+
+  });
+});
+
+function mycolse(){
+  if($('#loaddingmsg').html()=="处理中,请等待"){
+	$('#previewpic').html("<img src='"+getRootPath() +$("#url").val()+"'>");
+	editor.execCommand( 'insertimage', {
+		src:$("#url").val()
+	} );
+	setTimeout(function() {
+	  dialog.close(true);
+	},1000);
+  }
+}
+
+function updateCoords(c){
+  $('#x').val(c.x);
+  $('#y').val(c.y);
+  $('#w').val(c.w);
+  $('#h').val(c.h);
+};
+
+function checkCoords(){
+  if (parseInt($('#w').val())) return true;
+  alert('Please select a crop region then press submit.');
+  return false;
+};
+
+function getRootPath() {
+  var strFullPath = window.document.location.href;        
+  var strPath = window.document.location.pathname;        
+  var pos = strFullPath.indexOf(strPath);        
+  var prePath = strFullPath.substring(0, pos);        
+  var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);        
+  return (prePath +  '/');    
+}
+</script>
+<div id="loading" style="width:100%; height:600px; background-color:#FFF; text-align:center; display:none;">
+  <img src="image/loading.gif" style="magrin:auto; margin-top:220px;">
+  <div id="loaddingmsg" style="text-align:center; font-size:14px; margin-top:10px;">正在为您处理中,请耐心等待...</div>
+  <div id="previewpic" style="display:none"></div>
+</div>
+<iframe class="ke-textarea" id="ke-textarea-picmosaic" src="getpic.html" frameborder="0" style="width:1px; height:1px; display:none;"></iframe>
+<div id="picmosaicwrap" style="padding:10px 20px;">
+  <div style="margin-bottom:10px; height:20px; line-height:20px;"> 
+    <select id="deep" name="deep" style="float:left;">
+      <option value="10">10</option>
+      <option value="9">9</option>
+      <option value="8">8</option>
+      <option value="7">7</option>
+      <option value="6">6</option>
+      <option value="5">5</option>
+      <option value="4">4</option>
+      <option value="3">3</option>
+      <option value="2">2</option>
+      <option value="1">1</option>
+	</select>
+    <div style="float:left; margin-left:5px;">深度越大模糊越细腻！</div>
+  </div>
+  <input type="hidden" value='' id="imageUrl" />
+  <input type="hidden" value='' id="imageWidth" />
+  <input type="hidden" value='' id="imageHeight" />
+  <div id="picmosaic" style="width:928px;height:505px;border:1px #999 solid; overflow:auto; padding:5px;">
+    <div style="width:100%;">
+      <img src="" id="cropbox">
+    </div>
+    <input type="hidden" id="resultw" name="resultw" />
+    <input type="hidden" id="resulth" name="resulth" />
+    <input type="hidden" id="url" name="url" />
+    <input type="hidden" id="x" name="x" />
+    <input type="hidden" id="y" name="y" />
+    <input type="hidden" id="w" name="w" />
+    <input type="hidden" id="h" name="h" />
+  </div>
+  <div style="width:100%; overflow:hidden; margin-top:5px;">
+  <input type="button" style="padding:3px 15px; float:right;" id="comfirmcrop" value="打码" >
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta charset="utf-8" />
+<meta http-equiv="pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+<meta http-equiv="expires" content="0">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript" src="../internal.js"></script>
+<style type="text/css">
+    html,body{overflow:hidden;}
+</style>
+</head>
+<body>
+<link href="css/jquery.jcrop.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.jcrop.js"></script>
+<script src="js/jquery.myjcrop.js"></script>
+<div id="loading" style="width:100%; height:600px; background-color:#FFF; text-align:center; display:none;">
+  <img src="image/loading.gif" style="magrin:auto; margin-top:220px;">
+  <div id="loaddingmsg" style="text-align:center; font-size:14px; margin-top:10px;">正在为您处理中,请耐心等待...</div>
+  <div id="previewpic" style="display:none"></div>
+</div>
+<iframe class="ke-textarea" id="ke-textarea-piccrop" src="getpic.html" frameborder="0" style="width:1px; height:1px; display:none;"></iframe>
+<div id="piccropwrap" style="padding:10px 20px;">
+  <div style="margin-bottom:10px; height:20px; line-height:20px;"> 
+    <div style="float:left;">裁剪远程图片的时间可能会比较久，请耐心等待！</div>
+  </div>
+  <input type="hidden" value='' id="imageUrl" />
+  <input type="hidden" value='' id="imageWidth" />
+  <input type="hidden" value='' id="imageHeight" />
+  <!--<iframe class="ke-textarea" id="ke-piccrop" frameborder="0" src="cp.html" style="width:100%;height:500px;border:1px #999 solid;" scrolling="yes"></iframe>
+  --><div id="piccrop" style="width:928px;height:505px;border:1px #999 solid; padding:10px; overflow-y:hidden; display:block;">
+    <div style="width:100%;">
+      <img src="" id="cropbox">
+    </div>
+    <input type="hidden" id="resultw" name="resultw" />
+    <input type="hidden" id="resulth" name="resulth" />
+    <input type="hidden" id="url" name="url" />
+    <input type="hidden" id="x" name="x" />
+    <input type="hidden" id="y" name="y" />
+    <input type="hidden" id="w" name="w" />
+    <input type="hidden" id="h" name="h" />
+    <input type="hidden" id="r" name="h" />
+  </div>
+  <div style="width:100%; overflow:hidden; margin-top:5px;">
+  <input type="button" style="padding:3px 15px; float:right;" id="comfirmcrop" value="裁剪" >
+  </div>
+</div>
+<script>
+$(function(){
+  
+  //加载图片
+  var img = editor.selection.getRange().getClosedNode();
+  if (img) {
+ 	 src =  (img.getAttribute('_src') || img.getAttribute("src", 2).replace("&amp;", "&"));
+	 width = img.width || '';
+	 height = img.height || '';
+  }
+  
+  //$("#cropbox").css("width",width+"px").css("height",height+"px");
+  
+  //console.log(height);
+  var imageUrl = src;
+  var imageWidth = width;
+  var imageHeight = height;
+
+  $("#imageUrl").val(src);
+  $("#imageWidth").val(width);
+  $("#imageHeight").val(height);
+
+  if(imageUrl.indexOf("http://") >= 0 || imageUrl.indexOf("https://") >= 0){
+	$("#cropbox").attr("src", imageUrl);
+  }else{
+	$("#cropbox").attr("src", getRootPath() + imageUrl);	
+  }
+    
+  if(height>=505){ 
+  	$("#cropbox").css("width","auto").css("height","505px");
+	height = 505;
+  }else{
+  	$("#cropbox").width(width);
+  	$("#cropbox").height(height);
+  }
+  $("#url").val(imageUrl);
+  if(imageUrl=="http://"){
+	$("#cropbox").hide();
+  }else{
+	$("#cropbox").show();
+  }
+  
+  $('#x').val('');
+  $('#y').val('');
+  $('#w').val('');
+  $('#h').val('');
+  <!--$("#url").val(imageUrl);-->
+  
+  
+  var jcrop_api;
+  
+  $('#cropbox').Jcrop({
+	onSelect: updateCoords
+  },function(){
+	jcrop_api = this;
+  });
+  
+ 
+  dialog.onok = function(){
+	//editor.selection.clear();
+	//editor.execCommand( 'inserthtml', "<p>");
+	
+	//editor.execCommand( 'inserthtml', "<p><br></p>");
+  } 
+  
+  $('#piccropwrap').on('click','#comfirmcrop',function(event){
+	 $('#loading').css("display","block");
+	 $.ajax({  
+		type: "post",
+		url: getRootPath() + "do.php?ac=ajax&op=croppic",
+		cache: false, 
+		data:{url:encodeURIComponent($("#url").val()),x:$("#x").val(),y:$("#y").val(),w:$("#w").val(),h:$("#h").val(),rw:width,rh:height,r:Math.random()},
+		dataType: "json",  
+		async:false,
+		error: function() { alert("error!") },  
+		success: function(data){/**/
+		  
+		  document.getElementById("ke-textarea-piccrop").src= "getpic.html";
+		  $("#resultw").val(data.picwidth);
+		  $("#resulth").val(data.picheight);
+		  $("#url").val(data.picfilepath);
+		  //重新设置图片的宽和高
+		  document.getElementById('ke-textarea-piccrop').contentWindow.location.reload(true); 
+          setInterval("mycolse()",2000);
+		  /*$.ajax({  
+			type: "get",
+			url:  getRootPath() + "do.php?ac=ajax&op=getmypic",
+			cache: false, 
+			data:{url:encodeURIComponent($("#url").val()),r:Math.random()},
+			dataType: "json",  
+			async:false,
+			success: function(msg){
+				console.log("222222");
+				console.log(msg);
+				$('#loading').html("<img src='"+getRootPath() +$("#url").val()+"'>");
+			}
+          });*/ 
+
+
+
+		  /*setTimeout(function() {
+		   dialog.close(true);
+		  },2500);*/
+
+
+
+		}       
+	  });
+
+  });
+});
+
+function mycolse(){
+  if($('#loaddingmsg').html()=="处理中,请等待"){
+	$('#previewpic').html("<img src='"+getRootPath() +$("#url").val()+"'>");
+	editor.execCommand( 'insertimage', {
+		src:$("#url").val()
+	} );
+	setTimeout(function() {
+	  dialog.close(true);
+	},1000);
+  }
+}
+
+function updateCoords(c){
+  $('#x').val(c.x);
+  $('#y').val(c.y);
+  $('#w').val(c.w);
+  $('#h').val(c.h);
+};
+
+function checkCoords(){
+  if (parseInt($('#w').val())) return true;
+  alert('Please select a crop region then press submit.');
+  return false;
+};
+
+function getRootPath() {
+  var strFullPath = window.document.location.href;        
+  var strPath = window.document.location.pathname;        
+  var pos = strFullPath.indexOf(strPath);        
+  var prePath = strFullPath.substring(0, pos);        
+  var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);        
+  return (prePath +  '/');    
+}
+</script>
+</body>
+</html>

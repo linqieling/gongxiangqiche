@@ -1,0 +1,236 @@
+<?php /* Smarty version Smarty-3.1.13, created on 2018-01-29 11:04:19
+         compiled from "E:\www\tqcms\source\mobile\tpl\default\do_register.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:89625a6e8e31656917-07367877%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'a76d5f29d20c1b9af392afcb4b5db374bc3a0af6' => 
+    array (
+      0 => 'E:\\www\\tqcms\\source\\mobile\\tpl\\default\\do_register.tpl',
+      1 => 1517195058,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '89625a6e8e31656917-07367877',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_5a6e8e316d0a30_59411040',
+  'variables' => 
+  array (
+    '_SPATH' => 0,
+    '_SCONFIG' => 0,
+    '_SC' => 0,
+    '_SGLOBAL' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5a6e8e316d0a30_59411040')) {function content_5a6e8e316d0a30_59411040($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('head.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate ('headmenu.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate ('headtop.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['css'];?>
+validator.css"></link>
+<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['css'];?>
+login.css">
+<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['js'];?>
+jquery.js"></script>
+<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['js'];?>
+jquery.validation.min.js"></script>
+<style>
+.error {
+    background: url(<?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['images'];?>
+error.png)  no-repeat right top;
+    background-size: 7%;
+    width: 0.9rem;
+    height: 100%;
+    color: #8c8c8c;
+  }
+ #username-error{
+ background:none;
+  width: auto;
+  float:right;
+ margin-top: 5px;
+
+}
+#password-error{
+ background:none;
+ width: auto;
+ float:right;
+ margin-top: 5px;
+
+}
+#seccode-error{
+   background:none;
+  width: auto;
+ float:right;
+ margin-top: 5px;
+}
+#password_confirm-error{
+    background:none;
+    width: auto;
+   float:right;
+   margin-top: 5px;
+}
+.valid{
+    background: url(<?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['images'];?>
+adopt.png)  no-repeat right top;
+    background-size: 7%;
+    width: 0.9rem;
+    height: 100%;
+    color: #8c8c8c;
+    }
+</style>
+
+<script type="text/javascript">
+//注册表单验证
+  $(function(){
+
+    $("#register_user").validate({
+  
+        rules : {
+            username: {
+                  required : true,
+                  minlength: 5,
+                  maxlength: 15,
+                  remote   : {
+                      url : '<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['webroot'];?>
+do-register.html',
+                      type: 'post',
+                      data:{
+                            username : function(data){
+                              // alert(data)
+                              return $('#username').val();
+                            }
+                      }
+                  }
+            },
+            password : {
+                  required : true,
+                  minlength: 6,
+                  maxlength: 20
+            },
+            password_confirm : {
+                  required : true,
+                  equalTo  : '#password'
+            },
+            seccode : {
+                  required : true,
+                  maxlength: 4,
+                  remote: {
+                    url : '<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['webroot'];?>
+do-register.html',
+                    type: 'post',
+                    data:{
+                        seccode : function(data){
+                            return $('#seccode').val();
+                        }
+                    }
+                }
+            },
+            agree : {
+                required : true
+            }
+        },
+        messages : {
+            username : {
+                required : '用户名不能为空',
+                minlength: '用户名过短',
+                maxlength: '用户名过长',
+                remote   : '该用户名已经存在'
+            },
+            password : {
+                required : '密码不能为空',
+                minlength: '密码长度应在6-15个字符之间',
+                maxlength: '密码长度应在6-15个字符之间'
+            },
+            password_confirm : {
+                required : '请再次输入您的密码',
+                equalTo  : '两次输入的密码不一致'
+            },
+            seccode : {
+                required : '请输入验证码',
+                minlength: '验证码为4位',
+                remote : '验证码不正确'
+            },
+            agree : {
+                required : '请阅读并同意该协议'
+            }
+        }
+
+    });
+  });
+
+</script>
+
+  <div id="container" style="margin-top:40px;">
+    <div class="layout">
+    <ul style="width: 100%; overflow: hidden; background: #FFF; text-align: center; color: #333; font-size: 16px;">
+       <li><a style="width: 50%; float: left; height: 0.4rem; line-height: 0.4rem; font-size:12px;  border-bottom: solid 2px #0088fe;" href="<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['webroot'];?>
+do-register.html">普通注册</a></li>
+      <li><a style="width: 50%;float: left;   height: 0.4rem; line-height: 0.4rem; font-size:12px;"  href="<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['webroot'];?>
+do-register_mobile.html">手机注册</a></li>
+  </ul>
+
+    </div>
+    <div class="container_02 mb20" >
+           <div style=" margin-top: 0.3rem; margin-bottom: 0.3rem; text-align: center;">
+         <div style="width: 240px; height: 61px; margin:auto;">
+     
+        <img src="<?php if ($_smarty_tpl->tpl_vars['_SCONFIG']->value['weblogo']){?><?php echo $_smarty_tpl->tpl_vars['_SC']->value['attachdir'];?>
+image/<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['weblogo'];?>
+<?php }else{ ?><?php echo $_smarty_tpl->tpl_vars['_SPATH']->value['images'];?>
+loginlogo.png<?php }?>"  style="width: 100%; height: auto;" alt="">
+        </div>
+      </div>
+       <form id="register_user" name="form1" method="post" action="<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['webroot'];?>
+do-register.html"> 
+          <input type="hidden" name="formhash" value="<?php echo $_smarty_tpl->tpl_vars['_SGLOBAL']->value['formhash'];?>
+"/>
+        
+        <div class="input_box" >
+         <em class="id-icon"></em>
+        <input id="username" type="text"  name="username" placeholder="用户名"  >
+        </div>
+      
+
+        <div class="input_box">
+        <em class="pwd-icon"></em>
+        <input id="password" type="password" name="password" placeholder="密　码"  >
+        </div>
+ 
+
+         <div class="input_box">
+         <em class="pwd-icon"></em>
+        <input id="password_confirm" type="password" name="password_confirm" placeholder="重复密码"  >
+        </div>
+    
+
+        <div class="input_box" style="position: relative;"> <em class="code-icon"></em>
+          <input type="text" name="seccode" id="seccode" maxlength="15" placeholder="验证码"/>
+              <em style="position: absolute; top: 18%; right: 0.1rem;"> <?php echo $_smarty_tpl->getSubTemplate ('seccode.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+</em>
+        </div>
+            
+
+			  <div style="width:100%; overflow:hidden;" >
+					 <input type="checkbox" checked="checked" id="agree"  name="regulation" style="float:left;"/>
+					 <div style="float:left; line-height:12px;">同意注册条款<a href="javascript:;" style="color: #0088fe;">《天褀网络用户协议》</a></div>
+			  </div>
+
+			  <input name="regsubmit" class="weui_btn weui_btn_warn" style="color:#fff; margin-top:20px; font-size:16px;" type="submit" value="注册">  
+				<a href="<?php echo $_smarty_tpl->tpl_vars['_SCONFIG']->value['webroot'];?>
+do-lostpasswd.html"  style="color:#787878; font-size:14px;">忘记密码?</a> 
+
+				 <!-- <a href="javascript:;" id="login_sbtn" class="" style="color:#fff; margin-top:20px; font-size:16px;">登 录</a> -->
+
+     </form>
+      </div>
+    </div>
+  </div>
+<?php echo $_smarty_tpl->getSubTemplate ('foot.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php }} ?>

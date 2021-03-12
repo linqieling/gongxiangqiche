@@ -1,0 +1,2 @@
+<?PHP exit;?>	2018-01-14 19:42:48	127.0.0.1	0	/plugin/wheel/index-index-lotteryid-1.html	error:Unknown column 'wxopenid' in 'where clause'; sql:select count(*) from tq_wheel_lotteryrecord  where wxopenid='' and lotteryid=1
+<?PHP exit;?>	2018-01-14 20:33:15	127.0.0.1	0	/plugin/wheel/index-index-lotteryid-1.html	error:Unknown column 'wxopenid' in 'where clause'; sql:select count(*) from tq_wheel_lotteryrecord  where wxopenid='' and lotteryid=1

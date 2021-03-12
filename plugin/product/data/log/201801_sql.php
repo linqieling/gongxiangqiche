@@ -1,0 +1,1 @@
+<?PHP exit;?>	2018-01-14 17:57:17	127.0.0.1	0	/plugin/product/index-productlist-catid-2.html	error:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1; sql:select * from tq_product_category where catid=

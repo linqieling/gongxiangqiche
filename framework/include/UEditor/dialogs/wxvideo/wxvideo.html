@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<link rel="stylesheet" href="css/spectrum.css" type="text/css">
+<link rel="stylesheet" href="css/docs.css" type="text/css">
+<script type="text/javascript" src="../internal.js"></script>
+</head>
+<style type="text/css">
+  html,body{overflow:hidden;}
+</style>
+<body>
+<div style="padding:10px 20px;">
+  <div style="width:100%; overflow:hidden; margin:0 auto 10px auto;">
+    <table>
+      <tr height="40">
+        <td align="left" colspan="2">只支持腾讯视频，例如：http://v.qq.com/page/b/y/n/b0165aw85yn.html</td>
+      </tr>
+      <tr height="40">
+        <td width="40" align="right">
+        链&nbsp;接:
+        </td>
+        <td align="left">
+        <input class="ke-input-text" type="text" id="keUrl" name="url" value="" style="width:360px;" />
+        </td>
+      </tr>
+      <tr height="40">
+        <td align="right">
+        宽&nbsp;度:
+        </td>
+        <td align="left">
+        <input type="text" id="keWidth" style="width:60px; text-align:center;" name="width" value="500" maxlength="4" />&nbsp;px
+        </td>
+      </tr>
+      <tr height="40">
+        <td align="right">
+        高&nbsp;度:
+        </td>
+        <td align="left">
+        <input type="text" id="keHeight" style="width:60px; text-align:center;" name="height" value="375" maxlength="4" />&nbsp;px
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<script type='text/javascript' src='js/jquery-1.9.1.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  dialog.onok = function(){
+	var url = $('#keUrl').val(),
+		width = $('#keWidth').val(),
+		height = $('#keHeight').val();
+    console.log(getUrlParam(url,"vid"));
+	if(getUrlParam(url,"vid") == null){
+	  var vid = url.substring((url.lastIndexOf("/")+1), url.lastIndexOf("."));
+	}else{
+	  var vid = getUrlParam(url,"vid");
+	}
+	var html = '<p><iframe class="video_iframe" height="'+height+'" width="'+width+'" frameborder="0" src="https://v.qq.com/iframe/preview.html?vid='+vid+'&width='+width+'&height='+height+'&auto=0" allowfullscreen="" style="border-width: 0px; border-style: initial; width:'+width+'px; position: relative; white-space: normal; z-index: 1; "></iframe></p>';
+	editor.execCommand('inserthtml',html+"<p><br/></p>");	
+  }
+
+  function getUrlParam(url,name){
+     var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+     var matcher = pattern.exec(url);
+     var items = null;
+     if(null != matcher){
+             try{
+					items = decodeURIComponent(decodeURIComponent(matcher[1]));
+             }catch(e){
+                     try{
+                             items = decodeURIComponent(matcher[1]);
+                     }catch(e){
+                             items = matcher[1];
+                     }
+             }
+     }
+     return items;
+  }
+});
+</script>
+</body>
+</html>
