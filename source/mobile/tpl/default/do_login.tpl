@@ -116,17 +116,17 @@
 	<main id="main">
         <div class="logo"><img src="[##$_SPATH.images##]applogo.png" alt=""></div>
         <ul class="bui-list">
-			<li class="bui-btn bui-box clearactive">
-				<label class="bui-label" for="user">手机号码</label>
-				<div class="span1">
-					<div class="bui-input" id="phoneInput">
-						<input id="phone" type="tel" placeholder="请输入你的手机号码"  maxlength="11" autocomplete="off" />
-					</div>
-				</div>
-			</li>
-			<li class="bui-btn bui-box clearactive">
-				<label class="bui-label" for="password">验证码</label>
-				<div class="span1">
+            <!--<li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="user">手机号码</label>
+                <div class="span1">
+                    <div class="bui-input" id="phoneInput">
+                        <input id="phone" type="tel" placeholder="请输入你的手机号码"  maxlength="11" autocomplete="off" />
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">验证码</label>
+                <div class="span1">
                     <div class="bui-box">
                         <div class="span1">
                             <div class="bui-input code-input">
@@ -135,10 +135,40 @@
                         </div>
                         <div class="bui-btn round btn-send">发送验证码</div>
                     </div>
-				</div>
-			</li>
-
-
+                </div>
+            </li> -->
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="username">账号</label>
+                <div class="span1">
+                    <div class="bui-input" id="usernameInput">
+                        <input id="username" type="text" placeholder="请输入你的账号" autocomplete="off" />
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">密码</label>
+                <div class="span1">
+                    <div class="bui-input" id="phoneInput">
+                        <input id="password" type="password" placeholder="请输入你的密码" autocomplete="off" />
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">验证码</label>
+                <div class="span1">
+                    <div class="bui-box">
+                        <div class="span1">
+                            <div class="bui-input code-input">
+                                <input id="code" type="tel" placeholder="请输入验证码" maxlength="6" autocomplete="off" />
+                            </div>
+                        </div>
+                        <td width="58%">&nbsp;
+                            <img id="img_seccode" src="[##$_SCONFIG.webroot##]do-seccode-width-60-height-30.html" alt="点击更新验证码"
+                                 onClick="javascript:updateseccode();" style="cursor:pointer; margin-top:5px;">
+                        </td>
+                    </div>
+                </div>
+            </li>
 		</ul>
         <div class="section-title" style="margin-top:0.1rem;">
 
@@ -241,17 +271,17 @@
                     return false; 
                 }
                 var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
-                if (!myreg.test(e.target.value)) {
-                    bui.hint({ 
-                        appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>手机号码格式错误", 
-                        position:"top" , 
-                        skin:'warning', 
-                        showClose:true, 
-                        autoClose: true
-                    });
-                    return false;
-                }
+                // if (!myreg.test(e.target.value)) {
+                //     bui.hint({
+                //         appendTo:"#main",
+                //         content:"<i class='icon-infofill'></i>手机号码格式错误",
+                //         position:"top" ,
+                //         skin:'warning',
+                //         showClose:true,
+                //         autoClose: true
+                //     });
+                //     return false;
+                // }
             },
             callback: function (e) {
                 // 清空数据
@@ -260,93 +290,93 @@
         })
 
         // 点击触发倒计时
-        $(".btn-send").on("click",function () {
-            var that = $(this);
-            var phone=$("#phone").val();
-            if( phone == ''){
-                bui.hint({ 
-                    appendTo:"#main", 
-                    content:"<i class='icon-infofill'></i>请输入手机号", 
-                    position:"top" , 
-                    skin:'warning', 
-                    showClose:true, 
-                    autoClose: true
-                });
-                return false;
-            } else {
-                var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
-                if (!myreg.test(phone)) {
-                    bui.hint({ 
-                        appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>手机号码格式错误", 
-                        position:"top" , 
-                        skin:'warning', 
-                        showClose:true, 
-                        autoClose: true
-                    });
-                    return false;
-                }
-            }
-            var isDisable = $(this).hasClass("disabled");
-            if(!isDisable){
-                $('#loadbg').show();
-                Loading_box.show();
-                var phone=$("#phone").val();
-                $.ajax({
-                    url: "[##$_SCONFIG.webroot##]do-login-op-send_sms.html",    // 提交到controller的url路径
-                    type: "post",    // 提交方式
-                    data: {"phone": phone},  // data为String类型，必须为 Key/Value 格式。
-                    dataType: "json",       // 服务器端返回的数据类型
-                    success: function (res) {
-                        $('#loadbg').hide();
-                        Loading_box.stop();
-                        if(res.error==0){
-                            that.addClass("disabled");
-                            if(timeout){
-                                clearTimeout(timeout);
-                            }
-                            countdown.call(that);
-                            bui.hint("发送成功");
-                        }else if(res.error=='-1'){
-                            bui.hint({ 
-                                appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>"+res.msg, 
-                                position:"top" , 
-                                skin:'warning', 
-                                showClose:true, 
-                                autoClose: true
-                            });
-                            return false;   
-                        }else{
-                            bui.hint({ 
-                                appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>未知错误", 
-                                position:"top" , 
-                                skin:'warning', 
-                                showClose:true, 
-                                autoClose: true
-                            }); 
-                            loading.stop();
-                            return false;   
-                        }
-                    },
-                    error:function(res){
-                        bui.hint({ 
-                            appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请求失败", 
-                            position:"top" , 
-                            skin:'warning', 
-                            showClose:true, 
-                            autoClose: true
-                        });
-                        $('#loadbg').hide();
-                        Loading_box.stop();
-                        loading.stop();
-                        return false;
-                    }
-                });
-            }
-        })
+//        $(".btn-send").on("click",function () {
+//            var that = $(this);
+//            var phone=$("#phone").val();
+//            if( phone == ''){
+//                bui.hint({
+//                    appendTo:"#main",
+//                    content:"<i class='icon-infofill'></i>请输入手机号",
+//                    position:"top" ,
+//                    skin:'warning',
+//                    showClose:true,
+//                    autoClose: true
+//                });
+//                return false;
+//            } else {
+//                var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+//                if (!myreg.test(phone)) {
+//                    bui.hint({
+//                        appendTo:"#main",
+//                        content:"<i class='icon-infofill'></i>手机号码格式错误",
+//                        position:"top" ,
+//                        skin:'warning',
+//                        showClose:true,
+//                        autoClose: true
+//                    });
+//                    return false;
+//                }
+//            }
+//            var isDisable = $(this).hasClass("disabled");
+//            if(!isDisable){
+//                $('#loadbg').show();
+//                Loading_box.show();
+//                var phone=$("#phone").val();
+//                $.ajax({
+//                    url: "[##$_SCONFIG.webroot##]do-login-op-send_sms.html",    // 提交到controller的url路径
+//                    type: "post",    // 提交方式
+//                    data: {"phone": phone},  // data为String类型，必须为 Key/Value 格式。
+//                    dataType: "json",       // 服务器端返回的数据类型
+//                    success: function (res) {
+//                    $('#loadbg').hide();
+//                    Loading_box.stop();
+//                    if(res.error==0){
+//                        that.addClass("disabled");
+//                        if(timeout){
+//                            clearTimeout(timeout);
+//                        }
+//                        countdown.call(that);
+//                        bui.hint("发送成功");
+//                    }else if(res.error=='-1'){
+//                        bui.hint({
+//                                appendTo:"#main",
+//                                content:"<i class='icon-infofill'></i>"+res.msg,
+//                                position:"top" ,
+//                                skin:'warning',
+//                                showClose:true,
+//                                autoClose: true
+//                            });
+//                            return false;
+//                        }else{
+//                        bui.hint({
+//                                appendTo:"#main",
+//                                content:"<i class='icon-infofill'></i>未知错误",
+//                                position:"top" ,
+//                                skin:'warning',
+//                                showClose:true,
+//                                autoClose: true
+//                            });
+//                            loading.stop();
+//                            return false;
+//                        }
+//                },
+//                    error:function(res){
+//                    bui.hint({
+//                            appendTo:"#main",
+//                            content:"<i class='icon-infofill'></i>请求失败",
+//                            position:"top" ,
+//                            skin:'warning',
+//                            showClose:true,
+//                            autoClose: true
+//                        });
+//                        $('#loadbg').hide();
+//                        Loading_box.stop();
+//                        loading.stop();
+//                        return false;
+//                    }
+//                });
+//            }
+//        });
 
         //------------------提交----------------
         bui.btn("#submit").submit(function (loading) {
@@ -362,39 +392,42 @@
                 loading.stop();
                 return false; 
             }
-            var phone=$("#phone").val();
-            var code=$("#code").val();
-            if( phone == '' || code == '' ){
-                bui.hint({ 
-                    appendTo:"#main", 
-                    content:"<i class='icon-infofill'></i>请填写手机号及验证码", 
-                    position:"top" , 
-                    skin:'warning', 
-                    showClose:true, 
-                    autoClose: true
-                });
-                loading.stop();
-                return false;
-            } else {
-                var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
-                if (!myreg.test(phone)) {
-                    bui.hint({ 
-                        appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>手机号码格式错误", 
-                        position:"top" , 
-                        skin:'warning', 
-                        showClose:true, 
-                        autoClose: true
-                    });
-                    return false;
-                }
-            }
+            var username=$("#username").val();
+            var password=$("#password").val();
+            var seccode=$("#code").val();
+            // var phone=$("#phone").val();
+            // var code=$("#code").val();
+            // if( phone == '' || code == '' ){
+            //     bui.hint({
+            //         appendTo:"#main",
+            //         content:"<i class='icon-infofill'></i>请填写手机号及验证码",
+            //         position:"top" ,
+            //         skin:'warning',
+            //         showClose:true,
+            //         autoClose: true
+            //     });
+            //     loading.stop();
+            //     return false;
+            // } else {
+            //     var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+            //     if (!myreg.test(phone)) {
+            //         bui.hint({
+            //            appendTo:"#main",
+            //             content:"<i class='icon-infofill'></i>手机号码格式错误",
+            //             position:"top" ,
+            //             skin:'warning',
+            //             showClose:true,
+            //             autoClose: true
+            //         });
+            //         return false;
+            //    }
+            // }
             $('#loadbg').show();
             Loading_box.show();
             $.ajax({
                 url: "[##$_SCONFIG.webroot##]do-login-op-login.html",   // 提交到controller的url路径
                 type: "post",   // 提交方式
-                data: {"phone":phone, "code":code, "refer": $('#refer').val()}, // data为String类型，必须为 Key/Value 格式。
+                data: {"username":username, "password":password,"seccode":seccode, "refer": $('#refer').val()}, // data为String类型，必须为 Key/Value 格式。
                 dataType: "json",   // 服务器端返回的数据类型
                 success: function (res) {
                 // 请求成功后的回调函数，其中的参数data为controller返回的map,也就是说,@ResponseBody将返回的map
@@ -448,6 +481,8 @@
                             showClose:true, 
                             autoClose: true
                         });
+                        var img_src = '[##$_SCONFIG.webroot##]do-seccode-width-60-height-30.html?rand='+Math.random();
+                        $("#img_seccode").attr("src",img_src);
                         loading.stop();
                         return false;   
                     }else{
@@ -459,6 +494,8 @@
                             showClose:true, 
                             autoClose: true
                         });
+                        var img_src = '[##$_SCONFIG.webroot##]do-seccode-width-60-height-30.html?rand='+Math.random();
+                        $("#img_seccode").attr("src",img_src);
                         loading.stop();
                         return false;   
                     }
@@ -509,11 +546,12 @@
             timeout = setTimeout(function() { 
                 countdown(_self) 
             },1000) 
-        } 
-
-
-
-    })
+        }
+    });
+    function updateseccode() {
+        var img_src = '[##$_SCONFIG.webroot##]do-seccode-width-60-height-30.html?rand='+Math.random();
+        $("#img_seccode").attr("src",img_src);
+    }
 </script>
 
 </html>

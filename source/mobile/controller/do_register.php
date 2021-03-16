@@ -226,6 +226,26 @@ switch ($op) {
 		}
 
 		$phone=$_POST['phone']?$_POST['phone']:'';
+		$username = $_POST['username']?$_POST['username']:'';
+		$password = $_POST['password']?$_POST['password']:'';
+		if(empty($username)){
+			$return_data = array(
+				'error' => -1,
+				'msg' => '账号不能为空',
+				'result' => null
+			);
+			echo json_encode($return_data);
+			exit;
+		}
+		if(empty($password)){
+			$return_data = array(
+				'error' => -1,
+				'msg' => '密码不能为空',
+				'result' => null
+			);
+			echo json_encode($return_data);
+			exit;
+		}
 		if(empty($phone)){
 			$return_data = array(
 				'error' => -1,
@@ -235,7 +255,19 @@ switch ($op) {
 			echo json_encode($return_data);
 			exit;
 		}
-		//查询该手机号是否被绑定
+		//查询该账号和手机号是否被绑定
+		$user_sql="select uid from ".$_SC['tablepre']."user where username='".$username."'";
+		$user_name=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($user_sql), 0);
+		if($user_name){
+			$return_data = array(
+				'error' => -1,
+				'msg' => '该账号已注册,请换账户名',
+				'result' => null
+			);
+			echo json_encode($return_data);
+			exit;
+		}
+
 		$sql="select uid from ".$_SC['tablepre']."user_field where phone='".$phone."'";
 		$uphone=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql), 0);
 		if($uphone){
@@ -344,8 +376,10 @@ switch ($op) {
 
 		}else{
 			//创建账号
-			$member['username']=random(7).$_SGLOBAL['timestamp'];
-			$member['password']=$member['username'].'dianniuniu';
+//			$member['username']=random(7).$_SGLOBAL['timestamp'];
+//			$member['password']=$member['username'].'dianniuniu';
+			$member['username']=$username;
+			$member['password']=$password;
 			$salt = substr(uniqid(rand()), -6);
 			$member['password']=md5(md5($member['password']).$salt);
 			$memberdata = array(

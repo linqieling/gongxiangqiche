@@ -100,11 +100,35 @@
 	<main id="main">
         <div class="logo"><img src="[##$_SPATH.images##]applogo.png" /></div>
         <ul class="bui-list">
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="username">账号</label>
+                <div class="span1">
+                    <div class="bui-input" id="usernameInput">
+                        <input id="username" type="text" placeholder="请输入你的账号" autocomplete="off" />
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="password">登陆密码</label>
+                <div class="span1">
+                    <div class="bui-input">
+                        <input id="password" type="password" placeholder="请输入你的登陆密码" autocomplete="off" />
+                    </div>
+                </div>
+            </li>
+            <li class="bui-btn bui-box clearactive">
+                <label class="bui-label" for="pwds">确认密码</label>
+                <div class="span1">
+                    <div class="bui-input">
+                        <input id="pwds" type="password" placeholder="请输入你的确认密码" autocomplete="off" />
+                    </div>
+                </div>
+            </li>
 			<li class="bui-btn bui-box clearactive">
 				<label class="bui-label" for="user">手机号码</label>
 				<div class="span1">
-					<div class="bui-input" id="usernameInput">
-						<input id="username" type="tel" placeholder="请输入你的手机号码" maxlength="11" autocomplete="off" />
+					<div class="bui-input" id="phoneInput">
+						<input id="phone" type="tel" placeholder="请输入你的手机号码" maxlength="11" autocomplete="off" />
 					</div>
 				</div>
 			</li>
@@ -214,7 +238,7 @@
             });
             // 手机号,帐号是同个样式名, 获取值的时候,取的是最后一个focus的值
             var userInput = bui.input({
-                id: "#usernameInput",
+                id: "#phoneInput",
                 onBlur: function (e) {
                      if( e.target.value == '' ){
                         bui.hint({ 
@@ -248,8 +272,8 @@
              // 点击触发倒计时
             $(".btn-send").on("click",function () {
                 var that = $(this);
-                var username=$("#username").val();
-                if( username == ''){
+                var phone=$("#phone").val();
+                if( phone == ''){
                     bui.hint({ 
                         appendTo:"#main", 
                         content:"<i class='icon-infofill'></i>请输入手机号", 
@@ -261,7 +285,7 @@
                     return false;
                 } else {
                     var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
-                    if (!myreg.test(username)) {
+                    if (!myreg.test(phone)) {
                         bui.hint({ 
                             appendTo:"#main", 
                             content:"<i class='icon-infofill'></i>手机号码格式错误", 
@@ -277,11 +301,11 @@
                 if(!isDisable){
                     $('#loadbg').show();
                     Loading_box.show();
-                    var username=$("#username").val();
+                    var phone=$("#phone").val();
                     $.ajax({
                         url: "[##$_SCONFIG.webroot##]do-register-op-send_sms.html",    // 提交到controller的url路径
                         type: "post",    // 提交方式
-                        data: {"phone": username},  // data为String类型，必须为 Key/Value 格式。
+                        data: {"phone": phone},  // data为String类型，必须为 Key/Value 格式。
                          dataType: "json",       // 服务器端返回的数据类型
                         success: function (res) { 
                         // 请求成功后的回调函数，其中的参数data为controller返回的map,也就是说,@ResponseBody将返回的map
@@ -351,22 +375,59 @@
                }
                //false
                 var username=$("#username").val();
+               console.log(username);
+                var password=$("#password").val();
+                var pwds=$("#pwds").val();
+                var phone=$("#phone").val();
                 var code=$("#code").val();
                 var rcode=$("#rcode").val();
-                if( username == '' || code == '' ){
-                    bui.hint({ 
-                        appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请输入手机号及验证码", 
-                        position:"top" , 
-                        skin:'warning', 
-                        showClose:true, 
+               if(username == ''){
+                    bui.hint({
+                        appendTo:"#main",
+                        content:"<i class='icon-infofill'></i>账号不能为空",
+                        position:"top" ,
+                        skin:'warning',
+                        showClose:true,
                         autoClose: true
                     });
                     loading.stop();
                     return false;
-                } else {
+                }else if(password == '' ||pwds ==''){
+                    bui.hint({
+                        appendTo:"#main",
+                        content:"<i class='icon-infofill'></i>密码不能为空",
+                        position:"top" ,
+                        skin:'warning',
+                        showClose:true,
+                        autoClose: true
+                    });
+                    loading.stop();
+                    return false;
+                }else if( password != pwds ){
+                   bui.hint({
+                       appendTo:"#main",
+                       content:"<i class='icon-infofill'></i>确认密码和登陆密码不一致",
+                       position:"top" ,
+                       skin:'warning',
+                       showClose:true,
+                       autoClose: true
+                   });
+                   loading.stop();
+                   return false;
+               }else if( phone == '' || code == '' ){
+                   bui.hint({
+                       appendTo:"#main",
+                       content:"<i class='icon-infofill'></i>请输入手机号及验证码",
+                       position:"top" ,
+                       skin:'warning',
+                       showClose:true,
+                       autoClose: true
+                   });
+                   loading.stop();
+                   return false;
+               } else {
                     var myreg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
-                    if (!myreg.test(username)) {
+                    if (!myreg.test(phone)) {
                         bui.hint({ 
                             appendTo:"#main", 
                             content:"<i class='icon-infofill'></i>手机号码格式错误", 
@@ -384,7 +445,9 @@
                     url: "[##$_SCONFIG.webroot##]do-register-op-regsubmit.html",    // 提交到controller的url路径
                     type: "post",    // 提交方式
                     data: {// data为String类型，必须为 Key/Value 格式。
-                        "phone": username, 
+                        "username": username,
+                        "password": password,
+                        "phone": phone,
                         "code": code, 
                         "rcode": rcode, 
                         "refer": $('#refer').val()
