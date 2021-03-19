@@ -17,7 +17,7 @@ switch ($op){
 		   inserttable($_SC['tablepre'],"categorygroup", $data, 1 );
 		   include_once(S_ROOT.'./framework/function/function_cache.php');  
 		   categorygroup_cache();
-		   cpmessage('添加成功!', $_POST['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', $_POST['refer']);
 		 }
 	break;
 	case 'edit':
@@ -30,7 +30,7 @@ switch ($op){
 		  updatetable($_SC['tablepre'],'categorygroup',$data,'id='.$_POST['id'],0);
 		  include_once(S_ROOT.'./framework/function/function_cache.php');  
 		  categorygroup_cache();
-		  cpmessage('修改成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
@@ -38,7 +38,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cache.php');  
 		categorygroup_cache();
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 	    //检测删除事件
@@ -51,13 +51,13 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', 'admin.php?view=categorygroup');
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', 'admin.php?view=categorygroup');
 		}
 		
 		if($_GET['op']=='refresh'){
 		   include_once(S_ROOT.'./framework/function/function_cache.php');  
 		   categorygroup_cache();
-		   cpmessage('刷新成功!', 'admin.php?view=categorygroup');
+		   cpmessage($_SESSION['lang'] == 'english'?'Refresh succeeded!':'刷新成功!', 'admin.php?view=categorygroup');
 		}
 		//开始查询
 		$perpage = 25;

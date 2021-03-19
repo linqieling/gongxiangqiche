@@ -14,13 +14,13 @@ switch ($op){
 		
 		}else{ 
 		  if(preg_match("/[\x7f-\xff]/", $_POST['modname'])){
-			cpmessage('模型名称必须是英文!',$_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'The model name must be in English!':'模型名称必须是英文!',$_SGLOBAL['refer']);
 		  }
 		  $sql = "select * from ".$_SC['tablepre']."model where modname='".$_POST['modname']."'";
 		  $query = $_SGLOBAL['db']->query($sql);
 		  $count=mysql_num_rows($query);
 		  if($count>0 or $_POST['modname']=="page" or $_POST['modname']=="link"){
-			cpmessage('模型名称不能使用!',$_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Model name cannot be used!':'模型名称不能使用!',$_SGLOBAL['refer']);
 		  }
 		  
 		  //插入数据库
@@ -45,7 +45,7 @@ switch ($op){
 				"dateline" => $_SGLOBAL['timestamp'],
 		  );
 		  inserttable($_SC['tablepre'],"permission ", $permission , 1 );
-		  cpmessage('添加模型成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Model added successfully!':'添加模型成功!', $_POST['refer']);
 		}
 	break;
 	case 'edit':
@@ -60,7 +60,7 @@ switch ($op){
 			updatetable($_SC['tablepre'],'model',$data,'modid='.$_POST['modid'],0);
 			include_once(S_ROOT.'./framework/function/function_cache.php');  
 			model_cache();
-			cpmessage('修改模型成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'The model was modified successfully!':'修改模型成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
@@ -69,7 +69,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		$count=mysql_num_rows($query);
 		if($count>0){
-		   cpmessage('请先清空该模型下的所有分类!', 'admin.php?view=model');
+		   cpmessage($_SESSION['lang'] == 'english'?'Please clear all categories under the model first!':'请先清空该模型下的所有分类!', 'admin.php?view=model');
 	    }
 		$sql = "select * from ".$_SC['tablepre']."model where modid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
@@ -95,13 +95,13 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		permission_cache();
 		
-		cpmessage('删除成功了!',$_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'The deletion was successful!':'删除成功了!',$_SGLOBAL['refer']);
 	break;
 	default:
 	    if($_GET['op']=='refresh'){
 		   include_once(S_ROOT.'./framework/function/function_cache.php');  
 		   model_cache();
-		   cpmessage('刷新成功!', $_SGLOBAL['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Refresh succeeded!':'刷新成功!', $_SGLOBAL['refer']);
 		}
 		//开始查询
 		$perpage = 25;

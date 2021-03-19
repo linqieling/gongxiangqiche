@@ -24,7 +24,7 @@ switch ($op){
 		  //更新缓存
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
 		  config_cache();
-		  cpmessage('更换皮肤成功!', 'admin.php?view=skin');
+		  cpmessage($_SESSION['lang'] == 'english'?'Skin change successful!':'更换皮肤成功!', 'admin.php?view=skin');
 	   }
   break;
   default:

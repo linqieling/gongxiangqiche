@@ -24,11 +24,22 @@ function updateseccode() {
   <div id="cloud1" class="cloud"></div>
   <div id="cloud2" class="cloud"></div>
 </div>
-<div class="logintop"><span>欢迎登陆共享汽车后台管理平台</span>
+<div class="logintop">
+    <span>
+        [##if $_SESSION.lang eq 'english'##]Welcome to share car background management platform[##else##]欢迎登陆共享汽车后台管理平台[##/if##]
+    </span>
   <ul>
-    <li><a href="[##$_SCONFIG.webroot##]index.html">返回首页</a></li>
-    <li><a href="http://www.ezcarsharing.com" target="_blank">帮助中心</a></li>
-    <li><a href="http://www.ezcarsharing.com" target="_blank">技术支持</a></li>
+    <li>
+      <a href="javascript:" id="switch"
+             title=""
+             onclick="gotoUrl('[##if $_SESSION.lang eq 'english'##]ch[##else##]english[##/if##]')">
+            <i class="fa fa-weixin"></i>
+            [##if $_SESSION.lang eq 'english'##]Switching between Chinese and English[##else##]中英文切换[##/if##]
+        </a>
+    </li>
+    <li><a href="[##$_SCONFIG.webroot##]index.html">[##if $_SESSION.lang eq 'english'##]Back to home page[##else##]返回首页[##/if##]</a></li>
+    <li><a href="http://www.ezcarsharing.com" target="_blank">[##if $_SESSION.lang eq 'english'##]Help center[##else##]帮助中心[##/if##]</a></li>
+    <li><a href="http://www.ezcarsharing.com" target="_blank">[##if $_SESSION.lang eq 'english'##]Technical support[##else##]技术支持[##/if##]</a></li>
   </ul>
 </div>
 <div class="loginbody"> <span class="systemlogo"></span>
@@ -52,11 +63,23 @@ function updateseccode() {
           </table>
         </li>
         <li>
-          <input name="submit" type="submit" class="loginbtn" value="登录"   />
+          <input name="submit" type="submit" class="loginbtn" value="[##if $_SESSION.lang eq 'english'##]Sign in[##else##]登录[##/if##]"   />
         </li>
       </ul>
     </form>
   </div>
 </div>
 </body>
+<script type="text/javascript">
+  // 切换中英文
+  function gotoUrl(lang){
+    var url = window.location.href;
+    url = url.replace(/lang=\w*[&]?/i,'')
+    if (/[?]+/.test(url)) {
+      location.href = url+'&lang='+lang;
+    } else {
+      location.href = url+'?lang='+lang;
+    }
+  }
+</script>
 </html>

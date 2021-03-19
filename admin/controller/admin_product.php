@@ -26,7 +26,7 @@ switch ($op){
 		   $data=data_post($_POST,$_FILES);
 		   $data['dateline'] = $_SGLOBAL['timestamp'];
 		   inserttable($_SC['tablepre'],"product", $data, 1 );
-		   cpmessage('添加成功!', "admin.php?view=product");
+		   cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', "admin.php?view=product");
 		 }
 	break;
 	case 'edit':
@@ -45,25 +45,25 @@ switch ($op){
 			  $SC_CreateHtml = new SC_CreateHtml;
 			  $SC_CreateHtml ->createshow($data['catid'],$_POST['id']);
 			}
-			cpmessage('修改成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Operation successful!':'修改成功!', $_POST['refer']);
 		}
 	break;
 	case 'top':
 		$topdateline=$_GET['top']?$_SGLOBAL['timestamp']:0;
 		$sql="update ".$_SC['tablepre']."product set topdateline=".$topdateline." where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
-		cpmessage('操作成功', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Operation successful!':'操作成功', $_SGLOBAL['refer']);
 	break;
 	case 'del':
 		$sql="delete from ".$_SC['tablepre']."product where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'html':
 		include_once(S_ROOT.'./framework/class/class_createhtml.php');
 		$SC_CreateHtml = new SC_CreateHtml;
 		$SC_CreateHtml ->createshow($_GET['catid'],$_GET['id']);
-		cpmessage('生成HTML成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'HTML generated successfully!':'生成HTML成功!', $_SGLOBAL['refer']);
 	break;
 	case 'delpic':
 		$sql = "select * from ".$_SC['tablepre']."product where id=".$_GET['id'];
@@ -79,7 +79,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		$sql="update ".$_SC['tablepre']."product set picfilepath='' where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );
-		cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 	break;
 	default:
 		//模型权限
@@ -96,7 +96,7 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		$search=array(
 			"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),
@@ -152,7 +152,7 @@ $_TPL->display("product.tpl");
 function data_post($POST,$FILES) {
     global $_SGLOBAL;
 	if(empty($POST['catid'])) {
-	  cpmessage('栏目必须选择');
+	  cpmessage($_SESSION['lang'] == 'english'?'Column must be selected!':'栏目必须选择');
 	}
 	if(checkperm("category",2,$POST['catid'])) {
 	  cpmessage('no_authority_management_operation');

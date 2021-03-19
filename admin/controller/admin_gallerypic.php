@@ -27,7 +27,7 @@ switch ($op){
 			inserttable($_SC['tablepre'],"gallerypic", $data, 1 );	
 			$sql="update  ".$_SC['tablepre']."gallery set picnum=picnum+1 where id=".$_POST['galleryid'];
 		    $query = $_SGLOBAL['db']->query( $sql );
-			cpmessage('添加成功!', 'admin.php?view=gallerypic&galleryid='.$_POST['galleryid']);
+			cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', 'admin.php?view=gallerypic&galleryid='.$_POST['galleryid']);
 		 }
 	break;
 	case 'edit':
@@ -40,7 +40,7 @@ switch ($op){
 		}else{   
 			$data=data_post($_POST);
 			updatetable($_SC['tablepre'],'gallerypic',$data,'id='.$_POST['id'],0);
-			cpmessage('修改成功!', 'admin.php?view=gallerypic&galleryid='.$_POST['galleryid']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', 'admin.php?view=gallerypic&galleryid='.$_POST['galleryid']);
 		}
 	break;
 	case 'default':
@@ -49,7 +49,7 @@ switch ($op){
 		$result= $_SGLOBAL['db']->fetch_array($query);
 		$sql="update ".$_SC['tablepre']."gallery set picfilepath='".$result['picfilepath']."',updatetime=".$_SGLOBAL['timestamp']." where id=".$result['galleryid'];
 		$query = $_SGLOBAL['db']->query($sql);
-		cpmessage('设为封面图片成功!', 'admin.php?view=gallerypic&galleryid='.$result['galleryid']);
+		cpmessage($_SESSION['lang'] == 'english'?'Set as cover image successfully!':'设为封面图片成功!', 'admin.php?view=gallerypic&galleryid='.$result['galleryid']);
 	break;
 	case 'del':
 		$sql = "select * from ".$_SC['tablepre']."gallerypic where id=".$_GET['id'];
@@ -61,7 +61,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cp.php');
 		pic_del($result['picfilepath']);
-		cpmessage('删除成功!', 'admin.php?view=gallerypic&galleryid='.$result['galleryid']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', 'admin.php?view=gallerypic&galleryid='.$result['galleryid']);
 	break;
 	default:
 		//保存数据
@@ -74,7 +74,7 @@ switch ($op){
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
 		  }
-		  cpmessage('更新成功', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Update succeeded!':'更新成功', $_SGLOBAL['refer']);
 		}
 		
 		//检测删除事件
@@ -91,7 +91,7 @@ switch ($op){
 				  $query = $_SGLOBAL['db']->query( $sql );		
 			  }
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 	
 		$galleryid=$_GET['galleryid']?$_GET['galleryid']:'';
@@ -118,7 +118,7 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$gallery = $_SGLOBAL['db']->fetch_array($query);
 		}else{
-			cpmessage('图库不存在!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Gallery does not exist!':'图库不存在!', $_SGLOBAL['refer']);
 		}
 	break;
 }

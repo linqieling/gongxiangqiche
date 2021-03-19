@@ -17,7 +17,7 @@ switch ($op){
 		   inserttable($_SC['tablepre'],"friendslink", $data, 1 );
 		   include_once(S_ROOT.'./framework/function/function_cache.php');  
 		   friendslink_cache();
-		   cpmessage('添加友情链接成功!', $_POST['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Add link successfully!':'添加友情链接成功!', $_POST['refer']);
 		 }
 	break;
 	case 'edit':
@@ -30,7 +30,7 @@ switch ($op){
 		  updatetable($_SC['tablepre'],'friendslink',$data,'id='.$_POST['id'],0);
 		  include_once(S_ROOT.'./framework/function/function_cache.php');  
 		  friendslink_cache();
-		  cpmessage('修改友情链接成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Update link successfully!':'修改友情链接成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
@@ -38,7 +38,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cache.php');  
 		friendslink_cache();
-		cpmessage('删除友情链接!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Delect link successfully!':'删除友情链接!', $_SGLOBAL['refer']);
 	break;
 	case 'delpic':
 		$sql = "select * from ".$_SC['tablepre']."friendslink where id=".$_GET['id'];
@@ -48,7 +48,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cp.php');
 		pic_del($result['picfilepath']);
-		cpmessage('删除图片成功!', 'admin.php?view=friendslink&op=edit&id='.$_GET['id'].'&catid='.$result['catid']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', 'admin.php?view=friendslink&op=edit&id='.$_GET['id'].'&catid='.$result['catid']);
 	break;
 	default:
 	    //检测删除事件
@@ -61,13 +61,13 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', 'admin.php?view=friendslink');
+			cpmessage($_SESSION['lang'] == 'english'?'Deleted successfully!':'删除成功', 'admin.php?view=friendslink');
 		}
 		
 		if($_GET['op']=='refresh'){
 		   include_once(S_ROOT.'./framework/function/function_cache.php');  
 		   friendslink_cache();
-		   cpmessage('刷新成功!', 'admin.php?view=friendslink');
+		   cpmessage($_SESSION['lang'] == 'english'?'Refresh succeeded!':'刷新成功!', 'admin.php?view=friendslink');
 		}
 		//开始查询
 		$perpage = 25;

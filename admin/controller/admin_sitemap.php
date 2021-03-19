@@ -12,10 +12,18 @@ switch ($op){
 	case 'add':
 		$type = strtolower( $_GET['type'] );
         $b = makesitemap( $type );
-		if ( $type == "all" ) {
-            $msg = $b ? "生成所有地图成功！" : "生成所有地图失败！";
-        } else {
-            $msg = $b ? "生成".$type."地图成功！" : "生成".$type."地图失败！";
+        if($_SESSION['lang'] == 'english'){
+            if ( $type == "all" ) {
+                $msg = $b ? "All maps generated successfully！" : "Failed to generate all maps！";
+            } else {
+                $msg = $b ? "generate ".$type." Map success！" : " generate ".$type."Map failed！";
+            }
+        }else{
+            if ( $type == "all" ) {
+                $msg = $b ? "生成所有地图成功！" : "生成所有地图失败！";
+            } else {
+                $msg = $b ? "生成".$type."地图成功！" : "生成".$type."地图失败！";
+            }
         }
 		cpmessage($msg, $_SGLOBAL['refer']);
 	break;
@@ -28,7 +36,7 @@ switch ($op){
                 @unlink( $f );
             }
         }
-		cpmessage('一键删除所有网站地图成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Delete all site maps with one click!':'一键删除所有网站地图成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 	    header( "Content-Type:text/html; charset=utf-8" );

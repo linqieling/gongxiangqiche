@@ -10,7 +10,7 @@ $op=!empty($_GET['op'])?$_GET['op']:'';
 switch ($op){
 	case 'index':
         if(empty($_GET['oid'])){
-		  cpmessage('参数错误!');
+		  cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!');
 		}
 
 
@@ -30,7 +30,7 @@ switch ($op){
 		   	  updatetable($_SC['tablepre'],'order_returencar',$data,'oid='.$_POST['oid'],0);
 		   	}
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		   echo json_encode($result);die;
 	break;
 }

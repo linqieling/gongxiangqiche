@@ -33,6 +33,6 @@ if(file_exists($filename)){
   unlink($filename);
 }
 
-cpmessage('清理HTML成功', 'admin.php?view=main');
+cpmessage($_SESSION['lang'] == 'english'?'Cleaning HTML successfully!':'清理HTML成功', 'admin.php?view=main');
 $_TPL->display("cleanhtml.tpl"); 
 ?>

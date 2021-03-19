@@ -25,7 +25,7 @@ switch ($op){
 		}else{
 		  $data=data_post($_POST,$_FILES);
 		  inserttable($_SC['tablepre'],"cases", $data, 1 );
-		  cpmessage('添加成功!', "admin.php?view=cases");
+		  cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', "admin.php?view=cases");
 		}
 	break;
 	case 'edit':
@@ -43,25 +43,25 @@ switch ($op){
 			$SC_CreateHtml = new SC_CreateHtml;
 			$SC_CreateHtml ->createshow($data['catid'],$_POST['id']);
 		  }
-		  cpmessage('修改成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;
 	case 'top':
 		$topdateline=$_GET['top']?$_SGLOBAL['timestamp']:0;
 		$sql="update ".$_SC['tablepre']."cases set topdateline=".$topdateline." where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
-		cpmessage('操作成功', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Operation successful!':'操作成功', $_SGLOBAL['refer']);
 	break;
 	case 'del':
 		$sql="delete from ".$_SC['tablepre']."cases where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'html':
 		include_once(S_ROOT.'./framework/class/class_createhtml.php');
 		$SC_CreateHtml = new SC_CreateHtml;
 		$SC_CreateHtml ->createshow($_GET['catid'],$_GET['id']);
-		cpmessage('生成HTML成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'HTML generated successfully!':'生成HTML成功!', $_SGLOBAL['refer']);
 	break;
 	case 'delpic':
 		$sql = "select * from ".$_SC['tablepre']."cases where id=".$_GET['id'];
@@ -71,7 +71,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cp.php');
 		pic_del($result['picfilepath']);
-		cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 	break;
 	case 'dellogo':
 		$sql = "select * from ".$_SC['tablepre']."cases where id=".$_GET['id'];
@@ -81,7 +81,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cp.php');
 		pic_del($result['weblogo']);
-		cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 	break;
 	default:
 		if(checkperm("category",2,$search['scatid']) and !empty($search['scatid'])) {
@@ -97,7 +97,7 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		$search=array(
 			"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),
@@ -153,7 +153,7 @@ $_TPL->display("cases.tpl");
 function data_post($POST,$FILES) {
     global $_SGLOBAL;
 	if(empty($POST['catid'])) {
-	  cpmessage('栏目必须选择',$_SGLOBAL['refer']."&refer=".$POST['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Column must be selected!':'栏目必须选择',$_SGLOBAL['refer']."&refer=".$POST['refer']);
 	}
 	if(checkperm("category",2,$POST['catid'])) {
 	  cpmessage('no_authority_management_operation');

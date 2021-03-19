@@ -13,7 +13,7 @@ switch ($op){
 		$sql="delete from ".$_SC['tablepre']."admin_log where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']= $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		echo json_encode($result);die;
 
 	break;

@@ -16,7 +16,7 @@ switch ($op){
 		  $data=data_post($_POST,$_FILES);
 		  $data['dateline'] = $_SGLOBAL['timestamp'];
 		  inserttable($_SC['tablepre'],"block", $data, 1 );	
-		  cpmessage('添加成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Added Successfully!':'添加成功!', $_POST['refer']);
 		}
 	break;
 	case 'edit':
@@ -36,7 +36,7 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
 
-		  cpmessage('修改成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Successful modification!':'修改成功!', $_POST['refer']);
 		}
 	break;	
 	case 'del':
@@ -55,12 +55,12 @@ switch ($op){
 		);
 		inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );	
 
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Delete succeeded!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'refresh':
 		include_once(S_ROOT.'./framework/function/function_cache.php');
 		block_cache();		  
-		cpmessage('更新成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Update Successful!':'更新成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 		//开始查询

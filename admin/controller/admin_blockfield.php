@@ -22,7 +22,7 @@ switch ($op){
 		  inserttable($_SC['tablepre'],"blockfield", $data, 1 );	
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
           block_cache($block['id']);
-		  cpmessage('添加成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', $_POST['refer']);
 
 		  $admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -44,7 +44,7 @@ switch ($op){
 		  updatetable($_SC['tablepre'],'blockfield',$data,'id='.$_POST['id'],0);
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
           block_cache($block['id']);
-		  cpmessage('修改成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 
 		   $admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -61,7 +61,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cache.php');
         block_cache($block['id']);		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 
 		$admin_log = array(
 			'uid' =>$_SGLOBAL['tq_uid'],
@@ -86,7 +86,7 @@ switch ($op){
 		  }
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
           block_cache($block['id']);
-		  cpmessage('删除成功', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 
 	  		$admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -108,7 +108,7 @@ switch ($op){
 		  }
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
           block_cache($block['id']);
-		  cpmessage('修改成功', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功', $_SGLOBAL['refer']);
 		}
 		$perpage = 15;
 		$mpurl = 'admin.php?view=blockfield';

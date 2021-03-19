@@ -51,15 +51,27 @@ switch ($op){
 			  left join  ".$_SC['tablepre']."coupon as c on c.id=u.cid where u.id=".$result['couponid'];
 			$query = $_SGLOBAL['db']->query($sql);
 			$coupon = $_SGLOBAL['db']->fetch_array($query);
-			if($coupon['type']==4){
-                $coupon['depict']='免单';
-			}elseif($coupon['type']==3){
-                $coupon['depict']='打折';
-			}elseif($coupon['type']==2){
-				$coupon['depict']='满减';
-			}else{
-				$coupon['depict']='通用';
-			}
+			if($_SESSION['lang'] == 'english'){
+                if($coupon['type']==4){
+                    $coupon['depict']='Free of charge';
+                }elseif($coupon['type']==3){
+                    $coupon['depict']='Discount';
+                }elseif($coupon['type']==2){
+                    $coupon['depict']='Full reduction';
+                }else{
+                    $coupon['depict']='currency';
+                }
+            }else{
+                if($coupon['type']==4){
+                    $coupon['depict']='免单';
+                }elseif($coupon['type']==3){
+                    $coupon['depict']='打折';
+                }elseif($coupon['type']==2){
+                    $coupon['depict']='满减';
+                }else{
+                    $coupon['depict']='通用';
+                }
+            }
         }
 
 		$_TPL->display("dnn_order_edit.tpl");die; 
@@ -166,7 +178,7 @@ switch ($op){
 		        $query = $_SGLOBAL['db']->query($sql);
 		        $return_data = array(
 					'error' =>0,
-					'msg' => '操作成功',
+					'msg' => $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功',
 					'result' => null
 				);
 				push_user_msg($order['uid'], $order['orderno'], $order['vid'], $order['id'], $types);
@@ -186,7 +198,7 @@ switch ($op){
 			}else{
 				$return_data = array(
 					'error' => -1,
-					'msg' => '订单已完成,无法取消',
+					'msg' => $_SESSION['lang'] == 'english'?'The order has been completed and cannot be cancelled!':'订单已完成,无法取消',
 					'result' => null
 				);
 			}
@@ -194,7 +206,7 @@ switch ($op){
 	   	}else{
 	     	$return_data = array(
 				'error' => -1,
-				'msg' => '参数错误',
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误',
 				'result' => null
 			);
 	    }
@@ -227,13 +239,13 @@ switch ($op){
 			}
 			$return_data = array(
 				'error' => 0,
-				'msg' => '操作成功',
+				'msg' => $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功',
 				'result' => null
 			);
 		}else{
 			$return_data = array(
 				'error' => -1,
-				'msg' => '参数错误',
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误',
 				'result' => null
 			);
 		}
@@ -279,26 +291,48 @@ switch ($op){
 			$datalist = array();
 			  while ($value = $_SGLOBAL['db']->fetch_array($query)) {
 					  $value['dateline']=date("Y-m-d H:i:s",$value['dateline']);
+                    if($_SESSION['lang'] == 'english'){
+                        if($value['ostatus']==0){
+                            $value['ostatus']='Cancelled';
+                        }elseif($value['ostatus']==1){
+                            $value['ostatus']='count down';
+                        }elseif($value['ostatus']==2){
+                            $value['ostatus']='Charging';
+                        }elseif($value['ostatus']==3){
+                            $value['ostatus']='Completed';
+                        }
+                        if($value['paystatus']==0){
+                            $value['paystatus']='Unpaid';
+                        }elseif($value['paystatus']==1){
+                            $value['paystatus']='Paid';
+                        }
+                        if($value['uchid']){
+                            $value['uchid']='Car returned';
+                        }else{
+                            $value['uchid']='The car hasn\'t been returned';
+                        }
+                    }else{
+                        if($value['ostatus']==0){
+                            $value['ostatus']='已取消';
+                        }elseif($value['ostatus']==1){
+                            $value['ostatus']='倒计时';
+                        }elseif($value['ostatus']==2){
+                            $value['ostatus']='计费中';
+                        }elseif($value['ostatus']==3){
+                            $value['ostatus']='已完成';
+                        }
+                        if($value['paystatus']==0){
+                            $value['paystatus']='未支付';
+                        }elseif($value['paystatus']==1){
+                            $value['paystatus']='已支付';
+                        }
+                        if($value['uchid']){
+                            $value['uchid']='已还车';
+                        }else{
+                            $value['uchid']='未还车';
+                        }
+                    }
 
-					if($value['ostatus']==0){
-						$value['ostatus']='已取消';
-					}elseif($value['ostatus']==1){
-						$value['ostatus']='倒计时';
-					}elseif($value['ostatus']==2){
-						$value['ostatus']='计费中';
-					}elseif($value['ostatus']==3){
-						$value['ostatus']='已完成';
-					}
-					if($value['paystatus']==0){
-						$value['paystatus']='未支付';
-					}elseif($value['paystatus']==1){
-						$value['paystatus']='已支付';
-					}
-					if($value['uchid']){
-						$value['uchid']='已还车';
-					}else{
-						$value['uchid']='未还车';
-					}  
 					$datalist[]=$value;
 				}
 			include_once(S_ROOT."./framework/include/PHPExcel/PHPExcel.php"); //包含smarty类文件 
@@ -451,23 +485,42 @@ function push_user_msg($uid,$orderno,$vid,$orderid,$types){
 
 		if(!empty($user['wxopenid'])){   
 			//发送消息
+                if($_SESSION['lang'] == 'english'){
+                    $dataa[$result['first_code']]['value'] = "Honorific".$user['nickname'].","."Your order has been cancelled. If necessary, please place a new order. Thank you for your cooperation！";//描述
+                    $dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
 
-				$dataa[$result['first_code']]['value'] = "尊敬的".$user['nickname'].","."您的订单已被取消，如有需要请重新下单，谢谢合作！";//描述
-				$dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
+                    $dataa[$result['keyword1_code']]['value'] = $orderno;//订单号
+                    $dataa[$result['keyword1_code']]['color'] = $result['keyword1_color'];//取消时间颜色
 
-				$dataa[$result['keyword1_code']]['value'] = $orderno;//订单号
-				$dataa[$result['keyword1_code']]['color'] = $result['keyword1_color'];//取消时间颜色
+                    $dataa[$result['keyword2_code']]['value'] = date("Y-m-d H:i:s",time());//取消时间
+                    $dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
 
-				$dataa[$result['keyword2_code']]['value'] = date("Y-m-d H:i:s",time());//取消时间
-				$dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
+                    $dataa[$result['keyword3_code']]['value'] = $types?'Automatic cancellation of timeout':'Background administrator operation';//取消原因
+                    $dataa[$result['keyword3_code']]['color'] = $result['keyword3_color'];
 
-				$dataa[$result['keyword3_code']]['value'] = $types?'超时自动取消':'后台管理员操作';//取消原因
-				$dataa[$result['keyword3_code']]['color'] = $result['keyword3_color'];
+                    if($result['remark_code']){
+                        $dataa[$result['remark_code']]['value'] = "license plate number: ".$vehicle['platenumber']."\n Electric Niuniu sharing logistics vehicle! serve you";
+                        $dataa[$result['remark_code']]['color'] = $result['remark_color'];
+                    }
+                }else{
+                    $dataa[$result['first_code']]['value'] = "尊敬的".$user['nickname'].","."您的订单已被取消，如有需要请重新下单，谢谢合作！";//描述
+                    $dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
 
-				if($result['remark_code']){
-				   $dataa[$result['remark_code']]['value'] = "车牌号: ".$vehicle['platenumber']."\n电牛牛共享物流车！为您服务";
-				   $dataa[$result['remark_code']]['color'] = $result['remark_color'];
-			   	}
+                    $dataa[$result['keyword1_code']]['value'] = $orderno;//订单号
+                    $dataa[$result['keyword1_code']]['color'] = $result['keyword1_color'];//取消时间颜色
+
+                    $dataa[$result['keyword2_code']]['value'] = date("Y-m-d H:i:s",time());//取消时间
+                    $dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
+
+                    $dataa[$result['keyword3_code']]['value'] = $types?'超时自动取消':'后台管理员操作';//取消原因
+                    $dataa[$result['keyword3_code']]['color'] = $result['keyword3_color'];
+
+                    if($result['remark_code']){
+                        $dataa[$result['remark_code']]['value'] = "车牌号: ".$vehicle['platenumber']."\n电牛牛共享物流车！为您服务";
+                        $dataa[$result['remark_code']]['color'] = $result['remark_color'];
+                    }
+                }
+
 				$go_url = $_SCONFIG['siteallurl']."cp-orderdetails-id-".$orderid.'.html';
                 $datanow=push_template_msg($user['wxopenid'],$result['temid'],$dataa,$go_url);
                 if($datanow){

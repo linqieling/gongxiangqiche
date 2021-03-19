@@ -78,7 +78,7 @@ if($_GET['delavatar']){
   $query = $_SGLOBAL['db']->query( $sql );
   $wechats['avatar']='';
   data_set('wechat', $wechats);
-  cpmessage('删除成功!', $_SGLOBAL['refer']);
+  cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 }
 
 if($_GET['delqrcode']){
@@ -93,7 +93,7 @@ if($_GET['delqrcode']){
   $query = $_SGLOBAL['db']->query( $sql );
   $wechats['qrcode']='';
   data_set('wechat', $wechats);
-  cpmessage('删除成功!', $_SGLOBAL['refer']);
+  cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 }
 
 

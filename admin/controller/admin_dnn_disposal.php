@@ -170,7 +170,7 @@ switch ($op){
 		   	  inserttable($_SC['tablepre'],"user_violation", $data,1);	
 		   	}
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   $result['msg']= $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		   echo json_encode($result);die;
 	break;
 
@@ -178,7 +178,7 @@ switch ($op){
 		$sql="update ".$_SC['tablepre']."user_overdue set status=1 where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		if($_GET['type']==4){
 			$typename = '身份证';
 		}else{

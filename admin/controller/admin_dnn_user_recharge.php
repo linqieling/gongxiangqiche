@@ -8,14 +8,14 @@ if(checkperm("admin_userlist",1)) {
 }
 $op=$_GET['op']?$_GET['op']:'';
 if(empty($_GET['uid'])){
- cpmessage('参数错误!');
+ cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!');
 }else{
 	$sql="select * from ".$_SC['tablepre']."user 
 	  where uid=".$_GET['uid'];
 	$query = $_SGLOBAL['db']->query($sql);
 	$user = $_SGLOBAL['db']->fetch_array($query);
 	if(empty($user)){
-		cpmessage('用户不存在!');
+		cpmessage($_SESSION['lang'] == 'english'?'User does not exist!':'用户不存在!');
 	}
 }
 switch ($op){
@@ -24,10 +24,10 @@ switch ($op){
 	   if($_POST['uid']){
              if($_POST['type']=='1'){
              	$money=$user['money']+$_POST['money'];
-             	$type = '充值';
+             	$type = $_SESSION['lang'] == 'english'?'Recharge!':'充值';
              }else if($_POST['type']=='2'){
              	$money=$user['money']-$_POST['money'];
-             	$type = '扣除';
+             	$type = $_SESSION['lang'] == 'english'?'deduction!':'扣除';
              }
 	   	    $sqlc="update ".$_SC['tablepre']."user set money=".$money." where uid=".$_POST['uid'];
 			$cquery = $_SGLOBAL['db']->query($sqlc);
@@ -39,7 +39,7 @@ switch ($op){
 				 $data['dateline']=time();
 			     inserttable($_SC['tablepre'],"user_balance", $data,1);
 			     $result['code']=0;
-				 $result['msg']='操作成功';
+				 $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 
 				 $admin_log = array(
 					'uid' => $_SGLOBAL['tq_uid'],
@@ -52,13 +52,13 @@ switch ($op){
 				echo json_encode($result);die; 	
 			}else{
 				$result['code']=-1;
-				$result['msg']='充值失败';
+				$result['msg']=$_SESSION['lang'] == 'english'?'Recharge failed!':'充值失败';
 				echo json_encode($result);die;  
 			}
 			
 	   	}else{
 			$result['code']=-1;
-			$result['msg']='参数错误';
+			$result['msg']=$_SESSION['lang'] == 'english'?'Parameter error!':'参数错误';
 			echo json_encode($result);die;  
 	   	}
 	break;

@@ -11,7 +11,7 @@ switch ($op){
 	case 'index':
 	    $uid=$_GET['uid'];
         if(empty($uid)){
-		  cpmessage('参数错误!');
+		  cpmessage( $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!');
 		}
 		$sql="select u.*,idcard.* from ".$_SC['tablepre']."user as u 
 		left join  ".$_SC['tablepre']."user_idcard as idcard on u.uid=idcard.uid    
@@ -40,7 +40,7 @@ switch ($op){
 
 	   	}else{
 	   	   $result['code']=-1;
-	        $result['msg']='参数错误';
+	        $result['msg']= $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误';
 	        echo json_encode($result);die;	
 	   	}
 	   	if($data['name']){
@@ -48,7 +48,7 @@ switch ($op){
 	   	    updatetable($_SC['tablepre'],'user',$user,'uid='.$_POST['uid'],0);
 	   	}
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']= $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		echo json_encode($result);
         //发送模块提示用户
 		if($data['status']=='2'|| $data['status']=='-1'){
@@ -92,20 +92,35 @@ function push_user_msg($wxtid,$uid,$type='1',$status,$reason=''){
 
 		if(!empty($user['wxopenid'])){   
 			//发送消息
-               if($type==1){
-                 $name='实名认证';
-               }else{
-               	 $name='驾驶证认证';
-               }
-               if($status=='-1'){
-                   $msg['result']="不通过";
-                   $msg['reason']=empty($reason)?"无":$reason;
-               }elseif($status==2){
-               	   $msg['result']="通过";
-               	   $msg['reason']=empty($reason)?"无":$reason;
-               }
+            if($_SESSION['lang'] == 'english'){
+                if($type==1){
+                    $name='Real name authentication';
+                }else{
+                    $name="Driver's license certification";
+                }
+                if($status=='-1'){
+                    $msg['result']="No";
+                    $msg['reason']=empty($reason)?"无":$reason;
+                }elseif($status==2){
+                    $msg['result']="Pass";
+                    $msg['reason']=empty($reason)?"nothing":$reason;
+                }
+                $msg['first']="Honorific".$user['nickname'].","."Your".$name."to examine".$msg['result'];
+            }else{
+                if($type==1){
+                    $name='实名认证';
+                }else{
+                    $name='驾驶证认证';
+                }
+                if($status=='-1'){
+                    $msg['result']="不通过";
+                    $msg['reason']=empty($reason)?"无":$reason;
+                }elseif($status==2){
+                    $msg['result']="通过";
+                    $msg['reason']=empty($reason)?"无":$reason;
+                }
                 $msg['first']="尊敬的".$user['nickname'].","."您的".$name."审核".$msg['result'];
-
+            }
 				if($result['first_code']){
 					$dataa[$result['first_code']]['value'] = $msg['first'];//描述
 					$dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
@@ -121,7 +136,7 @@ function push_user_msg($wxtid,$uid,$type='1',$status,$reason=''){
 					$dataa[$result['keyword3_code']]['color'] = $result['keyword3_color'];//失败原因
 				}
 				if($result['remark_code']){
-				   $dataa[$result['remark_code']]['value'] = "核实信息后开始您的奇幻之旅，感谢您的支持，祝您有愉快的每一天！";
+				   $dataa[$result['remark_code']]['value'] = $_SESSION['lang'] == 'english'?'After checking the information, you will start your fantastic journey. Thank you for your support. I wish you a happy day!':"核实信息后开始您的奇幻之旅，感谢您的支持，祝您有愉快的每一天！";
 				   $dataa[$result['remark_code']]['color'] = $result['remark_color'];
 			   }
 				$go_url = $_SCONFIG['siteallurl']."cp-userinfo.html";

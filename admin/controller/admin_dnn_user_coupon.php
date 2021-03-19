@@ -14,7 +14,7 @@ switch ($op){
     	if(!isset($id) || !isset($status)){
        		$return_data = array(
 				'code' => -1,
-				'msg' => '参数错误'
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -24,7 +24,7 @@ switch ($op){
 	    	$querys = $_SGLOBAL['db']->query($sqls);
 	    	$return_data=array(
 				"code" => 0,
-				"msg"=>"修改成功"
+				"msg"=>$_SESSION['lang'] == 'english'?'Modified successfully!':"修改成功"
 			);
 			echo json_encode($return_data);die;
 	    }
@@ -36,7 +36,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 
 		$admin_log = array(
 			'uid' => $_SGLOBAL['tq_uid'],

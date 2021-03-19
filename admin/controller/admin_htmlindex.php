@@ -11,5 +11,5 @@ include_once(S_ROOT.'./framework/class/class_createhtml.php');
 $SC_CreateHtml = new SC_CreateHtml;
 $SC_CreateHtml ->createindex();
 
-cpmessage('生成首页成功!', 'admin.php?view=main');
+cpmessage($_SESSION['lang'] == 'english'?'Home page generated successfully!':'生成首页成功!', 'admin.php?view=main');
 ?>

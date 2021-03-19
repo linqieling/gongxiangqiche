@@ -20,7 +20,7 @@ if($_GET['ac']=='refresh'){
    category_cache($groupid);
    cdv_cache();
  }
- cpmessage('刷新成功!', 'admin.php?view=category&groupid='.$groupid.'');
+ cpmessage($_SESSION['lang'] == 'english'?'Refresh succeeded!':'刷新成功!', 'admin.php?view=category&groupid='.$groupid.'');
 }
 
 if(submitcheck('savesubmit')){
@@ -38,7 +38,7 @@ if(submitcheck('savesubmit')){
 	  category_cache($_POST['groupid']);
 	}  
   }
-  cpmessage('更新成功,请刷新一下', 'admin.php?view=category&groupid='.$_POST['groupid'].'');
+  cpmessage($_SESSION['lang'] == 'english'?'Update succeeded, please refresh!':'更新成功,请刷新一下', 'admin.php?view=category&groupid='.$_POST['groupid'].'');
 }
 
 if($_GET['groupid']){

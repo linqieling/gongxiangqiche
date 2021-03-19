@@ -30,10 +30,10 @@ switch ($op){
 		  include_once(S_ROOT.'./framework/class/class_createhtml.php');	
 		  $SC_CreateHtml = new SC_CreateHtml;
 		  $SC_CreateHtml ->createpage($catid);
-		  cpmessage('生成单页成功!', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Single page generated successfully!':'生成单页成功!', $_SGLOBAL['refer']);
 		}
 	  }else{
-			cpmessage('请先选择单页!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Please select a single page first!':'请先选择单页!', $_SGLOBAL['refer']);
 	  }
    break;
    default:

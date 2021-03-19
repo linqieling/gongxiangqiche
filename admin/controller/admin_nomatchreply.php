@@ -9,7 +9,7 @@ if(checkperm("admin_nomatchreply",1)) {
 
 if(submitcheck('submit')) {
   $_SGLOBAL['db']->query("REPLACE INTO ".$_SC['tablepre']."data (var, datavalue, dateline) VALUES ('nomatchreply', ".$_POST['replyid'].", '$_SGLOBAL[timestamp]')");	
-  cpmessage('设置成功了!',$_SGLOBAL['refer']);
+  cpmessage($_SESSION['lang'] == 'english'?'Setup succeeded!':'设置成功了!',$_SGLOBAL['refer']);
 }
 
 if(data_get('nomatchreply')){

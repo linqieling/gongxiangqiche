@@ -48,7 +48,7 @@ switch ($op){
 		$ids=implode(",", $_POST['ids']);
 		$type=$_GET['type']?$_GET['type']:'';
 		if(empty($type)){
-		  cpmessage('错误的提交!', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Wrong submission!':'错误的提交!', $_SGLOBAL['refer']);
 		}
 		if(count($_POST['ids'])<=1){
 		  if($type=='ajaxlist'){
@@ -56,7 +56,7 @@ switch ($op){
 			include_once(S_ROOT.'./framework/class/class_createhtml.php');	
 			$SC_CreateHtml = new SC_CreateHtml;
 			$SC_CreateHtml ->createlist($catid);
-			cpmessage('列表生成静态页成功!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'List generated static page successfully!':'列表生成静态页成功!', $_SGLOBAL['refer']);
 		  }elseif($type=='ajaxshow'){
 			$catid = $ids;
 			include_once(S_ROOT.'./framework/class/class_createhtml.php');
@@ -71,11 +71,11 @@ switch ($op){
 				  $SC_CreateHtml ->createshow($value['catid'],$value['id']);
 				}
 			}
-			cpmessage('内容生成静态页成功!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Content generated static page successfully!':'内容生成静态页成功!', $_SGLOBAL['refer']);
 		  }
 		}
 	  }else{
-		cpmessage('请先选择栏目!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Please select the column first!':'请先选择栏目!', $_SGLOBAL['refer']);
 	  }
    break;
    default:

@@ -17,7 +17,11 @@ switch ($op){
 		}
 		
 		$html="";
-		$html.= "<select name='catid' class='catid' lay-filter='category' ><option value='0'>==请选择分类==</option>";
+		if($_SESSION['lang'] == 'english'){
+            $html.= "<select name='catid' class='catid' lay-filter='category' ><option value='0'>==Please select category==</option>";
+        }else{
+            $html.= "<select name='catid' class='catid' lay-filter='category' ><option value='0'>==请选择分类==</option>";
+        }
 		foreach($_SGLOBAL['category'] as $key=>$val){
 			if($val['modname']==$modname){
 				$html.= "<option";

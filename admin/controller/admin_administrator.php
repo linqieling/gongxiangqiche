@@ -31,7 +31,7 @@ switch ($op){
 				$query = $_SGLOBAL['db']->query($sql);
 				$result = $_SGLOBAL['db']->fetch_array($query);
 				if(empty($result)){
-				 	cpmessage('该用户不存在!', $_SGLOBAL['refer']);
+				 	cpmessage($_SESSION['lang'] == 'english'?'The user does not exist!':'该用户不存在!', $_SGLOBAL['refer']);
 				}
 
 				if(!empty($_POST['password'])){
@@ -54,7 +54,7 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
 
-			cpmessage('添加新管理员成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'New administrator added successfully!':'添加新管理员成功!', $_POST['refer']);
 
 		}
 		break;
@@ -64,7 +64,7 @@ switch ($op){
 	        if(empty($phone)){
 				$return_data=array(
 					'code' => -1,
-					'msg' => '请勿传递非法参数'
+					'msg' => $_SESSION['lang'] == 'english'?'Do not pass illegal parameters!':'请勿传递非法参数'
 				);
 				echo json_encode($return_data);
 				exit;
@@ -83,7 +83,7 @@ switch ($op){
 			}else{
 				$return_data=array(
 					'code' => -1,
-					'msg' => '用户不存在'
+					'msg' => $_SESSION['lang'] == 'english'?'User does not exist!':'用户不存在'
 				);
 			}
 			echo json_encode($return_data);
@@ -93,7 +93,7 @@ switch ($op){
 	case 'edit':
 		if(!submitcheck('submit')) {
 			if(empty($_GET['uid'])){
-				cpmessage('此用户不存在!', 'admin.php?view=administrator');
+				cpmessage($_SESSION['lang'] == 'english'?'This user does not exist!':'此用户不存在!', 'admin.php?view=administrator');
 			}
 			$sql="select * from ".$_SC['tablepre']."usergroup where system='-1'";
 			$sql.=" order by gid asc ";
@@ -116,7 +116,7 @@ switch ($op){
 				}
 				$data['groupid']=$_POST['groupid'];
 				updatetable($_SC['tablepre'],'user',$data,'uid='.$_POST['uid'],0);
-				cpmessage('修改成功!', $_POST['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 				$admin_log = array(
 					'uid' =>$_SGLOBAL['tq_uid'],
 					'operate' => '编辑管理员',
@@ -126,14 +126,14 @@ switch ($op){
 				inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
 
 			}else{
-				cpmessage('参数错误!', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!', $_SGLOBAL['refer']);
 			}
 		}
 	break;
 	case 'del':
 
 		if($_GET['uid']==$_SGLOBAL['tq_uid']){
-			cpmessage('不能删除自己!', 'admin.php?view=administrator');
+			cpmessage($_SESSION['lang'] == 'english'?'You can\'t delete yourself!':'不能删除自己!', 'admin.php?view=administrator');
 		}
 
 		$sql="update ".$_SC['tablepre']."user set groupid=3 where uid=".$_GET['uid'];
@@ -147,7 +147,7 @@ switch ($op){
 		);
 		inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
 
-		cpmessage('删除管理员成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Delete administrator successfully!':'删除管理员成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 		  //开始查询

@@ -22,7 +22,7 @@ if(submitcheck('deletesubmit')){
 	  }
 	  $query = $_SGLOBAL['db']->query($sql);
 	}
-	cpmessage('删除单页面成功', 'admin.php?view=page');
+	cpmessage($_SESSION['lang'] == 'english'?'Delete single page successfully!':'删除单页面成功', 'admin.php?view=page');
 }
 
 //开始查询

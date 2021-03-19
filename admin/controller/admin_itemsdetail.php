@@ -23,7 +23,7 @@ switch ($op){
 			$itemsid=inserttable($_SC['tablepre'],"itemsdetail", $data, 1 );
 			include_once(S_ROOT.'./framework/function/function_cache.php');
 			items_cache($items['id']);
-			cpmessage('增加成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Increase success!':'增加成功!', $_POST['refer']);
 		}
 		break;
 	case 'edit':
@@ -37,7 +37,7 @@ switch ($op){
 			updatetable($_SC['tablepre'],'itemsdetail',$data,'id='.$_POST['id'],0);
 			include_once(S_ROOT.'./framework/function/function_cache.php');
 			items_cache($items['id']);
-			cpmessage('修改成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 		break;
 	case 'del':
@@ -45,7 +45,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cache.php');
 		items_cache($items['id']);
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 		break;
 	default:
 		//检测删除事件
@@ -60,7 +60,7 @@ switch ($op){
 			}
 			include_once(S_ROOT.'./framework/function/function_cache.php');
 			items_cache($items['id']);
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		if(submitcheck('savesubmit')){
 			$ids=$_POST['ids'];
@@ -73,7 +73,7 @@ switch ($op){
 			}
 			include_once(S_ROOT.'./framework/function/function_cache.php');
 			items_cache($items['id']);
-			cpmessage('修改成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功', $_SGLOBAL['refer']);
 		}
 		$perpage = 15;
 		$mpurl = 'admin.php?view=itemsdetail';

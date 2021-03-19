@@ -32,7 +32,7 @@ switch ($op){
 		  $materialinfo = json_decode($materialinfo, true);		
 		  $sql="update ".$_SC['tablepre']."picreply set mediaid='{$materialinfo[media_id]}' where id=".$id;
 		  $query = $_SGLOBAL['db']->query( $sql );	
-		  cpmessage('添加成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', $_POST['refer']);
 		}
 	break;
 	case 'edit':
@@ -47,7 +47,7 @@ switch ($op){
 		  updatetable($_SC['tablepre'],"autoreply", $replydata,"uid=$_SGLOBAL[tq_uid] and id=$_POST[id]",0);	
 		  $data=data_post($_POST,$_FILES);
 		  updatetable($_SC['tablepre'],'picreply',$data,"uid=$_SGLOBAL[tq_uid] and replyid=$_POST[id]",0);
-		  cpmessage('修改成功!', 'admin.php?view=picreply');
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', 'admin.php?view=picreply');
 		}
 	break;
 	case 'delpic':
@@ -61,14 +61,14 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		include_once(S_ROOT.'./framework/function/function_cp.php');
 		pic_del($result['picfilepath']);
-		cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 		break;
 	case 'del':
 	  	$sql="select * from ".$_SC['tablepre']."picreply where replyid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
 		$result = $_SGLOBAL['db']->fetch_array($query);
 		if(empty($result)){
-			cpmessage('错误的提交!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Wrong submission!':'错误的提交!', $_SGLOBAL['refer']);
 		}
 		//删除微信上的图片
 	    include_once(S_ROOT."./framework/class/class_wechat.php");
@@ -82,7 +82,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);	
 		$sql="delete from ".$_SC['tablepre']."picreply where replyid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 	  //检测删除事件
@@ -96,7 +96,7 @@ switch ($op){
 				  $query = $_SGLOBAL['db']->query($sql);		
 			  }
 			}
-			cpmessage('删除成功', 'admin.php?view=picreply');
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', 'admin.php?view=picreply');
 		}
 		$search=array(
 			"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),
@@ -150,7 +150,7 @@ function data_reply_post($POST,$FILES) {
   $query = $_SGLOBAL['db']->query($sql);
   $count=mysql_num_rows($query);
   if($count>2){
-	  cpmessage('此匹配类型的关键字已经存在，不能重复添加!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'The keyword of this matching type already exists, cannot add repeatedly!':'此匹配类型的关键字已经存在，不能重复添加!', $_SGLOBAL['refer']);
   }
   $data = array( 
 		  "uid" => $_SGLOBAL['tq_uid'],

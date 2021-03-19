@@ -15,7 +15,7 @@ switch ($op){
 		  include_once(S_ROOT.'./framework/function/function_cp.php');
 		  $data = pic_save($_FILES['poster']);
 		  if(is_array($data)){
-			 cpmessage('添加图片成功!', 'admin.php?view=syspic');
+			 cpmessage($_SESSION['lang'] == 'english'?'Picture added successfully!':'添加图片成功!', 'admin.php?view=syspic');
 		  }else{
 			 cpmessage($data, $_POST['refer']);
 		  }
@@ -30,7 +30,7 @@ switch ($op){
 		}else{
 			$data=data_post($_POST);
 			updatetable($_SC['tablepre'],'pic',$data,'picid='.$_POST['id'],0);
-			cpmessage('修改图片成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'The picture was modified successfully!':'修改图片成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
@@ -45,7 +45,7 @@ switch ($op){
 		}
 		$sql="delete from ".$_SC['tablepre']."pic where picid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
-		cpmessage('删除图片成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 		//检测删除事件
@@ -66,7 +66,7 @@ switch ($op){
 				  $query = $_SGLOBAL['db']->query($sql);
 			  }
 			}
-			cpmessage('删除图片成功!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']);
 		}
 	    $search=array(
 			"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),

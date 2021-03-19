@@ -24,9 +24,9 @@ switch ($op){
 				$smsjson = iconv('gbk','utf-8', $smsjson);
     			$smsarr = json_decode($smsjson,true);
 				if($smsarr['stat']==100){
-					cpmessage('添加成功!',"admin.php?view=smstemplates");
+					cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!',"admin.php?view=smstemplates");
 				}else{
-					cpmessage('添加失败!错误码：'.$smsarr['stat'].'，'.$smsarr['message'].'',"admin.php?view=smstemplates");
+					cpmessage($_SESSION['lang'] == 'english'?'Add failed! Error code:':'添加失败!错误码：'.$smsarr['stat'].'，'.$smsarr['message'].'',"admin.php?view=smstemplates");
 				}
 			}
 		}

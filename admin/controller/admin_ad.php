@@ -16,7 +16,7 @@ switch ($op){
 		}elseif($type=='diy'){
 		   header("Location: admin.php?view=editad&type=diy&op=add");
 		}elseif($type=='nosel'){
-		   cpmessage('广告类型必须选择!', 'admin.php?view=ad&op=add');
+		   cpmessage($_SESSION['lang'] == 'english'?'Advertising type must be selected!':'广告类型必须选择!', 'admin.php?view=ad&op=add');
 		}
 	break;
 	case 'selsys':
@@ -42,12 +42,12 @@ switch ($op){
 		if(file_exists("data/adtpl/".$_GET['id'].".tpl")){
 			unlink("data/adtpl/".$_GET['id'].".tpl");
 		}
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'refresh':
 		include_once(S_ROOT.'./framework/function/function_cache.php');  
 		ad_cache();
-		cpmessage('更新成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Update succeeded!':'更新成功!', $_SGLOBAL['refer']);
 	break;	
 	case 'preview':
 	  $id=$_GET['id']?$_GET['id']:'';
@@ -66,7 +66,7 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除广告成功', 'admin.php?view=ad');
+            cpmessage($_SESSION['lang'] == 'english'?'Delete advertisement succeeded!':'删除广告成功', 'admin.php?view=ad');
 		}
 		//开始查询
 		$perpage = 15;

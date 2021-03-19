@@ -23,13 +23,13 @@ switch ($op){
 				'dateline' => time()
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
-			cpmessage('添加新业务员成功!', 'admin.php?view=usersale');
+			cpmessage($_SESSION['lang'] == 'english'?'New salesman added successfully!':'添加新业务员成功!', 'admin.php?view=usersale');
 		}
 	break;
 	case 'edit':
 		if(!submitcheck('submit')) {
 			if(empty($_GET['id'])){
-				cpmessage('此业务员不存在!', 'admin.php?view=usersale');
+				cpmessage($_SESSION['lang'] == 'english'?'This salesman does not exist!':'此业务员不存在!', 'admin.php?view=usersale');
 			}
 			$sql="select * from ".$_SC['tablepre']."user_sales_person where id=".$_GET['id'];
 			$query = $_SGLOBAL['db']->query($sql);
@@ -46,9 +46,9 @@ switch ($op){
 					'dateline' => time()
 				);
 				inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
-				cpmessage('修改成功!', 'admin.php?view=usersale');
+				cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', 'admin.php?view=usersale');
 			}else{
-				cpmessage('参数错误!', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!', $_SGLOBAL['refer']);
 			}
 		}
 	break;
@@ -62,7 +62,7 @@ switch ($op){
 			'dateline' => time()
 		);
 		inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
-		cpmessage('删除业务员成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Delete salesman successfully!':'删除业务员成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 		  //开始查询
@@ -90,10 +90,10 @@ $_TPL->display("usersale.tpl");
 function data_post($POST) {
     global $_SGLOBAL, $_SC;
 	if(empty($POST['code'])) {
-	  	cpmessage('业务编码不能为空', $_SGLOBAL['refer']."&refer=".$POST['refer']);
+	  	cpmessage($_SESSION['lang'] == 'english'?'Business code cannot be empty!':'业务编码不能为空', $_SGLOBAL['refer']."&refer=".$POST['refer']);
 	}
 	if(empty($POST['name'])) {
-	  	cpmessage('姓名不能为空', $_SGLOBAL['refer']."&refer=".$POST['refer']);
+	  	cpmessage($_SESSION['lang'] == 'english'?'Name cannot be empty!':'姓名不能为空', $_SGLOBAL['refer']."&refer=".$POST['refer']);
 	}
 
 	$sql="select * from ".$_SC['tablepre']."user_sales_person where code=".$POST['code'];
@@ -103,7 +103,7 @@ function data_post($POST) {
 	$query = $_SGLOBAL['db']->query($sql);
 	$count = mysql_num_rows($query);
 	if($count){
-		cpmessage('业务编码已被使用', $_SGLOBAL['refer']."&refer=".$POST['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'The service code has been used!':'业务编码已被使用', $_SGLOBAL['refer']."&refer=".$POST['refer']);
 	}
 
 	$data = array( 

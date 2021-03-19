@@ -38,9 +38,14 @@ switch ($op){
 							);
 							inserttable($_SC['tablepre'],"sms_record", $data, 1 );
 						}
-						cpmessage('发送成功!',"admin.php?view=smslist");
+						cpmessage($_SESSION['lang'] == 'english'?'Sent successfully!':'发送成功!',"admin.php?view=smslist");
 					}else{
-						cpmessage('发送失败!错误码：'.$smsarr['stat'].'，'.$smsarr['message'].'',"admin.php?view=smslist");
+                        if($_SESSION['lang'] == 'english'){
+                            cpmessage('Sending failed! Error code:'.$smsarr['stat'].'，'.$smsarr['message'].'',"admin.php?view=smslist");
+                        }else{
+                            cpmessage('发送失败!错误码：'.$smsarr['stat'].'，'.$smsarr['message'].'',"admin.php?view=smslist");
+                        }
+
 					}
 				}
 			}else if($sms['type']==2){//阿里云
@@ -81,20 +86,24 @@ switch ($op){
 								}
 							}
 						}
-						cpmessage('发送成功!',"admin.php?view=smslist");
+						cpmessage($_SESSION['lang'] == 'english'?'Sent successfully!':'发送成功!',"admin.php?view=smslist");
 					}else{
-						cpmessage('发送失败！&nbsp;'.$smsarr['Message'].'',"admin.php?view=smslist",15);
+					    if($_SESSION['lang'] == 'english'){
+                            cpmessage('fail in send！&nbsp;'.$smsarr['Message'].'',"admin.php?view=smslist",15);
+                        }else{
+                            cpmessage('发送失败！&nbsp;'.$smsarr['Message'].'',"admin.php?view=smslist",15);
+                        }
 					}
 				}
 			}else{
-				cpmessage('请先完善短信基本配置!',"admin.php?view=smslist");
+				cpmessage($_SESSION['lang'] == 'english'?'Please improve the basic configuration of SMS first!':'请先完善短信基本配置!',"admin.php?view=smslist");
 			}
 		}
 		break;
 	case 'del':
 		$sql="delete from ".$_SC['tablepre']."sms_record where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 		break;
 	default:
 			//检测删除事件
@@ -107,7 +116,7 @@ switch ($op){
 					}
 					$query = $_SGLOBAL['db']->query($sql);
 				}
-				cpmessage('删除成功', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 			}
 			$search=array(
 					"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),

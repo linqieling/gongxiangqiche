@@ -13,19 +13,19 @@ if(isset($_GET['clear'])&&$_GET['clear']=='sys'){
   category_cache();
   categorygroup_cache();
   usergroup_cache();
-  cpmessage("更新系统缓存成功", 'admin.php?view=cache');
+  cpmessage($_SESSION['lang'] == 'english'?'Update system cache succeeded!':"更新系统缓存成功", 'admin.php?view=cache');
 }
 
 if(isset($_GET['clear'])&&$_GET['clear']=='tpl'){       
   include_once(S_ROOT.'./framework/function/function_cache.php');
   tpl_cache();
-  cpmessage("更新模板缓存成功", 'admin.php?view=cache');
+  cpmessage($_SESSION['lang'] == 'english'?'Update template cache succeeded!':"更新模板缓存成功", 'admin.php?view=cache');
 }
 
 if(isset($_GET['clear'])&&$_GET['clear']=='smttpl'){
   include_once(S_ROOT.'./framework/function/function_cache.php');
   cache_cache();
-  cpmessage("更新伪静态缓存成功", 'admin.php?view=cache');
+  cpmessage($_SESSION['lang'] == 'english'?'Update pseudo static cache succeeded!':"更新伪静态缓存成功", 'admin.php?view=cache');
 }
 
 if(isset($_GET['clear'])&&$_GET['clear']=='other'){
@@ -42,7 +42,7 @@ if(isset($_GET['clear'])&&$_GET['clear']=='other'){
   censor_cache();
   stiemap_bd_category_cache();
   cdv_cache();
-  cpmessage("更新其它缓存成功", 'admin.php?view=cache');
+  cpmessage($_SESSION['lang'] == 'english'?'Update other cache successfully!':"更新其它缓存成功", 'admin.php?view=cache');
 }
 
 //更新缓存

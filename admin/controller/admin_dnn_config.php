@@ -52,7 +52,7 @@ switch ($op){
 		include_once(S_ROOT.'./framework/function/function_cache.php');
 	    config_cache();
        	$result['code']=0;
-	   	$result['msg']='操作成功';
+	   	$result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 	   	echo json_encode($result);die;
 		break;
 
@@ -171,12 +171,12 @@ switch ($op){
 		if(empty($money) || $money<=0){
 			$return_data = array(
 				'error' => -1,
-				'msg' => '累计付款金额不能为空'
+				'msg' => $_SESSION['lang'] == 'english'?'Cumulative payment amount cannot be blank!':'累计付款金额不能为空'
 			);
 		}elseif(empty($cid) || count($cid)<=0){
 			$return_data = array(
 				'error' => -1,
-				'msg' => '请选择发放优惠券'
+				'msg' => $_SESSION['lang'] == 'english'?'Please choose to issue coupons!':'请选择发放优惠券'
 			);
 		}else{
 			$list = array();
@@ -201,7 +201,7 @@ switch ($op){
 			}
 			$return_data = array(
 				'error' => 0,
-				'msg' => '添加成功'
+				'msg' => $_SESSION['lang'] == 'english'?'Added successfully!':'添加成功'
 			);
 		}
 		echo  json_encode($return_data);
@@ -212,7 +212,7 @@ switch ($op){
 		if(empty($id)){
 			$return_data = array(
 				'error' => -1,
-				'msg' => '参数错误'
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误'
 			);
 		}else{
 			$sql="delete from ".$_SC['tablepre']."grant_coupon_list where id=".$id;
@@ -221,7 +221,7 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$return_data = array(
 				'error' => 0,
-				'msg' => '删除成功'
+				'msg' => $_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功'
 			);
 		}
 		echo  json_encode($return_data);

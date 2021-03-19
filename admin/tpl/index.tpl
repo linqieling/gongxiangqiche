@@ -274,6 +274,13 @@
 						</a>
 					</div>
 					<ul class="layui-nav" lay-filter="rightNav">
+						<li class="layui-nav-item" style="color: red !important;">
+							<a href="javascript:" id="switch" style="color: #777;"
+							   onclick="gotoUrl('[##if $_SESSION.lang eq 'english'##]ch[##else##]english[##/if##]')">
+								<i class="fa fa-weixin"></i>
+								[##if $_SESSION.lang eq 'english'##]Switching between Chinese and English[##else##]中英文切换[##/if##]
+							</a>
+						</li>
 					  <li class="layui-nav-item">
 					  	<a id="disposal" href="javascript:;" data-url="admin.php?view=dnn_disposal" data-id='disposal' data-text="待处理事项" style="color:#666 !important;">
 					  		<i class="layui-icon">&#xe667;</i>
@@ -343,6 +350,16 @@
 					});
 	    		}
         	});
+			// 切换中英文
+			function gotoUrl(lang){
+				var url = window.location.href;
+				url = url.replace(/lang=\w*[&]?/i,'')
+				if (/[?]+/.test(url)) {
+					location.href = url+'&lang='+lang;
+				} else {
+					location.href = url+'?lang='+lang;
+				}
+			}
 		</script>
 	</body>
 </html>

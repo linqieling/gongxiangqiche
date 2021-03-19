@@ -13,7 +13,7 @@ date_default_timezone_set('PRC');//设置时区
 $op=@$_GET['op']?@$_GET['op']:'';
 $oid=$_GET['oid']?$_GET['oid']:'';
 if(empty($oid)){
-	cpmessage('参数错误');
+	cpmessage( $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误');
 }
 $sql="select  o.status,o.startdateline,enddateline,l.vehicleid,l.platenumber
   from ".$_SC['tablepre']."order_list as o 
@@ -23,7 +23,7 @@ $sql="select  o.status,o.startdateline,enddateline,l.vehicleid,l.platenumber
 $query = $_SGLOBAL['db']->query($sql);
 $order = $_SGLOBAL['db']->fetch_array($query);
 if($order['status']<2){
-  cpmessage('轨迹不存在');
+  cpmessage( $_SESSION['lang'] == 'english'?'The trajectory does not exist!':'轨迹不存在');
 }
 
 switch ($op){
@@ -46,9 +46,9 @@ switch ($op){
 				// var_dump($datalist);
 				$datalist=getArrayMax($datalist);
 
-			$return=array('code' =>'0' ,'msg'=>'请求成功','result'=>$datalist,'platenumber'=>$order['platenumber']);
+			$return=array('code' =>'0' ,'msg'=> $_SESSION['lang'] == 'english'?'Request successful!':'请求成功','result'=>$datalist,'platenumber'=>$order['platenumber']);
 		}else{
-           $return=array('code' =>'-1' ,'msg'=>'轨迹不存在','result'=>null);
+           $return=array('code' =>'-1' ,'msg'=> $_SESSION['lang'] == 'english'?'The trajectory does not exist!':'轨迹不存在','result'=>null);
           
 		}
 		echo json_encode($return);die;

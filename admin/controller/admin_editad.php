@@ -35,7 +35,7 @@ if($type=='sys'){
 			$filename=S_ROOT.'./data/adtpl/'.$id.'.tpl';
 			$content = $_TPL->fetch(S_ROOT."./ad/".$_POST['tpl']."/tpl.tpl");
 			swritefile($filename,$content);
-			cpmessage('添加广告成功!', 'admin.php?view=ad');
+			cpmessage($_SESSION['lang'] == 'english'?'Add advertisement successfully!':'添加广告成功!', 'admin.php?view=ad');
 		  }
 	  break;
 	  case 'edit':
@@ -62,7 +62,7 @@ if($type=='sys'){
 			$filename=S_ROOT.'./data/adtpl/'.$_POST['id'].'.tpl';
 			$content = $_TPL->fetch(S_ROOT."./ad/".$_POST['tpl']."/tpl.tpl");
 			swritefile($filename,$content);
-			cpmessage('修改广告成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully modified advertisement!':'修改广告成功!', $_POST['refer']);
 		  }
 	  break;
 	  case 'uploadpic':
@@ -71,7 +71,7 @@ if($type=='sys'){
 		  if(is_array($data)){
 			$myresult = array(
 				'result' => 1,
-				'msgstr' => "上传图片成功",
+				'msgstr' => $_SESSION['lang'] == 'english'?'Upload image successfully!':"上传图片成功",
 				'filepath' =>$data['filepath']
 			);
 			echo json_encode($myresult);
@@ -109,7 +109,7 @@ if($type=='diy'){
 			}
 			$filename=S_ROOT.'./data/adtpl/'.$id.'.tpl';
 			swritefile($filename,htmlspecialchars_decode(sstripslashes($data['adcode'])));
-			cpmessage('添加广告成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Add advertisement successfully!':'添加广告成功!', $_POST['refer']);
 		  }
 	  break;
 	  case 'edit':
@@ -126,7 +126,7 @@ if($type=='diy'){
             }
 			$filename=S_ROOT.'./data/adtpl/'.$_POST['id'].'.tpl';
 			swritefile($filename,htmlspecialchars_decode(sstripslashes($data['adcode'])));
-			cpmessage('修改广告成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully modified advertisement!':'修改广告成功!', $_POST['refer']);
 		  }
 	  break;
 	  default:

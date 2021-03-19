@@ -21,7 +21,7 @@ switch ($op){
 		  $query = $_SGLOBAL['db']->query($sql);
 		  $count=mysql_num_rows($query);
 		  if($count>0 or $_POST['permname']=="page" or $_POST['permname']=="link"){
-			cpmessage('权限名称已存在不能重复使用!',$_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Permission name already exists and cannot be reused!':'权限名称已存在不能重复使用!',$_SGLOBAL['refer']);
 		  }
 		
 		  $data=data_post($_POST);
@@ -70,7 +70,7 @@ switch ($op){
 		  if(!@include_once(S_ROOT.'./framework/function/function_cache.php')) {
 			  usergroup_cache();
 		  }		  
-		  cpmessage('添加新权限成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'New permission added successfully!':'添加新权限成功!', $_POST['refer']);
 		}
 	break;
 	case 'edit':
@@ -92,7 +92,7 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$count=mysql_num_rows($query);
 			if($count>0 or $_POST['permname']=="page" or $_POST['permname']=="link"){
-			  cpmessage('权限名称已存在不能重复使用!',$_SGLOBAL['refer']);
+			  cpmessage($_SESSION['lang'] == 'english'?'Permission name already exists and cannot be reused!':'权限名称已存在不能重复使用!',$_SGLOBAL['refer']);
 			}
 		   
 			$data=data_post($_POST);
@@ -148,13 +148,13 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
 
-			cpmessage('修改权限成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Permission modified successfully!':'修改权限成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
 	    $permid=$_GET['permid']?$_GET['permid']:'';
 	    if(empty($permid)){
-		  cpmessage('错误提交', 'admin.php?view=permission');
+		  cpmessage($_SESSION['lang'] == 'english'?'Error submission!':'错误提交', 'admin.php?view=permission');
 		}
 		$sql="delete from ".$_SC['tablepre']."permission where permid=".$permid;
 		$query = $_SGLOBAL['db']->query( $sql );		
@@ -180,7 +180,7 @@ switch ($op){
 			usergroup_cache();
 		}
 		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 	    $search=array(

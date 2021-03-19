@@ -20,7 +20,7 @@ switch ($op){
 		$result = $_SGLOBAL['db']->fetch_array($query);
 		
 		if(empty($result)){
-			cpmessage('订单不能为空!');
+			cpmessage($_SESSION['lang'] == 'english'?'Order cannot be empty!':'订单不能为空!');
 		}
 
 		$sql = "select * from ".$_SC['tablepre']."user_violation where id='$id'";
@@ -71,11 +71,11 @@ switch ($op){
 	   	    $sql="delete from ".$_SC['tablepre']."user_violation where id=".$_GET['id'];
 			$query = $_SGLOBAL['db']->query( $sql );
 			$result['code']=0;
-		    $result['msg']='操作成功';
+		    $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		    echo json_encode($result);die;		
 	   	}else{
             $result['code']=-1;
-		    $result['msg']='删除失败';
+		    $result['msg']=$_SESSION['lang'] == 'english'?'Deletion failed!':'删除失败';
 		    echo json_encode($result);die;
 	   	}
 	break;
@@ -89,7 +89,7 @@ switch ($op){
 		   	  inserttable($_SC['tablepre'],"user_violation", $data,1);	
 		   	}
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		   echo json_encode($result);die;
 	break;
 }

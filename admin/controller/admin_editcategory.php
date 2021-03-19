@@ -49,7 +49,7 @@ if($type=='model'){
 		freshsubid(categorytopid($catid));
 		category_cache($data['groupid']);
 		category_cache();
-		cpmessage('添加内部栏目成功!', "admin.php?view=category&groupid=".$data['groupid']."");
+		cpmessage($_SESSION['lang'] == 'english'?'Add internal column successfully!':'添加内部栏目成功!', "admin.php?view=category&groupid=".$data['groupid']."");
 	  }
 	break;
 	case 'edit':
@@ -64,14 +64,14 @@ if($type=='model'){
 	  }else{
 		//不允许设置上级栏目是自己
 		if(intval($_POST['pid'])==intval($_POST['catid'])){
-		   cpmessage('错误的操作,不允许的上级栏目!', $_SGLOBAL['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Wrong operation, not allowed superior column!':'错误的操作,不允许的上级栏目!', $_SGLOBAL['refer']);
 		}
 		//不允许把父ID放到子ID上
 		$sql="select subid  from ".$_SC['tablepre']."category where catid =".$_POST['catid'];
 		$subid =$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 		$subid_array=explode(",", $subid);
 		if(in_array($_POST['pid'], $subid_array )){
-		   cpmessage('错误的操作,不允许把父分类设为子分类!', $_SGLOBAL['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Wrong operation. It is not allowed to set parent classification as child classification!':'错误的操作,不允许把父分类设为子分类!', $_SGLOBAL['refer']);
 		}
 		//获取旧的树的顶级ID
 		$oldtopid=categorytopid($_POST['catid']);
@@ -93,14 +93,14 @@ if($type=='model'){
 		freshlevel($_POST['catid']);
 		category_cache($data['groupid']);
 		category_cache();
-		cpmessage('修改内部栏目成功!', $_POST['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Modify the internal column successfully!':'修改内部栏目成功!', $_POST['refer']);
 	  }
 	break;
 	case 'listhtml':
 	  include_once(S_ROOT.'./framework/class/class_createhtml.php');
 	  $SC_CreateHtml = new SC_CreateHtml;
 	  $SC_CreateHtml ->createlist($_GET['catid']);
-	  cpmessage('列表生成HTML成功!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'List generated HTML successfully!':'列表生成HTML成功!', $_SGLOBAL['refer']);
 	break;
 	case 'showhtml':
 	  include_once(S_ROOT.'./framework/class/class_createhtml.php');
@@ -116,7 +116,7 @@ if($type=='model'){
 		  $SC_CreateHtml ->createshow($value['catid'],$value['id']);
 		}
 	  }
-	  cpmessage('内容生成HTML成功!',$_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Content generated HTML successfully!':'内容生成HTML成功!',$_SGLOBAL['refer']);
 	break;
 	case 'delhtml':
 	  $dirName=S_ROOT.'./html/'.$_SCLIENT['type'].'/'.$_GET['catid'];
@@ -133,20 +133,20 @@ if($type=='model'){
 		 closedir( $handle );  
 		 if( rmdir( $dirName ) )echo "";  
 	  }  
-	  cpmessage('清空HTML成功!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Empty HTML successfully!':'清空HTML成功!', $_SGLOBAL['refer']);
 	break;
 	case 'del':
 	  //检查有没有子栏目		
 	  $sql="select count(catid) as soncount from ".$_SC['tablepre']."category where pid =".$_GET['catid'];
 	  $soncount=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 	  if($soncount){
-		  cpmessage('请先删除子栏目!', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Please delete the sub column first!':'请先删除子栏目!', $_SGLOBAL['refer']);
 	  }
 	  //检查栏目下有没有数据
 	  $sql="select count(*) as datavolume from ".$_SC['tablepre'].$_SGLOBAL['category'][$_GET['catid']]['modname']." where catid =".$_GET['catid'];
 	  $datavolume=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 	  if($datavolume){
-		cpmessage('请先删除内部栏目下的数据!', 'admin.php?view=category');
+		cpmessage($_SESSION['lang'] == 'english'?'Please delete the data under the internal column first!':'请先删除内部栏目下的数据!', 'admin.php?view=category');
 	  }
 	  $sql="select pid from ".$_SC['tablepre']."category where catid =".$_GET['catid'];
 	  $pid=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
@@ -160,7 +160,7 @@ if($type=='model'){
 		  category_cache($_GET['groupid']);
 	  }
 	  category_cache();
-	  cpmessage('删除内部栏目成功!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Delete internal column successfully!':'删除内部栏目成功!', $_SGLOBAL['refer']);
 	break;
 	case 'delpic':
 	  $sql = "select * from ".$_SC['tablepre']."category where catid=".$_GET['catid'];
@@ -170,7 +170,7 @@ if($type=='model'){
 	  $query = $_SGLOBAL['db']->query( $sql );
 	  include_once(S_ROOT.'./framework/function/function_cp.php');
 	  pic_del($result['picfilepath']);
-	  cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 	break;
 	case 'deldata':
 	  $sql="delete from  ".$_SC['tablepre'].$_SGLOBAL['category'][$_GET['catid']]['modname']." where catid=".$_GET['catid'];
@@ -180,7 +180,7 @@ if($type=='model'){
 	  }
 	  category_cache();
 	  cdv_cache();
-	  cpmessage('删除栏目内的数据成功!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Delete data in column successfully!':'删除栏目内的数据成功!', $_SGLOBAL['refer']);
 	break;
 	case 'ajax':
 	  include_once(S_ROOT.'./framework/class/class_json.php');
@@ -231,7 +231,7 @@ if($type=='page'){
 		freshsubid(categorytopid($catid));
 		category_cache($data['groupid']);
 		category_cache();
-		cpmessage('添加单页面成功!', "admin.php?view=category&groupid=".$data['groupid']."");
+		cpmessage($_SESSION['lang'] == 'english'?'Add single page successfully!':'添加单页面成功!', "admin.php?view=category&groupid=".$data['groupid']."");
 	  }
 	break;
 	case 'edit':
@@ -247,14 +247,14 @@ if($type=='page'){
 		}
 		//不允许设置上级栏目是自己
 	   if(intval($_POST['pid'])==intval($_POST['catid'])){
-		   cpmessage('错误的操作,不允许的上级栏目!', 'admin.php?view=category');
+		   cpmessage($_SESSION['lang'] == 'english'?'Wrong operation, not allowed superior column!':'错误的操作,不允许的上级栏目!', 'admin.php?view=category');
 		}
 		//不允许把父ID放到子ID上
 		$sql="select subid  from ".$_SC['tablepre']."category where catid =".$_POST['catid'];
 		$subid =$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 		$subid_array=explode(",", $subid);
 		if(in_array($_POST['pid'], $subid_array )){
-		   cpmessage('错误的操作,不允许把父分类设为子分类!', 'admin.php?view=category');
+		   cpmessage($_SESSION['lang'] == 'english'?'Wrong operation. It is not allowed to set parent classification as child classification!':'错误的操作,不允许把父分类设为子分类!', 'admin.php?view=category');
 		}
 		$oldtopid=categorytopid($_POST['catid']);
 		$sql="select level  from ".$_SC['tablepre']."category where catid =".$_POST['pid'];
@@ -280,7 +280,7 @@ if($type=='page'){
 		freshlevel($_POST['catid']);	
 		category_cache($data['groupid']);			  
 		category_cache();
-		cpmessage('修改单页面成功!', $_POST['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Modify single page successfully!':'修改单页面成功!', $_POST['refer']);
 	  }
 	break;
 	case 'del':
@@ -290,7 +290,7 @@ if($type=='page'){
 	  $sql="select count(catid) as suncount from ".$_SC['tablepre']."category where pid =".$_GET['catid'];
 	  $suncount=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 	  if($suncount){
-	   cpmessage('请先删除子栏目!', $_SGLOBAL['refer']);
+	   cpmessage($_SESSION['lang'] == 'english'?'Please delete the sub column first!':'请先删除子栏目!', $_SGLOBAL['refer']);
 	   exit;
 	  }
 	  $sql="delete from  ".$_SC['tablepre']."category where catid=".$_GET['catid'];
@@ -303,7 +303,7 @@ if($type=='page'){
 		category_cache($_GET['groupid']);
 	  }
 	  category_cache();
-	  cpmessage('删除单页面成功!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Delete single page successfully!':'删除单页面成功!', $_SGLOBAL['refer']);
 	break;
 	case 'delpic':
 	  $sql = "select * from ".$_SC['tablepre']."category where catid=".$_GET['catid'];
@@ -313,7 +313,7 @@ if($type=='page'){
 	  $query = $_SGLOBAL['db']->query( $sql );
 	  include_once(S_ROOT.'./framework/function/function_cp.php');
 	  pic_del($result['picfilepath']);
-	  cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 	break;
 	case 'pagehtml':
 	  if(checkperm("category",2,$_GET['catid'])) {
@@ -322,7 +322,7 @@ if($type=='page'){
 	  include_once(S_ROOT.'./framework/class/class_createhtml.php');
 	  $SC_CreateHtml = new SC_CreateHtml;
 	  $SC_CreateHtml ->createpage($_GET['catid']);
-	  cpmessage('内容生成HTML成功!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Content generated HTML successfully!':'内容生成HTML成功!', $_SGLOBAL['refer']);
 	break;
 	case 'delhtml':
 	  if(checkperm("category",2,$_GET['catid'])) {
@@ -342,7 +342,7 @@ if($type=='page'){
 		closedir( $handle );  
 		if( rmdir( $dirName ) )echo "";  
 	  }  
-	  cpmessage('清空HTML成功!',$_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Empty HTML successfully!':'清空HTML成功!',$_SGLOBAL['refer']);
 	break;
 	
 	default:
@@ -374,7 +374,7 @@ if($type=='link'){
 		freshsubid(categorytopid($catid));
 		category_cache($data['groupid']);			  
 		category_cache();
-		cpmessage('添加外部链接成功!', "admin.php?view=category&groupid=".$data['groupid']."");
+		cpmessage($_SESSION['lang'] == 'english'?'Add external link successfully!':'添加外部链接成功!', "admin.php?view=category&groupid=".$data['groupid']."");
 	  }
 	break;
 	case 'edit':
@@ -390,14 +390,14 @@ if($type=='link'){
 		}
 		//不允许设置上级栏目是自己
 		if($_POST['pid']==$_POST['catid']){
-		   cpmessage('错误的操作,不允许的上级栏目!', 'admin.php?view=category');
+		   cpmessage($_SESSION['lang'] == 'english'?'Wrong operation, not allowed superior column!':'错误的操作,不允许的上级栏目!', 'admin.php?view=category');
 		}
 		//不允许把父ID放到子ID上
 		$sql="select subid  from ".$_SC['tablepre']."category where catid =".$_POST['catid'];
 		$subid =$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 		$subid_array=explode(",", $subid);
 		if(intval($_POST['pid'])==intval($_POST['catid'])){
-		   cpmessage('错误的操作,不允许把父分类设为子分类!', 'admin.php?view=category');
+		   cpmessage($_SESSION['lang'] == 'english'?'Wrong operation. It is not allowed to set parent classification as child classification!':'错误的操作,不允许把父分类设为子分类!', 'admin.php?view=category');
 		}
 		$oldtopid=categorytopid($_POST['catid']);
 		$sql="select level  from ".$_SC['tablepre']."category where catid =".$_POST['pid'];
@@ -413,7 +413,7 @@ if($type=='link'){
 		freshlevel($_POST['catid']);
 		category_cache($data['groupid']);			  
 		category_cache();
-		cpmessage('修改外部链接成功!', $_POST['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'External link modified successfully!':'修改外部链接成功!', $_POST['refer']);
 	  }
 	break;
 	case 'del':
@@ -423,7 +423,7 @@ if($type=='link'){
 	  $sql="select count(catid) as suncount from ".$_SC['tablepre']."category where pid =".$_GET['catid'];
 	  $suncount=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 	  if($suncount){
-	   cpmessage('请先删除子栏目!', 'admin.php?view=category');
+	   cpmessage($_SESSION['lang'] == 'english'?'Please delete the sub column first!':'请先删除子栏目!', 'admin.php?view=category');
 	  }
 	  $sql="delete from  ".$_SC['tablepre']."category where catid=".$_GET['catid'];
 	  $query = $_SGLOBAL['db']->query( $sql );
@@ -431,7 +431,7 @@ if($type=='link'){
 		category_cache($_GET['groupid']);
 	  }
 	  category_cache();
-	  cpmessage('删除外部链接成功!', $_SGLOBAL['refer']); 
+	  cpmessage($_SESSION['lang'] == 'english'?'Delete external link successfully!':'删除外部链接成功!', $_SGLOBAL['refer']);
 	break;
 	case 'delpic':
 	  $sql = "select * from ".$_SC['tablepre']."category where catid=".$_GET['catid'];
@@ -441,7 +441,7 @@ if($type=='link'){
 	  $query = $_SGLOBAL['db']->query( $sql );
 	  include_once(S_ROOT.'./framework/function/function_cp.php');
 	  pic_del($result['picfilepath']);
-	  cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 	break;
 	default:
   }

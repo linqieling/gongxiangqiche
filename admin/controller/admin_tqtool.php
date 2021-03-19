@@ -54,7 +54,7 @@ switch ($op){
 			//更新缓存
 			include_once(S_ROOT.'./framework/function/function_cache.php');
 			config_cache();
-			cpmessage('修改成功!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_SGLOBAL['refer']);
 		}
 		//获取config设置
 		$query = $_SGLOBAL['db']->query("select * from ".tname('config'));

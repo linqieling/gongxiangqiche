@@ -13,11 +13,11 @@ switch ($op){
 		  $result = $_SGLOBAL['db']->fetch_array($query);
 		}else{   
 		  if(empty($_POST['ncatid'])){
-			 cpmessage('请选择新的分类!', 'admin.php?view=movedata&op=edit&catid='.$_POST['catid']);
+			 cpmessage($_SESSION['lang'] == 'english'?'Please select a new category!':'请选择新的分类!', 'admin.php?view=movedata&op=edit&catid='.$_POST['catid']);
 		  }
 		  $sql="update ".$_SC['tablepre'].$_SGLOBAL['category'][$_POST['catid']]['modname']." set catid=".$_POST['ncatid']." where catid=".$_POST['catid'];
 		  $query = $_SGLOBAL['db']->query( $sql );
-		  cpmessage('批量移动数据成功!', 'admin.php?view=category');
+		  cpmessage($_SESSION['lang'] == 'english'?'Batch move data successfully!':'批量移动数据成功!', 'admin.php?view=category');
 		}
 	break;
 }

@@ -19,7 +19,7 @@ switch ($op){
 		  $data['replyid'] = $replyid;
 		  $data['dateline'] = $_SGLOBAL['timestamp'];
 		  inserttable($_SC['tablepre'],"newsreply", $data, 1 );	
-		  cpmessage('添加成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', $_POST['refer']);
 		}
 	break;
 	case 'edit':
@@ -34,7 +34,7 @@ switch ($op){
 		  updatetable($_SC['tablepre'],"autoreply", $replydata,"uid=$_SGLOBAL[tq_uid] and id=$_POST[id]",0);	
 		  $data=data_post($_POST,$_FILES);
 		  updatetable($_SC['tablepre'],'newsreply',$data,"uid=$_SGLOBAL[tq_uid] and replyid=$_POST[id]",0);
-		  cpmessage('修改成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;	
 	case 'del':
@@ -42,13 +42,13 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		$result = $_SGLOBAL['db']->fetch_array($query);
 		if(empty($result)){
-			cpmessage('错误的提交!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Wrong submission!':'错误的提交!', $_SGLOBAL['refer']);
 		}
 		$sql="delete from ".$_SC['tablepre']."autoreply where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);	
 		$sql="delete from ".$_SC['tablepre']."newsreply where replyid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 	    //检测删除事件
@@ -62,7 +62,7 @@ switch ($op){
 				  $query = $_SGLOBAL['db']->query($sql);		
 			  }
 			}
-			cpmessage('删除成功', 'admin.php?view=newsreply');
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', 'admin.php?view=newsreply');
 		}
 		$search=array(
 			"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),
@@ -119,7 +119,7 @@ function data_reply_post($POST,$FILES) {
 	$count=mysql_num_rows($query);
 	
 	if($count>2){
-		cpmessage('此匹配类型的关键字已经存在，不能重复添加!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'The keyword of this matching type already exists and cannot be added repeatedly!':'此匹配类型的关键字已经存在，不能重复添加!', $_SGLOBAL['refer']);
 	}
 	
     $data = array( 

@@ -15,7 +15,7 @@ switch ($op){
 		  $data=data_post($_POST);
 		  $data['dateline'] = $_SGLOBAL['timestamp'];
 		  inserttable($_SC['tablepre'],"site_list", $data, 1 );
-		  cpmessage('添加成功!', "admin.php?view=site");
+		  cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', "admin.php?view=site");
 		}
 	break;
 	case 'edit':
@@ -39,7 +39,7 @@ switch ($op){
 		   	  inserttable($_SC['tablepre'],"site_list", $data,1);	
 		   	}
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 
 		    $admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -56,7 +56,7 @@ switch ($op){
 		$sql="delete from ".$_SC['tablepre']."site_list where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );
 		$result['code']=0;
-	    $result['msg']='操作成功';
+	    $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 
 	    $admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -89,7 +89,7 @@ switch ($op){
         }else{
           	    $return['code']='-1';
 				$return['data']='';
-				$return['msg']='参数错误';   
+				$return['msg']=$_SESSION['lang'] == 'english'?'Parameter error!':'参数错误';
 
         }
         echo  json_encode($return);die;	
@@ -150,9 +150,9 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}else{
-				cpmessage('请选择要删除的站点', $_SGLOBAL['refer'],5);
+				cpmessage($_SESSION['lang'] == 'english'?'Please select the site to delete!':'请选择要删除的站点', $_SGLOBAL['refer'],5);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 
 	break;

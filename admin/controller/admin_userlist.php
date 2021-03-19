@@ -25,7 +25,7 @@ switch ($op){
 			"email" => $_POST["email"],
 		   );
 		   $data = SC_User::userreg($member);
-		   cpmessage('添加成功!', $_POST['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', $_POST['refer']);
 		 }
 	break;
 	case 'count':
@@ -88,7 +88,7 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$myresult = array(
 				'result' => 1,
-				'msgstr' => "上传头像成功",
+				'msgstr' => $_SESSION['lang'] == 'english'?'Upload avatar successfully!':"上传头像成功",
 				'filepath' =>$filepath
 			);
 			echo json_encode($myresult);
@@ -106,7 +106,7 @@ switch ($op){
 		if(!submitcheck('submit')) {//如果没返回则说明进入修改界面
 			$sql="select * from ".$_SC['tablepre']."usergroup  where gid<>1 and gid<>2 order by gid asc ";
 			if(empty($_GET['uid'])){
-				cpmessage('参数错误!');
+				cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!');
 			}
 			$query = $_SGLOBAL['db']->query($sql);
 			while ($value = $_SGLOBAL['db']->fetch_array($query)) {
@@ -217,7 +217,7 @@ switch ($op){
 
 			updatetable($_SC['tablepre'],'user',$user,'uid='.$_POST["uid"],0);
 			updatetable($_SC['tablepre'],'user_field',$userfield,'uid='.$_POST["uid"],0);
-			cpmessage('修改成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	   break;
 	case 'getprovince':
@@ -264,7 +264,7 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 
 		$perpage = 20;
@@ -291,7 +291,7 @@ switch ($op){
 	case 'delcredits':
 		$sql="delete from ".$_SC['tablepre']."usercredits where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );			
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 		break;
 	case 'list_api':  
 	    $search=array(
@@ -364,14 +364,14 @@ switch ($op){
 			 $query = $_SGLOBAL['db']->query( $sql );
 			 $data['avatar']='';
 			 updatetable($_SC['tablepre'],'user',$data,'uid='.$_GET['uid'],0);
-			 cpmessage('删除成功!', 'admin.php?view=userlist&op=edit&uid='.$_GET['uid']);
+			 cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', 'admin.php?view=userlist&op=edit&uid='.$_GET['uid']);
 		  }else{
-			 cpmessage('您还没有上传头像呢!', 'admin.php?view=userlist&op=edit&uid='.$_GET['uid']);
+			 cpmessage($_SESSION['lang'] == 'english'?"You haven't uploaded your head image yet!":'您还没有上传头像呢!', 'admin.php?view=userlist&op=edit&uid='.$_GET['uid']);
 		  }
 	      break;
 	case 'del':
 		if($_GET['uid']==1){
-			cpmessage('系统管理员不能删除!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'System administrator cannot delete!':'系统管理员不能删除!', $_SGLOBAL['refer']);
 			exit;
 		}
 		$sql="select avatar from ".$_SC['tablepre']."user  where uid=".$_GET['uid'];
@@ -404,7 +404,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		$sql="delete from ".$_SC['tablepre']."user_coupon where uid=".$_GET['uid'];
 		$query = $_SGLOBAL['db']->query( $sql );
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	    break;
 
 	default:
@@ -419,7 +419,7 @@ switch ($op){
 			  $sql='delete from '.$_SC['tablepre'].'members where 1>2 ';
 			  foreach ($ids as $id){
 					if($id==1){
-						cpmessage('系统管理员不能删除!', $_SGLOBAL['refer']);
+						cpmessage($_SESSION['lang'] == 'english'?'System administrator cannot delete!':'系统管理员不能删除!', $_SGLOBAL['refer']);
 					}else{
 						$sql.=' or uid ='.$id;
 					}
@@ -438,7 +438,7 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 
 		//导出用户信息Excel
@@ -463,7 +463,7 @@ switch ($op){
 					$id=implode(',',$ids);
 					$sql.="and u.uid in(".$id.")";
 				}else{
-					cpmessage('请选择要导出的数据', $_SGLOBAL['refer']);
+					cpmessage($_SESSION['lang'] == 'english'?'Please select the data to export!':'请选择要导出的数据', $_SGLOBAL['refer']);
 				}
 			}
 

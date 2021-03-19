@@ -11,7 +11,7 @@ $op = $_GET['op']?$_GET['op']:'';
 $uid = $_GET['uid']?$_GET['uid']:'';
 
 if(empty($uid)){
-	cpmessage('参数错误!', $_SGLOBAL['refer']);
+	cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!', $_SGLOBAL['refer']);
 }
 
 $sql="select u.uid,u.nickname,u.wxopenid,uf.phone from ".$_SC['tablepre']."user as u 
@@ -24,7 +24,7 @@ $sql="select status from ".$_SC['tablepre']."user_idcard where uid=".$user['uid'
 $state=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql), 0);
 
 if($state !== '2'){
-	$user['nickname'] = '未实名认证';
+	$user['nickname'] = $_SESSION['lang'] == 'english'?'No real name authentication!':'未实名认证';
 }
 
 switch ($op){
@@ -33,18 +33,22 @@ switch ($op){
 		if(empty($user['wxopenid'])){
 			$return_data = array(
 				'code' => -1,
-				'msg' => '该用户未绑定微信'
+				'msg' => $_SESSION['lang'] == 'english'?'The user is not bound to wechat!':'该用户未绑定微信'
 			);
 			echo json_encode($return_data);
 			exit;
 		}
+        if($_SESSION['lang'] == 'english'){
+            $title = $_POST['title']?$_POST['title']:'Dear users, Hello!';
+        }else{
+            $title = $_POST['title']?$_POST['title']:'尊敬的用户，您好!';
+        }
 
-		$title = $_POST['title']?$_POST['title']:'尊敬的用户，您好!';
 
 		if(empty($_POST['content'])){
 			$return_data = array(
 				'code' => -1,
-				'msg' => '消息内容不能为空'
+				'msg' => $_SESSION['lang'] == 'english'?'Message content cannot be empty!':'消息内容不能为空'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -65,7 +69,7 @@ switch ($op){
 			if(empty($url) || $url=='http://'){
 				$return_data = array(
 					'code' => -1,
-					'msg' => '跳转链接不能为空'
+					'msg' => $_SESSION['lang'] == 'english'?'Jump link cannot be empty!':'跳转链接不能为空'
 				);
 				echo json_encode($return_data);
 				exit;
@@ -112,7 +116,7 @@ switch ($op){
 
 		$return_data = array(
 			'code' => 0,
-			'msg' => '发送成功'
+			'msg' => $_SESSION['lang'] == 'english'?'Sent successfully!':'发送成功'
 		);
 		echo json_encode($return_data);
 		exit;

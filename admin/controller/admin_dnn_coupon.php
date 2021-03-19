@@ -46,7 +46,7 @@ switch ($op){
 	    if( empty($_POST['id'])){
            $return_data = array(
 				'error' => -1,
-				'msg' => '参数错误',
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误',
 				'result' => null
 			);
            echo json_encode($return_data);die;
@@ -54,7 +54,7 @@ switch ($op){
 	    if($_POST['number']=='0'){
            $return_data = array(
 				'error' => -1,
-				'msg' => '优惠券数量不能为空',
+				'msg' => $_SESSION['lang'] == 'english'?'Coupon quantity cannot be empty!':'优惠券数量不能为空',
 				'result' => null
 			);
            echo json_encode($return_data);die;
@@ -71,7 +71,7 @@ switch ($op){
             	}else{
             	    $return_data = array(
 						'error' => -1,
-						'msg' => '用户不能为空',
+						'msg' => $_SESSION['lang'] == 'english'?'User cannot be empty!':'用户不能为空',
 						'result' => null
 					);
 					echo json_encode($return_data);die;
@@ -83,13 +83,23 @@ switch ($op){
 			}
 
 	        $money = 0;
-	        if($result['type']==3){
-	        	$money = floatval($result['money']).'折';
-	        }elseif($result['type']==4){
-	        	$money = '免单';
-	        }else{
-	        	$money = floatval($result['money']).'元';
-	        }
+			if($_SESSION['lang'] == 'english'){
+                if($result['type']==3){
+                    $money = floatval($result['money']).'0% off';
+                }elseif($result['type']==4){
+                    $money = '免单';
+                }else{
+                    $money = floatval($result['money']).'￥';
+                }
+            }else{
+                if($result['type']==3){
+                    $money = floatval($result['money']).'0% off';
+                }elseif($result['type']==4){
+                    $money = '免单';
+                }else{
+                    $money = floatval($result['money']).'￥';
+                }
+            }
 
 			foreach ($userlist as $key => $value) {
 	        	$data[$key]['uid']=$value['uid'];
@@ -113,12 +123,12 @@ switch ($op){
 
             $return_data = array(
 				'error' => 0,
-				'msg' => '优惠券发放成功',
+				'msg' => $_SESSION['lang'] == 'english'?'Coupon issued successfully!':'优惠券发放成功',
 				'result' => null
 			);
 			$admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
-				'operate' => '优惠券发放成功',
+				'operate' =>  $_SESSION['lang'] == 'english'?'Coupon issued successfully!':'优惠券发放成功',
 				'object' =>'',
 				'dateline' => time()
 			);
@@ -127,7 +137,7 @@ switch ($op){
         }else{
            $return_data = array(
 				'error' => -1,
-				'msg' => '参数错误',
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误',
 				'result' => null
 			);
         }
@@ -153,7 +163,11 @@ switch ($op){
 		   	  inserttable($_SC['tablepre'],"coupon", $data,1);	
 		   	}
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   if($_SESSION['lang'] == 'english'){
+               $result['msg']='Operation successful!';
+           }else{
+               $result['msg']='操作成功';
+           }
 
 		   $admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -175,7 +189,11 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 		}
 		$result['code']=0;
-		$result['msg']='操作成功';
+        if($_SESSION['lang'] == 'english'){
+            $result['msg']='Operation successful!';
+        }else{
+            $result['msg']='操作成功';
+        }
 
 		$admin_log = array(
 			'uid' =>$_SGLOBAL['tq_uid'],
@@ -281,7 +299,11 @@ function push_user_msg($wxtid, $uid, $money, $number){
 		if(!empty($user['wxopenid'])){   
 			//发送消息
 			if($result['first_code']){
-				$dataa[$result['first_code']]['value'] ="尊敬的".$user['nickname']."，"."您有新的优惠券已发放入账";//描述
+                if($_SESSION['lang'] == 'english'){
+                    $dataa[$result['first_code']]['value'] ="Honorific".$user['nickname']."，"."You have new coupons issued and recorded";//描述
+                }else{
+                    $dataa[$result['first_code']]['value'] ="Honorific".$user['nickname']."，"."You have new coupons issued and recorded";//描述
+                }
 				$dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
 			}
 			$dataa[$result['keyword1_code']]['value'] = $money;//金额
@@ -289,7 +311,11 @@ function push_user_msg($wxtid, $uid, $money, $number){
 			$dataa[$result['keyword2_code']]['value'] = date("Y-m-d H:i", time());//入账时间
 			$dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
 			if($result['remark_code']){
-				$reason="发放数量：".$number."张\n点击查看优惠券";
+                if($_SESSION['lang'] == 'english'){
+                    $reason="Issued quantity：".$number."\n Click to view coupons";
+                }else{
+                    $reason="Issued quantity：".$number."张\n点击查看优惠券";
+                }
 			   	$dataa[$result['remark_code']]['value'] = $reason;
 			   	$dataa[$result['remark_code']]['color'] = $result['remark_color'];
 		   	}

@@ -17,7 +17,7 @@ if(submitcheck('deletesubmit')){
 	  }
 	  $query = $_SGLOBAL['db']->query($sql);
 	}
-	cpmessage('删除外部链接成功', 'admin.php?view=outlink');
+	cpmessage($_SESSION['lang'] == 'english'?'Delete external link successfully!':'删除外部链接成功', 'admin.php?view=outlink');
 }
 
 //开始查询

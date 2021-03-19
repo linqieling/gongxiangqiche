@@ -30,7 +30,7 @@ switch ($op){
 			  // var_dump($data);die;
 			  inserttable($_SC['tablepre'],"pms", $data, 1 );
 			}
-			cpmessage('添加新信息成功!', "admin.php?view=userpmslist");
+			cpmessage($_SESSION['lang'] == 'english'?'New information added successfully!':'添加新信息成功!', "admin.php?view=userpmslist");
 		 }
 	break;
 	case 'edit':
@@ -47,13 +47,13 @@ switch ($op){
 		}else {   
 			$data=pms_post($_POST);
 			updatetable($_SC['tablepre'],'pms',$data,'pmid='.$_POST['id'],0);
-			cpmessage('修改成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
 		$sql="delete from ".$_SC['tablepre']."pms where pmid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'userlist':
 		$search=array(
@@ -101,7 +101,7 @@ switch ($op){
 			  }
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		$search=array(
 			"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),
@@ -153,7 +153,7 @@ function pms_post($POST) {
   	
 	$POST['subject'] = getstr(trim($POST['subject']), 80, 1, 1, 1);
 	if(empty($POST['subject'])){
-	   cpmessage('标题必须填写', $_SGLOBAL['refer']);
+	   cpmessage($_SESSION['lang'] == 'english'?'Title must be filled in!':'标题必须填写', $_SGLOBAL['refer']);
 	}
 		
 	$POST['content'] = checkhtml($POST['content']);
@@ -172,7 +172,12 @@ function pms_post($POST) {
 	$msgto=$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql), 0);
 	
 	if(empty($POST['msgtoid'])){
-	   cpmessage('发送给用户'.$msgto.'不存在', $_SGLOBAL['refer']);
+	    if($_SESSION['lang'] == 'english'){
+            cpmessage('Send to user'.$msgto.'non-existent', $_SGLOBAL['refer']);
+        }else{
+            cpmessage('发送给用户'.$msgto.'不存在', $_SGLOBAL['refer']);
+        }
+
 	}
 	
     $data = array( 

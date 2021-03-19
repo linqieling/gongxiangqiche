@@ -74,7 +74,7 @@ switch ($op){
 		updatetable($_SC['tablepre'],'vehicle_status',$resl,'vid='.$_GET['id'],0);	
 		$query = $_SGLOBAL['db']->query($sql);		
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		$admin_log = array(
 			'uid' =>$_SGLOBAL['tq_uid'],
 			'operate' => '删除车辆信息',
@@ -133,7 +133,7 @@ switch ($op){
 	case 'setting':
 	    $vehicleid=$_GET['vehicleid'];
 	    if(empty($vehicleid)){
-	       cpmessage('参数错误');	
+	       cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误');
 	    }
 		$sql = "select * from ".$_SC['tablepre']."vehicle_setting  where vehicleid=".$_GET['vehicleid'];
 		$query = $_SGLOBAL['db']->query($sql);
@@ -164,7 +164,7 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   $result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		   echo json_encode($result);die;
 	break;
 
@@ -205,7 +205,7 @@ switch ($op){
 		  if(is_array($data)){
 			$myresult = array(
 				'result' => 1,
-				'msgstr' => "上传图片成功",
+				'msgstr' => $_SESSION['lang'] == 'english'?'Upload image successfully!':"上传图片成功",
 				'filepath' =>$data['filepath']
 			);
 			echo json_encode($myresult);
@@ -227,7 +227,7 @@ switch ($op){
 		  if(is_array($data)){
 			$myresult = array(
 				'result' => 1,
-				'msgstr' => "上传图片成功",
+				'msgstr' => $_SESSION['lang'] == 'english'?'Upload image successfully!':"上传图片成功",
 				'filepath' =>$data['filepath']
 			);
 			echo json_encode($myresult);
@@ -256,7 +256,7 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query( $sql );
 		include_once(S_ROOT.'./framework/function/function_cp.php');
 		pic_del($result['picfilepath']);
-		cpmessage('删除图片成功!','admin.php?view=dnn_vehicle&op=edit&id='.$_GET['id']);
+		cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!','admin.php?view=dnn_vehicle&op=edit&id='.$_GET['id']);
 	break;
 
 	case "list_api":

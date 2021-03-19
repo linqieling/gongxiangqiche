@@ -18,7 +18,7 @@ switch ($op){
 			 $setarr[$value] = trim($_POST['set'][$value]);
 		   }
 		   inserttable($_SC['tablepre'],"usergroup", $setarr, 1 );
-		   cpmessage('添加用户组成功!', $_POST['refer']);
+		   cpmessage($_SESSION['lang'] == 'english'?'Please do not operate illegally!':'添加用户组成功!', $_POST['refer']);
 		 }
 	break;
 	case 'edit':
@@ -28,7 +28,7 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$result = $_SGLOBAL['db']->fetch_array($query);
 			if($result['system']==1 or $result['gid']==1){
-			   cpmessage('请不要非法操作!', $_SGLOBAL['refer']);
+			   cpmessage($_SESSION['lang'] == 'english'?'Please do not operate illegally!':'请不要非法操作!', $_SGLOBAL['refer']);
 			}
 		}else{   
 			$perms = array_keys($_POST['set']);
@@ -36,7 +36,7 @@ switch ($op){
 			  $setarr[$value] = trim($_POST['set'][$value]);
 			}
 			updatetable($_SC['tablepre'],'usergroup',$setarr,'gid='.$_POST['gid'],0);
-			cpmessage('修改用户组成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'User group modified successfully!':'修改用户组成功!', $_POST['refer']);
 		}
 	break;
 	case 'permedit':
@@ -45,7 +45,7 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$result = $_SGLOBAL['db']->fetch_array($query);
 			if($result['system']==1 or $result['gid']==1){
-			   cpmessage('请不要非法操作!', 'admin.php?view=usergroup');
+			   cpmessage($_SESSION['lang'] == 'english'?'Please do not operate illegally!':'请不要非法操作!', 'admin.php?view=usergroup');
 			}
 			
 			//查询所有的基本权限
@@ -101,7 +101,7 @@ switch ($op){
 			@include_once(S_ROOT.'./framework/function/function_cache.php');
 			usergroup_cache();
 			permission_cache();
-			cpmessage('修改用户组成功!', 'admin.php?view=usergroup&op=permedit&gid='.$_POST['gid']);
+			cpmessage($_SESSION['lang'] == 'english'?'User group modified successfully!':'修改用户组成功!', 'admin.php?view=usergroup&op=permedit&gid='.$_POST['gid']);
 		}
 	break;
 	case 'del':
@@ -109,13 +109,13 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		$result= $_SGLOBAL['db']->fetch_array($query);
 		if($result['system']==1 or $result['gid']==1){
-		   cpmessage('请不要非法操作!', 'admin.php?view=usergroup');
+		   cpmessage($_SESSION['lang'] == 'english'?'Please do not operate illegally!':'请不要非法操作!', 'admin.php?view=usergroup');
 		}
 		$sql="delete from ".$_SC['tablepre']."usergroup where gid=".$result['gid'];
 		$query = $_SGLOBAL['db']->query( $sql );
 		$sql="update ".$_SC['tablepre']."user set groupid=6  where groupid=".$result['gid'];
 		$query = $_SGLOBAL['db']->query($sql);	
-		cpmessage('删除用户组成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Delete user group successfully!':'删除用户组成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 		//开始查询

@@ -27,7 +27,7 @@ switch ($op){
 		   $data=data_post($_POST);
 		   $data['dateline'] = $_SGLOBAL['timestamp'];
 		   inserttable($_SC['tablepre'],"gallery", $data, 1 );
-		   cpmessage('添加成功!', "admin.php?view=gallery");
+		   cpmessage( $_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', "admin.php?view=gallery");
 		 }
 	break;
 	case 'edit':
@@ -43,14 +43,14 @@ switch ($op){
 			  $SC_CreateHtml = new SC_CreateHtml;
 			  $SC_CreateHtml ->creategalleryshow($data['catid'],$_POST['id']);
 			}
-			cpmessage('修改成功!', $_POST['refer']);
+			cpmessage( $_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;
 	case 'top':
 		$topdateline=$_GET['top']?$_SGLOBAL['timestamp']:0;
 		$sql="update ".$_SC['tablepre']."gallery set topdateline=".$topdateline." where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
-		cpmessage('操作成功', $_SGLOBAL['refer']);
+		cpmessage( $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功', $_SGLOBAL['refer']);
 	break;
 	case 'del':
 	    include_once(S_ROOT.'./framework/function/function_cp.php');
@@ -63,13 +63,13 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		$sql="delete from ".$_SC['tablepre']."gallery where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage( $_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'html':
 		include_once(S_ROOT.'./framework/class/class_createhtml.php');
 		$SC_CreateHtml = new SC_CreateHtml;
 		$SC_CreateHtml ->creategalleryshow($_GET['catid'],$_GET['id']);
-		cpmessage('生成HTML成功!', $_SGLOBAL['refer']);
+		cpmessage( $_SESSION['lang'] == 'english'?'HTML generated successfully!':'生成HTML成功!', $_SGLOBAL['refer']);
 	break;
 	default:
 		//模型权限
@@ -86,14 +86,19 @@ switch ($op){
 				  $query = $_SGLOBAL['db']->query($sql);
 				  $result= $_SGLOBAL['db']->fetch_array($query);
 				  if($result['picnum']>0){
-					 cpmessage("请先删除<".$result['galleryname'].">图库内的图片", $_SGLOBAL['refer']);
+				      if( $_SESSION['lang'] == 'english'){
+                          cpmessage("Please delete first<".$result['galleryname'].">Pictures in Gallery", $_SGLOBAL['refer']);
+                      }else{
+                          cpmessage("请先删除<".$result['galleryname'].">图库内的图片", $_SGLOBAL['refer']);
+                      }
+
 				  }else{
 					 $sql="delete from ".$_SC['tablepre']."gallery where id=".$id;
 					 $query = $_SGLOBAL['db']->query( $sql );
 				  }
 			  }
 			}
-			cpmessage('删除图库成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Delete Gallery successfully!':'删除图库成功', $_SGLOBAL['refer']);
 		}
 
 		$search=array(
@@ -149,7 +154,7 @@ $_TPL->display("gallery.tpl");
 function data_post($POST) {
     global $_SGLOBAL;
 	if(empty($POST['catid'])) {
-	  cpmessage('栏目必须选择');
+	  cpmessage($_SESSION['lang'] == 'english'?'Column must be selected!':'栏目必须选择');
 	}
 	if(checkperm("category",2,$POST['catid'])) {
 	  cpmessage('no_authority_management_operation');

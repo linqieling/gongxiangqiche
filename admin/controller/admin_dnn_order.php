@@ -49,15 +49,28 @@ switch ($op){
 			  left join  ".$_SC['tablepre']."coupon as c on c.id=u.cid where u.id=".$result['couponid'];
 			$query = $_SGLOBAL['db']->query($sql);
 			$coupon = $_SGLOBAL['db']->fetch_array($query);
-			if($coupon['type']==4){
-                $coupon['depict']='免单';
-			}elseif($coupon['type']==3){
-                $coupon['depict']='打折';
-			}elseif($coupon['type']==2){
-				$coupon['depict']='满减';
-			}else{
-				$coupon['depict']='通用';
-			}
+            if($_SESSION['lang'] == 'english'){
+                if($coupon['type']==4){
+                    $coupon['depict']='Free of charge';
+                }elseif($coupon['type']==3){
+                    $coupon['depict']='Discount';
+                }elseif($coupon['type']==2){
+                    $coupon['depict']='Full reduction';
+                }else{
+                    $coupon['depict']='Currency';
+                }
+            }else{
+                if($coupon['type']==4){
+                    $coupon['depict']='免单';
+                }elseif($coupon['type']==3){
+                    $coupon['depict']='打折';
+                }elseif($coupon['type']==2){
+                    $coupon['depict']='满减';
+                }else{
+                    $coupon['depict']='通用';
+                }
+            }
+
         }
 
         if($result['ostatus']==0){
@@ -182,7 +195,7 @@ switch ($op){
 		        $query = $_SGLOBAL['db']->query($sql);
 		        $return_data = array(
 					'error' => 0,
-					'msg' => '操作成功',
+					'msg' => $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功',
 					'result' => null
 				);
 				push_user_msg($order['uid'], $order['orderno'], $order['vid'], $order['id'], $types);
@@ -202,7 +215,7 @@ switch ($op){
 			}else{
 				$return_data = array(
 					'error' => -1,
-					'msg' => '订单已完成,无法取消',
+					'msg' => $_SESSION['lang'] == 'english'?'The order has been completed and cannot be cancelled!':'订单已完成,无法取消',
 					'result' => null
 				);
 			}
@@ -210,7 +223,7 @@ switch ($op){
 	   	}else{
 	     	$return_data = array(
 				'error' => -1,
-				'msg' => '参数错误',
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误',
 				'result' => null
 			);
 	    }
@@ -243,13 +256,13 @@ switch ($op){
 			}
 			$return_data = array(
 				'error' => 0,
-				'msg' => '操作成功',
+                'msg' => $_SESSION['lang'] == 'english'?'Operation successful!':'操作成功',
 				'result' => null
 			);
 		}else{
 			$return_data = array(
 				'error' => -1,
-				'msg' => '参数错误',
+                'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误',
 				'result' => null
 			);
 		}
@@ -295,51 +308,115 @@ switch ($op){
 		$datalist = array();
 		  while ($value = $_SGLOBAL['db']->fetch_array($query)) {
 				  $value['dateline']=date("Y-m-d H:i:s",$value['dateline']);
+                if($_SESSION['lang'] == 'english'){
+                    if($value['ostatus']==0){
+                        $value['ostatus']='Cancelled';
+                    }elseif($value['ostatus']==1){
+                        $value['ostatus']='count down';
+                    }elseif($value['ostatus']==2){
+                        $value['ostatus']='Charging';
+                    }elseif($value['ostatus']==3){
+                        $value['ostatus']='Completed';
+                    }
+                    if($value['paystatus']==0){
+                        $value['paystatus']='Unpaid';
+                    }elseif($value['paystatus']==1){
+                        $value['paystatus']='Paid';
+                    }
+                    if($value['uchid']){
+                        $value['uchid']='Car returned';
+                    }else{
+                        $value['uchid']='The car hasn\'t been returned';
+                    }
+                }else{
+                    if($value['ostatus']==0){
+                        $value['ostatus']='已取消';
+                    }elseif($value['ostatus']==1){
+                        $value['ostatus']='倒计时';
+                    }elseif($value['ostatus']==2){
+                        $value['ostatus']='计费中';
+                    }elseif($value['ostatus']==3){
+                        $value['ostatus']='已完成';
+                    }
+                    if($value['paystatus']==0){
+                        $value['paystatus']='未支付';
+                    }elseif($value['paystatus']==1){
+                        $value['paystatus']='已支付';
+                    }
+                    if($value['uchid']){
+                        $value['uchid']='已还车';
+                    }else{
+                        $value['uchid']='未还车';
+                    }
+                }
 
-				if($value['ostatus']==0){
-					$value['ostatus']='已取消';
-				}elseif($value['ostatus']==1){
-					$value['ostatus']='倒计时';
-				}elseif($value['ostatus']==2){
-					$value['ostatus']='计费中';
-				}elseif($value['ostatus']==3){
-					$value['ostatus']='已完成';
-				}
-				if($value['paystatus']==0){
-					$value['paystatus']='未支付';
-				}elseif($value['paystatus']==1){
-					$value['paystatus']='已支付';
-				}
-				if($value['uchid']){
-					$value['uchid']='已还车';
-				}else{
-					$value['uchid']='未还车';
-				}  
 				$datalist[]=$value;
 			}
-		include_once(S_ROOT."./framework/include/PHPExcel/PHPExcel.php"); //包含smarty类文件 
-		$objPHPExcel = new PHPExcel();
-		/*以下是一些设置 ，标题啊之类的*/
-		$objPHPExcel->getProperties()->setCreator("订单表")
-		   ->setLastModifiedBy("订单表信息")
-		   ->setTitle("数据EXCEL导出")
-		   ->setSubject("数据EXCEL导出")
-		   ->setDescription("备份数据")
-		   ->setKeywords("excel")
-		  ->setCategory("result file");
-		/*以下就是对处理Excel里的数据， 横着取数据，主要是这一步，其他基本都不要改*/
-	    $objPHPExcel->setActiveSheetIndex(0)
-		  ->setCellValue('A1', "ID")
-		  ->setCellValue('B1', "车牌号")
-		  ->setCellValue('C1', "手机/姓名")
-		  ->setCellValue('D1', "使用时长")
-		  ->setCellValue('E1', "使用里程")
-		  ->setCellValue('F1', "订单总金额")
-		  ->setCellValue('G1', "最终支付金额")
-		  ->setCellValue('H1', "优惠金额")
-		  ->setCellValue('I1', "订单状态")
-		  ->setCellValue('J1', "支付状态")
-		  ->setCellValue('K1', "下单时间");
+        include_once(S_ROOT."./framework/include/PHPExcel/PHPExcel.php"); //包含smarty类文件
+        if($_SESSION['lang'] == 'english'){
+            $objPHPExcel = new PHPExcel();
+            /*以下是一些设置 ，标题啊之类的*/
+            $objPHPExcel->getProperties()->setCreator("Order form")
+                ->setLastModifiedBy("Order form information of car not returned")
+                ->setTitle("Export data to excel")
+                ->setSubject("Export data to excel")
+                ->setDescription("Backup data")
+                ->setKeywords("excel")
+                ->setCategory("result file");
+            /*以下就是对处理Excel里的数据， 横着取数据，主要是这一步，其他基本都不要改*/
+            $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('A1', "ID")
+                ->setCellValue('B1', "license plate number")
+                ->setCellValue('C1', "phone/name")
+                ->setCellValue('D1', "Duration of use")
+                ->setCellValue('E1', "Mileage")
+                ->setCellValue('F1', "Total order amount")
+                ->setCellValue('G1', "Final payment amount")
+                ->setCellValue('H1', "Preferential amount")
+                ->setCellValue('I1', "Order status")
+                ->setCellValue('J1', "pay status")
+                ->setCellValue('K1', "Order time");
+        }else{
+            $objPHPExcel = new PHPExcel();
+            /*以下是一些设置 ，标题啊之类的*/
+            $objPHPExcel->getProperties()->setCreator("订单表")
+                ->setLastModifiedBy("订单表信息")
+                ->setTitle("数据EXCEL导出")
+                ->setSubject("数据EXCEL导出")
+                ->setDescription("备份数据")
+                ->setKeywords("excel")
+                ->setCategory("result file");
+            /*以下就是对处理Excel里的数据， 横着取数据，主要是这一步，其他基本都不要改*/
+            if($_SESSION['lang'] == 'english'){
+                $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', "ID")
+                    ->setCellValue('B1', "license plate number")
+                    ->setCellValue('C1', "phone/name")
+                    ->setCellValue('D1', "Duration of use")
+                    ->setCellValue('E1', "Mileage")
+                    ->setCellValue('F1', "Total order amount")
+                    ->setCellValue('G1', "Final payment amount")
+                    ->setCellValue('H1', "Preferential amount")
+                    ->setCellValue('I1', "Order status")
+                    ->setCellValue('J1', "Payment status")
+                    ->setCellValue('K1', "Order time");
+            }else{
+                /*以下就是对处理Excel里的数据， 横着取数据，主要是这一步，其他基本都不要改*/
+                $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', "ID")
+                    ->setCellValue('B1', "车牌号")
+                    ->setCellValue('C1', "手机/姓名")
+                    ->setCellValue('D1', "使用时长")
+                    ->setCellValue('E1', "使用里程")
+                    ->setCellValue('F1', "订单总金额")
+                    ->setCellValue('G1', "最终支付金额")
+                    ->setCellValue('H1', "优惠金额")
+                    ->setCellValue('I1', "订单状态")
+                    ->setCellValue('J1', "支付状态")
+                    ->setCellValue('K1', "下单时间");
+            }
+
+        }
 
 		//设置单元格宽度
         $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
@@ -504,12 +581,21 @@ function push_user_msg($uid,$orderno,$vid,$orderid,$types){
 
 				$dataa[$result['keyword2_code']]['value'] = date("Y-m-d H:i:s",time());//取消时间
 				$dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
+				if($_SESSION['lang'] == 'english'){
+                    $dataa[$result['keyword3_code']]['value'] = $types?'Automatic cancellation of timeout':'Background administrator operation';//取消原因
+                }else{
+                    $dataa[$result['keyword3_code']]['value'] = $types?'超时自动取消':'后台管理员操作';//取消原因
+                }
 
-				$dataa[$result['keyword3_code']]['value'] = $types?'超时自动取消':'后台管理员操作';//取消原因
 				$dataa[$result['keyword3_code']]['color'] = $result['keyword3_color'];
 
 				if($result['remark_code']){
-				   $dataa[$result['remark_code']]['value'] = "车牌号: ".$vehicle['platenumber']."\n电牛牛共享物流车！为您服务";
+                    if($_SESSION['lang'] == 'english'){
+                        $dataa[$result['remark_code']]['value'] = "license plate number: ".$vehicle['platenumber']."\n License plate No. electric Niuniu sharing logistics vehicle! serve you";
+                    }else{
+                        $dataa[$result['remark_code']]['value'] = "车牌号: ".$vehicle['platenumber']."\n电牛牛共享物流车！为您服务";
+                    }
+
 				   $dataa[$result['remark_code']]['color'] = $result['remark_color'];
 			   	}
 				$go_url = $_SCONFIG['siteallurl']."cp-orderdetails-id-".$orderid.'.html';

@@ -44,7 +44,7 @@ switch ($op){
 		   	  inserttable($_SC['tablepre'],"article_page", $data,1);	
 		   	}
 		   $result['code']=0;
-		   $result['msg']='操作成功';
+		   $result['msg']="[##if $_SESSION.lang eq 'english'##]Operation successful[##else##]操作成功[##/if##]";
 
 		    $admin_log = array(
 				'uid' =>$_SGLOBAL['tq_uid'],
@@ -60,7 +60,7 @@ switch ($op){
 		$sql="delete from ".$_SC['tablepre']."article_page where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']="[##if $_SESSION.lang eq 'english'##]Operation successful[##else##]操作成功[##/if##]";
 
 		 $admin_log = array(
 			'uid' =>$_SGLOBAL['tq_uid'],

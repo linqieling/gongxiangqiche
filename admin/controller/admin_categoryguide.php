@@ -21,10 +21,10 @@ if(!empty($op) and $op=="ajax"){
 			  echo "</select>";
 		break;
 		case 'page':
-			  echo "<select ><option disabled=''>不可以选择</option></select>";
+			  echo "<select ><option disabled=''>[##if $_SESSION.lang eq 'english'##]No choice![##else##]不可以选择[##/if##]</option></select>";
 		break;
 		case 'link':
-			  echo "<select ><option disabled=''>不可以选择</option></select>";
+			  echo "<select ><option disabled=''>[##if $_SESSION.lang eq 'english'##]No choice! [##else##]不可以选择[##/if##]</option></select>";
 		break;
    }
    exit();
@@ -38,7 +38,7 @@ if(!empty($op) and $op=="getcategory"){
 	   include_once(S_ROOT.'./data/data_category_'.$groupid.'.php'); 
 	}
 	$html="";
-	$html.= "<select name='pid' class='catid' >  ><option value='0'>无(作为一级栏目)</option>";
+	$html.= "<select name='pid' class='catid' >  ><option value='0'>[##if $_SESSION.lang eq 'english'##]None (as a first level column)[##else##]无(作为一级栏目)[##/if##]</option>";
 	foreach($_SGLOBAL['category_'.$groupid.''] as $key=>$val){
 		$html.= "<option";
 		if($pid!=0 and $pid==$val['catid']){

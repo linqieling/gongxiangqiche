@@ -8,7 +8,6 @@ left join  ".$_SC['tablepre']."usergroup as g on u.groupid=g.gid
 where u.uid=".$_SGLOBAL['tq_uid'];
 $query = $_SGLOBAL['db']->query($sql);
 $result = $_SGLOBAL['db']->fetch_array($query);
-// var_dump($result);
 
 
 if($_GET['op']=='disposal'){

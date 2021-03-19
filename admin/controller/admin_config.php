@@ -14,7 +14,7 @@ if ($_GET['op']=='delpic') {
 	$query = $_SGLOBAL['db']->query( $sql );
 	include_once(S_ROOT.'./framework/function/function_cp.php');
 	pic_del($result['datavalue']);
-	cpmessage('删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
+	cpmessage($_SESSION['lang'] == 'english'?'Picture deleted successfully!':'删除图片成功!', $_SGLOBAL['refer']."&refer=".$_GET['refer']);
 }
 if (submitcheck('submit'))
 {	
@@ -148,7 +148,7 @@ if($_GET['watermarkfile']){
 	$query = $_SGLOBAL['db']->query( $sql );
 	$data['watermarkfile']='';
 	data_set('setting', $data);
-	cpmessage('删除成功!', $_SGLOBAL['refer']);
+	cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 }
 
 

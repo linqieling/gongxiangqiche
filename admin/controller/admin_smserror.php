@@ -14,7 +14,7 @@ switch ($op){
 	case 'del':
 		$sql="delete from ".$_SC['tablepre']."sms_error where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 		break;
 
 	default:
@@ -28,7 +28,7 @@ switch ($op){
 				}
 				$query = $_SGLOBAL['db']->query($sql);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'Successfully deleted'?'!':'删除成功', $_SGLOBAL['refer']);
 		}
 		$search=array(
 				"sid" => empty($_GET['sid'])?'':intval($_GET['sid']),

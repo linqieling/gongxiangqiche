@@ -18,7 +18,7 @@ switch ($op){
 			$_TPL->display("plugins.tpl"); 
 			exit;
 		  }else{
-			cpmessage('安装文件不全!', 'admin.php?view=plugins');
+			cpmessage($_SESSION['lang'] == 'english'?'Incomplete installation files!':'安装文件不全!', 'admin.php?view=plugins');
 		  }
 		}else{
 		  $data=data_post($_POST);	
@@ -26,12 +26,12 @@ switch ($op){
 		  $result=SC_Plugin::plug_setup($data);
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
 		  plugins_cache();
-		  cpmessage('安装插件成功!', 'admin.php?view=plugins');
+		  cpmessage($_SESSION['lang'] == 'english'?'Plug in installed successfully!':'安装插件成功!', 'admin.php?view=plugins');
 		}
 	break;
 	case 'uninstall': 
 		if(empty($_GET['name'])){
-		  cpmessage('请不要提交非法参数!', 'admin.php?view=plugins');
+		  cpmessage($_SESSION['lang'] == 'english'?'Please do not submit illegal parameters!':'请不要提交非法参数!', 'admin.php?view=plugins');
 		}else { 
 		  include_once(S_ROOT.'./framework/class/class_plugin.php');
 		  $result=SC_Plugin::plug_uninstall($_GET['name']);
@@ -41,7 +41,7 @@ switch ($op){
 	break;	
 	case 'del':
 		if(empty($_GET['name'])){
-		  cpmessage('请不要提交非法参数!', 'admin.php?view=plugins');
+		  cpmessage($_SESSION['lang'] == 'english'?'Please do not submit illegal parameters!':'请不要提交非法参数!', 'admin.php?view=plugins');
 		}else { 
 		  include_once(S_ROOT.'./framework/class/class_plugin.php');
 		  $result=SC_Plugin::plug_del($_GET['name']);

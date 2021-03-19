@@ -11,14 +11,14 @@ switch ($op){
 			$data=data_post($_POST);
 		  	$data['dateline'] = $_SGLOBAL['timestamp'];
 		  	inserttable($_SC['tablepre'],"wxtemplate", $data, 1 );
-		  	cpmessage('添加成功!', "admin.php?view=wxtemplate");
+		  	cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', "admin.php?view=wxtemplate");
 		}
 	break;
 
 	case 'edit':
 		if(!submitcheck('submit')) {//如果没返回则说明进入修改界面
 			if(empty($_GET['id'])){
-				cpmessage('参数错误!', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!', $_SGLOBAL['refer']);
 			}
 		  	$_SGLOBAL['refer']=empty($_GET['refer'])?$_SGLOBAL['refer']:$_GET['refer'];
 		  	$sql = "select * from ".$_SC['tablepre']."wxtemplate where id=".$_GET['id'];
@@ -28,14 +28,14 @@ switch ($op){
 			//print_r($_POST);exit;
 		  	$data=data_post($_POST);
 		  	updatetable($_SC['tablepre'],'wxtemplate',$data,'id='.$_POST['id'],0);
-		  	cpmessage('修改成功!', $_POST['refer']);
+		  	cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;
 
 	case 'del':
 		$sql="delete from ".$_SC['tablepre']."wxtemplate where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 
 	case 'send':
@@ -118,13 +118,13 @@ switch ($op){
 					}
 					inserttable($_SC['tablepre'],"wxsendlist", $template, 1 );
 			  	}
-			  	cpmessage('操作完成!', $_POST['refer'], 3);
+			  	cpmessage($_SESSION['lang'] == 'english'?'The operation is complete!':'操作完成!', $_POST['refer'], 3);
 			}else{
-				cpmessage('请选择要发送的用户!', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Please select the user to send!':'请选择要发送的用户!', $_SGLOBAL['refer']);
 			}
 		}else{
 			if(empty($_GET['id'])){
-				cpmessage('参数错误!', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!', $_SGLOBAL['refer']);
 			}
 			$sql="select * from ".$_SC['tablepre']."wxtemplate where id=".$_GET['id'];
 			$query = $_SGLOBAL['db']->query($sql);
@@ -177,9 +177,9 @@ switch ($op){
 			  	}
 			  	$query = $_SGLOBAL['db']->query($sql);
 			}else{
-				cpmessage('请先选择', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Please select first!':'请先选择', $_SGLOBAL['refer']);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		//开始查询
 		$perpage = 25;
@@ -205,7 +205,7 @@ switch ($op){
 
 	case 'listinfo':
 		if(empty($_GET['id'])){
-			cpmessage('参数错误!', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!', $_SGLOBAL['refer']);
 		}
 	  	$sql="select l.*,u.nickname,u.wxopenid,u.avatar from ".$_SC['tablepre']."wxsendlist as l 
 			  left join ".$_SC['tablepre']."user as u on u.uid=l.uid 
@@ -218,7 +218,7 @@ switch ($op){
 	case 'listdel':
 		$sql="delete from ".$_SC['tablepre']."wxsendlist where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query( $sql );		
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 		break;
 
 	default:
@@ -232,9 +232,9 @@ switch ($op){
 			  	}
 			  	$query = $_SGLOBAL['db']->query($sql);
 			}else{
-				cpmessage('请先选择', $_SGLOBAL['refer']);
+				cpmessage($_SESSION['lang'] == 'english'?'Please select first!':'请先选择', $_SGLOBAL['refer']);
 			}
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		//开始查询
 		$perpage = 25;
@@ -265,7 +265,7 @@ $_TPL->display("wxtemplate.tpl");
 function data_post($POST) {
     global $_SGLOBAL;
 	if(empty($POST['temid'])) {
-	  cpmessage('模板ID必填',$_SGLOBAL['refer']."&refer=".$POST['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Template ID is required!':'模板ID必填',$_SGLOBAL['refer']."&refer=".$POST['refer']);
 	}
   	$POST['title'] = getstr(trim($POST['title']), 80, 1, 1, 1);
 	if(strlen($POST['title'])<1) $POST['title'] = sgmdate('Y-m-d');

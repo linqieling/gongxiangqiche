@@ -8,14 +8,14 @@ if(checkperm("admin_userlist",1)) {
 }
 $op=$_GET['op']?$_GET['op']:'';
 if(empty($_GET['uid'])){
- cpmessage('参数错误!');
+ cpmessage($_SESSION['lang'] == 'english'?'Parameter error!':'参数错误!');
 }else{
 	$sql="select * from ".$_SC['tablepre']."user 
 	  where uid=".$_GET['uid'];
 	$query = $_SGLOBAL['db']->query($sql);
 	$user = $_SGLOBAL['db']->fetch_array($query);
 	if(empty($user)){
-		cpmessage('用户不存在!');
+		cpmessage($_SESSION['lang'] == 'english'?'user does not exist!':'用户不存在!');
 	}
 }
 
@@ -29,7 +29,7 @@ switch ($op){
        	if( !isset($user) ){
        		$return_data = array(
 				'code' => -1,
-				'msg' => '参数错误'
+				'msg' => $_SESSION['lang'] == 'english'?'Insufficient deposit!':'参数错误'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -38,7 +38,7 @@ switch ($op){
        	if($user['deposit'] <= 0){
        		$return_data = array(
 				'code' => -1,
-				'msg' => '押金不足'
+				'msg' => $_SESSION['lang'] == 'english'?'Insufficient deposit!':'押金不足'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -90,7 +90,7 @@ switch ($op){
 
 				$return_data=array(
 					"code" => 0,
-					"msg"=>"退还押金成功"
+					"msg"=>$_SESSION['lang'] == 'english'?'Successful refund of deposit!':"退还押金成功"
 				);
 				echo json_encode($return_data);
 				//发送模块提示用户
@@ -124,7 +124,7 @@ switch ($op){
 		}else{
 			$return_data=array(
 				"code" => -1,
-				"msg" => '押金参数错误'
+				"msg" => $_SESSION['lang'] == 'english'?'Deposit parameter error!':'押金参数错误'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -135,7 +135,7 @@ switch ($op){
         if(!isset($user)){
        		$return_data = array(
 				'code' => -1,
-				'msg' => '参数错误'
+				'msg' => $_SESSION['lang'] == 'english'?'Parameter error!':'参数错误'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -144,7 +144,7 @@ switch ($op){
        	if($user['deposit'] <= 0){
        		$return_data = array(
 				'code' => -1,
-				'msg' => '押金不足'
+				'msg' => $_SESSION['lang'] == 'english'?'Insufficient deposit!':'押金不足'
 			);
 			echo json_encode($return_data);
 			exit;
@@ -186,7 +186,7 @@ switch ($op){
 
 		$return_data=array(
 			"code" => 0,
-			"msg"=> "平台已成功扣除押金"
+			"msg"=> $_SESSION['lang'] == 'english'?'The platform has successfully deducted the deposit!':"平台已成功扣除押金"
 		);
 
 		echo json_encode($return_data);
@@ -231,22 +231,40 @@ function push_user_msg($wxtid,$uid,$money,$reason){
 		$query = $_SGLOBAL['db']->query($sql);
 		$user=$_SGLOBAL['db']->fetch_array($query);
 
-		if(!empty($user['wxopenid'])){   
-			//发送消息
-				if($result['first_code']){
-					$dataa[$result['first_code']]['value'] ="尊敬的".$user['nickname'].","."您的押金已成功退回到您的账户，请及时查收";//描述
-					$dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
-				}
-				$dataa[$result['keyword1_code']]['value'] = $money;//审核结果
-				$dataa[$result['keyword1_code']]['color'] = $result['keyword1_color'];//审核结果颜色
-				$dataa[$result['keyword2_code']]['value'] =date("Y-m-d H:i:s",time());//审核时间
-				$dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
+            if(!empty($user['wxopenid'])){
+                //发送消息
+                if($_SESSION['lang'] == 'english'){
+                    if($result['first_code']){
+                        $dataa[$result['first_code']]['value'] ="Honorific".$user['nickname'].","."Your deposit has been successfully returned to your account, please check in time";//描述
+                        $dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
+                    }
+                    $dataa[$result['keyword1_code']]['value'] = $money;//审核结果
+                    $dataa[$result['keyword1_code']]['color'] = $result['keyword1_color'];//审核结果颜色
+                    $dataa[$result['keyword2_code']]['value'] =date("Y-m-d H:i:s",time());//审核时间
+                    $dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
 
-				if($result['remark_code']){
-					$reason="说明: ".$reason."如遇到账目不对等情况，请及时联系客服。";
-				   $dataa[$result['remark_code']]['value'] =$reason;
-				   $dataa[$result['remark_code']]['color'] = $result['remark_color'];
-			   }
+                    if($result['remark_code']){
+                        $reason="explain: ".$reason."If the account is not equal, please contact customer service in time.";
+                        $dataa[$result['remark_code']]['value'] =$reason;
+                        $dataa[$result['remark_code']]['color'] = $result['remark_color'];
+                    }
+                }else{
+                    if($result['first_code']){
+                        $dataa[$result['first_code']]['value'] ="尊敬的".$user['nickname'].","."您的押金已成功退回到您的账户，请及时查收";//描述
+                        $dataa[$result['first_code']]['color'] = $result['first_color'];//颜色
+                    }
+                    $dataa[$result['keyword1_code']]['value'] = $money;//审核结果
+                    $dataa[$result['keyword1_code']]['color'] = $result['keyword1_color'];//审核结果颜色
+                    $dataa[$result['keyword2_code']]['value'] =date("Y-m-d H:i:s",time());//审核时间
+                    $dataa[$result['keyword2_code']]['color'] = $result['keyword2_color'];
+
+                    if($result['remark_code']){
+                        $reason="说明: ".$reason."如遇到账目不对等情况，请及时联系客服。";
+                        $dataa[$result['remark_code']]['value'] =$reason;
+                        $dataa[$result['remark_code']]['color'] = $result['remark_color'];
+                    }
+                }
+
 				$go_url = $_SCONFIG['siteallurl']."cp-userpurse-op-deposit.html";
                 $datanow=push_template_msg($user['wxopenid'],$result['temid'],$dataa,$go_url);
                 if($datanow){

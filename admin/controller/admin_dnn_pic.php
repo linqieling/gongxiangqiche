@@ -22,7 +22,7 @@ switch ($op){
 		$sql="delete from ".$_SC['tablepre']."pic where picid=".$_GET['pid'];
 		$query = $_SGLOBAL['db']->query( $sql );		
 		$result['code']=0;
-		$result['msg']='操作成功';
+		$result['msg']=$_SESSION['lang'] == 'english'?'Operation successful!':'操作成功';
 		$admin_log = array(
 			'uid' =>$_SGLOBAL['tq_uid'],
 			'operate' => '删除图片',

@@ -33,7 +33,7 @@ switch ($op){
 		  $data['level'] = $level+1;
 		  $data['dateline'] = $_SGLOBAL['timestamp'];
 		  $id=inserttable($_SC['tablepre'],"wxmenu", $data, 1 );	
-		  cpmessage('添加成功!', 'admin.php?view=wxmenu');
+		  cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', 'admin.php?view=wxmenu');
 		}
 	break;
 	case 'edit':
@@ -63,7 +63,7 @@ switch ($op){
 		  $data['level'] = $level+1;
 		  updatetable($_SC['tablepre'],'wxmenu',$data,"uid=$_SGLOBAL[tq_uid] and id=$_POST[id]",0);
 		  freshmenusubid($_POST['id']);
-		  cpmessage('修改成功!', 'admin.php?view=wxmenu');
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', 'admin.php?view=wxmenu');
 		}
 	break;	
 	case 'del':
@@ -71,11 +71,11 @@ switch ($op){
 		$sql="select count(*) from ".$_SC['tablepre']."wxmenu where pid =".$_GET['id'];
 		$count =$_SGLOBAL['db']->result($_SGLOBAL['db']->query($sql),0);
 		if($count>0){
-		  cpmessage('请先删除子菜单!', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Please delete the submenu first!':'请先删除子菜单!', $_SGLOBAL['refer']);
 		}
 		$sql="delete from ".$_SC['tablepre']."wxmenu where id=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);		
-		cpmessage('删除成功!', 'admin.php?view=wxmenu');
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', 'admin.php?view=wxmenu');
 	break;
 	case 'keylist':
 		$replytype=$_GET['replytype'];
@@ -195,9 +195,13 @@ switch ($op){
 		$result = $wechat->https_request($url, $jsonmenu);
 		$result = json_decode($result, true);
 		if($result['errcode']=='0'){
-			cpmessage('生成菜单栏成功', 'admin.php?view=wxmenu',3);
+			cpmessage($_SESSION['lang'] == 'english'?'Menu bar generated successfully!':'生成菜单栏成功', 'admin.php?view=wxmenu',3);
 		}else{
-			cpmessage('生成菜单栏失败,错误信息:'.$result['errmsg'], 'admin.php?view=wxmenu',3);
+		    if($_SESSION['lang'] == 'english'){
+                cpmessage('Failed to generate menu bar, error message:'.$result['errmsg'], 'admin.php?view=wxmenu',3);
+            }else{
+                cpmessage('生成菜单栏失败,错误信息:'.$result['errmsg'], 'admin.php?view=wxmenu',3);
+            }
 		}
 	break;
 	default:
@@ -211,7 +215,7 @@ switch ($op){
 			  $query = $_SGLOBAL['db']->query($sql);
 			}
 		  }
-		  cpmessage('保存成功', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Saved successfully!':'保存成功', $_SGLOBAL['refer']);
 		}
 		//开始查询
 		$perpage = 15;
@@ -267,11 +271,11 @@ function data_post($POST,$FILES) {
 	}
 	
 	if($POST['pid']>0 and $POST['type']==1 and intval($POST['replyid'])==0){
-	  cpmessage('请务必选择一个关键字!', $_SGLOBAL['refer']);
+	  cpmessage($_SESSION['lang'] == 'english'?'Be sure to select a keyword!':'请务必选择一个关键字!', $_SGLOBAL['refer']);
 	}
 
 	if(($POST['pid']==$POST['id']) and $POST['id']>0){
-    cpmessage('不能选择自己做父分类!', $_SGLOBAL['refer']);
+    cpmessage($_SESSION['lang'] == 'english'?'You cannot choose to be a parent!':'不能选择自己做父分类!', $_SGLOBAL['refer']);
   }
 	
   $POST['name'] = getstr(trim($POST['name']), 80, 1, 1, 1);

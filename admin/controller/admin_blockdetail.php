@@ -53,7 +53,7 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );	
 
-		  cpmessage('增加成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Increase Success!':'增加成功!', $_POST['refer']);
 		}
 	break;
 	case 'edit':
@@ -108,7 +108,7 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );	
 
-		  cpmessage('修改成功!', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 	break;
 	case 'del':
@@ -124,7 +124,7 @@ switch ($op){
 		);
 		inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );	
 
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 	break;
 	case 'uploadpic':
 		include_once(S_ROOT.'./framework/function/function_cp.php');
@@ -167,7 +167,7 @@ switch ($op){
 			);
 			inserttable($_SC['tablepre'],"admin_log", $admin_log, 1 );	
 		
-			cpmessage('删除成功', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功', $_SGLOBAL['refer']);
 		}
 		if(submitcheck('savesubmit')){
 		  $ids=$_POST['ids'];
@@ -180,7 +180,7 @@ switch ($op){
 		  }
 		  include_once(S_ROOT.'./framework/function/function_cache.php');
           block_cache($block['id']);
-		  cpmessage('修改成功', $_SGLOBAL['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功', $_SGLOBAL['refer']);
 		}
 		//开始查询
 		$sql = "select * from ".$_SC['tablepre']."blockfield where blockid=".$block['id'];

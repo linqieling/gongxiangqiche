@@ -17,7 +17,7 @@ switch ($op){
 		  $path = S_ROOT.'./templates/'.$template.'/'.$model.'/'.$file;
 		  $content = sreadfile($path);
 		  if(file_exists($content)){
-			cpmessage('文件不存在', $_SGLOBAL['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'file does not exist!':'文件不存在', $_SGLOBAL['refer']);
 		  }
 		}else{
 		  $content = sstripslashes($_POST['content']);
@@ -26,7 +26,7 @@ switch ($op){
 		  }
 		  $filename=S_ROOT.'./templates/'.$_POST['template'].'/'.$_POST['model'].''.$_POST['file'];
 		  swritefile($filename,$content);
-		  cpmessage('修改成功', $_POST['refer']);
+		  cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功', $_POST['refer']);
 		}
 	  break;
 	case 'getmodel':

@@ -16,7 +16,7 @@ switch ($op){
 			$data=data_post($_POST);
 			$data['dateline'] = $_SGLOBAL['timestamp'];
 			inserttable($_SC['tablepre'],"items", $data, 1 );
-			cpmessage('添加成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Added successfully!':'添加成功!', $_POST['refer']);
 		}
 		break;
 	case 'edit':
@@ -27,7 +27,7 @@ switch ($op){
 		}else{
 			$data=data_post($_POST);
 			updatetable($_SC['tablepre'],'items',$data,'id='.$_POST['id'],0);
-			cpmessage('修改成功!', $_POST['refer']);
+			cpmessage($_SESSION['lang'] == 'english'?'Modified successfully!':'修改成功!', $_POST['refer']);
 		}
 		break;
 	case 'del':
@@ -35,12 +35,12 @@ switch ($op){
 		$query = $_SGLOBAL['db']->query($sql);
 		$sql="delete from ".$_SC['tablepre']."itemsdetail where itemsid=".$_GET['id'];
 		$query = $_SGLOBAL['db']->query($sql);
-		cpmessage('删除成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Successfully deleted!':'删除成功!', $_SGLOBAL['refer']);
 		break;
 	case 'refresh':
 		include_once(S_ROOT.'./framework/function/function_cache.php');
 		items_cache();
-		cpmessage('更新成功!', $_SGLOBAL['refer']);
+		cpmessage($_SESSION['lang'] == 'english'?'Update succeeded!':'更新成功!', $_SGLOBAL['refer']);
 		break;	
 	default:
 		//开始查询

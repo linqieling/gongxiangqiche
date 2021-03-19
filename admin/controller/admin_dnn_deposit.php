@@ -21,12 +21,21 @@ switch ($op){
 			$query = $_SGLOBAL['db']->query($sql);
 			$datalist = array();
 			  while ($value = $_SGLOBAL['db']->fetch_array($query)) {
-					  $value['dateline']=date("Y-m-d H:i",$value['dateline']);
-					if($value['type']==1){
-						$value['type']='充值';
-					}elseif($value['type']==2){
-						$value['type']='退还';
-					}
+			        $value['dateline']=date("Y-m-d H:i",$value['dateline']);
+			        if($_SESSION['lang'] == 'english'){
+                        if($value['type']==1){
+                            $value['type']='recharge';
+                        }elseif($value['type']==2){
+                            $value['type']='return';
+                        }
+                    }else{
+                        if($value['type']==1){
+                            $value['type']='充值';
+                        }elseif($value['type']==2){
+                            $value['type']='退还';
+                        }
+                    }
+
 					$datalist[]=$value;
 				}
 			include_once(S_ROOT."./framework/include/PHPExcel/PHPExcel.php"); //包含smarty类文件 
@@ -40,14 +49,25 @@ switch ($op){
 			   ->setKeywords("excel")
 			  ->setCategory("result file");
 			/*以下就是对处理Excel里的数据， 横着取数据，主要是这一步，其他基本都不要改*/
-		    $objPHPExcel->setActiveSheetIndex(0)
-			  ->setCellValue('A1', "ID")
-			  ->setCellValue('B1', "手机")
-			  ->setCellValue('C1', "姓名")
-			  ->setCellValue('D1', "押金")
-			  ->setCellValue('E1', "类型")
-			  ->setCellValue('F1', "说明")
-			  ->setCellValue('G1', "时间");
+            if($_SESSION['lang'] == 'english'){
+                $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', "ID")
+                    ->setCellValue('B1', "phone")
+                    ->setCellValue('C1', "name")
+                    ->setCellValue('D1', "deposit")
+                    ->setCellValue('E1', "type")
+                    ->setCellValue('F1', "explain")
+                    ->setCellValue('G1', "time");
+            }else{
+                $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', "ID")
+                    ->setCellValue('B1', "手机")
+                    ->setCellValue('C1', "姓名")
+                    ->setCellValue('D1', "押金")
+                    ->setCellValue('E1', "类型")
+                    ->setCellValue('F1', "说明")
+                    ->setCellValue('G1', "时间");
+            }
 
 			//设置单元格宽度
 	        $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);

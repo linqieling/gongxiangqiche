@@ -24,29 +24,29 @@ $max_size = 100000000;
 if (!empty($_FILES['imgFile']['error'])) {
 	switch($_FILES['imgFile']['error']){
 		case '1':
-			$error = '超过php.ini允许的大小。';
+			$error = $_SESSION['lang'] == 'english'?'exceed php.ini Allowed size!':'超过php.ini允许的大小。';
 			break;
 		case '2':
-			$error = '超过表单允许的大小。';
+			$error = $_SESSION['lang'] == 'english'?'Exceeds the size allowed for the form!':'超过表单允许的大小。';
 			break;
 		case '3':
-			$error = '文件只有部分被上传。';
+			$error = $_SESSION['lang'] == 'english'?'Only part of the file was uploaded!':'文件只有部分被上传。';
 			break;
 		case '4':
-			$error = '请选择图片。';
+			$error = $_SESSION['lang'] == 'english'?'Please select a picture!':'请选择图片。';
 			break;
 		case '6':
-			$error = '找不到临时目录。';
+			$error = $_SESSION['lang'] == 'english'?'Error writing file to hard disk!':'找不到临时目录。';
 			break;
 		case '7':
-			$error = '写文件到硬盘出错。';
+			$error = $_SESSION['lang'] == 'english'?'Error writing file to hard disk!':'写文件到硬盘出错。';
 			break;
 		case '8':
 			$error = 'File upload stopped by extension。';
 			break;
 		case '999':
 		default:
-			$error = '未知错误。';
+			$error = $_SESSION['lang'] == 'english'?'unknown error!':'未知错误。';
 	}
 	alert($error);
 }
@@ -63,27 +63,56 @@ if (empty($_FILES) === false) {
 	
 
 	if (!$file_name) {
-		alert("请选择文件。");
+	    if($_SESSION['lang'] == 'english'){
+            alert("Please select file.");
+        }else{
+            alert("请选择文件。");
+        }
+
 	}
 	//检查目录
 	if (@is_dir($save_path) === false) {
-		alert("上传目录不存在。".$save_path);
+        if($_SESSION['lang'] == 'english'){
+            alert("Upload directory does not exist.".$save_path);
+        }else{
+            alert("上传目录不存在。".$save_path);
+        }
+
 	}
 	//检查目录写权限
 	if (@is_writable($save_path) === false) {
-		alert("上传目录没有写权限。");
+        if($_SESSION['lang'] == 'english'){
+            alert("The upload directory has no write permission");
+        }else{
+            alert("上传目录没有写权限。");
+        }
+
 	}
 	//检查是否已上传
 	if (@is_uploaded_file($tmp_name) === false) {
-		alert("上传失败。");
+        if($_SESSION['lang'] == 'english'){
+            alert("Upload failed.");
+        }else{
+            alert("上传失败。");
+        }
+
 	}
 	//检查文件大小
 	if ($file_size > $max_size) {
-		alert("上传文件大小超过限制。");
+        if($_SESSION['lang'] == 'english'){
+            alert("Upload file size exceeds limit.");
+        }else{
+            alert("上传文件大小超过限制。");
+        }
 	}
 	//检查目录名
 	if (empty($ext_arr[$dir_name])) {
-		alert("目录名不正确。");
+        if($_SESSION['lang'] == 'english'){
+            alert("The directory name is incorrect.");
+        }else{
+            alert("目录名不正确。");
+        }
+
 	}
 	//获得文件扩展名
 	$temp_arr = explode(".", $file_name);
@@ -92,14 +121,23 @@ if (empty($_FILES) === false) {
 	$file_ext = strtolower($file_ext);
 	//检查扩展名
 	if (in_array($file_ext, $ext_arr[$dir_name]) === false) {
-		alert("上传文件扩展名是不允许的扩展名。\n只允许" . implode(",", $ext_arr[$dir_name]) . "格式。");
+        if($_SESSION['lang'] == 'english'){
+            alert("Upload file extension is not allowed.\n Only allowed" . implode(",", $ext_arr[$dir_name]) . "format.");
+        }else{
+            alert("上传文件扩展名是不允许的扩展名。\n只允许" . implode(",", $ext_arr[$dir_name]) . "格式。");
+        }
+
 	}
 }
 switch ($dir_name){
 	case 'image': 
 		    $data = pic_save($_FILES['imgFile']);
 			if(empty($data)){
-				 alert("未知错误！");
+                if($_SESSION['lang'] == 'english'){
+                    alert("unknown error.");
+                }else{
+                    alert("未知错误。");
+                }
 			}
 			if(is_array($data)){
 			  echo $json->encode(array('error' => 0, 'url' => $_SC['attachdir'].'/image/'.$data['filepath']));
@@ -129,7 +167,11 @@ switch ($dir_name){
 			//移动文件
 			$file_path = $save_path .$name1.'/'.$name2."/". $new_file_name;
 			if (move_uploaded_file($tmp_name, $file_path) === false) {
-				alert("上传文件失败。");
+                if($_SESSION['lang'] == 'english'){
+                    alert("Failed to upload file。");
+                }else{
+                    alert("上传文件失败。");
+                }
 			}
 			@chmod($file_path, 0644);
 			$file_url = $_SC['attachdir'].'flash/'.$name1.'/'.$name2."/".$new_file_name;
@@ -157,7 +199,11 @@ switch ($dir_name){
 			//移动文件
 			$file_path = $save_path .$name1.'/'.$name2."/". $new_file_name;
 			if (move_uploaded_file($tmp_name, $file_path) === false) {
-				alert("上传文件失败。");
+                if($_SESSION['lang'] == 'english'){
+                    alert("Failed to upload file。");
+                }else{
+                    alert("上传文件失败。");
+                }
 			}
 			@chmod($file_path, 0644);
 			$file_url = $_SC['attachdir'].'media/'.$name1.'/'.$name2."/".$new_file_name;
@@ -185,7 +231,11 @@ switch ($dir_name){
 			//移动文件
 			$file_path = $save_path .$name1.'/'.$name2."/". $new_file_name;
 			if (move_uploaded_file($tmp_name, $file_path) === false) {
-				alert("上传文件失败。");
+                if($_SESSION['lang'] == 'english'){
+                    alert("Failed to upload file.");
+                }else{
+                    alert("上传文件失败。");
+                }
 			}
 			@chmod($file_path, 0644);
 			$file_url = $_SC['attachdir'].'file/'.$name1.'/'.$name2."/".$new_file_name;
