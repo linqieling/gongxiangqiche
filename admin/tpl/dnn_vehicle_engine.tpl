@@ -5,27 +5,27 @@
   <div class="layui-form" action="">
       <div class="layui-form-item" style="margin:0.5rem 1rem;">
         <div class="layui-inline">
-            <input type="text" name="id"  id="id" placeholder="请输入ID" autocomplete="off" class="layui-input">
+            <input type="text" name="id"  id="id" placeholder="[##if $_SESSION.lang eq 'english'##]Please input [##else##]请输入[##/if##]ID" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="vehicleid" id="vehicleid"  placeholder="请输入车辆管理ID" autocomplete="off" class="layui-input">
+            <input type="text" name="vehicleid" id="vehicleid"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter vehicle management [##else##]请输入车辆管理[##/if##]ID" autocomplete="off" class="layui-input">
         </div>
 
         <div class="layui-inline">
-            <input type="text" name="platenumber" id="platenumber"  placeholder="请输入车牌号" autocomplete="off" class="layui-input">
+            <input type="text" name="platenumber" id="platenumber"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the license plate number[##else##]请输入车牌号[##/if##]" autocomplete="off" class="layui-input">
         </div>
          <div class="layui-inline">
-            <input type="text" name="model" id="model"  placeholder="请输入设备类型" autocomplete="off" class="layui-input">
+            <input type="text" name="model" id="model"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter device type [##else##]请输入设备类型[##/if##]" autocomplete="off" class="layui-input">
         </div>
-        
+
         <div class="layui-inline">
           <select name="state" lay-filter="state" id="state" >
-              <option value="">状态</option>
-              <option  value="0">离线</option>
-              <option  value="1">在线</option>
+              <option value="">[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]</option>
+              <option  value="0">[##if $_SESSION.lang eq 'english'##]off-line[##else##]离线[##/if##]</option>
+              <option  value="1">[##if $_SESSION.lang eq 'english'##]on-line[##else##]在线[##/if##]</option>
           </select>
         </div>
-        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
@@ -34,7 +34,7 @@
     <button class="layui-btn layui-btn-sm layui-btn-normal " lay-event="refurbish" ><i class="layui-icon">&#xe9aa;</i></button>
   </script>
 
-  <table class="layui-hide" id="engine" lay-filter="engine"></table>  
+  <table class="layui-hide" id="engine" lay-filter="engine"></table>
 </div>
 <div class="data_box"></div>
 <div id="loading_bg" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(250,250,250,0.6); z-index: 999;"></div>
@@ -54,31 +54,31 @@ layui.use(['table','jquery'], function(){
      elem: "#engine"
     ,url:"admin.php?view=dnn_vehicle&op=engine_api"
     ,toolbar: '#toolbarDemo'
-    ,title: "车辆管理"
+    ,title: "[##if $_SESSION.lang eq 'english'##]Vehicle management[##else##]车辆管理[##/if##]"
     ,cols: [[
        {field:'id', title:'ID',fixed: 'left',width:60,unresize: true, sort: true}
-      ,{field:'platenumber', title:'车牌号', width:150,templet:function(res){
+      ,{field:'platenumber', title:"[##if $_SESSION.lang eq 'english'##]license plate number[##else##]车牌号[##/if##]", width:150,templet:function(res){
         var platenumber = res.platenumber;
         if(res.brand){
           platenumber+=' ('+res.brand+')';
         }
         return platenumber;
       }}
-      ,{field:'status', title:'服务状态',sort: true,width:100,templet:function(res){
+      ,{field:'status', title:"[##if $_SESSION.lang eq 'english'##]Service status[##else##]服务状态[##/if##]",sort: true,width:100,templet:function(res){
           var status='';
           if(res.status==1){
-            status='<b style="color:#ff5722">租赁</b>';
+            status='<b style="color:#ff5722">[##if $_SESSION.lang eq 'english'##]lease[##else##]租赁[##/if##]</b>';
           }else if(res.status==2){
-            status='<b style="color:#607d8b">空闲</b>';
+    status='<b style="color:#607d8b">[##if $_SESSION.lang eq 'english'##]free[##else##]空闲[##/if##]</b>';
           }else{
-            status='<b style="color:#009688">维护</b>';
+    status='<b style="color:#ff5722">[##if $_SESSION.lang eq 'english'##]maintain[##else##]维护[##/if##]</b>';
             if(res.maintain){
               status+='<span style="color:#666;margin-left:2px;">('+res.maintain+')</span>';
             }
           }
          return status
       }}
-      ,{field:'quantity', title:'电量(%)',sort: true,width:95,templet:function(res){
+      ,{field:'quantity', title:"[##if $_SESSION.lang eq 'english'##]Electricity consumption (%)[##else##]电量(%)[##/if##]",sort: true,width:95,templet:function(res){
         if(res.quantity <= 20){
           var quantity = '<span style="font-weight: bold; color: #F44336;">'+res.quantity+'</span>';
         }else{
@@ -86,24 +86,24 @@ layui.use(['table','jquery'], function(){
         }
         return quantity
       }}
-      ,{field:'state', title:'连接状态',sort: true,width:100,templet:function(res){
+      ,{field:'state', title:"[##if $_SESSION.lang eq 'english'##]Connection status[##else##]连接状态[##/if##]",sort: true,width:100,templet:function(res){
          var state='';
          if(res.state==1){
-            state='<b style="color:#01AAED">在线</b>';
+            state='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]on-line[##else##]在线[##/if##]</b>';
          }else{
-            state='<b style="color:#F581B1">离线</b>';
+            state='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]on-line[##else##]在线[##/if##]</b>';
          }
          return state
       }}
-      ,{field:'speed', title:'时速(km/h)',width:100}
-      ,{field:'totalmileage', title:'总行驶里程(KM)',width:135}
-      ,{field:'model', title:'设备类型',width:95}
-      ,{field:'voltage', title:'电压(v)',width:80}
-      ,{field:'vehicleid', title:'车辆管理ID',width:130}
-      ,{field:'dateline', title:'添加时间',width:170}
-      ,{fixed:'right', title:'操作', width:330, templet: function(res){
+      ,{field:'speed', title:"[##if $_SESSION.lang eq 'english'##]Speed (km / h)[##else##]时速(km/h)[##/if##]",width:100}
+      ,{field:'totalmileage', title:"[##if $_SESSION.lang eq 'english'##]Total mileage (km)[##else##]总行驶里程(KM)[##/if##]",width:135}
+      ,{field:'model', title:"[##if $_SESSION.lang eq 'english'##]Equipment type[##else##]设备类型[##/if##]",width:95}
+      ,{field:'voltage', title:"[##if $_SESSION.lang eq 'english'##]Voltage (V)[##else##]电压(v)[##/if##]",width:80}
+      ,{field:'vehicleid', title:"[##if $_SESSION.lang eq 'english'##]Vehicle management [##else##]车辆管理[##/if##]ID",width:130}
+      ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Add time[##else##]添加时间[##/if##]",width:170}
+      ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation [##else##]操作[##/if##]", width:330, templet: function(res){
           var html = '';
-          html += '<a class="layui-btn layui-btn-xs" lay-event="look">查看</a>';
+          html += '<a class="layui-btn layui-btn-xs" lay-event="look">[##if $_SESSION.lang eq 'english'##]see[##else##]查看[##/if##]</a>';
           html += '<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="seek_btn">鸣笛</a>';
           html += '<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="open_btn">开门</a>';
           html += '<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="close_btn">锁门</a>';

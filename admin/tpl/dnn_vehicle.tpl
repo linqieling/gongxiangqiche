@@ -5,14 +5,14 @@
   <div class="layui-form" action="">
       <div class="layui-form-item" style="margin:0.5rem 1rem;">
         <div class="layui-inline">
-            <input type="text" name="sid"  id="sid" placeholder="请输入ID" autocomplete="off" class="layui-input">
+            <input type="text" name="sid"  id="sid" placeholder="[##if $_SESSION.lang eq 'english'##]Please input [##else##]请输入[##/if##]ID" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="sname" id="sname"  placeholder="请输入车牌号" autocomplete="off" class="layui-input">
+            <input type="text" name="sname" id="sname"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the license plate number[##else##]请输入车牌号[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
           <select name="site" id="site" lay-verify="required" lay-search="">
-            <option value="">请输入站点名称</option>
+            <option value="">[##if $_SESSION.lang eq 'english'##]Please enter the site name[##else##]请输入站点名称[##/if##]</option>
               [##foreach from=$site_list name=list item=list##]
                   <option value="[##$list.id##]">[##$list.name##]</option>
               [##/foreach##]
@@ -21,13 +21,13 @@
         </div>
         <div class="layui-inline">
           <select name="status" lay-filter="status" id="status" >
-              <option value="">状态</option>
+              <option value="">[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]</option>
               <option  value="0">维护</option>
               <option  value="1">租赁</option>
               <option  value="2">空闲</option>
           </select>
         </div>
-        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
@@ -52,11 +52,11 @@ layui.use(['table','jquery'], function(){
      elem: "#vehicle"
     ,url:"admin.php?view=dnn_vehicle&op=list_api"
     ,toolbar: '#toolbarDemo'
-    ,title: "车辆管理"
+    ,title: "[##if $_SESSION.lang eq 'english'##]Vehicle management[##else##]车辆管理[##/if##]"
     ,cols: [[
        {field:'id', title:'ID',fixed: 'left',sort: true,width:80}
-      ,{field:'platenumber', title:'车牌号', width:110}
-      ,{field:'vehicleid', title:'车辆管理ID',width:150,templet:function(res){
+      ,{field:'platenumber', title:"[##if $_SESSION.lang eq 'english'##]license plate number[##else##]车牌号[##/if##]", width:110}
+      ,{field:'vehicleid', title:"[##if $_SESSION.lang eq 'english'##]Vehicle management [##else##]车辆管理[##/if##]ID",width:150,templet:function(res){
          if(res.vehicleid==''){
             vehicleid='未绑定';
          }else{
@@ -64,7 +64,7 @@ layui.use(['table','jquery'], function(){
          }
          return vehicleid
       }}
-      ,{field:'status', title:'状态',sort: true,width:100,templet:function(res){
+      ,{field:'status', title:"[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]",sort: true,width:100,templet:function(res){
          var status='';
          if(res.status=='1'){
             status='<b style="color:#F581B1">租赁</b>';
@@ -78,23 +78,23 @@ layui.use(['table','jquery'], function(){
          }
          return status
       }}
-      ,{field:'name', title:'站点',sort: true,width:200}
-      ,{field:'seat', title:'座位',width:60}
-      ,{field:'brand', title:'厂家/品牌',sort: true,width:100}
-      ,{field:'exclusive', title:'专用',width:60,templet:function(res){
+      ,{field:'name', title:"[##if $_SESSION.lang eq 'english'##]site[##else##]站点[##/if##]",sort: true,width:200}
+      ,{field:'seat', title:"[##if $_SESSION.lang eq 'english'##]seat[##else##]座位[##/if##]",width:60}
+      ,{field:'brand', title:"[##if $_SESSION.lang eq 'english'##]Manufacturer / brand[##else##]厂家/品牌[##/if##]",sort: true,width:130}
+      ,{field:'exclusive', title:"[##if $_SESSION.lang eq 'english'##]special-purpose[##else##]专用[##/if##]",width:60,templet:function(res){
          if(res.exclusive==1){
-            var exclusive='<b style="display:block; color:#4caf50; text-align:center;">是</b>';
+            var exclusive='<b style="display:block; color:#4caf50; text-align:center;">[##if $_SESSION.lang eq 'english'##]Yes[##else##]是[##/if##]</b>';
          }else{
-            var exclusive='<span style="display:block; color:#666; text-align:center;">否</span>';
+        var exclusive='<b style="display:block; color:#666; text-align:center;">[##if $_SESSION.lang eq 'english'##]NO[##else##]否[##/if##]</b>';
          }
          return exclusive;
       }}
-      ,{field:'dateline', title:'添加时间',width:150}
-      ,{fixed:'right', title:'操作', width:110, templet: function(res){
+      ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Add time[##else##]添加时间[##/if##]",width:150}
+      ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]", width:130, templet: function(res){
           var html = '';
-          html += '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>'
-          html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>'
-          return html
+        html += '<a class="layui-btn layui-btn-xs" lay-event="edit">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>'
+        html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">[##if $_SESSION.lang eq 'english'##]delect[##else##]删除[##/if##]</a>'
+        return html
       }}
     ]]
     ,id: 'testReload'
@@ -119,7 +119,7 @@ layui.use(['table','jquery'], function(){
           }
         });
     }else{
-      layer.msg('筛选条件不能为空', {icon: 2});
+      layer.msg("[##if $_SESSION.lang eq 'english'##]Filter condition cannot be empty[##else##]筛选条件不能为空[##/if##]", {icon: 2});
     }
 
   });
@@ -162,7 +162,7 @@ layui.use(['table','jquery'], function(){
   table.on("tool(vehicle)", function(obj){
     var data = obj.data;
     if(obj.event === 'del'){
-       layer.confirm('真的删除此车辆吗', function(index){
+       layer.confirm("[##if $_SESSION.lang eq 'english'##]Are you sure you want to delete this vehicle[##else##]真的删除此车辆吗[##/if##]", function(index){
             $.ajax({
                 url:'/admin.php?view=dnn_vehicle&op=del&id='+data.id,
                 type:'GET',
@@ -179,11 +179,11 @@ layui.use(['table','jquery'], function(){
                     obj.del();
                     layer.close(index);
                   }else{
-                    layer.msg('未知错误', {icon: 2});
+                    layer.msg("[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]", {icon: 2});
                   }
                 },
                 error:function(data){
-                  layer.msg('删除失败', {icon: 2});
+                  layer.msg("[##if $_SESSION.lang eq 'english'##]Deletion failed[##else##]删除失败[##/if##]", {icon: 2});
                 },
                 complete:function (argument) {
                   layer.closeAll();

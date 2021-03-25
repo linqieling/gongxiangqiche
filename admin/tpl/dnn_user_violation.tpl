@@ -5,15 +5,15 @@
   <div class="layui-form" action="">
       <div class="layui-form-item" style="margin:0.5rem 1rem;">
         <div class="layui-inline">
-            <input type="text" name="id"  id="id" placeholder="请输入ID" autocomplete="off" class="layui-input">
+            <input type="text" name="id"  id="id" placeholder="[##if $_SESSION.lang eq 'english'##]Please input [##else##]请输入[##/if##]ID" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="phone" id="phone"  placeholder="请输入用户电话" autocomplete="off" class="layui-input">
+            <input type="text" name="phone" id="phone"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the phone number of the user[##else##]请输入用户电话[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="platenumber" id="platenumber"  placeholder="请输入车牌号" autocomplete="off" class="layui-input">
+            <input type="text" name="platenumber" id="platenumber"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the license plate number[##else##]请输入车牌号[##/if##]" autocomplete="off" class="layui-input">
         </div>
-        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
@@ -37,20 +37,20 @@ layui.use(['table','jquery'], function(){
      elem: "#vehicle"
     ,url:"admin.php?view=dnn_user_violation&op=list_api"
     ,toolbar: '#toolbarDemo'
-    ,title: "车辆管理"
+    ,title: "[##if $_SESSION.lang eq 'english'##]Vehicle management[##else##]车辆管理[##/if##]"
     ,cols: [[
        {type: 'checkbox', fixed: 'left',width:55,}
       ,{field:'id', title:'ID', width:55, fixed: 'left', unresize: true, sort: true}
-      ,{field:'platenumber', title:'车牌号', width:120}
-      ,{field:'oid', title:'订单ID', width:120}
-      ,{field:'phone', title:'用户电话姓名', width:200,templet:function(res){
+      ,{field:'platenumber', title:"[##if $_SESSION.lang eq 'english'##]license plate number[##else##]车牌号[##/if##]", width:120}
+      ,{field:'oid', title:"[##if $_SESSION.lang eq 'english'##]order[##else##]订单[##/if##]ID", width:120}
+      ,{field:'phone', title:"[##if $_SESSION.lang eq 'english'##]User's phone name[##else##]用户电话姓名[##/if##]", width:200,templet:function(res){
         if(res.phone){
           return res.phone+'/'+res.nickname
         }
       }}
-      ,{field:'name', title:'违章内容', width:150}
-      ,{field:'score', title:'扣除分数', width:80}
-      ,{field:'status', title:'状态', width:80, sort: true,templet:function(res){
+      ,{field:'name', title:"[##if $_SESSION.lang eq 'english'##]Violation content[##else##]违章内容[##/if##]", width:150}
+      ,{field:'score', title:"[##if $_SESSION.lang eq 'english'##]Deduction points[##else##]扣除分数[##/if##]", width:80}
+      ,{field:'status', title:"[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]", width:80, sort: true,templet:function(res){
          var status='';
          if(res.status=='1'){
             status='<b style="color:#F581B1">已处理</b>';
@@ -59,11 +59,11 @@ layui.use(['table','jquery'], function(){
          }
          return status
       }}
-      ,{field:'dateline', title:'添加时间', width:150}
-      ,{fixed:'right', title:'操作', width:120, templet: function(res){
+      ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Add time[##else##]添加时间[##/if##]", width:150}
+      ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]", width:120, templet: function(res){
           var html = '';
-          html += '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>'
-          html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>'
+          html += '<a class="layui-btn layui-btn-xs" lay-event="edit">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>'
+          html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>'
           return html
       }}
     ]]
@@ -87,7 +87,7 @@ layui.use(['table','jquery'], function(){
           }
         });
     }else{
-      layer.msg('筛选条件不能为空', {icon: 2});
+      layer.msg("[##if $_SESSION.lang eq 'english'##]Filter condition cannot be empty[##else##]筛选条件不能为空[##/if##]", {icon: 2});
     }
 
   });
@@ -105,7 +105,7 @@ layui.use(['table','jquery'], function(){
             layer.msg('未选择数据', {icon: 2});
             return false;
           }
-          layer.confirm('真的删除搜选数据吗?', function(index){
+          layer.confirm("[##if $_SESSION.lang eq 'english'##]Do you really delete search data?[##else##]真的删除搜选数据吗?[##/if##]", function(index){
               ajaxdel(ids);
           });
       break;
@@ -156,7 +156,7 @@ layui.use(['table','jquery'], function(){
             }else if(data.code==0){
               layer.msg(data.msg, {icon: 1});
             }else{
-              layer.msg('未知错误', {icon: 2});
+              layer.msg("[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]", {icon: 2});
             }
           },
           error:function(data){

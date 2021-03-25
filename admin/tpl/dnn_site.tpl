@@ -8,15 +8,15 @@
       <div class="layui-form" action="">
           <div class="layui-form-item" style="margin:0.5rem 1rem;">
             <div class="layui-inline">
-                <input type="text" name="id"  id="sid" class="layui-input" placeholder="站点ID"  autocomplete="off" />
+                <input type="text" name="id"  id="sid" class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]site[##else##]站点[##/if##]ID"  autocomplete="off" />
             </div>
             <div class="layui-inline">
-                <input type="text" name="name" id="sname"  class="layui-input"  placeholder="站点名称" autocomplete="off" />
+                <input type="text" name="name" id="sname"  class="layui-input"  placeholder="[##if $_SESSION.lang eq 'english'##]Site name[##else##]站点名称[##/if##]" autocomplete="off" />
             </div>
             <div class="layui-inline">
-                <input type="text" name="address" id="saddress"  class="layui-input"  placeholder="站点地址"  autocomplete="off" />
+                <input type="text" name="address" id="saddress"  class="layui-input"  placeholder="[##if $_SESSION.lang eq 'english'##]Site address[##else##]站点地址[##/if##]"  autocomplete="off" />
             </div>
-            <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
           </div>
       </div>
       <!-- 查询条件end -->
@@ -44,12 +44,12 @@
         ,title: "车辆管理"
         ,cols: [[
            {field:'id', title:'ID',fixed: 'left',width:60, unresize: true, sort: true}
-          ,{field:'name', title:'站点名称',width:200}
-          ,{field:'address', title:'站点地址',width:250}
-          ,{field:'space', title:'车位数量',width:100}
-          ,{field:'username', title:'创建人',width:100}
-          ,{field:'dateline', title:'创建时间',width:200}
-          ,{field:'state', title:'状态',width:70, sort: true,templet:function(res){
+              ,{field:'name', title:"[##if $_SESSION.lang eq 'english'##]Site name[##else##]站点名称[##/if##]",width:200}
+              ,{field:'address', title:"[##if $_SESSION.lang eq 'english'##]Site address[##else##]站点地址[##/if##]",width:250}
+              ,{field:'space', title:"[##if $_SESSION.lang eq 'english'##]Number of parking spaces[##else##]车位数量[##/if##]",width:100}
+              ,{field:'username', title:"[##if $_SESSION.lang eq 'english'##]Founder[##else##]创建人[##/if##]",width:100}
+              ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Creation time[##else##]创建时间[##/if##]",width:200}
+              ,{field:'state', title:"[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]",width:70, sort: true,templet:function(res){
              var status='';
              if(res.state=='1'){
                 status='<b style="color:#F581B1">开放</b>';
@@ -58,10 +58,10 @@
              }
              return status
           }}
-          ,{fixed:'right', title:'操作',width:110, templet: function(res){
+          ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]",width:130, templet: function(res){
               var html = '';
-              html += '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>'
-              html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>'
+              html += '<a class="layui-btn layui-btn-xs" lay-event="edit">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>'
+              html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">[##if $_SESSION.lang eq 'english'##]delect[##else##]删除[##/if##]</a>'
               return html
           }}
         ]]
@@ -195,20 +195,20 @@
           <input type="hidden" name="id"  value="[##$result.id##]" />
         
         <div class="layui-form-item">
-          <label class="layui-form-label">站点名称</label>
+          <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Site name[##else##]站点名称[##/if##]</label>
           <div class="layui-input-block">
             <input type="text" name="name"  class="layui-input" value="[##$result.name##]"  required="required"  />
           </div>
         </div>
         <div class="layui-form-item">
           <div class="layui-inline">
-            <label class="layui-form-label">车位数量</label>
+            <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Number of parking spaces[##else##]车位数量[##/if##]</label>
             <div class="layui-input-inline">
               <input type="number" name="space"  class="layui-input" value="[##$result.space##]" required="required"  />
             </div>
           </div>
           <div class="layui-inline">
-            <label class="layui-form-label">车辆数量</label>
+            <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Number of vehicles[##else##]车辆数量[##/if##]</label>
             <div class="layui-input-inline">
               <input type="number" name="number"  class="layui-input" value="[##$result.number##]" required="required"  />
             </div>
@@ -217,9 +217,9 @@
       
 
         <div class="layui-form-item layui-form-text">
-          <label class="layui-form-label" >站点地址</label>
+          <label class="layui-form-label" >[##if $_SESSION.lang eq 'english'##]Site address[##else##]站点地址[##/if##]</label>
           <div class="layui-input-block" >
-            <input id="suggestId" class="validateMust layui-input" name="address"  placeholder="请输入站点具体地址" value="[##$result.address##]" /> 
+            <input id="suggestId" class="validateMust layui-input" name="address"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the specific address of the site[##else##]请输入站点具体地址[##/if##]" value="[##$result.address##]" />
           </div>
           <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
               <div class="mapbox"><div id="mapbox"></div></div>
@@ -229,29 +229,29 @@
         </div>
 
         <div class="layui-form-item">
-          <label class="layui-form-label">备注地址</label>
+          <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Remark address[##else##]备注地址[##/if##]</label>
           <div class="layui-input-block">
-            <input type="text" name="remarks" class="layui-input" value="[##$result.remarks##]" placeholder="例：园区C区东门处" />
+            <input type="text" name="remarks" class="layui-input" value="[##$result.remarks##]" placeholder="[##if $_SESSION.lang eq 'english'##]Example: East Gate of Zone C[##else##]例：园区C区东门处[##/if##]" />
           </div>
         </div>
 
          <div class="layui-form-item">
-          <label class="layui-form-label">站点状态</label>
+          <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Site status[##else##]站点状态[##/if##]</label>
           <div class="layui-input-block">
-                <input type="radio" name="state" value="1" title="开放" [##if $result.state eq 1 || $op eq 'add'##] checked [##/if##] lay-filter="state">
-                <input type="radio" name="state" value="0" title="关闭" [##if $result.state eq 0 && $op eq 'edit'##] checked [##/if##] lay-filter="state">
+                <input type="radio" name="state" value="1" title="[##if $_SESSION.lang eq 'english'##]to open up[##else##]开放[##/if##]" [##if $result.state eq 1 || $op eq 'add'##] checked [##/if##] lay-filter="state">
+                <input type="radio" name="state" value="0" title="[##if $_SESSION.lang eq 'english'##]close[##else##]关闭[##/if##]" [##if $result.state eq 0 && $op eq 'edit'##] checked [##/if##] lay-filter="state">
           </div>
         </div>
         <div class="layui-form-item layui-form-text" id="reason_box" [##if $result.state eq 1 || $op eq 'add'##]style="display: none;"[##/if##]>
-          <label class="layui-form-label" >关闭原因</label>
+          <label class="layui-form-label" >[##if $_SESSION.lang eq 'english'##]Reasons for closing[##else##]关闭原因[##/if##]</label>
           <div class="layui-input-block" >
-            <textarea  class="layui-textarea" name="reason" placeholder="请输入站点关闭原因">[##$result.reason##]</textarea>
+            <textarea  class="layui-textarea" name="reason" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the reason for closing the site[##else##]请输入站点关闭原因[##/if##]">[##$result.reason##]</textarea>
           </div>
         </div>
  
          <div class="layui-form-item">
           <div class="layui-input-block">
-            <button name="submit" type="submit" class="submit layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">立即提交</button>
+            <button name="submit" type="submit" class="submit layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]</button>
           </div>
         </div>
 
