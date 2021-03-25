@@ -28,23 +28,23 @@
     <div class="layui-form-item" style="margin-bottom: 0px;">
         <div class="layui-inline">
           <fieldset class="layui-elem-field site-demo-button">
-            <legend>今日订单</legend>
+            <legend>[##if $_SESSION.lang eq 'english'##]today order[##else##]今日订单[##/if##]</legend>
             <div style="padding:10px;" class="ttip">
-              <button class="layui-btn layui-btn-primary now_count">订单总量 0单</button>
-              <button class="layui-btn layui-btn-primary now_totalmoney">订单总额 0元</button>
-              <button class="layui-btn layui-btn-primary now_finalmoney">实付金额 0元</button>
-              <button class="layui-btn layui-btn-primary now_mileage">总里程数 0公里</button>
+              <button class="layui-btn layui-btn-primary now_count">[##if $_SESSION.lang eq 'english'##]Total order 0[##else##]订单总量 0单[##/if##]</button>
+              <button class="layui-btn layui-btn-primary now_totalmoney">[##if $_SESSION.lang eq 'english'##]The total order amount is 0 yuan[##else##]订单总额 0元[##/if##]</button>
+              <button class="layui-btn layui-btn-primary now_finalmoney">[##if $_SESSION.lang eq 'english'##]The amount actually paid is 0 yuan[##else##]实付金额 0元[##/if##]</button>
+              <button class="layui-btn layui-btn-primary now_mileage">[##if $_SESSION.lang eq 'english'##]Total mileage 0 km[##else##]总里程数 0公里[##/if##]</button>
             </div>
           </fieldset>
         </div>
         <div class="layui-inline">
            <fieldset class="layui-elem-field site-demo-button">
-              <legend>总订单</legend>
+              <legend>[##if $_SESSION.lang eq 'english'##]Total order[##else##]总订单[##/if##]</legend>
               <div style="padding:10px;" class="ttip">
-                <button class="layui-btn layui-btn-primary all_count">订单总量 0单</button>
-                <button class="layui-btn layui-btn-primary all_totalmoney">订单总额 0元</button>
-                <button class="layui-btn layui-btn-primary all_finalmoney">实付金额 0元</button>
-                <button class="layui-btn layui-btn-primary all_mileage">总里程数 0公里</button>
+                <button class="layui-btn layui-btn-primary all_count">[##if $_SESSION.lang eq 'english'##]Total order 0[##else##]订单总量 0单[##/if##]</button>
+                <button class="layui-btn layui-btn-primary all_totalmoney">[##if $_SESSION.lang eq 'english'##]The total order amount is 0 yuan[##else##]订单总额 0元[##/if##]</button>
+                <button class="layui-btn layui-btn-primary all_finalmoney">[##if $_SESSION.lang eq 'english'##]The amount actually paid is 0 yuan[##else##]实付金额 0元[##/if##]</button>
+                <button class="layui-btn layui-btn-primary all_mileage">[##if $_SESSION.lang eq 'english'##]Total mileage 0 km[##else##]总里程数 0公里[##/if##]</button>
               </div>
             </fieldset>
         </div>
@@ -57,44 +57,44 @@
       <div class="layui-form-item">
         <div class="layui-inline">
           <select name="status" lay-filter="status" id="status" >
-              <option  value="all">全部</option>
-              <option  value="0">已取消</option>
-              <option  value="1">倒计时</option>
-              <option  value="2">计费中</option>
-              <option  value="3">完成</option>
+              <option  value="all">[##if $_SESSION.lang eq 'english'##]whole[##else##]全部[##/if##]</option>
+              <option  value="0">[##if $_SESSION.lang eq 'english'##]Cancelled[##else##]已取消[##/if##]</option>
+              <option  value="1">[##if $_SESSION.lang eq 'english'##]count down[##else##]倒计时[##/if##]</option>
+              <option  value="2">[##if $_SESSION.lang eq 'english'##]Charging[##else##]计费中[##/if##]</option>
+              <option  value="3">[##if $_SESSION.lang eq 'english'##]complete[##else##]完成[##/if##]</option>
           </select>
         </div>
         <div class="layui-inline">
           <select name="paystatus" lay-filter="paystatus" id="paystatus" >
-              <option  value="all">支付状态</option>
-              <option  value="0">未支付</option>
-              <option  value="1">已支付</option>
+              <option  value="all">[##if $_SESSION.lang eq 'english'##]Payment status[##else##]支付状态[##/if##]</option>
+              <option  value="0">[##if $_SESSION.lang eq 'english'##]Unpaid[##else##]未支付[##/if##]</option>
+              <option  value="1">[##if $_SESSION.lang eq 'english'##]Paid[##else##]已支付[##/if##]</option>
           </select>
         </div>
 
         <div class="layui-inline">
-          <input type="text" name="nickname"  id="nickname" placeholder="姓名" autocomplete="off" class="layui-input">
+          <input type="text" name="nickname"  id="nickname" placeholder="[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-          <input type="text" name="phone" id="phone"  placeholder="手机号" autocomplete="off" class="layui-input">
+          <input type="text" name="phone" id="phone"  placeholder="[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-          <input type="text" name="platenumber" id="platenumber"  placeholder="车牌号" autocomplete="off" class="layui-input">
+          <input type="text" name="platenumber" id="platenumber"  placeholder="[##if $_SESSION.lang eq 'english'##]license plate number[##else##]车牌号[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-          <input type="text" name="startdateline" id="startdateline"  placeholder="订单开始时间" autocomplete="off" class="layui-input">
+          <input type="text" name="startdateline" id="startdateline"  placeholder="[##if $_SESSION.lang eq 'english'##]Order start time[##else##]订单开始时间[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-          <input type="text" name="enddateline" id="enddateline"  placeholder="订单结束时间" autocomplete="off" class="layui-input">
+          <input type="text" name="enddateline" id="enddateline"  placeholder="[##if $_SESSION.lang eq 'english'##]Order end time[##else##]订单结束时间[##/if##]" autocomplete="off" class="layui-input">
         </div>
-        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
 
   <script type="text/html" id="toolbarDemo">
-        <button class="layui-btn layui-btn-sm" lay-event="refurbish" >刷新</button>
-        <button class="layui-btn layui-btn-sm" lay-event="export" id="export" >导出</button>
+        <button class="layui-btn layui-btn-sm" lay-event="refurbish" >[##if $_SESSION.lang eq 'english'##]Refresh [##else##]刷新[##/if##]</button>
+        <button class="layui-btn layui-btn-sm" lay-event="export" id="export" >[##if $_SESSION.lang eq 'english'##]export[##else##]导出[##/if##]</button>
   </script>
 
   <div class="layui-table-box">
@@ -132,30 +132,30 @@ layui.use(['table','jquery','laydate','dialog'], function(){
         ,cols: [[
            {field:'id', title:'ID', width:70, fixed: 'left', unresize: true, sort: true}
           ,{type: 'checkbox', fixed: 'left',width:55,}
-          ,{field:'nickname', title:'姓名', width:85,templet:function(res){
+          ,{field:'nickname', title:"[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]", width:85,templet:function(res){
 
              return ' <a class="layui-btn layui-btn-xs" lay-event="username">'+res.nickname+'</a>'
           }}
-          ,{field:'platenumber', title:'车牌号', width:150,templet:function(res){
+          ,{field:'platenumber', title:"[##if $_SESSION.lang eq 'english'##]license plate number[##else##]车牌号[##/if##]", width:150,templet:function(res){
             var html="";
             if(res.platenumber){
               
               html=res.platenumber;
               if(res.ostatus>=2){
-                html+=' <a class="layui-btn layui-btn-xs" lay-event="vehicle">轨迹</a>';
+                html+=' <a class="layui-btn layui-btn-xs" lay-event="vehicle">[##if $_SESSION.lang eq 'english'##]trajectory[##else##]轨迹[##/if##]</a>';
               }
 						}else if(res.platenumbers){
 
               html=res.platenumbers;
             }else{
-              html='车辆不存在';
+              html=="[##if $_SESSION.lang eq 'english'##]The vehicle does not exist[##else##]车辆不存在[##/if##]";
             }
             return html;
           }}
-          ,{field:'duration', title:'使用时长', width:135,templet:function(res){
+          ,{field:'duration', title:"[##if $_SESSION.lang eq 'english'##]Duration of use[##else##]使用时长[##/if##]", width:135,templet:function(res){
             if(res.ostatus>0){
               if(res.duration>0){
-                return '<a class="layui-btn-xs"  id="duration_'+res.id+'">'+res.duration+'&nbsp;分钟</a>'//0//ID调用方便修改参数----
+                return '<a class="layui-btn-xs"  id="duration_'+res.id+'">'+res.duration+'&nbsp;[##if $_SESSION.lang eq 'english'##]minute[##else##]分钟[##/if##]</a>'//0//ID调用方便修改参数----
               }else{
                 return '<a class="layui-btn-xs" id="duration_'+res.id+'"></a>'////---------------//ID调用方便修改参数----
               }
@@ -163,7 +163,7 @@ layui.use(['table','jquery','laydate','dialog'], function(){
               return "";
             }
           }}
-          ,{field:'mileage', title:'使用里程', width:100,templet:function(res){
+          ,{field:'mileage', title:"[##if $_SESSION.lang eq 'english'##]Mileage[##else##]使用里程[##/if##]", width:100,templet:function(res){
             if(res.ostatus==2){
               var mileage = parseFloat(res.vtotalmileage)-parseFloat(res.totalmileage);
               return '<a class="layui-btn-xs" id="mileage_'+res.id+'" rel="'+res.totalmileage+'"><span class="layui-badge">'+mileage.toFixed(2)+'</span></a>';
@@ -179,71 +179,71 @@ layui.use(['table','jquery','laydate','dialog'], function(){
               }
             }
           }}
-          ,{field:'finalmoney', title:'累计费用', width:105,templet:function(res){
+          ,{field:'finalmoney', title:"[##if $_SESSION.lang eq 'english'##]Accumulated expenses[##else##]累计费用[##/if##]", width:105,templet:function(res){
             if(res.ostatus==3){
-              return '<a class="layui-btn-xs" id="finalmoney_'+res.id+'">'+res.totalmoney+'&nbsp;元</a>';
+              return '<a class="layui-btn-xs" id="finalmoney_'+res.id+'">'+res.totalmoney+"[##if $_SESSION.lang eq 'english'##]&nbsp;yuan</a>[##else##]&nbsp;元</a>[##/if##]";
             }else if(res.ostatus==0){
               return "";
             }else{
               if(res.totalmoney > 0){
-                return '<a class="layui-btn-xs" id="finalmoney_'+res.id+'">'+res.totalmoney+'&nbsp;元</a>'
+                return '<a class="layui-btn-xs" id="finalmoney_'+res.id+'">'+res.totalmoney+"[##if $_SESSION.lang eq 'english'##]&nbsp;yuan</a>[##else##]&nbsp;元</a>[##/if##]"
               }else{
                 return '<a class="layui-btn-xs" id="finalmoney_'+res.id+'"></a>'
               }
             }
           }}
-          ,{field:'dateline', title:'下单时间', width:160}
-          ,{field:'ostatus', title:'订单状态', width:100, sort: true,templet:function(res){
-            var status=res.ostatus;
-            if(status==0){
-              status='<span style="color:#f44336;">已取消</span>';
-            }else if(status==1){
-              status='<span style="color:#03a9f4;">倒计时</span>';
-            }else if(status==2){
-              status='<span style="color:#ff9800;">计费中</span>';
-            }else if(status==3){
-              status='<span style="color:#4caf50;">已完成</span>';
-            }else{
-              status='<span style="color:#555555;">未知</span>';
-            }
-            return status
+        ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Order time[##else##]下单时间[##/if##]", width:160}
+        ,{field:'ostatus', title:"[##if $_SESSION.lang eq 'english'##]Order status[##else##]订单状态[##/if##]", width:100, sort: true,templet:function(res){
+        var status=res.ostatus;
+        if(status==0){
+            status='<span style="color:#f44336;">[##if $_SESSION.lang eq 'english'##]Cancelled[##else##]已取消[##/if##]</span>';
+        }else if(status==1){
+            status='<span style="color:#03a9f4;">[##if $_SESSION.lang eq 'english'##]count down[##else##]倒计时[##/if##]</span>';
+        }else if(status==2){
+            status='<span style="color:#ff9800;">[##if $_SESSION.lang eq 'english'##]Charging[##else##]计费中[##/if##]</span>';
+        }else if(status==3){
+            status='<span style="color:#4caf50;">[##if $_SESSION.lang eq 'english'##]complete[##else##]已完成[##/if##]</span>';
+        }else{
+            status='<span style="color:#555555;">[##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##]</span>';
+        }
+        return status
           }}
-          ,{field:'bdateline', title:'用车信息', width:100, sort: true,templet:function(res){
+          ,{field:'bdateline', title:"[##if $_SESSION.lang eq 'english'##]Vehicle information[##else##]用车信息[##/if##]", width:100, sort: true,templet:function(res){
              var status='';
              var rstatus=res.bdateline;
              if(rstatus){
-                status='<a class="layui-btn layui-btn-xs" lay-event="before">已提交</a>';
+                status='<a class="layui-btn layui-btn-xs" lay-event="before">[##if $_SESSION.lang eq 'english'##]Submitted[##else##]已提交[##/if##]</a>';
              }else{
-                status='<a class="layui-btn layui-btn-xs layui-btn-disabled">未提交</a>';
+                status='<a class="layui-btn layui-btn-xs" lay-event="before">[##if $_SESSION.lang eq 'english'##]Not submitted[##else##]未提交[##/if##]</a>';
              }
              return status
           }}
-          ,{field:'uchid', title:'还车信息', width:100, sort: true,templet:function(res){
+          ,{field:'uchid', title:"[##if $_SESSION.lang eq 'english'##]Return information[##else##]还车信息[##/if##]", width:100, sort: true,templet:function(res){
              var status='';
              var rstatus=res.uchid;
              if(rstatus){
-                status='<a class="layui-btn layui-btn-xs" lay-event="rstatus">已提交</a>';
+                status='<a class="layui-btn layui-btn-xs" lay-event="rstatus">[##if $_SESSION.lang eq 'english'##]Submitted[##else##]已提交[##/if##]</a>';
              }else{
-                status='<a class="layui-btn layui-btn-xs layui-btn-disabled" lay-event="rstatus">未提交</a>';
+    status='<a class="layui-btn layui-btn-xs" lay-event="rstatus">[##if $_SESSION.lang eq 'english'##]Not submitted[##else##]未提交[##/if##]</a>';
              }
              return status
           }}
-          ,{field:'paystatus', title:'支付状态', width:100, sort: true,templet:function(res){
+          ,{field:'paystatus', title:"[##if $_SESSION.lang eq 'english'##]Payment status[##else##]支付状态[##/if##]", width:100, sort: true,templet:function(res){
             var status=res.paystatus;
             if(status==0){
               if(res.ostatus==3){
-                status='<b style="color:#f44336;">未支付</b>';
+                status='<b style="color:#f44336;">[##if $_SESSION.lang eq 'english'##]Unpaid[##else##]未支付[##/if##]</b>';
               }else{
-                status='未支付';
+                status="[##if $_SESSION.lang eq 'english'##]Unpaid[##else##]未支付[##/if##]";
               }
             }else if(status==1){
-              status='<b style="color:#4caf50;">已支付</b>';
+              status='<b style="color:#4caf50;">[##if $_SESSION.lang eq 'english'##]Paid[##else##]已支付[##/if##]</b>';
             }
             return status
           }}
-          ,{fixed:'right', title:'操作', width:65, templet: function(res){
+          ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation [##else##]操作[##/if##]", width:65, templet: function(res){
               var html = '';
-              html += '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>'
+              html += '<a class="layui-btn layui-btn-xs" lay-event="edit">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>'
               return html
           }}
         ]]
@@ -472,16 +472,17 @@ layui.use(['table','jquery','laydate','dialog'], function(){
         },
         success: function(res){
           if(res.data.now.count>0){
-            $('.now_count').html('订单总量&nbsp;'+res.data.now.count+'单');
-            $('.now_totalmoney').html('订单总额&nbsp;'+res.data.now.totalmoney+'元');
-            $('.now_finalmoney').html('实付金额&nbsp;'+res.data.now.finalmoney+'元');
-            $('.now_mileage').html('总里程数&nbsp;'+res.data.now.mileage+'公里');
+              $('.now_count').html("[##if $_SESSION.lang eq 'english'##]Total orders  [##else##]订单总量 [##/if##]"+res.data.now.count+"[##if $_SESSION.lang eq 'english'##]single[##else##]单[##/if##]");
+              $('.now_totalmoney').html("[##if $_SESSION.lang eq 'english'##]Total order amount [##else##]订单总额 [##/if##]"+res.data.now.totalmoney+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]");
+              $('.now_finalmoney').html("[##if $_SESSION.lang eq 'english'##]Amount actually paid[##else##]实付金额 [##/if##]"+res.data.now.finalmoney+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]");
+              $('.now_mileage').html("[##if $_SESSION.lang eq 'english'##]Total mileage[##else##]总里程数 [##/if##]"+res.data.now.mileage+"[##if $_SESSION.lang eq 'english'##]kilometre[##else##]公里[##/if##]");
           }
           if(res.data.all.count>0){
-            $('.all_count').html('订单总量&nbsp;'+res.data.all.count+'单');
-            $('.all_totalmoney').html('订单总额&nbsp;'+res.data.all.totalmoney+'元');
-            $('.all_finalmoney').html('实付金额&nbsp;'+res.data.all.finalmoney+'元');
-            $('.all_mileage').html('总里程数&nbsp;'+res.data.all.mileage+'公里');
+
+              $('.all_count').html("[##if $_SESSION.lang eq 'english'##]Total orders  [##else##]订单总量 [##/if##]"+res.data.all.count+"[##if $_SESSION.lang eq 'english'##]single[##else##]单[##/if##]");
+              $('.all_totalmoney').html("[##if $_SESSION.lang eq 'english'##]Total order amount [##else##]订单总额 [##/if##]"+res.data.all.totalmoney+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]");
+              $('.all_finalmoney').html("[##if $_SESSION.lang eq 'english'##]Amount actually paid[##else##]实付金额 [##/if##]"+res.data.all.finalmoney+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]");
+              $('.all_mileage').html("[##if $_SESSION.lang eq 'english'##]Total mileage[##else##]总里程数 [##/if##]"+res.data.all.mileage+"[##if $_SESSION.lang eq 'english'##]kilometre[##else##]公里[##/if##]");
           }
         },
         complete:function (argument) {

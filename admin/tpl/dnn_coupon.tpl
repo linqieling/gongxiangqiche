@@ -5,30 +5,30 @@
   <div class="layui-form" action="">
       <div class="layui-form-item" style="margin:0.5rem 1rem;">
         <div class="layui-inline">
-            <input type="text" name="sid"  id="sid" placeholder="请输入ID" autocomplete="off" class="layui-input">
+            <input type="text" name="sid"  id="sid" placeholder="[##if $_SESSION.lang eq 'english'##]Please input [##else##]请输入[##/if##]ID" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="sname" id="sname"  placeholder="请输入优惠券名称" autocomplete="off" class="layui-input">
+            <input type="text" name="sname" id="sname"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the coupon name[##else##]请输入优惠券名称[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
           <select name="type" lay-filter="type" id="type" >
-              <option value="">优惠券类型</option>
-              <option value="1">通用</option>
-              <option value="2">满减</option>
-              <option value="3">打折</option>
-              <option value="4">免单</option>
+              <option value="">[##if $_SESSION.lang eq 'english'##]Coupon type[##else##]优惠券类型[##/if##]</option>
+              <option value="1">[##if $_SESSION.lang eq 'english'##]currency[##else##]通用[##/if##]</option>
+              <option value="2">[##if $_SESSION.lang eq 'english'##]Full reduction[##else##]满减[##/if##]</option>
+              <option value="3">[##if $_SESSION.lang eq 'english'##]Discount[##else##]打折[##/if##]</option>
+              <option value="4">[##if $_SESSION.lang eq 'english'##]Free of charge[##else##]免单[##/if##]</option>
           </select>
         </div>
         <div class="layui-inline">
           <select name="datetype" lay-filter="datetype" id="datetype" >
-              <option value="">有效期类型</option>
-              <option  value="1">天数</option>
-              <option  value="2">固定</option>
-              <option  value="3">永久</option>
+              <option value="">[##if $_SESSION.lang eq 'english'##]Validity type[##else##]有效期类型[##/if##]</option>
+              <option  value="1">[##if $_SESSION.lang eq 'english'##]Days[##else##]天数[##/if##]</option>
+              <option  value="2">[##if $_SESSION.lang eq 'english'##]fixed[##else##]固定[##/if##]</option>
+              <option  value="3">[##if $_SESSION.lang eq 'english'##]permanent[##else##]永久[##/if##]</option>
           </select>
         </div>
 
-        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
@@ -53,86 +53,86 @@ layui.use(['table','jquery'], function(){
      elem: "#addcoupon"
     ,url:"admin.php?view=dnn_coupon&op=list_api"
     ,toolbar: '#toolbarDemo'
-    ,title: "优惠券"
+    ,title: "[##if $_SESSION.lang eq 'english'##]coupon [##else##]优惠券[##/if##]"
     ,cols: [[
        {field:'id', title:'ID', width:55, fixed: 'left', unresize: true, sort: true}
-      ,{field:'name', title:'名称', width:160}
-      ,{field:'type', title:'类型', width:65,templet: function(res){
+          ,{field:'name', title:"[##if $_SESSION.lang eq 'english'##]name[##else##]名称[##/if##]", width:160}
+          ,{field:'type', title:"[##if $_SESSION.lang eq 'english'##]type[##else##]类型[##/if##]", width:130,templet: function(res){
          var type='';
          if(res.type=='1'){
-            type='<b style="color:#F581B1">通用</b>';
+            type='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]currency[##else##]通用[##/if##]</b>';
          }else if(res.type=='2'){
-            type='<b style="color:#01AAED">满减</b>';
+            type='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]Full reduction[##else##]满减[##/if##]</b>';
          }else if(res.type=='3'){
-           type='<b style="color:#04ab33">打折</b>';
+            type='<b style="color:#04ab33">[##if $_SESSION.lang eq 'english'##]Discounty[##else##]打折[##/if##]</b>';
          }else if(res.type=='4'){
-           type='<b style="color:#ff5722">免单</b>';
+            type='<b style="color:#ff5722">[##if $_SESSION.lang eq 'english'##]Free of charge[##else##]免单[##/if##]</b>';
          }else{
-           type='未知';
+            type='[##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##]</b>';
          }
          return type
       }}
-      ,{field:'money', title:'优惠幅度', width:100, sort: true, templet:function(res){
+      ,{field:'money', title:"[##if $_SESSION.lang eq 'english'##]Margin of preference[##else##]优惠幅度[##/if##]", width:100, sort: true, templet:function(res){
         var money=res.money;
         if(res.type == 3){
-          money=parseFloat(money)+'折';
+          money=parseFloat(money)+"[##if $_SESSION.lang eq 'english'##]0% discount[##else##]折[##/if##]";
         }else if(res.type == 4){
-          money='不限';
+          money="[##if $_SESSION.lang eq 'english'##]unlimited[##else##]不限[##/if##]";
         }
         return money;
       }}
-      ,{field:'sum', title:'最高优惠', width:100, sort: true, templet:function(res){
+      ,{field:'sum', title:"[##if $_SESSION.lang eq 'english'##]Top offer[##else##]最高优惠[##/if##]", width:100, sort: true, templet:function(res){
          var sum=res.money;
          if(res.type == 3){
             sum=res.sum;
          }else if(res.type == 4){
-            sum='不限';
+            sum="[##if $_SESSION.lang eq 'english'##]unlimited[##else##]不限[##/if##]";
          }
          return sum;
       }}
-      ,{field:'price', title:'最低消费', width:100, sort: true, templet:function(res){
+      ,{field:'price', title:"[##if $_SESSION.lang eq 'english'##]minimum consumption [##else##]最低消费[##/if##]", width:100, sort: true, templet:function(res){
          var price='0.00';
          if(res.type > 1){
             price=res.price;
          }
          if(res.type == 4){
-            price='不限';
+            price="[##if $_SESSION.lang eq 'english'##]unlimited[##else##]不限[##/if##]";
          }
          return price;
       }}
-      ,{field:'grants', title:'自动发放', width:100, sort: true, templet:function(res){
+      ,{field:'grants', title:"[##if $_SESSION.lang eq 'english'##]Automatic distribution [##else##]自动发放[##/if##]", width:100, sort: true, templet:function(res){
          var grants='';
          if(res.grants=='2'){
-            grants='<b style="color:#F581B1">推荐人</b>';
+grants='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]References [##else##]推荐人[##/if##]</b>';
          }else if(res.grants=='1'){
-            grants='<b style="color:#F581B1">新用户</b>';
+    grants='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]new user [##else##]新用户[##/if##]</b>';
          }else if(res.grants=='0'){
-            grants='<b style="color:#01AAED">否</b>';
+    grants='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]no  [##else##]>否[##/if##]</b>';
          }
          return grants
       }}
-      ,{field:'datetype', title:'有效期类型', width:100,templet:function(res){
+      ,{field:'datetype', title:"[##if $_SESSION.lang eq 'english'##]Validity type[##else##]有效期类型[##/if##]", width:100,templet:function(res){
          var datetype='';
          if(res.datetype=='1'){
-            datetype='<b style="color:#F581B1">天数</b>';
+datetype='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]Days[##else##]天数[##/if##]</b>';
          }else if(res.datetype=='2'){
-            datetype='<b style="color:#01AAED">固定</b>';
+    datetype='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]fixed[##else##]固定[##/if##]</b>';
          }else if(res.datetype=='3'){
-           datetype='<b style="color:#04ab33">永久</b>';
+    datetype='<b style="color:#04ab33">[##if $_SESSION.lang eq 'english'##]permanent[##else##]永久[##/if##]</b>';
          }
          return datetype
       }}
-      ,{field:'days', title:'天数', width:80}
-      ,{field:'startdate', title:'开始时间', width:150}
-      ,{field:'enddate', title:'过期时间', width:150}
-      ,{field:'number', title:'发放数量', width:100}
-      ,{field:'dateline', title:'创建时间', width:150}
-      ,{fixed:'right', title:'操作', width:155, templet: function(res){
+,{field:'days', title:"[##if $_SESSION.lang eq 'english'##]Days[##else##]天数[##/if##]", width:80}
+,{field:'startdate', title:"[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]", width:150}
+,{field:'enddate', title:"[##if $_SESSION.lang eq 'english'##]Expiration time[##else##]过期时间[##/if##]", width:150}
+,{field:'number', title:"[##if $_SESSION.lang eq 'english'##]Issued quantity[##else##]发放数量[##/if##]", width:100}
+,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Creation time[##else##]创建时间[##/if##]", width:150}
+,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]", width:155, templet: function(res){
           var html = '';
-          html += '<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="grant">发放</a>'
-          html += '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>'
+          html += '<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="grant">[##if $_SESSION.lang eq 'english'##]grant[##else##]发放[##/if##]</a>'
+html += '<a class="layui-btn layui-btn-xs" lay-event="edit">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>'
           [##if $_SGLOBAL.usergroup[key($_SGLOBAL.usergroup)]['gid'] && $_SGLOBAL.usergroup[key($_SGLOBAL.usergroup)]['gid'] <= 2##]
-          html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>'
+html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>'
           [##/if##]
           return html
       }}

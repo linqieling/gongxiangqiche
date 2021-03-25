@@ -20,31 +20,31 @@
       <div class="layui-form-item" style="margin-bottom: 0px;">
           <div class="layui-inline">
             <fieldset class="layui-elem-field site-demo-button">
-              <legend>今日统计</legend>
+              <legend>[##if $_SESSION.lang eq 'english'##]Statistics today[##else##]今日统计[##/if##]</legend>
               <div style="padding:10px;" class="ttip">
-                <button class="layui-btn layui-btn-primary now_count">发放 <span>0</span> 张</button>
-                <button class="layui-btn layui-btn-primary now_money">总额 <span>0</span> 元</button>
-                <button class="layui-btn layui-btn-primary now_use">已用 <span>0</span> 张</button>
-                <button class="layui-btn layui-btn-primary now_usemoney">已用金额 <span>0</span> 元</button>
-                <button class="layui-btn layui-btn-primary now_unused">未用 <span>0</span> 张</button>
-                <button class="layui-btn layui-btn-primary now_unusedmoney">未用金额 <span>0</span> 元</button>
-                  <button class="layui-btn layui-btn-primary now_freeze">冻结 <span>0</span> 张</button>
-                <button class="layui-btn layui-btn-primary now_overdue">过期 <span>0</span> 张</button>
+                <button class="layui-btn layui-btn-primary now_count">[##if $_SESSION.lang eq 'english'##]grant <span>0</span> zhang[##else##]发放 <span>0</span> 张[##/if##]</button>
+                <button class="layui-btn layui-btn-primary now_money">[##if $_SESSION.lang eq 'english'##]total[##else##]总额[##/if##] <span>0</span> [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</button>
+                <button class="layui-btn layui-btn-primary now_use">[##if $_SESSION.lang eq 'english'##]Used  <span>0</span> zhang[##else##]已用 <span>0</span> 张[##/if##]</button>
+                <button class="layui-btn layui-btn-primary now_usemoney">[##if $_SESSION.lang eq 'english'##]Amount used[##else##]已用金额[##/if##]已用金额 <span>0</span> [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</button>
+                <button class="layui-btn layui-btn-primary now_unused">[##if $_SESSION.lang eq 'english'##]Unused <span>0</span> zhang[##else##]未用 <span>0</span> 张[##/if##]</button>
+                <button class="layui-btn layui-btn-primary now_unusedmoney">[##if $_SESSION.lang eq 'english'##]Unused amount[##else##]未用金额[##/if##] <span>0</span> [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</button>
+                  <button class="layui-btn layui-btn-primary now_freeze">[##if $_SESSION.lang eq 'english'##]frozen  <span>0</span> zhang[##else##]冻结 <span>0</span> 张[##/if##]</button>
+                <button class="layui-btn layui-btn-primary now_overdue">[##if $_SESSION.lang eq 'english'##]be overdue  <span>0</span> zhang[##else##]过期 <span>0</span> 张[##/if##]</button>
               </div>
             </fieldset>
           </div>
           <div class="layui-inline">
              <fieldset class="layui-elem-field site-demo-button">
-                <legend>全部统计</legend>
+                <legend>[##if $_SESSION.lang eq 'english'##]All statistics[##else##]全部统计[##/if##]</legend>
                 <div style="padding:10px;" class="ttip">
-                  <button class="layui-btn layui-btn-primary all_count">发放 <span>0</span> 张</button>
-                  <button class="layui-btn layui-btn-primary all_money">总额 <span>0</span> 元</button>
-                  <button class="layui-btn layui-btn-primary all_use">已用 <span>0</span> 张</button>
-                  <button class="layui-btn layui-btn-primary all_usemoney">已用金额 <span>0</span> 元</button>
-                  <button class="layui-btn layui-btn-primary all_unused">未用 <span>0</span> 张</button>
-                  <button class="layui-btn layui-btn-primary all_unusedmoney">未用金额 <span>0</span> 元</button>
-                  <button class="layui-btn layui-btn-primary all_freeze">冻结 <span>0</span> 张</button>
-                  <button class="layui-btn layui-btn-primary all_overdue">过期 <span>0</span> 张</button>
+                    <button class="layui-btn layui-btn-primary now_count">[##if $_SESSION.lang eq 'english'##]grant <span>0</span> zhang[##else##]发放 <span>0</span> 张[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_money">[##if $_SESSION.lang eq 'english'##]total[##else##]总额[##/if##] <span>0</span> [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_use">[##if $_SESSION.lang eq 'english'##]Used  <span>0</span> zhang[##else##]已用 <span>0</span> 张[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_usemoney">[##if $_SESSION.lang eq 'english'##]Amount used[##else##]已用金额[##/if##]已用金额 <span>0</span> [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_unused">[##if $_SESSION.lang eq 'english'##]Unused <span>0</span> zhang[##else##]未用 <span>0</span> 张[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_unusedmoney">[##if $_SESSION.lang eq 'english'##]Unused amount[##else##]未用金额[##/if##] <span>0</span> [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_freeze">[##if $_SESSION.lang eq 'english'##]frozen  <span>0</span> zhang[##else##]冻结 <span>0</span> 张[##/if##]</button>
+                    <button class="layui-btn layui-btn-primary now_overdue">[##if $_SESSION.lang eq 'english'##]be overdue  <span>0</span> zhang[##else##]过期 <span>0</span> 张[##/if##]</button>
                 </div>
               </fieldset>
           </div>
@@ -55,66 +55,66 @@
     <div class="layui-form">
         <div class="layui-form-item">
           <div class="layui-inline">
-              <input type="text" name="phone"  id="phone" placeholder="请输入用户电话" autocomplete="off" class="layui-input">
+              <input type="text" name="phone"  id="phone" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the phone number of the user[##else##]请输入用户电话[##/if##]" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-inline">
-              <input type="text" name="nickname" id="nickname"  placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
+              <input type="text" name="nickname" id="nickname"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter user name[##else##]请输入用户姓名[##/if##]" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-inline">
-              <input type="text" name="name" id="name"  placeholder="请输入优惠券名称" autocomplete="off" class="layui-input">
+              <input type="text" name="name" id="name"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the coupon name[##else##]请输入优惠券名称[##/if##]" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-inline">
             <select name="type" lay-filter="type" id="type">
-                <option  value="">优惠券类型</option>
-                <option  value="1">通用</option>
-                <option  value="2">满减</option>
-                <option  value="3">打折</option>
-                <option  value="4">免单</option>
+                <option  value="">[##if $_SESSION.lang eq 'english'##]Coupon type[##else##]优惠券类型[##/if##]</option>
+                <option  value="1">[##if $_SESSION.lang eq 'english'##]currency[##else##]通用[##/if##]</option>
+                <option  value="2">[##if $_SESSION.lang eq 'english'##]Full reduction[##else##]满减[##/if##]</option>
+                <option  value="3">[##if $_SESSION.lang eq 'english'##]Discount[##else##]打折[##/if##]</option>
+                <option  value="4">[##if $_SESSION.lang eq 'english'##]Free of charge[##else##]免单[##/if##]</option>
             </select>
           </div>
           <div class="layui-inline">
             <select name="status" lay-filter="status" id="status">
-                <option  value="">优惠券状态</option>
-                <option  value="0">已冻结</option>
-                <option  value="1">已过期</option>
-                <option  value="2">已使用</option>
-                <option  value="3">未开放</option>
-                <option  value="4">未使用</option>
+                <option  value="">[##if $_SESSION.lang eq 'english'##]Not open[##else##]未开放[##/if##]优惠券状态</option>
+                <option  value="0">[##if $_SESSION.lang eq 'english'##]Frozen[##else##]已冻结[##/if##]</option>
+                <option  value="1">[##if $_SESSION.lang eq 'english'##]Expired[##else##]已过期[##/if##]</option>
+                <option  value="2">[##if $_SESSION.lang eq 'english'##]Used[##else##]已使用[##/if##]</option>
+                <option  value="3">[##if $_SESSION.lang eq 'english'##]Not open[##else##]未开放[##/if##]</option>
+                <option  value="4">[##if $_SESSION.lang eq 'english'##]not used[##else##]未使用[##/if##]</option>
             </select>
           </div>
           <div class="layui-inline">
             <select name="ustatus" lay-filter="ustatus" id="ustatus">
-                <option  value="">用户状态</option>
-                <option  value="1">已锁定</option>
-                <option  value="2">已注册</option>
-                <option  value="3">已认证</option>
-                <option  value="4">可租车</option>
-                <option  value="5">退押金</option>
+                <option  value="">[##if $_SESSION.lang eq 'english'##]User status[##else##]用户状态[##/if##]</option>
+                <option  value="1">[##if $_SESSION.lang eq 'english'##]Locked[##else##]已锁定[##/if##]</option>
+                <option  value="2">[##if $_SESSION.lang eq 'english'##]Registered[##else##]已注册[##/if##]</option>
+                <option  value="3">[##if $_SESSION.lang eq 'english'##]Certified[##else##]已认证[##/if##]</option>
+                <option  value="4">[##if $_SESSION.lang eq 'english'##]Rentable car[##else##]可租车[##/if##]</option>
+                <option  value="5">[##if $_SESSION.lang eq 'english'##]return the deposit money[##else##]退押金[##/if##]</option>
             </select>
           </div>
           <div class="layui-inline">
-            <input type="text" name="startdateline" id="startdateline"  placeholder="发放开始时间" autocomplete="off" class="layui-input">
+            <input type="text" name="startdateline" id="startdateline"  placeholder="[##if $_SESSION.lang eq 'english'##]Release start time[##else##]发放开始时间[##/if##]" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-inline">
-            <input type="text" name="enddateline" id="enddateline"  placeholder="发放结束时间" autocomplete="off" class="layui-input">
+            <input type="text" name="enddateline" id="enddateline"  placeholder="[##if $_SESSION.lang eq 'english'##]Release end time[##else##]发放结束时间[##/if##]" autocomplete="off" class="layui-input">
           </div>
-          <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+          <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
         </div>
     </div>
     <!-- 查询条件end -->
 
     <script type="text/html" id="toolbarDemo">
-      <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="refurbish"><i class="layui-icon">&#xe9aa;</i>刷新</button>
-      <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="export" id="export"><i class="layui-icon">&#xe62d;</i>导出</button>
+      <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="refurbish"><i class="layui-icon">&#xe9aa;</i>[##if $_SESSION.lang eq 'english'##]Refresh [##else##]刷新[##/if##]</button>
+      <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="export" id="export"><i class="layui-icon">&#xe62d;</i>[##if $_SESSION.lang eq 'english'##]export[##else##]导出[##/if##]</button>
     </script>
 
     <script type="text/html" id="checkboxTpl">
       <select name="status" lay-filter="lockDemo" " id="{{d.id}}">
-        <option {{ d.status == 0 ? 'selected' : '' }}  value="0">已冻结</option>
-        <option {{ d.status == 1 ? 'selected' : '' }}  value="1">已过期</option>
-        <option {{ d.status == 2 ? 'selected' : '' }}  value="2">已使用</option>
-        <option {{ d.status == 3 ? 'selected' : '' }}  value="3">未开放</option>
-        <option {{ d.status == 4 ? 'selected' : '' }}  value="4">未使用</option>
+        <option {{ d.status == 0 ? 'selected' : '' }}  value="0">[##if $_SESSION.lang eq 'english'##]Frozen[##else##]已冻结[##/if##]</option>
+        <option {{ d.status == 1 ? 'selected' : '' }}  value="1">[##if $_SESSION.lang eq 'english'##]Expired[##else##]已过期[##/if##]</option>
+        <option {{ d.status == 2 ? 'selected' : '' }}  value="2">[##if $_SESSION.lang eq 'english'##]Used[##else##]已使用[##/if##]</option>
+        <option {{ d.status == 3 ? 'selected' : '' }}  value="3">[##if $_SESSION.lang eq 'english'##]Not open[##else##]未开放[##/if##]</option>
+        <option {{ d.status == 4 ? 'selected' : '' }}  value="4">[##if $_SESSION.lang eq 'english'##]not used[##else##]未使用[##/if##]</option>
       </select>
     </script>
 
@@ -150,55 +150,55 @@ layui.use(['form','table','laydate','jquery','dialog'], function(){
     ,cols: [[
        {field:'id', title:'ID', width:100, fixed: 'left', unresize: true, sort: true}
       ,{field:'phone', title:'电话', width:120}
-      ,{field:'nickname', title:'姓名', width:150}
-      ,{field:'name', title:'优惠券名称', width:150,templet:function(res) {
-          return res.name +' <a class="layui-btn layui-btn-xs" lay-event="coupon">查看</a>'
+      ,{field:'nickname', title:"[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]", width:150}
+      ,{field:'name', title:"[##if $_SESSION.lang eq 'english'##]Coupon name[##else##]优惠券名称[##/if##]", width:150,templet:function(res) {
+      return res.name +' <a class="layui-btn layui-btn-xs" lay-event="coupon">[##if $_SESSION.lang eq 'english'##]see[##else##]查看[##/if##]</a>'
       }}
-      ,{field:'type', title:'类型', width:65,templet: function(res){
+      ,{field:'type', title:"[##if $_SESSION.lang eq 'english'##]type[##else##]类型[##/if##]", width:90,templet: function(res){
          var type='';
-         if(res.type=='1'){
-            type='<b style="color:#F581B1">通用</b>';
-         }else if(res.type=='2'){
-            type='<b style="color:#01AAED">满减</b>';
-         }else if(res.type=='3'){
-           type='<b style="color:#04ab33">打折</b>';
-         }else if(res.type=='4'){
-           type='<b style="color:#ff5722">免单</b>';
-         }else{
-           type='未知';
-         }
+        if(res.type=='1'){
+        type='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]currency[##else##]通用[##/if##]</b>';
+        }else if(res.type=='2'){
+            type='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]Full reduction[##else##]满减[##/if##]</b>';
+        }else if(res.type=='3'){
+            type='<b style="color:#04ab33">[##if $_SESSION.lang eq 'english'##]Discounty[##else##]打折[##/if##]</b>';
+        }else if(res.type=='4'){
+            type='<b style="color:#ff5722">[##if $_SESSION.lang eq 'english'##]Free of charge[##else##]免单[##/if##]</b>';
+        }else{
+            type='[##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##]</b>';
+        }
          return type
       }}
-      ,{field:'money', title:'优惠幅度', totalRow: true, width:120, templet:function(res) {
+      ,{field:'money', title:"[##if $_SESSION.lang eq 'english'##]Margin of preference[##else##]优惠幅度[##/if##]", totalRow: true, width:160, templet:function(res) {
           if(res.type=='3'){
             return '打'+res.money+'折'
           }else if(res.type=='4'){
             return '不限金额'
           }else{
-            return res.money+'元' 
+            return res.money+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]"
           }
        
       }}
-      ,{field:'datetype', title:'有效期', width:80,templet:function(res) {
+      ,{field:'datetype', title:"[##if $_SESSION.lang eq 'english'##]term of validity[##else##]有效期[##/if##]", width:150,templet:function(res) {
         var datetype='';
         if(res.datetype=='1'){
-          datetype='<a class="layui-btn layui-btn-xs tips" lay-event="datetype">天数</a>'
+          datetype='<a class="layui-btn layui-btn-xs tips" lay-event="datetype">[##if $_SESSION.lang eq 'english'##]Days[##else##]天数[##/if##]</a>'
         }else if(res.datetype=='2'){
-          datetype='<a class="layui-btn layui-btn-xs tips" lay-event="datetype">固定时间</a>' 
+         datetype='<a class="layui-btn layui-btn-xs tips" lay-event="datetype">[##if $_SESSION.lang eq 'english'##]Fixed time[##else##]固定时间[##/if##]</a>'
         }else if(res.datetype=='3'){
-          datetype='<a class="layui-btn layui-btn-xs tips" lay-event="datetype">永久</a>' 
+        datetype='<a class="layui-btn layui-btn-xs tips" lay-event="datetype"[##if $_SESSION.lang eq 'english'##]permanent[##else##]永久[##/if##]</a>'
         }
         return datetype
       }}
-      // ,{field:'timeout', title:'剩余时间', width:180}
-      ,{field:'status', title:'状态', width:80,templet: function(res){
+      // ,{field:'timeout', title:"[##if $_SESSION.lang eq 'english'##]Time remaining[##else##]剩余时间[##/if##]", width:180}
+      ,{field:'status', title:"[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]", width:80,templet: function(res){
          var type='';
          if(res.status=='0'){
-            type='<b style="color:#F581B1">已冻结</b>';
+            type='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]Frozen[##else##]已冻结[##/if##]</b>';
          }else if(res.status=='1'){
-            type='<b style="color:#666">已过期</b>';
+            type='<b style="color:#666">[##if $_SESSION.lang eq 'english'##]Expired[##else##]已过期[##/if##]</b>';
          }else if(res.status=='2'){
-            type='<b style="color:#01AAED">已使用</b>';
+            type='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]Used[##else##]已使用[##/if##]</b>';
          }else if(res.status=='3'){
            type='<b style="color:#999">未开放</b>';
          }else if(res.status=='4'){
@@ -206,11 +206,11 @@ layui.use(['form','table','laydate','jquery','dialog'], function(){
          }
          return type
       }}
-      ,{field:'dateline', title:'发放时间', width:160}
-      ,{field:'lock', title:'修改状态', width:116, templet: '#checkboxTpl', unresize: true}
-      ,{fixed:'right', title:'操作', width:60, templet: function(res){
+      ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Release time[##else##]发放时间[##/if##]", width:160}
+      ,{field:'lock', title:"[##if $_SESSION.lang eq 'english'##]modify state[##else##]修改状态[##/if##]", width:136, templet: '#checkboxTpl', unresize: true}
+      ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]", width:80, templet: function(res){
         var html = '';
-        html += '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>';
+        html += '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>';
         return html;
       }}
     ]]
