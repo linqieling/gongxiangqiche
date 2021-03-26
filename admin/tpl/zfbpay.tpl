@@ -120,8 +120,8 @@ $(document).ready(function(){
 
 <div class="layui-tab page-content-wrap">
       <ul class="layui-tab-title">
-        <li class="layui-this">支付宝无线支付</li>
-        <li>退款设置</li>
+        <li class="layui-this">[##if $_SESSION.lang eq 'english'##]Alipay wireless payment[##else##]支付宝无线支付[##/if##]</li>
+        <li>[##if $_SESSION.lang eq 'english'##]Refund settings[##else##]退款设置[##/if##]</li>
       </ul>
       <form class="layui-tab-content"  method="post" action="admin.php?view=zfbpay"  enctype="multipart/form-data">
         <input type="hidden" name="formhash" value="[##$_SGLOBAL.formhash##]" />
@@ -130,28 +130,28 @@ $(document).ready(function(){
           <div class="layui-form layui-form-pane"  >
 
               <div class="layui-form-item">
-                <label class="layui-form-label">开放状态</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Open state[##else##]开放状态[##/if##]</label>
                 <div class="layui-input-block">
-                   <input type="radio" name="alipay[status]" [##if $alipay.status##] checked="checked"[##/if##] value="1" title="开启" />
-                   <input type="radio" name="alipay[status]" [##if !$alipay.status##] checked="checked"[##/if##] value="0"  title="关闭" />
+                   <input type="radio" name="alipay[status]" [##if $alipay.status##] checked="checked"[##/if##] value="1" title="[##if $_SESSION.lang eq 'english'##]open[##else##]开启[##/if##]" />
+                   <input type="radio" name="alipay[status]" [##if !$alipay.status##] checked="checked"[##/if##] value="0"  title="[##if $_SESSION.lang eq 'english'##]close[##else##]关闭[##/if##]" />
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">收款支付宝账号</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Alipay account receivable[##else##]收款支付宝账号[##/if##]</label>
                 <div class="layui-input-block">
                   <input type="text" name="alipay[payee]" type="text"  size="30" value="[##$alipay.payee##]" class="layui-input" >
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">合作者身份</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Partner identity[##else##]合作者身份[##/if##]</label>
                 <div class="layui-input-block">
                   <input type="text" name="alipay[cooperator]" type="text"  size="30" value="[##$alipay.cooperator##]"  class="layui-input" >
                 </div>
               </div>
                <div class="layui-form-item">
-                <label class="layui-form-label">校验密钥</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Verification key[##else##]校验密钥[##/if##]</label>
                 <div class="layui-input-block">
                   <input type="text" name="alipay[appkey]" type="text"  size="30" value="[##$alipay.appkey##]"  class="layui-input" >
                 </div>
@@ -165,14 +165,14 @@ $(document).ready(function(){
           <div class="layui-form layui-form-pane" >
          
               <div class="layui-form-item">
-                <label class="layui-form-label">开放状态</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Open state[##else##]开放状态[##/if##]</label>
                 <div class="layui-input-block">
-                   <input type="radio"  name="alipay[refundstatus]"[##if $alipay.refundstatus##] checked="checked"[##/if##] value="1" title="开启" />
-                   <input type="radio"  name="alipay[refundstatus]"[##if !$alipay.refundstatus##] checked="checked"[##/if##]  value="0"  title="关闭" />
+                   <input type="radio"  name="alipay[refundstatus]"[##if $alipay.refundstatus##] checked="checked"[##/if##] value="1" title="[##if $_SESSION.lang eq 'english'##]open[##else##]开启[##/if##]" />
+                   <input type="radio"  name="alipay[refundstatus]"[##if !$alipay.refundstatus##] checked="checked"[##/if##]  value="0"  title="[##if $_SESSION.lang eq 'english'##]close[##else##]关闭[##/if##]" />
                 </div>
               </div>
                <div class="layui-form-item">
-                <label class="layui-form-label">校验密钥</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Verification key[##else##]校验密钥[##/if##]</label>
                 <div class="layui-input-block">
                   <input type="text" name="alipay[appid]" type="text"  size="30" value="[##$alipay.appid##]"  class="layui-input" >
                 </div>
@@ -180,19 +180,19 @@ $(document).ready(function(){
 
 
             <div class="layui-form-item">
-                <label class="layui-form-label">退款证书</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Refund certificate[##else##]退款证书[##/if##]</label>
                 <div class="layui-input-inline">
 
                      [##if $wxpay.certificate##]
                       <div style="width: 160px;height: 40px; display: inline-block; float: left; background-repeat: no-repeat;background-position: center center;background-size: 100% 100%;background-image: url([##picredirect($alipay.certificate)##]);">
                       </div>
                       <div style="display: inline-block; float: left; height: 40px; margin-left:15px;">
-                        <a style="line-height: 40px;padding:8px 15px;border:1px solid #EEE; border-radius: 3px;" href="admin.php?view=wxpay&op=delpic" onClick="return confirm('本操作不可恢复，确认删除？');">删除文件</a>
+                        <a style="line-height: 40px;padding:8px 15px;border:1px solid #EEE; border-radius: 3px;" href="admin.php?view=wxpay&op=delpic" [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##] >删除文件</a>
                       </div>
                       [##else##]
                       <a href="javascript:;" class="a-upload">
                         <input type="file" name="certificate" accept="image/jpg,image/png,image/gif" />
-                        <div class="showFileName">点击上传证书</div>
+                        <div class="showFileName">[##if $_SESSION.lang eq 'english'##]Click upload certificate[##else##]点击上传证书[##/if##]</div>
                       </a>
                       [##/if##]
                       <input type="hidden" name="alipay[certificate]" value="[##$alipay.certificate##]" />
@@ -205,7 +205,7 @@ $(document).ready(function(){
         </div>
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="立即提交" />
+            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]" />
           </div>
         </div>
       </form>

@@ -30,12 +30,12 @@
                         <thead>
                             <tr>
                                   <td width="4%">ID</td>
-                                  <td width="10%"  class="hidden-xs">模型标签</td>
-                                  <td width="10%">模型名称</td>
-                                  <td width="10%"  class="hidden-xs">数据库表名</td>
-                                  <td width="10%"  class="hidden-xs">列表模板(分页数)</td>
-                                  <td width="10%" class="hidden-xs">显示模板</td>
-                                  <td width="10%">操作</td>
+                                  <td width="10%"  class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Model label[##else##]模型标签[##/if##]</td>
+                                  <td width="10%">[##if $_SESSION.lang eq 'english'##]Model name[##else##]模型名称[##/if##]</td>
+                                  <td width="10%"  class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Database table name[##else##]数据库表名[##/if##]</td>
+                                  <td width="10%"  class="hidden-xs">[##if $_SESSION.lang eq 'english'##]List template (number of pages) [##else##]列表模板(分页数)[##/if##]</td>
+                                  <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Display template [##else##]显示模板[##/if##]</td>
+                                  <td width="10%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                             </tr> 
                         </thead>
                         <tbody>
@@ -49,19 +49,19 @@
                                   <td  class="hidden-xs">[##$datalist[loop].listtpl##]([##$datalist[loop].perpage##])</td>
                                   <td  class="hidden-xs">[##$datalist[loop].showtpl##]</td>
                                   <td>
-                                  <a href='admin.php?view=model&op=edit&id=[##$datalist[loop].modid##]'>编辑</a>&nbsp;&nbsp;
-                                  <a href='admin.php?view=model&op=del&id=[##$datalist[loop].modid##]'>删除</a></td>
+                                  <a href='admin.php?view=model&op=edit&id=[##$datalist[loop].modid##]'>[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>&nbsp;&nbsp;
+                                  <a href='admin.php?view=model&op=del&id=[##$datalist[loop].modid##]'>[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a></td>
                                 </tr>
                                 [##sectionelse##]
                                 <tr>
-                                  <td class="autocolspancount">没有找到任何数据!</td>
+                                  <td class="autocolspancount">[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                                 </tr>
                                 [##/section##]
                                 <tr>
                                     <td  colspan="8" align='left'>
                                            <div class="layui-btn-group">
-                                             <input type="button" onClick="javascript:window.location.href='admin.php?view=model&op=add'" value="增加" class="layui-btn  layui-btn-sm" >
-                                             <input type="button" onClick="javascript:window.location.href='admin.php?view=model&op=refresh'" value="刷新"  class="layui-btn  layui-btn-sm" >
+                                             <input type="button" onClick="javascript:window.location.href='admin.php?view=model&op=add'" value="[##if $_SESSION.lang eq 'english'##]add[##else##]增加[##/if##]" class="layui-btn  layui-btn-sm" >
+                                             <input type="button" onClick="javascript:window.location.href='admin.php?view=model&op=refresh'" value="[##if $_SESSION.lang eq 'english'##]Refresh [##else##]刷新[##/if##]"  class="layui-btn  layui-btn-sm" >
                                         
                                           </div>
                                     </td>
@@ -98,43 +98,43 @@
           <div class="layui-form  layui-form-pane" style="margin:1rem;">
 
               <div class="layui-form-item">
-                <label class="layui-form-label">模板名称(英)</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Template name [##else##]模板名称[##/if##]</label>
                 <div class="layui-input-block">
                     <input   name="modname"  size="30" value="[##$result.modname##]"  class="layui-input" onKeyUp="value=value.replace(/[^a-zA-Z]/g,'')"> 
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">模型标签</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Model label[##else##]模型标签[##/if##]</label>
                 <div class="layui-input-block">
                     <input  name="modlabel" type="text"  size="30" value="[##$result.modlabel##]"  class="layui-input"> 
                 </div>
               </div>
               <div class="layui-form-item">
-                <label class="layui-form-label">默认前台列表页</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Default foreground list page[##else##]默认前台列表页[##/if##]</label>
                 <div class="layui-input-block">
                     <input  name="listtpl" type="text"  size="30" value="[##$result.listtpl##]"  class="layui-input"> 
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">默认前台展示页</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Default foreground display page[##else##]默认前台展示页[##/if##]</label>
                 <div class="layui-input-block">
                     <input name="showtpl" type="text"  size="30" value="[##$result.showtpl##]" class="layui-input"> 
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">默认每页数据数</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Default data per page[##else##]默认每页数据数[##/if##]</label>
                 <div class="layui-input-block">
                     <input  name="perpage" type="text"  size="30" value="[##$result.perpage##]"  class="layui-input"> 
                 </div>
               </div>
                <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">数据库表</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Database table[##else##]数据库表[##/if##]</label>
                 <div class="layui-input-block">      
                   [##if $op eq "add"##]
-                      <textarea placeholder="数据库表 多个表请用“,”隔开" name="modtable" cols="100" rows="5" class="layui-textarea formatcontent"></textarea>
+                      <textarea placeholder="[##if $_SESSION.lang eq 'english'##]Database table. Separate multiple tables with “,”[##else##]数据库表 多个表请用“,”隔开[##/if##]" name="modtable" cols="100" rows="5" class="layui-textarea formatcontent"></textarea>
                   [##else##]
                       
                         <textarea class="layui-textarea formatcontent" name="modtable" >[##$result.modtable##]</textarea>
@@ -149,8 +149,8 @@
         </div>
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <input id="sub_btn" name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
-            <input type="button" onclick="javascript:window.location.href='admin.php?view=model'" class="submit layui-btn layui-btn-normal" value="返回">
+            <input id="sub_btn" name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
+            <input type="button" onclick="javascript:window.location.href='admin.php?view=model'" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]">
           </div>
         </div>
 
