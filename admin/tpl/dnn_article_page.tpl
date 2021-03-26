@@ -12,13 +12,13 @@
       <div class="layui-form" action="">
           <div class="layui-form-item" style="margin:0.5rem 1rem;">
           <div class="layui-inline">
-             <input type="text" name="uid" id="uid"  placeholder="请输入用户ID" autocomplete="off" class="layui-input">
+             <input type="text" name="uid" id="uid"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter user ID[##else##]请输入用户ID[##/if##]" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-inline">
-            <input type="text" name="title" id="title"  placeholder="请输入图片说明" autocomplete="off" class="layui-input">
+            <input type="text" name="title" id="title"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the picture description[##else##]请输入图片说明[##/if##]" autocomplete="off" class="layui-input">
           </div>
 
-          <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+          <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
     </div>
   <!-- 查询条件end -->
@@ -42,33 +42,33 @@ layui.use(['table','jquery'], function(){
      elem: "#balance"
     ,url:"admin.php?view=dnn_article_page&op=list_api"
     ,toolbar: '#toolbarDemo'
-    ,title: "图片详情"
+    ,title: "[##if $_SESSION.lang eq 'english'##]Picture details[##else##]图片详情[##/if##]"
     ,cols: [[
        {type: 'checkbox', fixed: 'left',width:70}
       ,{field:'id', title:'ID', width:70, fixed: 'left', unresize: true, sort: true}
-      ,{field:'name', title:'名称', width:150}
-      ,{field:'keywords', title:'简介', width:200, sort: true}
-      ,{field:'picfilepath', title:'图片说明', width:250,templet:function(res){
+      ,{field:'name', title:"[##if $_SESSION.lang eq 'english'##]name[##else##]名称[##/if##]", width:150}
+      ,{field:'keywords', title:"[##if $_SESSION.lang eq 'english'##]brief introduction[##else##]简介[##/if##]", width:200, sort: true}
+      ,{field:'picfilepath', title:"[##if $_SESSION.lang eq 'english'##]caption[##else##]图片说明[##/if##]", width:250,templet:function(res){
          var picfilepath='';
          if(res.picfilepath!=''){
             picfilepath='<img src="'+res.picfilepath+'" height="100%"/>';
          }
          return picfilepath
       }}
-      ,{field:'dateline', title:'建立时间', width:200,height:200}
-      ,{field:'status', title:'状态', width:100,templet:function(res){
+      ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Establishment time[##else##]建立时间[##/if##]", width:200,height:200}
+      ,{field:'status', title:"[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]", width:100,templet:function(res){
      
          if(res.status==1){
-           return '显示';
+           return "[##if $_SESSION.lang eq 'english'##]display[##else##]显示[##/if##]";
          }else{
-          return '隐藏';
+          return "[##if $_SESSION.lang eq 'english'##]hide[##else##]隐藏[##/if##]";
          }
         
       }}
-      ,{fixed:'right', title:'操作', width:150, templet: function(res){
+      ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]", width:150, templet: function(res){
           var html = '';
-          html += '<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>'
-          html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>'
+          html += '<a class="layui-btn layui-btn-xs" lay-event="edit">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>'
+          html += '<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>'
           return html
       }}
     ]]
@@ -90,7 +90,7 @@ layui.use(['table','jquery'], function(){
           }
         });
     }else{
-      layer.msg('筛选条件不能为空', {icon: 2});
+      layer.msg("[##if $_SESSION.lang eq 'english'##]Filter condition cannot be empty[##else##]筛选条件不能为空[##/if##]", {icon: 2});
     }
   });
   table.on("toolbar(balance)", function(obj){
@@ -110,7 +110,7 @@ layui.use(['table','jquery'], function(){
       case 'add':
            var url='/admin.php?view=dnn_article_page&op=add';
           var iframeObj = $(window.frameElement).attr('name');
-          parent.page("添加单页内容", url, iframeObj, w = "100%", h = "100%");
+          parent.page("[##if $_SESSION.lang eq 'english'##]Add single page content[##else##]添加单页内容[##/if##]", url, iframeObj, w = "100%", h = "100%");
           return false;
       break;
     };
@@ -119,11 +119,11 @@ layui.use(['table','jquery'], function(){
   table.on("tool(balance)", function(obj){
     var data = obj.data;
     if(obj.event === 'del'){
-       layer.confirm('真的删除此图片吗', function(index){
+       layer.confirm("[##if $_SESSION.lang eq 'english'##]Are you sure you want to delete this picture[##else##]真的删除此图片吗[##/if##]", function(index){
         var url='/admin.php?view=dnn_article_page&op=del&id='+data.id;
         ajaxdel(url).done(function (res) {
           if (res.code == 0) {
-              layer.msg('删除成功', {icon: 1});
+              layer.msg("[##if $_SESSION.lang eq 'english'##]Successfully deleted[##else##]删除成功[##/if##]", {icon: 1});
               obj.del();
               layer.close(index);
           } else if(res.code == -1) {
@@ -136,7 +136,7 @@ layui.use(['table','jquery'], function(){
     }else if(obj.event === 'edit'){
           var url = "/admin.php?view=dnn_article_page&op=edit&id="+data.id;
           var iframeObj = $(window.frameElement).attr('name');
-           parent.page("编辑单页内容", url, iframeObj, w = "100%", h = "100%");
+           parent.page("[##if $_SESSION.lang eq 'english'##]Edit single page content[##else##]编辑单页内容[##/if##]", url, iframeObj, w = "100%", h = "100%");
           return false;
     }
 

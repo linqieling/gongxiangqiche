@@ -25,21 +25,21 @@
              <div class="layui-form-item">
 
               <div class="layui-inline">
-                <label class="layui-form-label">文章ID</label>
+                <label class="layui-form-label"> [##if $_SESSION.lang eq 'english'##]article [##else##]文章[##/if##]ID</label>
                 <div class="layui-input-inline">
-                     <input type="text" name="sid"  class="layui-input" placeholder="文章ID" value="[##$search.sid##]" autocomplete="off" />
+                     <input type="text" name="sid"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]article [##else##]文章[##/if##]ID" value="[##$search.sid##]" autocomplete="off" />
                 </div>
               </div>
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">创建人</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Founder[##else##]创建人[##/if##]</label>
                 <div class="layui-input-inline">
-                     <input type="text" name="susername"  class="layui-input" placeholder="用户UID" value="[##$search.susername##]" autocomplete="off" />
+                     <input type="text" name="susername"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]user [##else##]用户[##/if##]UID" value="[##$search.susername##]" autocomplete="off" />
                 </div>
               </div>
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">分类:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]type[##else##]分类[##/if##]:</label>
                 <div class="layui-input-inline">
 
                    <select name="scatid">
@@ -62,9 +62,9 @@
               </div>
 
               <div class="layui-inline ">
-                <label class="layui-form-label">文章标题:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]article title[##else##]文章标题[##/if##]:</label>
                 <div class="layui-input-inline">
-                   <input type="text" name="sname" value="[##$search.sname##]"  class="layui-input" placeholder="文章标题" autocomplete="off" />
+                   <input type="text" name="sname" value="[##$search.sname##]"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]article title[##else##]文章标题[##/if##]" autocomplete="off" />
                 </div>
               </div>
 
@@ -74,23 +74,23 @@
             <div class="layui-form-item">
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">开始时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="开始时间" autocomplete="off" class="layui-input" value="[##$search.sstarttime##]" />
+                  <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]" autocomplete="off" class="layui-input" value="[##$search.sstarttime##]" />
                 </div>
               </div>
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">结束时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]end time[##else##]结束时间[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="sendtime" id="sendtime" lay-verify="date" placeholder="结束时间" autocomplete="off" class="layui-input"  value="[##$search.sendtime##]" />
+                  <input type="text" name="sendtime" id="sendtime" lay-verify="date" placeholder="[##if $_SESSION.lang eq 'english'##]End time[##else##]结束时间[##/if##]" autocomplete="off" class="layui-input"  value="[##$search.sendtime##]" />
                 </div>
               </div>
 
               <div class="layui-inline">
                 <label class="layui-form-label"></label>
                 <div class="layui-input-inline">
-                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="立即提交">
+                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]">
                 </div>
               </div>
             </div> 
@@ -121,14 +121,14 @@
                                  <!--  <input type="checkbox" name="ids[]" lay-skin="primary" value="[##$exportlog[loop].filename##]"  lay-skin="allChoose"> -->
                                   <input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose">
                                   </td>
-                                  <td width="12%" >文章标题</td>
-                                  <td width="10%" class="hidden-xs">所属栏目</td>
-                                  <td width="8%"  class="hidden-xs">创建人</td>
-                                  <td width="10%" class="hidden-xs">创建时间</td>
-                                  <td width="10%" class="hidden-xs">点击量</td>
-                                  <td width="6%"  class="hidden-xs">置顶</td>
-                                  <td width="6%"  class="hidden-xs">审核</td>
-                                  <td width="12%">操作</td>
+                                  <td width="12%" >[##if $_SESSION.lang eq 'english'##]article title[##else##]文章标题[##/if##]</td>
+                                  <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Column[##else##]所属栏目[##/if##]</td>
+                                  <td width="8%"  class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Founder[##else##]创建人[##/if##]</td>
+                                  <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Creation time[##else##]创建时间[##/if##]</td>
+                                  <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Hits[##else##]点击量[##/if##]</td>
+                                  <td width="6%"  class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Top[##else##]置顶[##/if##]</td>
+                                  <td width="6%"  class="hidden-xs">[##if $_SESSION.lang eq 'english'##]to examine[##else##]审核[##/if##]</td>
+                                  <td width="12%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                             </tr> 
                         </thead>
                         <tbody>
@@ -142,35 +142,35 @@
                                     <td class="hidden-xs" >[##$datalist[loop].username##]</td>
                                     <td class="hidden-xs" >[##$datalist[loop].dateline|date_format:"%Y-%m-%d %H:%M:%S"##]</td>
                                     <td class="hidden-xs" >[##$datalist[loop].viewnum##]</td>
-                                    <td class="hidden-xs" >[##if $datalist[loop].topdateline##]已置顶[##/if##]</td>
-                                    <td class="hidden-xs" >[##if $datalist[loop].pass##] 已审核 [##else##] 未审核 [##/if##]</td>
+                                    <td class="hidden-xs" >[##if $datalist[loop].topdateline##][##if $_SESSION.lang eq 'english'##]It's on top[##else##]已置顶[##/if##][##/if##]</td>
+                                    <td class="hidden-xs" >[##if $datalist[loop].pass##] [##if $_SESSION.lang eq 'english'##]Reviewed[##else##]已审核[##/if##] [##else##] 未审核 [##/if##]</td>
                                     <td>
-                                    &nbsp;<a href="admin.php?view=article&op=edit&id=[##$datalist[loop].id##]">编辑</a>
+                                    &nbsp;<a href="admin.php?view=article&op=edit&id=[##$datalist[loop].id##]">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>
                                     [##if $datalist[loop].topdateline##]
-                                      &nbsp;<a href="admin.php?view=article&op=top&id=[##$datalist[loop].id##]&top=0">取消置顶</a>
+                                      &nbsp;<a href="admin.php?view=article&op=top&id=[##$datalist[loop].id##]&top=0">[##if $_SESSION.lang eq 'english'##]Cancel topping[##else##]取消置顶[##/if##]</a>
                                     [##else##]
-                                      &nbsp;<a href="admin.php?view=article&op=top&id=[##$datalist[loop].id##]&top=1">置顶</a>
+                                      &nbsp;<a href="admin.php?view=article&op=top&id=[##$datalist[loop].id##]&top=1">[##if $_SESSION.lang eq 'english'##]Top[##else##]置顶[##/if##]</a>
                                     [##/if##]
-                                    &nbsp;<a href="admin.php?view=article&op=del&id=[##$datalist[loop].id##]" onClick="return confirm('本操作不可恢复，确认删除？');">删除</a>
-                                    &nbsp;<a href="admin.php?view=article&op=html&id=[##$datalist[loop].id##]&catid=[##$datalist[loop].catid##]">生成HTML</a>&nbsp;
+                                    &nbsp;<a href="admin.php?view=article&op=del&id=[##$datalist[loop].id##]" [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]>[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>
+                                    &nbsp;<a href="admin.php?view=article&op=html&id=[##$datalist[loop].id##]&catid=[##$datalist[loop].catid##]">[##if $_SESSION.lang eq 'english'##]Generate HTML[##else##]生成HTML[##/if##]</a>&nbsp;
                                     </td>
                                   </tr>
                               [##sectionelse##]
                               <tr>
-                                <td class="autocolspancount"  colspan="10" align='center'>没有找到任何数据!</td>
+                                <td class="autocolspancount"  colspan="10" align='center'>[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                               </tr>
                               [##/section##]
                               <tr>
                                 <td class="autocolspancount"  colspan="10" align='left'>
                                        <div class="layui-btn-group">
-                                         <input type="button" onClick="javascript:window.location.href='admin.php?view=article&op=add'" value="增加" class="layui-btn  layui-btn-sm">
-                                        <input class="layui-btn  layui-btn-sm" type="submit" name="deletesubmit" value="删除" onClick="return confirm('本操作不可恢复，确认删除？');"/>
+                                         <input type="button" onClick="javascript:window.location.href='admin.php?view=article&op=add'" value="[##if $_SESSION.lang eq 'english'##]add[##else##]增加[##/if##]" class="layui-btn  layui-btn-sm">
+                                        <input class="layui-btn  layui-btn-sm" type="submit" name="deletesubmit" value="[##if $_SESSION.lang eq 'english'##]delect[##else##]删除[##/if##]" [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]/>
                                       </div>
                                 </td>
                               </tr>
                               <tr>
                                 <td class="autocolspancount"  colspan="10" align='center'>
-                                     [##if $multi##]<div class="pages">[##$multi##]</div>[##else##]共[##$count##]条记录[##/if##]
+                                     [##if $multi##]<div class="pages">[##$multi##]</div>[##else##][##if $_SESSION.lang eq 'english'##][##$count##] records in total[##else##]共[##$count##]条记录[##/if##][##/if##]
                                 </td>
 
                               </tr>
@@ -217,14 +217,14 @@
 
           <div class="layui-form  layui-form-pane" style="padding:0.5rem;">
             <div class="layui-form-item">
-              <label class="layui-form-label">网站名称:</label>
+              <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Website name[##else##]网站名称[##/if##]:</label>
               <div class="layui-input-inline">
                 <input type="text"  name="name" value="[##$result.name##]" required=""  class="layui-input">
               </div>
             </div>
 
             <div class="layui-form-item">
-              <label class="layui-form-label">栏目分组:</label>
+              <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Column grouping[##else##]栏目分组[##/if##]:</label>
               <div class="layui-input-block">
                    [##foreach from=$_SGLOBAL.categorygroup name=list item=list##]
                        <input type="radio" class="groupid" name="groupid" [##if $list.id==$result.groupid##]checked="checked"[##/if##] [##if !$list@first##]style="margin-left:10px;"[##/if##] value="[##$list.id##]" title="[##$list.name##]">
@@ -251,26 +251,26 @@
           
 
             <div class="layui-form-item layui-form-text">
-              <label class="layui-form-label">SEO关键词</label>
+              <label class="layui-form-label">SEO[##if $_SESSION.lang eq 'english'##] key word[##else##]关键词[##/if##]</label>
               <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="keywords" cols="100" rows="3" class="layui-textarea">[##$result.keywords##]</textarea>
+                <textarea placeholder="[##if $_SESSION.lang eq 'english'##]Please input the content[##else##]请输入内容[##/if##]" name="keywords" cols="100" rows="3" class="layui-textarea">[##$result.keywords##]</textarea>
               </div>
             </div>
             <div class="layui-form-item layui-form-text">
               <label class="layui-form-label">SEO描述</label>
               <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="description" cols="100" rows="3" class="layui-textarea">[##$result.description##]</textarea>
+                <textarea placeholder="[##if $_SESSION.lang eq 'english'##]Please input the content[##else##]请输入内容[##/if##]" name="description" cols="100" rows="3" class="layui-textarea">[##$result.description##]</textarea>
               </div>
             </div>
             <div class="layui-form-item layui-form-text">
               <label class="layui-form-label">文章摘要</label>
               <div class="layui-input-block">
-                <textarea placeholder="请输入内容" name="brief" cols="100" rows="3" class="layui-textarea">[##$result.brief##]</textarea>
+                <textarea placeholder="[##if $_SESSION.lang eq 'english'##]Please input the content[##else##]请输入内容[##/if##]" name="brief" cols="100" rows="3" class="layui-textarea">[##$result.brief##]</textarea>
               </div>
             </div>
 
             <div class="layui-form-item layui-form-text">
-              <label class="layui-form-label">文章内容</label>
+              <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Article content[##else##]文章内容[##/if##]</label>
               <div class="layui-input-block">
                  <script type="text/javascript" charset="utf-8" src="[##$_SCONFIG.webroot##]framework/include/UEditor/ueditor.config.js"></script>
                  <script type="text/javascript" charset="utf-8" src="[##$_SCONFIG.webroot##]framework/include/UEditor/ueditor.all.js"> </script>
@@ -296,22 +296,22 @@
                     <div style="width: 160px;height: 40px; display: inline-block; float: left; background-repeat: no-repeat;background-position: center center;background-size: 100% 100%;background-image: url([##picredirect($result.picfilepath)##]);">
                     </div>
                     <div style="display: inline-block; float: left; height: 40px; margin-left:15px;">
-                      <a style="line-height: 40px;padding:8px 15px;border:1px solid #EEE; border-radius: 3px;" href="admin.php?view=article&op=delpic&id=[##$result.id##]&refer=[##$_SGLOBAL.refer##]" onClick="return confirm('本操作不可恢复，确认删除？');">删除图片</a>
+                      <a style="line-height: 40px;padding:8px 15px;border:1px solid #EEE; border-radius: 3px;" href="admin.php?view=article&op=delpic&id=[##$result.id##]&refer=[##$_SGLOBAL.refer##]" [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]>[##if $_SESSION.lang eq 'english'##]Delete picture[##else##]删除图片[##/if##]</a>
                     </div>
                     [##else##]
                     <a href="javascript:;" class="a-upload">
                       <input type="file" name="picfilepath" accept="image/jpg,image/png,image/gif" />
-                      <div class="showFileName">点击上传图片</div>
+                      <div class="showFileName">[##if $_SESSION.lang eq 'english'##]Click to upload image[##else##]点击上传图片[##/if##]</div>
                     </a>
                     [##/if##]
               </div>
             </div>
 
              <div class="layui-form-item">
-                <label class="layui-form-label">审核:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]to examine[##else##]审核[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="radio" name="pass" value="1" title="是" [##if $result.pass == 1##] checked[##/if##]>
-                  <input type="radio" name="pass" value="0" title="否"[##if $result.pass == 0##] checked[##/if##] >
+                  <input type="radio" name="pass" value="1" title="[##if $_SESSION.lang eq 'english'##]Yes[##else##]是[##/if##]" [##if $result.pass == 1##] checked[##/if##]>
+                  <input type="radio" name="pass" value="0" title="[##if $_SESSION.lang eq 'english'##]No[##else##]否[##/if##]"[##if $result.pass == 0##] checked[##/if##] >
                 </div>
               </div>
 
@@ -323,7 +323,7 @@
        
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="立即提交" />
+            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]" />
           </div>
         </div>
       </form>
@@ -377,7 +377,7 @@
             form.render("select");
             return false;
             }else{
-            $("#showcategory").empty().append("<select name='catid'><option value='0'>请选择分类</option></select>");
+            $("#showcategory").empty().append("<select name='catid'><option value='0'>[##if $_SESSION.lang eq 'english'##]Please select category[##else##]请选择分类[##/if##]</option></select>");
             form.render("select");
             return false;
             }

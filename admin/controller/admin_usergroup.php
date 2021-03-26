@@ -129,7 +129,7 @@ switch ($op){
 		$sql="select *  from  ".$_SC['tablepre']."usergroup  where 1 ";
 		$query = $_SGLOBAL['db']->query($sql);
 		$count=mysql_num_rows($query);
-		$sql.=' order by system  asc limit '.$start.','.$perpage;
+//		$sql.=' order by system  asc limit '.$start.','.$perpage;
 		$query = $_SGLOBAL['db']->query($sql);
 		$datalist = array();
 		while ($value = $_SGLOBAL['db']->fetch_array($query)) {

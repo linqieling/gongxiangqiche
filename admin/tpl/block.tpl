@@ -38,10 +38,10 @@
                             <tr>
                                     <td width="6%" >ID</td>
                                     <td width="4%" class="hidden-xs"><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
-                                    <td width="10%" class="hidden-xs">模块图片</td>
-                                    <td width="20%">模块名称</td>
-                                    <td class="hidden-xs">模块说明</td>
-                                    <td width="18%">操作</td>
+                                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Module picture[##else##]模块图片[##/if##]</td>
+                                    <td width="20%">[##if $_SESSION.lang eq 'english'##]Module name[##else##]模块名称[##/if##]</td>
+                                    <td class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Module description[##else##]模块说明[##/if##]</td>
+                                    <td width="18%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                             </tr> 
                         </thead>
                         <tbody>
@@ -54,21 +54,21 @@
                                 <td>[##$datalist[loop].name##]</td>
                                 <td class="hidden-xs">[##$datalist[loop].memo##]</td>
                                 <td style="line-height:200%;">
-                                  <a href='admin.php?view=block&op=edit&id=[##$datalist[loop].id##]'>编辑</a>&nbsp;&nbsp;<a href='admin.php?view=block&op=del&id=[##$datalist[loop].id##]' onclick="return confirm('本操作不可恢复，确认删除？');">删除</a><br>
-                                  <a href='admin.php?view=blockfield&blockid=[##$datalist[loop].id##]'>管理字段</a>&nbsp;&nbsp;
-                                  <a href='admin.php?view=blockdetail&blockid=[##$datalist[loop].id##]'>管理内容</a></td>
+                                  <a href='admin.php?view=block&op=edit&id=[##$datalist[loop].id##]'>[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>&nbsp;&nbsp;<a href='admin.php?view=block&op=del&id=[##$datalist[loop].id##]'  [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]>[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a><br>
+                                  <a href='admin.php?view=blockfield&blockid=[##$datalist[loop].id##]'>[##if $_SESSION.lang eq 'english'##]Manage fields[##else##]管理字段[##/if##]</a>&nbsp;&nbsp;
+                                  <a href='admin.php?view=blockdetail&blockid=[##$datalist[loop].id##]'>[##if $_SESSION.lang eq 'english'##]Management content[##else##]管理内容[##/if##]</a></td>
                               </tr>
                               [##sectionelse##]
                               <tr>
-                                <td colspan="6" >没有找到任何数据!</td>
+                                <td colspan="6" >[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                               </tr>
                               [##/section##]
                                 <tr>
                                     <td  colspan="6" align='left'>
                                            <div class="layui-btn-group">
-                                             <input type="button" onclick="javascript:window.location.href='admin.php?view=block&op=add'" value="增加" class="layui-btn  layui-btn-sm" >
-                                             <input type="button"  onclick="javascript:window.location.href='admin.php?view=block&op=refresh'" value="更新" class="layui-btn  layui-btn-sm">
-                                             <input type="submit" name="deletesubmit" value="删除" onclick="return confirm('本操作不可恢复，确认删除？');"   class="layui-btn  layui-btn-sm" >
+                                             <input type="button" onclick="javascript:window.location.href='admin.php?view=block&op=add'" value="[##if $_SESSION.lang eq 'english'##]add[##else##]增加[##/if##]" class="layui-btn  layui-btn-sm" >
+                                             <input type="button"  onclick="javascript:window.location.href='admin.php?view=block&op=refresh'" value="[##if $_SESSION.lang eq 'english'##]to update[##else##]更新[##/if##]" class="layui-btn  layui-btn-sm">
+                                             <input type="submit" name="deletesubmit" value="[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]"  [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]  class="layui-btn  layui-btn-sm" >
                                         
                                           </div>
                                     </td>
@@ -96,25 +96,25 @@
       <input type="hidden" name="refer" value="[##$_SGLOBAL.refer##]" />
       <input type="hidden" name="id"  value="[##$result.id##]" />
       <fieldset class="layui-elem-field layui-field-title" >
-        <legend>添加新的模块</legend>
+        <legend>[##if $_SESSION.lang eq 'english'##]Update time to add a new module[##else##]添加新的模块[##/if##]</legend>
       </fieldset>
             <div class="layui-tab-item layui-show">
               <div class="layui-form  layui-form-pane" style="margin:1rem;">
 
                   <div class="layui-form-item">
-                    <label class="layui-form-label">模块名称</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Module name[##else##]模块名称[##/if##]</label>
                     <div class="layui-input-block">
                         <input   name="name"  size="30" value="[##$result.name##]"  class="layui-input"> 
                     </div>
                   </div>
 
                   <div class="layui-form-item">
-                    <label class="layui-form-label">模块图片</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Module picture[##else##]模块图片[##/if##]</label>
                     <div class="layui-input-block">
-                         [##if $result.picfilepath##]<img src="[##$_SC.attachdir##]image/[##$result.picfilepath##]" width="100" height="80" style="float:left"><a style="float:left; line-height:80px; margin-left:10px;" href="admin.php?view=article&op=delpic&id=[##$result.id##]">删除</a>[##else##]
+                         [##if $result.picfilepath##]<img src="[##$_SC.attachdir##]image/[##$result.picfilepath##]" width="100" height="80" style="float:left"><a style="float:left; line-height:80px; margin-left:10px;" href="admin.php?view=article&op=delpic&id=[##$result.id##]">[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>[##else##]
                          <a href="javascript:;" class="a-upload">
                          <input type="file" name="picfilepath"  id="poster"/>
-                         <div class="showFileName">点击这里选择文件</div>
+                         <div class="showFileName">[##if $_SESSION.lang eq 'english'##]Click here to select a file[##else##]点击这里选择文件[##/if##]</div>
                          </a>
                          [##/if##]
 
@@ -123,7 +123,7 @@
                   </div>
 
                    <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">模块说明</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Module description[##else##]模块说明[##/if##]</label>
                     <div class="layui-input-block">      
                           <textarea  name="memo" cols="100" rows="5" class="layui-textarea formatcontent">[##$result.memo##]</textarea>
                     </div>
@@ -135,8 +135,8 @@
             </div>
             <div class="layui-form-item">
               <div class="layui-input-block">
-                <input id="sub_btn" name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
-                <input type="button"onclick="location.href='[##$_SGLOBAL.refer##]'"  class="submit layui-btn layui-btn-normal" value="返回">
+                <input id="sub_btn" name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
+                <input type="button"onclick="location.href='[##$_SGLOBAL.refer##]'"  class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]">
               </div>
             </div>
 
