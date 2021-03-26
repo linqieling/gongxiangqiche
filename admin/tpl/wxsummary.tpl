@@ -29,29 +29,29 @@
 </style>
 <table class="sctable1" width="98%" align="center" border="0" cellpadding="3" cellspacing="1" style="margin-top:20px;">
   <tr>
-    <td colspan="4" class='title'>昨日关键指标</td>
+    <td colspan="4" class='title'>[##if $_SESSION.lang eq 'english'##]Yesterday's key indicators [##else##]昨日关键指标[##/if##]</td>
   </tr>
   <tr>
     <td width="25%" align="center">
-      <div class="box_title">新关注</div>
+      <div class="box_title">[##if $_SESSION.lang eq 'english'##]New concerns [##else##]新关注[##/if##]</div>
       <div class="box_num">
         <span class="today">[##$newuser##]</span>
       </div>
     </td>
     <td align="center">
-      <div class="box_title">取消关注</div>
+      <div class="box_title">[##if $_SESSION.lang eq 'english'##]Cancel attention [##else##]取消关注[##/if##]</div>
       <div class="box_num">
         <span class="today">[##$canceluser##]</span>
       </div>
     </td>
     <td align="center">
-      <div class="box_title">净增关注</div>
+      <div class="box_title">[##if $_SESSION.lang eq 'english'##]Net increase in attention [##else##]净增关注[##/if##]</div>
       <div class="box_num">
         <span class="today">[##$growthuser##]</span>
       </div>
     </td>
     <td align="center">
-      <div class="box_title">累计关注</div>
+      <div class="box_title">[##if $_SESSION.lang eq 'english'##]Cumulative attention [##else##]累计关注[##/if##]</div>
       <div class="box_num">
         <span class="today">[##$total##]</span>
       </div>
@@ -85,11 +85,11 @@
 
       <div class="qk_wrap">
         <div class="wrap_box">
-          <h3>累计关注情况</h3>
+          <h3>[##if $_SESSION.lang eq 'english'##]Cumulative attention [##else##]累计关注情况[##/if##]</h3>
           <div id="main1" class="my_main"></div>
         </div>
         <div class="wrap_box">
-          <h3>用户性别分析</h3>
+          <h3>[##if $_SESSION.lang eq 'english'##]User gender analysis[##else##]用户性别分析[##/if##]</h3>
           <div id="main2" class="my_main"></div>
         </div>
       </div>
@@ -153,7 +153,7 @@
             trigger: 'axis',
         },
         title: {
-            text: '7日趋势图',
+            text: "[##if $_SESSION.lang eq 'english'##]7-day trend chart [##else##]7日趋势图[##/if##]",
         },
         
         toolbox: {
@@ -166,7 +166,8 @@
             }
         },
         legend: {
-            data:['新关注人数','取消关注人数','净增关注人数']
+            data:["[##if $_SESSION.lang eq 'english'##]Number of new followers [##else##]新关注人数[##/if##]","[##if $_SESSION.lang eq 'english'##]Number of people to cancel the following [##else##]取消关注人数[##/if##]","[##if $_SESSION.lang eq 'english'##]Net increase in number of people concerned [##else##]净增关注人数[##/if##]"]
+
         },
         calculable : true,
         xAxis: {
@@ -178,21 +179,21 @@
         
         series: [
             {
-                name:'新关注人数',
+                name:"[##if $_SESSION.lang eq 'english'##]Number of new followers [##else##]新关注人数[##/if##]",
                 type:'line',
                 stack: '总量',
                 itemStyle: {normal: {areaStyle: {type: 'default'}}},
                 data:datalist('newuser')
             },
             {
-                name:'取消关注人数',
+                name:"[##if $_SESSION.lang eq 'english'##]Number of people to cancel the following [##else##]取消关注人数[##/if##]",
                 type:'line',
                 stack: '总量',
                 itemStyle: {normal: {areaStyle: {type: 'default'}}},
                 data:datalist('canceluser')
             },
             {
-                name:'净增关注人数',
+                name:"[##if $_SESSION.lang eq 'english'##]Net increase in number of people concerned [##else##]净增关注人数[##/if##]",
                 type:'line',
                 stack: '总量',
                 itemStyle: {normal: {areaStyle: {type: 'default'}}},
@@ -277,7 +278,7 @@
                     },
                     legend: {
                       selectedMode : false,
-                        data:['总人数'],
+                        data:["[##if $_SESSION.lang eq 'english'##]Total number of people [##else##]总人数[##/if##]"],
                         y:'20'
                     },
                    grid:{
@@ -305,7 +306,7 @@
                     yAxis : [
                         {
                             type : 'value',
-                            name : '人数(人)'
+                            name : "[##if $_SESSION.lang eq 'english'##]Number of people [##else##]人数(人)[##/if##]"
                         }
                     ],
                     series : [
@@ -335,7 +336,7 @@
                         orient : 'vertical',
                         x : 'right',
                         y : 'center',
-                        data:['男性','女性','未知']
+                        data:["[##if $_SESSION.lang eq 'english'##]man[##else##]男性[##/if##]","[##if $_SESSION.lang eq 'english'##]woman[##else##]女性[##/if##]","[##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##]"]
                     },
                     toolbox: {
                         show : false,
@@ -361,7 +362,7 @@
                     calculable : false,
                     series : [
                         {
-                            name:'用户性别',
+                            name:"[##if $_SESSION.lang eq 'english'##]User gender[##else##]用户性别[##/if##]",
                             type:'pie',
                             center:['50%','55%'],
                             radius : ['40%', '52%'],
@@ -386,9 +387,9 @@
                                 }
                             },
                             data:[
-                                {value:[##$sexcount.nan##], name:'男性'},
-                                {value:[##$sexcount.nv##], name:'女性'},
-                                {value:[##$sexcount.total-($sexcount.nan+$sexcount.nv)##], name:'未知'}
+                                {value:[##$sexcount.nan##], name:"[##if $_SESSION.lang eq 'english'##]man[##else##]男[##/if##]"},
+                                {value:[##$sexcount.nv##], name:"[##if $_SESSION.lang eq 'english'##]woman[##else##]女[##/if##]"},
+                                {value:[##$sexcount.total-($sexcount.nan+$sexcount.nv)##], name:"[##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##]"}
                             ]
                         }
                     ]

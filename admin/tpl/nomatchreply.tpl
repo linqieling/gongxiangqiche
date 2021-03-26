@@ -87,7 +87,7 @@ function getdatalist(url){
 	   if(data){
 		 $("#keylist").html(data);
 	   }else{
-		 alert("服务器没有返回数据，可能服务器忙，请重试");
+		 alert("[##if $_SESSION.lang eq 'english'##]The server did not return data. The server may be busy. Please try again[##else##]服务器没有返回数据，可能服务器忙，请重试[##/if##]?");
 		 return false;
 	   }
 	 }
@@ -113,25 +113,25 @@ function getdatalist(url){
               <div class="layui-form-item type" [##if $op=='add'##][##elseif $result.type eq 2##]style="display:none;"[##/if##]>
                 <label class="layui-form-label">回复类型</label>
                 <div class="layui-input-block">
-                        <input name="replytype" type="radio"  value="1" [##if $result.replytype eq 1 or $op eq 'add'##] checked [##/if##] title="图文回复">
-					    <input name="replytype" style="margin-left:10px;" type="radio" value="2" [##if $result.replytype eq 2##] checked [##/if##] title="文本回复">
-					    <input name="replytype" style="margin-left:10px;" type="radio" value="3" [##if $result.replytype eq 3##] checked [##/if##] title="图片回复">
-						<input name="replytype" style="margin-left:10px;" type="radio" value="4" [##if $result.replytype eq 4##] checked [##/if##] title="语音回复"> 
-						<input name="replytype" style="margin-left:10px;" type="radio" value="5" [##if $result.replytype eq 5##] checked [##/if##] title="视频回复">
+                        <input name="replytype" type="radio"  value="1" [##if $result.replytype eq 1 or $op eq 'add'##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Graphic reply [##else##]图文回复[##/if##]">
+					    <input name="replytype" style="margin-left:10px;" type="radio" value="2" [##if $result.replytype eq 2##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Text reply [##else##]文本回复[##/if##]">
+					    <input name="replytype" style="margin-left:10px;" type="radio" value="3" [##if $result.replytype eq 3##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Picture reply [##else##]图片回复[##/if##]">
+						<input name="replytype" style="margin-left:10px;" type="radio" value="4" [##if $result.replytype eq 4##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Voice response[##else##]语音回复[##/if##]">
+						<input name="replytype" style="margin-left:10px;" type="radio" value="5" [##if $result.replytype eq 5##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Video reply[##else##]视频回复[##/if##]">
                 </div>
               </div>
                <div class="layui-form-item type1 type" [##if $op=='add'##][##elseif $result.type eq 2##]style="display:none;"[##/if##]>
-                <label class="layui-form-label">标题</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]title [##else##]标题[##/if##]</label>
                 <div class="layui-input-inline">
                      <input type="hidden" name="replyid" value="[##$result.id##]" />
                      <input type="text" id="keyword" readonly="readonly"  value="[##$result.keyword##]" class="layui-input" />
                 </div>
-                <div class="layui-input-inline"><input type="button" id="choosekey" value="选择关键字" class="submit layui-btn layui-btn-normal" ></div>
+                <div class="layui-input-inline"><input type="button" id="choosekey" value="[##if $_SESSION.lang eq 'english'##]Select keywords[##else##]选择关键字[##/if##]" class="submit layui-btn layui-btn-normal" ></div>
               </div>
               
               <div class="layui-form-item" style="margin:20px auto;">
                 <div class="layui-input-block">
-                  <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
+                  <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
 
                 </div>
               </div>

@@ -21,8 +21,8 @@
 [##if $op eq ""##]
 
 <blockquote class="layui-elem-quote layui-text" style="margin:1rem;">
-  <div>1.使用本模块生成微信端，必须在微信公众平台申请自定义菜单使用的AppId和AppSecret，然后在【授权设置】中设置。</div>
-  <div>2.微信端最多创建3 个一级菜单，每个一级菜单下最多可以创建 5 个二级菜单，菜单最多支持两层。（多出部分会生成前3个一级菜单）</div>
+  <div>1.[##if $_SESSION.lang eq 'english'##]To use this module to generate wechat terminal, you must apply for appid and appsecret for custom menu on wechat public platform, and then set them in [authorization settings].[##else##]使用本模块生成微信端，必须在微信公众平台申请自定义菜单使用的AppId和AppSecret，然后在【授权设置】中设置。[##/if##]</div>
+  <div>2.[##if $_SESSION.lang eq 'english'##]Wechat can create up to three first level menus, and each first level menu can create up to five second level menus, which can support up to two levels. (the extra part will generate the first three first level menus[##else##]微信端最多创建3 个一级菜单，每个一级菜单下最多可以创建 5 个二级菜单，菜单最多支持两层。（多出部分会生成前3个一级菜单[##/if##]）</div>
 </blockquote>
 
 
@@ -43,13 +43,13 @@
           <thead>
               <tr>
                     <td width="6%">ID</td>
-                    <td width="8%" class="hidden-xs">菜单排序</td>
-                    <td width="15%">菜单名称</td>
-                    <td width="10%" class="hidden-xs">菜单显示</td>
-                    <td width="10%" class="hidden-xs">菜单类型</td>
-                    <td width="10%" class="hidden-xs">回复类型</td>
-                    <td width="15%" class="hidden-xs">创建日期</td>
-                    <td width="10%">操作</td>
+                    <td width="8%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Menu sort [##else##]菜单排序[##/if##]</td>
+                    <td width="15%">[##if $_SESSION.lang eq 'english'##]Menu name [##else##]菜单名称[##/if##]</td>
+                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Menu display [##else##]菜单显示[##/if##]</td>
+                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Menu type [##else##]菜单类型[##/if##]</td>
+                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Reply type [##else##]回复类型[##/if##]</td>
+                    <td width="15%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Creation date [##else##]创建日期[##/if##]</td>
+                    <td width="10%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
 
               </tr> 
           </thead>
@@ -66,12 +66,12 @@
                             [##$datalist[loop].name##]
                             </div>
                         </td>
-                        <td  class="hidden-xs">[##if $datalist[loop].visual##]显示[##else##]隐藏[##/if##]</td>
+                        <td  class="hidden-xs">[##if $datalist[loop].visual##][##if $_SESSION.lang eq 'english'##]display[##else##]显示[##/if##][##else##][##if $_SESSION.lang eq 'english'##]hide[##else##]隐藏[##/if##][##/if##]</td>
                         <td  class="hidden-xs">
                             [##if $datalist[loop].level eq 1 and $datalist[loop].subid neq ""##]
                               -
                             [##else##]
-                              [##if $datalist[loop].type eq 1##]发送信息[##elseif $datalist[loop].type eq 2##]跳转到网页[##/if##]
+                              [##if $datalist[loop].type eq 1##][##if $_SESSION.lang eq 'english'##]Send message[##else##]发送信息[##/if##][##elseif $datalist[loop].type eq 2##][##if $_SESSION.lang eq 'english'##]Jump to web page[##else##]跳转到网页[##/if##][##/if##]
                             [##/if##]
                         </td>
                         <td  class="hidden-xs">
@@ -83,21 +83,21 @@
                         </td>
                         <td  class="hidden-xs">[##$datalist[loop].dateline|date_format:"%Y-%m-%d %H:%M:%S"##]</td>
                         <td>
-                        <a href="admin.php?view=wxmenu&op=edit&id=[##$datalist[loop].id##]">编辑</a>&nbsp;
-                        <a href="admin.php?view=wxmenu&op=del&id=[##$datalist[loop].id##]" onClick="return confirm('本操作不可恢复，确认删除？');">删除</a>
+                        <a href="admin.php?view=wxmenu&op=edit&id=[##$datalist[loop].id##]">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>&nbsp;
+                        <a href="admin.php?view=wxmenu&op=del&id=[##$datalist[loop].id##]" [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]>[##if $_SESSION.lang eq 'english'##]delect[##else##]删除[##/if##]</a>
                         </td>
                       </tr>
                     [##sectionelse##]
                       <tr>
-                        <td colspan="8">没有找到任何数据!</td>
+                        <td colspan="8">[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                       </tr>
                     [##/section##]
                      <tr>
                         <td  colspan="8" align='left'>
                                <div class="layui-btn-group">
-                                 <input type="button" onclick="javascript:window.location.href='admin.php?view=wxmenu&op=add'" value="添加菜单" class="layui-btn  layui-btn-sm">
-                                <input type="submit" name="savesubmit" value="保存排序" class="layui-btn  layui-btn-sm">
-                                <input type="button" onclick="javascript:window.location.href='admin.php?view=wxmenu&op=createmenu'" value="生成微信端自定义菜单" class="layui-btn  layui-btn-sm">
+                                 <input type="button" onclick="javascript:window.location.href='admin.php?view=wxmenu&op=add'" value="[##if $_SESSION.lang eq 'english'##]add menu [##else##]添加菜单[##/if##]" class="layui-btn  layui-btn-sm">
+                                <input type="submit" name="savesubmit" value="[##if $_SESSION.lang eq 'english'##]Save sort [##else##]保存排序[##/if##]" class="layui-btn  layui-btn-sm">
+                                <input type="button" onclick="javascript:window.location.href='admin.php?view=wxmenu&op=createmenu'" value="[##if $_SESSION.lang eq 'english'##]Generate wechat custom menu [##else##]生成微信端自定义菜单[##/if##]" class="layui-btn  layui-btn-sm">
 
                               </div>
                         </td>
@@ -154,8 +154,8 @@
            <div class="layui-form-item">
             <label class="layui-form-label">菜单显示</label>
             <div class="layui-input-block">
-                <input type="radio" name="visual" value="1" [##if $result.visual eq 1 or $result.visual|count_characters eq 0##] checked [##/if##] title="显示">
-                <input type="radio" name="visual" value="0" [##if $result.visual eq 0 and $result.visual|count_characters neq 0##] checked [##/if##] title="隐藏" >
+                <input type="radio" name="visual" value="1" [##if $result.visual eq 1 or $result.visual|count_characters eq 0##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]display[##else##]显示[##/if##]">
+                <input type="radio" name="visual" value="0" [##if $result.visual eq 0 and $result.visual|count_characters neq 0##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]hide[##else##]隐藏[##/if##]" >
             </div>
           </div>
           <div class="layui-form-item">
@@ -190,7 +190,7 @@
           		   if(data){
           			 $("#keylist").html(data);
           		   }else{
-          			 alert("服务器没有返回数据，可能服务器忙，请重试");
+          			 alert("[##if $_SESSION.lang eq 'english'##]The server did not return data. The server may be busy. Please try again[##else##]服务器没有返回数据，可能服务器忙，请重试[##/if##]?";
           			 return false;
           		   }
           		 }       
@@ -235,7 +235,7 @@
           		 if(data){
           		   $("#keylist").html(data);
           		 }else{
-          		   layer.msg("服务器没有返回数据，可能服务器忙，请重试", 2, 3);
+          		   layer.msg("[##if $_SESSION.lang eq 'english'##]The server did not return data. The server may be busy. Please try again[##else##]服务器没有返回数据，可能服务器忙，请重试[##/if##]?", 2, 3);
           		   return false;
           		 }
           	   }       
@@ -259,9 +259,9 @@
             <div class="layui-form-item type1 type">
               <label class="layui-form-label">回复类型</label>
               <div class="layui-input-block">
-                  <input name="replytype" type="radio" value="1" [##if $result.replytype eq 1 or $op eq 'add'##] checked [##/if##] title="文本回复">
-                  <input name="replytype" type="radio" value="4" [##if $result.replytype eq 4##] checked [##/if##] title="图片回复">
-                  <input name="replytype" type="radio" value="2" [##if $result.replytype eq 2##] checked [##/if##] title="图文回复">
+                  <input name="replytype" type="radio" value="1" [##if $result.replytype eq 1 or $op eq 'add'##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Text reply [##else##]文本回复[##/if##]">
+                  <input name="replytype" type="radio" value="4" [##if $result.replytype eq 4##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Picture reply [##else##]图片回复[##/if##]">
+                  <input name="replytype" type="radio" value="2" [##if $result.replytype eq 2##] checked [##/if##] title="[##if $_SESSION.lang eq 'english'##]Graphic reply [##else##]图文回复[##/if##]">
                   <input name="replytype" type="radio" value="3" [##if $result.replytype eq 3##] checked [##/if##] title="多图文回复">
 
               </div>
@@ -284,8 +284,8 @@
   [##/if##]
         <div class="layui-form-item" style="margin:20px auto;">
           <div class="layui-input-block">
-            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
-             <input type="button" onclick="location.href='[##$_SGLOBAL.refer##]'" class="submit layui-btn layui-btn-normal" value="返回"/>
+            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
+             <input type="button" onclick="location.href='[##$_SGLOBAL.refer##]'" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]"/>
           </div>
         </div>
   </div>
