@@ -5,15 +5,15 @@
   <div class="layui-form" action="">
       <div class="layui-form-item" style="margin:0.5rem 1rem;">
         <div class="layui-inline">
-            <input type="text" name="sid"  id="sid" placeholder="请输入用户ID" autocomplete="off" class="layui-input">
+            <input type="text" name="sid"  id="sid" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter user ID[##else##]请输入用户ID[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="sname" id="sname"  placeholder="请输入用户姓名" autocomplete="off" class="layui-input">
+            <input type="text" name="sname" id="sname"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter user name[##else##]请输入用户姓名[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="sphone" id="sphone"  placeholder="请输入用户手机号" autocomplete="off" class="layui-input">
+            <input type="text" name="sphone" id="sphone"  placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the user's mobile phone number[##else##]请输入用户手机号[##/if##]" autocomplete="off" class="layui-input">
         </div>
-        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
@@ -39,33 +39,33 @@ layui.use(['table','jquery'], function(){
      elem: "#userlist"
     ,url:"admin.php?view=dnn_userlist_deposit&op=list_api"
     ,toolbar: '#toolbarDemo'
-    ,title: "用户押金管理"
+    ,title: "[##if $_SESSION.lang eq 'english'##]User deposit management[##else##]用户押金管理[##/if##]"
     ,cols: [[
        {field:'uid', title:'UID',fixed: 'left',sort: true,width:90}
-      ,{field:'nickname', title:'姓名', width:160}
-      ,{field:'phone', title:'手机号', width:140, templet: function(res){
+      ,{field:'nickname', title:"[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]", width:160}
+      ,{field:'phone', title:"[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]", width:140, templet: function(res){
         var phone = '';
         if(res.phone){
           phone = res.phone;
         }else{
-          phone = '未注册';
+          phone = "[##if $_SESSION.lang eq 'english'##]unregistered[##else##]未注册[##/if##]";
         }
         return phone;
       }}
-      ,{field:'deposit', title:'押金', sort: true, width:120}
-      ,{fixed:'right', title:'操作', width:160, templet: function(res){
+      ,{field:'deposit', title:"[##if $_SESSION.lang eq 'english'##]deposit[##else##]押金[##/if##]", sort: true, width:120}
+      ,{fixed:'right', title:"[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]", width:160, templet: function(res){
           var html = '';
           if(res.deposit>0){
             /*if(res.deposit_no>0){
-              html += '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="return">退还押金</a>';
+              html += '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="return">[##if $_SESSION.lang eq 'english'##]return of down payment[##else##]退还押金[##/if##]</a>';
             }else{
-              html += '<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="return">手动退还</a>';
+              html += '<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="return">[##if $_SESSION.lang eq 'english' ##]Manual return[##else##]手动退还[##/if##]</a>';
             }*/
-            html += '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="return">退还押金</a>';
+            html += '<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="return">[##if $_SESSION.lang eq 'english' ##]return of down payment[##else##]退还押金[##/if##]</a>';
           }else{
-            html += '<a class="layui-btn layui-btn-xs layui-btn-disabled">押金不足</a>';
+            html += '<a class="layui-btn layui-btn-xs layui-btn-disabled">[##if $_SESSION.lang eq 'english' ##]Insufficient deposit[##else##]押金不足[##/if##]</a>';
           }
-          html += '<a class="layui-btn layui-btn-xs" lay-event="detailed">押金明细</a>';
+          html += '<a class="layui-btn layui-btn-xs" lay-event="detailed">[##if $_SESSION.lang eq 'english' ##]Deposit details[##else##]押金明细[##/if##]</a>';
           return html;
       }}
     ]]

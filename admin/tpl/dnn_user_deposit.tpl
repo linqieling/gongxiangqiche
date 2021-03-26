@@ -28,12 +28,12 @@ layui.use(['table','jquery'], function(){
        {type: 'checkbox', fixed: 'left',width:50,}
       ,{field:'uid', title:'UID', width:70, fixed: 'left', unresize: true, sort: true}
       ,{field:'money', title:'押金', width:150}
-      ,{field:'type', title:'类型', width:100, sort: true,templet:function(res){
+      ,{field:'type', title:"[##if $_SESSION.lang eq 'english'##]type[##else##]类型[##/if##]", width:100, sort: true,templet:function(res){
          var status='';
          if(res.type=='1'){
-            status='<b style="color:#F581B1">充值</b>';
+            status='<b style="color:#F581B1">[##if $_SESSION.lang eq 'english'##]Recharge[##else##]充值[##/if##]</b>';
          }else if(res.type=='2'){
-            status='<b style="color:#01AAED">退还</b>';
+            status='<b style="color:#01AAED">[##if $_SESSION.lang eq \'english\'##]return[##else##]退还[##/if##]</b>';
          }
          return status
       }}

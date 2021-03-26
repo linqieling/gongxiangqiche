@@ -32,36 +32,36 @@
       <div class="layui-form-item">
         <div class="layui-inline">
           <select name="status" lay-filter="status" id="status" >
-            <option value="all">全部</option>
-            <option value="1">余额支付</option>
-            <option value="2">微信支付</option>
-            <option value="3">优惠券抵扣</option>
+            <option value="all">[##if $_SESSION.lang eq 'english'##]whole[##else##]全部[##/if##]</option>
+            <option value="1">[##if $_SESSION.lang eq 'english'##]Balance payment[##else##]余额支付[##/if##]</option>
+            <option value="2">[##if $_SESSION.lang eq 'english'##]Wechat payment[##else##]微信支付[##/if##]</option>
+            <option value="3">[##if $_SESSION.lang eq 'english'##]Coupon deduction[##else##]优惠券抵扣[##/if##]</option>
           </select>
         </div>
 
         <div class="layui-inline">
-            <input type="text" name="nickname"  id="nickname" placeholder="用户名称" autocomplete="off" class="layui-input">
+            <input type="text" name="nickname"  id="nickname" placeholder="[##if $_SESSION.lang eq 'english'##]user name[##else##]用户名[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="phone" id="phone"  placeholder="用户电话" autocomplete="off" class="layui-input">
+            <input type="text" name="phone" id="phone"  placeholder="[##if $_SESSION.lang eq 'english'##]Subscriber phone[##else##]用户电话[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="startdateline" id="startdateline"  placeholder="开始时间" autocomplete="off" class="layui-input">
+            <input type="text" name="startdateline" id="startdateline"  placeholder="[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="enddateline" id="enddateline"  placeholder="结束时间" autocomplete="off" class="layui-input">
+            <input type="text" name="enddateline" id="enddateline"  placeholder="[##if $_SESSION.lang eq 'english'##]End time[##else##]结束时间[##/if##]" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-inline">
-            <input type="text" name="platenumber" id="platenumber"  placeholder="车牌号码" autocomplete="off" class="layui-input">
+            <input type="text" name="platenumber" id="platenumber"  placeholder="[##if $_SESSION.lang eq 'english'##]license plate[##else##]车牌号码[##/if##]" autocomplete="off" class="layui-input">
         </div>
-        <button class="layui-btn layui-btn-sm " id="search">搜索</button>
+        <button class="layui-btn layui-btn-sm " id="search">[##if $_SESSION.lang eq 'english'##]search[##else##]搜索[##/if##]</button>
       </div>
   </div>
   <!-- 查询条件end -->
 
   <script type="text/html" id="toolbarDemo">
-    <button class="layui-btn layui-btn-sm" lay-event="refurbish" >刷新</button>
-    <button class="layui-btn layui-btn-sm" lay-event="export" id="export" >导出</button>
+    <button class="layui-btn layui-btn-sm" lay-event="refurbish" >[##if $_SESSION.lang eq 'english'##]Refresh [##else##]刷新[##/if##]</button>
+    <button class="layui-btn layui-btn-sm" lay-event="export" id="export" >[##if $_SESSION.lang eq 'english'##]export[##else##]导出[##/if##]</button>
   </script>
 
   <div class="layui-table-box">
@@ -92,69 +92,69 @@ layui.use(['table','jquery','laydate','dialog'], function(){
          elem: "#order"
         ,url:"admin.php?view=dnn_consume&op=list_api"
         ,toolbar: '#toolbarDemo'
-        ,title: "支付管理"
+        ,title: "[##if $_SESSION.lang eq 'english'##]Payment management[##else##]支付管理[##/if##]"
         ,totalRow:true
         ,cols: [[
-          {field:'id', title:'ID', width:70, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
+          {field:'id', title:'ID', width:70, fixed: 'left', unresize: true, sort: true, totalRowText: "[##if $_SESSION.lang eq 'english'##]total[##else##]合计[##/if##]"}
           ,{type: 'checkbox', fixed: 'left',width:55,}
-          ,{field:'phone', title:'手机', width:120}
-          ,{field:'nickname', title:'姓名', width:80}
-          ,{field:'money', title:'支付金额', width:120, sort: true, totalRow: true, templet: function(res){
-            var money = res.money+'&nbsp;元';
+          ,{field:'phone', title:"[##if $_SESSION.lang eq 'english'##]phone[##else##]手机[##/if##]", width:120}
+          ,{field:'nickname', title:"[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]", width:80}
+          ,{field:'money', title:"[##if $_SESSION.lang eq 'english'##]Payment amount[##else##]支付金额[##/if##]", width:120, sort: true, totalRow: true, templet: function(res){
+            var money = res.money+"&nbsp;[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]";
             return money
           }}
-          ,{field:'paytype', title:'支付类型', width:105, sort: true, templet: function(res){
+          ,{field:'paytype', title:"[##if $_SESSION.lang eq 'english'##]Payment type[##else##]支付类型[##/if##]", width:105, sort: true, templet: function(res){
              var type='';
              if(res.paytype=='1'){
-                type='<b style="color:#ff5722">余额支付</b>';
+                type='<b style="color:#ff5722">[##if $_SESSION.lang eq 'english'##]Balance payment[##else##]余额支付[##/if##]</b>';
              }else if(res.paytype=='2'){
-                type='<b style="color:#4CAF50">微信支付</b>';
+                type='<b style="color:#4CAF50">[##if $_SESSION.lang eq 'english'##]Wechat payment[##else##]微信支付[##/if##]</b>';
              }else if(res.paytype=='3'){
-                type='<b style="color:#01AAED">优惠券抵扣</b>';
+                type='<b style="color:#01AAED">[##if $_SESSION.lang eq 'english'##]Coupon deduction[##else##]优惠券抵扣[##/if##]</b>';
              }else{
-                type='<b style="color:#999999">未知</b>';
+                type='<b style="color:#999999">[##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##]</b>';
              }
              return type
           }}
-          ,{field:'platenumber', title:'使用车辆', width:110}
-          ,{field:'totalmoney', title:'订单金额', width:120, sort: true, totalRow: true, templet: function(res){
-            var totalmoney = res.totalmoney+'&nbsp;元';
+          ,{field:'platenumber', title:"[##if $_SESSION.lang eq 'english'##]Use of vehicles[##else##]使用车辆[##/if##]", width:110}
+          ,{field:'totalmoney', title:"[##if $_SESSION.lang eq 'english'##]Order amount[##else##]订单金额[##/if##]", width:120, sort: true, totalRow: true, templet: function(res){
+            var totalmoney = res.totalmoney+"&nbsp;[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]";
             return totalmoney
           }}
-          ,{field:'duration', title:'使用时长', width:120, sort: true, totalRow: true, templet: function(res){
-            var time = res.duration+'&nbsp;分钟';
+          ,{field:'duration', title:"[##if $_SESSION.lang eq 'english'##]Duration of use[##else##]使用时长[##/if##]", width:120, sort: true, totalRow: true, templet: function(res){
+            var time = res.duration+"&nbsp;[##if $_SESSION.lang eq 'english'##]minute[##else##]分钟[##/if##]";
             return time
           }}
-          ,{field:'mileage', title:'使用里程', width:120, sort: true, totalRow: true, templet: function(res){
-            var mileage = res.mileage+'&nbsp;公里';
+          ,{field:'mileage', title:"[##if $_SESSION.lang eq 'english'##]Mileage[##else##]使用里程[##/if##]", width:120, sort: true, totalRow: true, templet: function(res){
+            var mileage = res.mileage+"&nbsp;[##if $_SESSION.lang eq 'english'##]km[##else##]公里[##/if##]";
             return mileage
           }}
-          ,{field:'coupon_name', title:'优惠券', width:100, templet: function(res){
+          ,{field:'coupon_name', title:"[##if $_SESSION.lang eq 'english'##]coupon[##else##]优惠券[##/if##]", width:100, templet: function(res){
              var name='';
              if(res.couponid){
                 name=res.coupon_name;
              }else{
-                name='未使用';
+                name="[##if $_SESSION.lang eq 'english'##]not used[##else##]未使用[##/if##]";
              }
              return name
           }}
-          ,{field:'coupon_money', title:'优惠金额', width:100, sort: true, totalRow: true, templet: function(res){
+          ,{field:'coupon_money', title:"[##if $_SESSION.lang eq 'english'##]Preferential amount[##else##]优惠金额[##/if##]", width:100, sort: true, totalRow: true, templet: function(res){
             var money='';
             if(res.couponid){
                 if(res.coupon_type==1 || res.coupon_type==2){
                   money=res.coupon_money;
                 }else if(res.coupon_type==3){
-                  money=res.coupon_money+'折';
+                  money=res.coupon_money+"[##if $_SESSION.lang eq 'english'##]0% discount[##else##]折[##/if##]";
                 }else if(res.coupon_type==4){
-                  money='免单';
+                  money="[##if $_SESSION.lang eq 'english'##]Free of charge[##else##]免单[##/if##]";
                 }
             }else if((res.totalmoney-res.money) > 0){
             	money = res.totalmoney-res.money;
             }
             return money
           }}
-          ,{field:'title', title:'支付备注说明', width:280}
-          ,{field:'dateline', title:'支付时间', width:170}
+          ,{field:'title', title:"[##if $_SESSION.lang eq 'english'##]Payment notes[##else##]支付备注说明[##/if##]", width:280}
+          ,{field:'dateline', title:"[##if $_SESSION.lang eq 'english'##]Payment time[##else##]支付时间[##/if##]", width:170}
         ]]
         ,id: 'testReload'
         ,page: true
@@ -183,7 +183,7 @@ layui.use(['table','jquery','laydate','dialog'], function(){
                 }
               });
           }else{
-            layer.msg('筛选条件不能为空', {icon: 2});
+            layer.msg("[##if $_SESSION.lang eq 'english'##]Filter condition cannot be empty[##else##]筛选条件不能为空[##/if##]", {icon: 2});
           }
       });
       // 头工具栏事件
