@@ -35,10 +35,10 @@
 
           </style>
             <fieldset class="layui-elem-field layui-field-title">
-             <legend>业务员管理</legend>
+             <legend>[##if $_SESSION.lang eq 'english'##]Salesman management[##else##]业务员管理[##/if##]</legend>
             </fieldset>
             <div style="padding: 0px 10px;">
-              <input type="button" onClick="javascript:window.location.href='admin.php?view=usersale&op=add'" value="增加业务员" class="submit  layui-btn  layui-btn-sm" />
+              <input type="button" onClick="javascript:window.location.href='admin.php?view=usersale&op=add'" value="[##if $_SESSION.lang eq 'english'##]Add business staff[##else##]增加业务员[##/if##]" class="submit  layui-btn  layui-btn-sm" />
             </div>
              <div class="layui-form" id="table-list" style="margin:0.5rem;">
                 <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
@@ -55,16 +55,16 @@
                         <thead>
                             <tr align="center">
                                 <td width="6%">ID</td>
-                                <td width="" class="hidden-xs">编码</td>
-                                <td width="10%" class="hidden-xs">姓名</td>
-                                <td width="6%" class="hidden-xs">性别</td>
-                                <td width="12%" class="hidden-xs">手机号</td>
-                                <td width="8%" class="hidden-xs">状态</td>
-                                <td width="10%" class="hidden-xs">邀请人数</td>
-                                <td width="12%" class="hidden-xs">添加时间</td>
-                                <td width="12%" class="hidden-xs">最近修改时间</td>
-                                <td width="10%">操作</td>
-                            </tr> 
+                                <td width="" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]code[##else##]编码[##/if##]</td>
+                                <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]</td>
+                                <td width="6%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Gender[##else##]性别[##/if##]</td>
+                                <td width="12%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</td>
+                                <td width="8%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]</td>
+                                <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Number of people invited[##else##]邀请人数[##/if##]</td>
+                                <td width="12%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Add time[##else##]添加时间[##/if##]</td>
+                                <td width="12%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Last modified[##else##]最近修改时间[##/if##]</td>
+                                <td width="10%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
+                            </tr>
                         </thead>
                         <tbody>
                               [##section name=loop loop=$datalist##]
@@ -76,9 +76,9 @@
                                   <td class="hidden-xs">[##$datalist[loop].phone##]</td>
                                   <td class="hidden-xs">
                                     [##if $datalist[loop].status##]
-                                      <a class="layui-btn layui-btn-xs">正常</a>
+                                      <a class="layui-btn layui-btn-xs">[##if $_SESSION.lang eq 'english'##]normal[##else##]正常[##/if##]</a>
                                     [##else##]
-                                      <a class="layui-btn layui-btn-xs layui-btn-danger">禁用</a>
+                                      <a class="layui-btn layui-btn-xs layui-btn-danger">[##if $_SESSION.lang eq 'english'##]Disable[##else##]禁用[##/if##]</a>
                                     [##/if##]
                                   </td>
                                   <td class="hidden-xs">
@@ -91,17 +91,17 @@
                                   <td class="hidden-xs">[##$datalist[loop].dateline|date_format:"%Y-%m-%d %H:%m"##]</td>
                                   <td class="hidden-xs">[##$datalist[loop].updateline|date_format:"%Y-%m-%d %H:%m"##]</td>
                                   <td>
-                                    <a href="admin.php?view=usersale&op=edit&id=[##$datalist[loop].id##]">编辑</a>
+                                    <a href="admin.php?view=usersale&op=edit&id=[##$datalist[loop].id##]">[##if $_SESSION.lang eq 'english'##]edit[##else##]编辑[##/if##]</a>
                                     &nbsp;&nbsp;
-                                    <a href="admin.php?view=usersale&op=del&id=[##$datalist[loop].id##]&name=[##$datalist[loop].name##]" onClick="return confirm('本操作不可恢复，确认删除？');">删除</a>
+                                    <a href="admin.php?view=usersale&op=del&id=[##$datalist[loop].id##]&name=[##$datalist[loop].name##]" [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##] >[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>
                                   </td>
                                 </tr>
                                 [##sectionelse##]
                                 <tr>
-                                  <td align="center" colspan="10" class="autocolspancount">没有找到任何数据!</td>
+                                  <td align="center" colspan="10" class="autocolspancount">[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                                 </tr>
                                 [##/section##]
-                                
+
                                 [##if $multi##]
                                 <tr>
                                   <td colspan="10">
@@ -112,7 +112,7 @@
                         </tbody>
                 </table>
            </div>
-          
+
 
 [##else##]
 
@@ -122,7 +122,7 @@
           <input type="hidden" name="id" value="[##$_GET.id##]" />
 
           <fieldset class="layui-elem-field layui-field-title">
-            <legend>[##if $op eq 'edit'##]编辑业务员[##else##]添加业务员[##/if##]</legend>
+            <legend>[##if $op eq 'edit'##][##if $_SESSION.lang eq 'english'##]Editing salesman[##else##]编辑业务员[##/if##][##else##][##if $_SESSION.lang eq 'english'##]Add salesman[##else##]添加业务员[##/if##][##/if##]</legend>
           </fieldset>
 
           <div class="layui-tab-item layui-show">
@@ -131,48 +131,48 @@
 
 
               <div class="layui-form-item">
-                <label class="layui-form-label">业务编码</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Business code[##else##]业务编码[##/if##]</label>
                 <div class="layui-inline">
-                  <input type="text" name="code" class="layui-input" maxlength="10" value="[##$result.code##]" placeholder="请输入业务员编码" />
+                  <input type="text" name="code" class="layui-input" maxlength="10" value="[##$result.code##]" placeholder="[##if $_SESSION.lang eq 'english'##]Please input the salesman code[##else##]请输入业务员编码[##/if##]" />
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">姓名</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]name[##else##]姓名[##/if##]</label>
                 <div class="layui-inline">
-                  <input type="text" name="name" class="layui-input" maxlength="8" value="[##$result.name##]" placeholder="请输入业务员姓名" />
+                  <input type="text" name="name" class="layui-input" maxlength="8" value="[##$result.name##]" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the name of the salesman[##else##]请输入业务员姓名[##/if##]" />
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Gender[##else##]性别[##/if##]</label>
                 <div class="layui-input-block">
-                  <input type="radio" name="sex" value="1" [##if !$result.sex || $result.sex == 1##] checked="checked"[##/if##] lay-filter="status" title="男" />
-                  <input type="radio" name="sex" value="2"[##if $result.sex == 2##] checked="checked"[##/if##] lay-filter="status" title="女" />
+                  <input type="radio" name="sex" value="1" [##if !$result.sex || $result.sex == 1##] checked="checked"[##/if##] lay-filter="status" title="[##if $_SESSION.lang eq 'english'##]man[##else##]男[##/if##]" />
+                  <input type="radio" name="sex" value="2"[##if $result.sex == 2##] checked="checked"[##/if##] lay-filter="status" title="[##if $_SESSION.lang eq 'english'##]woman[##else##]女[##/if##]" />
                 </div>
               </div>
 
               <div class="layui-form-item">
-                <label class="layui-form-label">手机号码</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
                 <div class="layui-inline">
-                  <input type="text" name="phone" class="layui-input" maxlength="11" value="[##$result.phone##]" placeholder="请输入业务员手机号" />
+                  <input type="text" name="phone" class="layui-input" maxlength="11" value="[##$result.phone##]" placeholder="[##if $_SESSION.lang eq 'english'##]Please input the operator's mobile number[##else##]请输入业务员手机号[##/if##]" />
                 </div>
               </div>
 
               [##if $op eq 'edit'##]
               <div class="layui-form-item">
-                <label class="layui-form-label">状态</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]status[##else##]状态[##/if##]</label>
                 <div class="layui-input-block">
-                  <input type="radio" name="status" value="1" [##if $result.status##] checked="checked"[##/if##] lay-filter="status" title="正常" />
-                  <input type="radio" name="status" value="0"[##if !$result.status##] checked="checked"[##/if##] lay-filter="status" title="禁用" />
+                  <input type="radio" name="status" value="1" [##if $result.status##] checked="checked"[##/if##] lay-filter="status" title="[##if $_SESSION.lang eq 'english'##]normal[##else##]正常[##/if##]" />
+                  <input type="radio" name="status" value="0"[##if !$result.status##] checked="checked"[##/if##] lay-filter="status" title="[##if $_SESSION.lang eq 'english'##]Disable[##else##]禁用[##/if##]" />
                 </div>
               </div>
               [##/if##]
 
               <div class="layui-form-item">
                 <div class="layui-input-block">
-                  <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="立即提交" />
-                  <input type="button" onclick="javascript:window.location.href='admin.php?view=usersale'"  class="submit layui-btn layui-btn-normal" value="返回" />
+                  <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]" />
+                  <input type="button" onclick="javascript:window.location.href='admin.php?view=usersale'"  class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]" />
                 </div>
               </div>
 
