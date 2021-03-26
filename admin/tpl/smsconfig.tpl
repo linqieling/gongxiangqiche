@@ -34,41 +34,41 @@
 <form method="post" action="admin.php?view=smsconfig&op=[##$op##]" enctype="multipart/form-data"  >
   <input type="hidden" name="formhash" value="[##$_SGLOBAL.formhash##]" />
   <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>短信配置</legend>
+    <legend>[##if $_SESSION.lang eq 'english'##]SMS configuration [##else##]短信配置[##/if##]</legend>
   </fieldset>
         <div class="layui-tab-item layui-show">
           <div class="layui-form  layui-form-pane" style="width: 90%;padding-top: 20px;">
 
               <div class="layui-form-item">
-                <label class="layui-form-label">是否启用</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Enable or not[##else##]是否启用[##/if##]</label>
                 <div class="layui-input-block">
-                    <input type="radio"  name="sms[status]" value="1" [##if $sms.status##] checked="checked"[##/if##] lay-filter="status" title="是" >
-                    <input type="radio"  name="sms[status]" value="0" [##if !$sms.status##] checked="checked"[##/if##] lay-filter="status" title="否" > 
+                    <input type="radio"  name="sms[status]" value="1" [##if $sms.status##] checked="checked"[##/if##] lay-filter="status" title="[##if $_SESSION.lang eq 'english'##]Yes[##else##]是[##/if##]" >
+                    <input type="radio"  name="sms[status]" value="0" [##if !$sms.status##] checked="checked"[##/if##] lay-filter="status" title="[##if $_SESSION.lang eq 'english'##]No[##else##]否[##/if##]" >
                 </div>
               </div>
 
               <div class="layui-form-item ture" style="display:none">
-                <label class="layui-form-label">平台接口</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Platform interface [##else##]平台接口[##/if##]</label>
                 <div class="layui-input-block">
-                    <input type="radio"  name="sms[type]" value="1" [##if $sms.type eq 1##] checked="checked"[##/if##] lay-filter="type" title="云信" >
-                    <input type="radio"  name="sms[type]" value="2" [##if $sms.type eq 2##] checked="checked"[##/if##] lay-filter="type" title="阿里云" > 
+                    <input type="radio"  name="sms[type]" value="1" [##if $sms.type eq 1##] checked="checked"[##/if##] lay-filter="type" title="[##if $_SESSION.lang eq 'english'##]Yunxin [##else##]云信[##/if##]" >
+                    <input type="radio"  name="sms[type]" value="2" [##if $sms.type eq 2##] checked="checked"[##/if##] lay-filter="type" title="[##if $_SESSION.lang eq 'english'##]Alicloud [##else##]阿里云[##/if##]" >
                 </div>
               </div>
 
                <div class="layui-form-item type1" style="display:none">
-                <label class="layui-form-label">短信签名</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]SMS signature [##else##]短信签名[##/if##]</label>
                 <div class="layui-input-block">
                     <input type="text" class="layui-input" name="sms[product]" value="[##$sms.product##]" size="70"   />  
                 </div>
               </div>
                <div class="layui-form-item type1" style="display:none">
-                <label class="layui-form-label">用户名</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]user name[##else##]用户名[##/if##]</label>
                 <div class="layui-input-block">
                     <input type="text" class="layui-input"  name="sms[smsuid]" value="[##$sms.smsuid##]" size="70"   />
                 </div>
               </div>
                <div class="layui-form-item type1" style="display:none">
-                <label class="layui-form-label">密码</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]password[##else##]密码[##/if##]</label>
                 <div class="layui-input-block">
                      <input type="text" class="layui-input" name="sms[smspwd]" value="[##$sms.smspwd##]"  size="70"  />
                 </div>
@@ -76,7 +76,7 @@
 
 
                <div class="layui-form-item type2" style="display:none">
-                <label class="layui-form-label">短信签名</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]SMS signature [##else##]短信签名[##/if##]</label>
                 <div class="layui-input-block">
                     <input type="text" class="layui-input" name="sms[autograph]" value="[##$sms.autograph##]" />
                 </div>
@@ -95,13 +95,13 @@
               </div>
                [##if $sms.smsuid!='' and $sms.smspwd!=''##]
               <div class="layui-form-item type2"  style="display:none">
-                <label class="layui-form-label">剩余短信条数</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Number of SMS remaining [##else##]剩余短信条数[##/if##]</label>
                 <div class="layui-input-block">
                      <input type="text" class="layui-input"  value="[##$smsnum##]"  readonly="readonly" />
                 </div>
               </div>
               <div class="layui-form-item type2"  style="display:none">
-                <label class="layui-form-label">已发送总条数</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Total number of sent [##else##]已发送总条数[##/if##]</label>
                 <div class="layui-input-block">
                      <input type="text" class="layui-input" value="[##$smscount##]" readonly="readonly" />
                 </div>
@@ -113,8 +113,8 @@
         </div>
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <input id="sub_btn" name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
-            <input type="button" onclick="javascript:window.location.href='admin.php?view=smsconfig'"  class="submit layui-btn layui-btn-normal" value="返回" />
+            <input id="sub_btn" name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
+            <input type="button" onclick="javascript:window.location.href='admin.php?view=smsconfig'"  class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]" />
           </div>
         </div>
 

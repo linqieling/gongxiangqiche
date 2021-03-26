@@ -32,16 +32,16 @@
              <div class="layui-form-item">
 
               <div class="layui-inline">
-                <label class="layui-form-label">短信ID</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]message [##else##]短信[##/if##]ID</label>
                 <div class="layui-input-inline">
-                     <input type="text" name="sid"  class="layui-input" placeholder="短信ID" value="[##$search.sid##]" autocomplete="off" />
+                     <input type="text" name="sid"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]message [##else##]短信[##/if##]ID" value="[##$search.sid##]" autocomplete="off" />
                 </div>
               </div>
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">电话号码</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Telephone number [##else##]电话号码[##/if##]</label>
                 <div class="layui-input-inline">
-                     <input type="text" name="sphone"  class="layui-input" placeholder="电话号码" value="[##$search.sphone##]" autocomplete="off" />
+                     <input type="text" name="sphone"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]Telephone number [##else##]电话号码[##/if##]" value="[##$search.sphone##]" autocomplete="off" />
                 </div>
               </div>
 
@@ -51,15 +51,15 @@
 
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">开始时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="开始时间" autocomplete="off" class="layui-input" value="[##$search.sstarttime##]" />
+                  <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]" autocomplete="off" class="layui-input" value="[##$search.sstarttime##]" />
                 </div>
               </div>
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">结束时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]end time[##else##]结束时间[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="sendtime" id="sendtime" lay-verify="date" placeholder="结束时间" autocomplete="off" class="layui-input" value="[##$search.sendtime##]" />
+                  <input type="text" name="sendtime" id="sendtime" lay-verify="date" placeholder="[##if $_SESSION.lang eq 'english'##]End time[##else##]结束时间[##/if##]" autocomplete="off" class="layui-input" value="[##$search.sendtime##]" />
                 </div>
               </div>
 
@@ -67,7 +67,7 @@
               <div class="layui-inline">
                 <label class="layui-form-label"></label>
                 <div class="layui-input-inline">
-                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="立即提交">
+                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]">
                 </div>
               </div>
             </div> 
@@ -91,11 +91,11 @@
                                   <td colspan="7"  align="left" >
                               
                                         <div class="layui-btn-group">
-                                           <input type="button" onclick="javascript:window.location.href='admin.php?view=smslist&op=add'" value="短信群发" class="layui-btn  layui-btn-sm">
-                                           <input class="layui-btn  layui-btn-sm" type="submit" name="deletesubmit" value="删除" onclick="return confirm('本操作不可恢复，确认删除？');">
-                                           <input type="button" onClick="func3()" value="导出excel" class="submit layui-btn  layui-btn-sm">
+                                           <input type="button" onclick="javascript:window.location.href='admin.php?view=smslist&op=add'" value="[##if $_SESSION.lang eq 'english'##]SMS group sending [##else##]短信群发[##/if##]" class="layui-btn  layui-btn-sm">
+                                           <input class="layui-btn  layui-btn-sm" type="submit" name="deletesubmit" value="[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]"  [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]>
+                                           <input type="button" onClick="func3()" value="[##if $_SESSION.lang eq 'english'##]export [##else##]导出[##/if##]excel" class="submit layui-btn  layui-btn-sm">
                                            <input type="hidden" name="type" id="type" />
-                                           <input type="submit" name="shopexcelsubmit" id="export" value="导出excel" class="submit" style="display:none">
+                                           <input type="submit" name="shopexcelsubmit" id="export" value="[##if $_SESSION.lang eq 'english'##]export [##else##]导出[##/if##]excel" class="submit" style="display:none">
 
                                       </div>
 
@@ -104,11 +104,11 @@
                                 <tr>
                                     <td width="6%">ID</td>
                                     <td width="4%" class="hidden-xs"><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
-                                    <td width="10%">电话号码</td>
-                                    <td width="12%" class="hidden-xs">短信内容</td>
-                                    <td width="10%">模板ID</td>
-                                    <td width="10%" class="hidden-xs">创建时间</td>
-                                    <td width="12%">操作</td>
+                                    <td width="10%">[##if $_SESSION.lang eq 'english'##]Telephone number [##else##]电话号码[##/if##]</td>
+                                    <td width="12%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]export [##else##]短信内容[##/if##]</td>
+                                    <td width="10%">[##if $_SESSION.lang eq 'english'##]Template [##else##]模板[##/if##]ID</td>
+                                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]SMS content[##else##]创建时间[##/if##]</td>
+                                    <td width="12%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
 
                                 </tr> 
                             </thead>
@@ -122,17 +122,17 @@
                                         <td>[##if $datalist[loop].template!=''##][##$datalist[loop].template##][##else##]全文模板发送[##/if##]</td>
                                         <td class="hidden-xs">[##$datalist[loop].dateline|date_format:"%Y-%m-%d %H:%M:%S"##]</td>
                                         <td>
-                                            &nbsp;<a href="admin.php?view=smslist&op=del&id=[##$datalist[loop].id##]">删除</a>
+                                            &nbsp;<a href="admin.php?view=smslist&op=del&id=[##$datalist[loop].id##]">[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]</a>
                                         </td>
                                     </tr>
                                     [##sectionelse##]
-                                        <td colspan="7">没有找到任何数据!</td>
+                                        <td colspan="7">[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                                     [##/section##]
                                     
                                     <tr>
                                         <td colspan="7">
                                             [##if $multi##]<div class="layui-box layui-laypage layui-laypage-default pages">[##$multi##]</div>
-                                            [##else##]共[##$count##]条记录
+                                            [##else##][##if $_SESSION.lang eq 'english'##][##$count##] records in total[##else##]共[##$count##]条记录[##/if##]
                                             [##/if##]
                                         </td>
                                     </tr>
@@ -353,52 +353,52 @@
 
             [##if $sms.type eq 1##]
                  <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">接收号码</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Receiving number[##else##]接收号码[##/if##]</label>
                     <div class="layui-input-block">
-                      <textarea id="phone" name="phone" placeholder="请输入电话号码,每个号码用逗号(,)分开" rows="5"  class="layui-textarea"></textarea>
+                      <textarea id="phone" name="phone" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the phone numbers, separated by commas (,)[##else##]请输入电话号码,每个号码用逗号(,)分开[##/if##]" rows="5"  class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">短信内容</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]SMS content[##else##]短信内容[##/if##]</label>
                     <div class="layui-input-block">
-                      <textarea id="content" name="content" placeholder="请输入短信内容"  rows="5"  class="layui-textarea"></textarea>
+                      <textarea id="content" name="content" placeholder="[##if $_SESSION.lang eq 'english'##]Please input the content of SMS[##else##]请输入短信内容[##/if##]"  rows="5"  class="layui-textarea"></textarea>
                     </div>
                 </div>
             [##elseif $sms.type eq 2##]
                  <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">接收号码</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Receiving number[##else##]接收号码[##/if##]</label>
                     <div class="layui-input-block">
-                      <textarea id="phone" name="phone" placeholder="请输入电话号码,每个号码用逗号(,)分开" rows="5"  class="layui-textarea"></textarea>
+                      <textarea id="phone" name="phone" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the phone numbers, separated by commas (,)[##else##]请输入电话号码,每个号码用逗号(,)分开[##/if##]" rows="5"  class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item ">
-                    <label class="layui-form-label">短信签名</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]SMS signature [##else##]短信签名[##/if##]</label>
                     <div class="layui-input-block">
                       <input type="text" name="signname" size="30" placeholder="例：慧鼎科技" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item ">
-                    <label class="layui-form-label">模板code</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Template [##else##]模板[##/if##]code</label>
                     <div class="layui-input-block">
                       <input type="text" name="templatecode" size="30" placeholder="例：SMS_100"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item ">
-                    <label class="layui-form-label">变量名</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Variable name [##else##]变量名[##/if##]</label>
                     <div class="layui-input-block">
                       <input type="text" name="codename" size="30" placeholder="例：code"   class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">变量内容</label>
+                    <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Variable content [##else##]变量内容[##/if##]</label>
                     <div class="layui-input-block">
-                      <input type="text" name="code" size="50" placeholder="示例：您的验证码为：${code},其中${code}为变量内容"  class="layui-input">
+                      <input type="text" name="code" size="50" placeholder="[##if $_SESSION.lang eq 'english'##]Example: your verification code is ${code}, where ${code} is the variable content [##else##]示例：您的验证码为：${code},其中${code}为变量内容[##/if##]"  class="layui-input">
                     </div>
                 </div>
 
             [##else##]
 
-               <div>请先完善短信基本配置</div>
+               <div>[##if $_SESSION.lang eq 'english'##]Please improve the basic configuration of SMS first[##else##]请先完善短信基本配置[##/if##]</div>
 
             [##/if##]
 
@@ -407,8 +407,8 @@
 
            <div class="layui-form-item">
               <div class="layui-input-block">
-                <input name="submit" id="sub_btn" type="submit" class="submit layui-btn layui-btn-normal" value="立即提交" />
-                <input type="button" onclick="javascript:window.location.href='admin.php?view=permission'"  class="submit layui-btn layui-btn-normal" value="返回" />
+                <input name="submit" id="sub_btn" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]" />
+                <input type="button" onclick="javascript:window.location.href='admin.php?view=permission'"  class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]" />
               </div>
             </div>
             
@@ -421,7 +421,7 @@
     <div class="loadingbox">
         <div class="loading">
             <div class="timer"></div>
-            <div class="text">请稍后，正在发送中...</div>
+            <div class="text">[##if $_SESSION.lang eq 'english'##]Please wait, sending[##else##]请稍后，正在发送中...[##/if##]</div>
         </div>
     </div>
 
@@ -434,36 +434,36 @@
             var type=$("#type").val();
             if(type==1){
               if(!$("#phone").val()){
-                layer.msg('请填写接收号码!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the receiving number[##else##]请填写接收号码[##/if##]!");
                 return false;
               }
               if(!$("#content").val()){
-                layer.msg('请填写短信内容!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the text message![##else##]请填写短信内容![##/if##]");
                 return false;
               }
             }else if(type==2){
               if(!$("#phone").val()){
-                layer.msg('请填写接收号码!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the receiving number[##else##]请填写接收号码[##/if##]");
                 return false;
               }
               if(!$("input[name='signname']").val()){
-                layer.msg('请填写短信签名!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the SMS signature![##else##]请填写短信签名![##/if##]");
                 return false;
               }
               if(!$("input[name='templatecode']").val()){
-                layer.msg('请填写模板code!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the template code![##else##]请填写模板code![##/if##]");
                 return false;
               }
               if(!$("input[name='codename']").val()){
-                layer.msg('请填写变量名!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the variable name[##else##]请填写变量名[##/if##]!");
                 return false;
               }
               if(!$("input[name='code']").val()){
-                layer.msg('请填写变量内容!');
+                layer.msg("[##if $_SESSION.lang eq 'english'##]Please fill in the variable content[##else##]请填写变量内容[##/if##]!");
                 return false;
               }
             }else{
-              layer.msg('请先完善短信基本配置!');
+              layer.msg("[##if $_SESSION.lang eq 'english'##]Please improve the basic configuration of SMS first[##else##]请先完善短信基本配置[##/if##]");
               return false;
             }
 

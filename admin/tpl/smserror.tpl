@@ -95,9 +95,9 @@
               </div>
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">手机号码</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
                 <div class="layui-input-inline">
-                     <input type="text" name="sphone" value="[##$search.sphone##]"  class="layui-input" placeholder="手机号码" value="" autocomplete="off" />
+                     <input type="text" name="sphone" value="[##$search.sphone##]"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]" value="" autocomplete="off" />
                 </div>
               </div>
 
@@ -106,14 +106,14 @@
             <div class="layui-form-item">
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">开始时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="开始时间" autocomplete="off" class="layui-input"  value="[##$search.sstarttime##]"  />
+                  <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]" autocomplete="off" class="layui-input"  value="[##$search.sstarttime##]"  />
                 </div>
               </div>
 
               <div class="layui-inline hidden-xs">
-                <label class="layui-form-label">结束时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]end time[##else##]结束时间[##/if##]:</label>
                 <div class="layui-input-inline">
                   <input type="text" name="sendtime" id="sendtime" lay-verify="date" value="[##$search.sendtime##]"   autocomplete="off" class="layui-input"   />
                 </div>
@@ -122,7 +122,7 @@
               <div class="layui-inline">
                 <label class="layui-form-label"></label>
                 <div class="layui-input-inline">
-                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="立即提交">
+                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]">
                 </div>
               </div>
             </div> 
@@ -149,13 +149,13 @@
                             <tr>
                                     <td width="6%">ID</td>
                                     <td width="4%"><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
-                                    <td width="10%" class="hidden-xs">来源</td>
-                                    <td width="10%">手机号码</td>
-                                    <td width="10%" class="hidden-xs">错误码</td>
-                                    <td class="hidden-xs">返回失败说明</td>
-                                    <td width="10%" class="hidden-xs">IP地址</td>
-                                    <td width="12%" class="hidden-xs">失败时间</td>
-                                    <td width="10%">操作</td>
+                                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]source [##else##]来源[##/if##]</td>
+                                    <td width="10%">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</td>
+                                    <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Error code[##else##]错误码[##/if##]</td>
+                                    <td class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Return to failure description[##else##]返回失败说明[##/if##]</td>
+                                    <td width="10%" class="hidden-xs">IP[##if $_SESSION.lang eq 'english'##]address [##else##]地址[##/if##]</td>
+                                    <td width="12%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]Return to failure description[##else##]返回失败说明[##/if##]</td>
+                                    <td width="10%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                             </tr> 
                         </thead>
                         <tbody>
@@ -164,10 +164,10 @@
                                     <td>[##$datalist[loop].id##]</td>
                                     <td><input name="ids[]" type="checkbox"  lay-skin="primary"  id="id" value="[##$datalist[loop].id##]"></td>
                                     <td class="hidden-xs">
-                                        [##if $datalist[loop].source eq 1##]前台注册
-                                        [##elseif $datalist[loop].source eq 2##]前台登录
-                                        [##elseif $datalist[loop].source eq 3##]后台登录
-                                        [##else##]未知[##/if##]
+                                        [##if $datalist[loop].source eq 1##][##if $_SESSION.lang eq 'english'##]Front desk registration[##else##]前台注册[##/if##]
+                                        [##elseif $datalist[loop].source eq 2##][##if $_SESSION.lang eq 'english'##]Front desk login[##else##]前台登录[##/if##]
+                                        [##elseif $datalist[loop].source eq 3##][##if $_SESSION.lang eq 'english'##]Background login[##else##]后台登录[##/if##]
+                                        [##else##][##if $_SESSION.lang eq 'english'##]unknown[##else##]未知[##/if##][##/if##]
                                     </td>
                                     <td>[##$datalist[loop].phone##]</td>
                                     <td class="hidden-xs">[##$datalist[loop].code##]</td>
@@ -175,18 +175,18 @@
                                     <td class="hidden-xs">[##$datalist[loop].ip##]</td>
                                     <td class="hidden-xs">[##$datalist[loop].dateline|date_format:"%Y-%m-%d %H:%M:%S"##]</td>
                                     <td>
-                                        &nbsp;<a href="admin.php?view=smserror&op=del&id=[##$datalist[loop].id##]">删除记录</a>
+                                        &nbsp;<a href="admin.php?view=smserror&op=del&id=[##$datalist[loop].id##]">[##if $_SESSION.lang eq 'english'##]Delete record[##else##]删除记录[##/if##]</a>
                                     </td>
                                 </tr>
                                 [##sectionelse##]
                                 <tr>
-                                    <td colspan="9">没有找到任何数据!</td>
+                                    <td colspan="9">[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]!</td>
                                 </tr>
                                 [##/section##]
                                 <tr>
                                     <td colspan="9">
                                         [##if $multi##]<div class="layui-box layui-laypage layui-laypage-default pages">[##$multi##]</div>
-                                        [##else##]共[##$count##]条记录
+                                        [##else##][##if $_SESSION.lang eq 'english'##][##$count##] records in total[##else##]共[##$count##]条记录[##/if##]
                                         [##/if##]
                                     </td>
                                 </tr>
