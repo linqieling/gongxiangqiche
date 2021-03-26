@@ -14,7 +14,7 @@
 </head>
 <body style="margin:1rem;">
 <blockquote class="layui-elem-quote layui-text">
-   清理缓存
+    [##if $_SESSION.lang eq 'english'##]Clean up cache[##else##]清理缓存[##/if##]
 </blockquote>
 
 <form method="post" action="admin.php?view=cache" class="layui-form">
@@ -30,35 +30,52 @@
               <thead>
                   <tr>
                     <td width="10%"  class="layui-unselect"><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
-                    <td width="20%"  class="layui-unselect">缓存模型</td>
-                    <td width="60%"  class="layui-unselect">说明</td>
-                    <td width="10%"  class="layui-unselect">操作</td>  
+                    <td width="20%"  class="layui-unselect">[##if $_SESSION.lang eq 'english'##]Cache model[##else##]缓存模型[##/if##]</td>
+                    <td width="60%"  class="layui-unselect">[##if $_SESSION.lang eq 'english'##]explain[##else##]说明[##/if##]</td>
+                    <td width="10%"  class="layui-unselect">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                   </tr> 
               </thead>
               <tbody>
                  <tr>
                       <td ><input type="checkbox" class="layui-btn-normal" id="cachetype3" name="cachetype[]" value="sys" checked lay-skin="primary" /></td>
-                      <td >系统配置缓存</td>
-                      <td >&nbsp;&nbsp;系统配置缓存一般情况下都会在后台修改设定后自动更新，一般不需要手工更新。如果站点运行过程中出现错误，你可以尝试更新本缓存</td>
-                      <td ><a href="?view=cache&clear=sys">更新</a></td>
+                      <td >[##if $_SESSION.lang eq 'english'##]System configuration cache[##else##]系统配置缓存[##/if##]</td>
+                      <td >&nbsp;&nbsp;[##if $_SESSION.lang eq 'english'##]
+                          Generally, the system configuration cache will be automatically updated after modifying the settings in the background, and generally it does not need to be manually updated. If an error occurs during the operation of the site, you can try to update this cache
+                          [##else##]
+                          系统配置缓存一般情况下都会在后台修改设定后自动更新，一般不需要手工更新。如果站点运行过程中出现错误，你可以尝试更新本缓存
+                          [##/if##]</td>
+                      <td ><a href="?view=cache&clear=sys">[##if $_SESSION.lang eq 'english'##]to update[##else##]更新[##/if##]</a></td>
                  </tr>
                  <tr>
                       <td ><input type="checkbox" id="cachetype3" name="cachetype[]" value="sys" checked lay-skin="primary" /></td>
-                      <td >系统配置缓存</td>
-                      <td >&nbsp;&nbsp;系统配置缓存一般情况下都会在后台修改设定后自动更新，一般不需要手工更新。如果站点运行过程中出现错误，你可以尝试更新本缓存</td>
-                      <td ><a href="?view=cache&clear=sys">更新</a></td>
+                      <td >[##if $_SESSION.lang eq 'english'##]System configuration cache[##else##]系统配置缓存[##/if##]</td>
+                      <td >&nbsp;&nbsp;[##if $_SESSION.lang eq 'english'##]
+                          Generally, the system configuration cache will be automatically updated after modifying the settings in the background, and generally it does not need to be manually updated. If an error occurs during the operation of the site, you can try to update this cache
+                          [##else##]
+                          系统配置缓存一般情况下都会在后台修改设定后自动更新，一般不需要手工更新。如果站点运行过程中出现错误，你可以尝试更新本缓存
+                          [##/if##]</td>
+                      <td ><a href="?view=cache&clear=sys">[##if $_SESSION.lang eq 'english'##]to update[##else##]更新[##/if##]</a></td>
                   </tr>
                   <tr>
                       <td ><input type="checkbox" id="cachetype3" name="cachetype[]" value="smttpl" checked lay-skin="primary" /></td>
-                      <td >全站缓存</td>
-                      <td >&nbsp;&nbsp;只有开启了全站缓存功能才需要清理！</td>
-                      <td ><a href="?view=cache&clear=smttpl">更新</a></td>
+                      <td >[##if $_SESSION.lang eq 'english'##]Full site cache[##else##]全站缓存[##/if##]</td>
+                      <td >&nbsp;&nbsp;[##if $_SESSION.lang eq 'english'##]
+                          Only when the whole station cache function is turned on, it needs to be cleaned up!
+                          [##else##]
+                          只有开启了全站缓存功能才需要清理！
+                          [##/if##]</td>
+                      <td ><a href="?view=cache&clear=smttpl">[##if $_SESSION.lang eq 'english'##]to update[##else##]更新[##/if##]</a></td>
                   </tr>
                    <tr>
                       <td ><input type="checkbox" id="cachetype3" name="cachetype[]" value="other" checked lay-skin="primary" /></td>
-                      <td >其他缓存</td>
-                      <td >&nbsp;&nbsp;包括菜单栏数据，模型缓存，友情链接，广告缓存，系统日志缓存,百度SiteMap缓存等。</td>
-                      <td ><a href="?view=cache&clear=other">更新</a></td>
+                      <td >[##if $_SESSION.lang eq 'english'##]Other caches[##else##]其他缓存[##/if##]</td>
+                      <td >&nbsp;&nbsp;[##if $_SESSION.lang eq 'english'##]
+                          Including menu bar data, model cache, links, advertising cache, system log cache, baidu sitemap cache, etc.
+                          [##else##]
+                          包括菜单栏数据，模型缓存，友情链接，广告缓存，系统日志缓存,百度SiteMap缓存等。
+                          [##/if##]
+                          </td>
+                      <td ><a href="?view=cache&clear=other">[##if $_SESSION.lang eq 'english'##]to update[##else##]更新[##/if##]</a></td>
                   </tr>
 
               </tbody>
@@ -66,7 +83,7 @@
     </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <input  class="submit layui-btn layui-btn-normal"   type="submit" name="cachesubmit" value="缓存更新" "/>
+          <input  class="submit layui-btn layui-btn-normal"   type="submit" name="cachesubmit" value="[##if $_SESSION.lang eq 'english'##]Cache update[##else##]缓存更新[##/if##]" "/>
         </div>
       </div>
 </form>

@@ -97,7 +97,7 @@ layui.use(['table','jquery'], function(){
     }else if(obj.event==='detailed'){
       var url = 'admin.php?view=dnn_user_recharge&op=balance&uid='+data.uid;
       var iframeObj = $(window.frameElement).attr('name');
-      parent.page("充值明细", url, iframeObj, w = "700px", h = "650px");
+      parent.page("[##if $_SESSION.lang eq 'english'##]Recharge details[##else##]充值明细[##/if##]", url, iframeObj, w = "700px", h = "650px");
       return false;   
     }
   });

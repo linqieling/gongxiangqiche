@@ -51,21 +51,21 @@
           <div class="layui-form" style="width: 90%;padding-top: 20px;">
 
               <div class="layui-form-item">
-                <label class="layui-form-label">全部备份:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Full backup[##else##]全部备份[##/if##]:</label>
                 <div class="layui-input-inline">
-                    <input type="radio"  name="type" value="TQCMSs" checked lay-filter="customtables" title="是" >   
+                    <input type="radio"  name="type" value="TQCMSs" checked lay-filter="customtables" title="[##if $_SESSION.lang eq 'english'##]Yes[##else##]是[##/if##]" >
                 </div>
               </div>
 
                <div class="layui-form-item">
-                <label class="layui-form-label">自定义备份:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Custom backup[##else##]自定义备份[##/if##]:</label>
                 <div class="layui-input-inline">
-                    <input type="radio" name="type" value="custom" title="是"   lay-filter="customtables"  >
+                    <input type="radio" name="type" value="custom" title="[##if $_SESSION.lang eq 'english'##]Yes[##else##]是[##/if##]"   lay-filter="customtables"  >
                 </div>
               </div>
 
                <div class="layui-form-item" id="showtables"  style="display:none">
-                <label class="layui-form-label">全部数据库:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]All databases[##else##]全部数据库[##/if##]:</label>
                 <div class="layui-input-block list_li">
                     [##section name=loop loop=$jltablelist##]
                       <input type="checkbox" class="customtables" name="customtables[]" value="[##$jltablelist[loop].Name##]" checked=true title="[##$jltablelist[loop].Name##]"  >
@@ -86,7 +86,7 @@
              <input type="hidden" size="40" value="[##$filename##]" name="filename">   
              <input type="hidden" name="setup" value="1">
              <input type="hidden" name="setup" value="1">
-            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
+            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
           </div>
         </div>
 
@@ -101,7 +101,7 @@
           <div class="layui-form" style="width: 90%;padding-top: 20px;">
 
               <div class="layui-form-item">
-                <label class="layui-form-label">备份文件名:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]Backup file name[##else##]备份文件名[##/if##]:</label>
                 <div class="layui-input-inline">
                     <span>./data/</span><span><input type="text" name="datafile" value="[##$backupdir##]/" size="50"  class="layui-input"></span>  
                 </div>
@@ -112,7 +112,7 @@
 
       <div class="layui-form-item">
           <div class="layui-input-block">
-            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="确定" />
+            <input name="submit" type="submit" class="submit layui-btn layui-btn-normal" value="[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]" />
           </div>
       </div>
 </form>  
@@ -120,7 +120,7 @@
 <form method="post" action="admin.php?view=backup">
     <input type="hidden" name="formhash" value="[##$_SGLOBAL.formhash##]" />
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-      <legend>备份记录</legend>
+      <legend>[##if $_SESSION.lang eq 'english'##]Backup records[##else##]备份记录[##/if##]</legend>
     </fieldset>
     <div class="layui-form" id="table-list">
           <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
@@ -138,12 +138,12 @@
                       <tr>
                             <td >ID</td>
                             <td > <input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
-                            <td class="hidden-xs">文件名 </td>
-                            <td class="hidden-xs">版本 </td>
-                            <td>大小 </td>
-                            <td class="hidden-xs">类型</td>
-                            <td>时间</td>
-                            <td>操作</td>
+                            <td class="hidden-xs">[##if $_SESSION.lang eq 'english'##]file name[##else##]文件名[##/if##] </td>
+                            <td class="hidden-xs">[##if $_SESSION.lang eq 'english'##]edition[##else##]版本[##/if##] </td>
+                            <td>[##if $_SESSION.lang eq 'english'##]size[##else##]大小[##/if##] </td>
+                            <td class="hidden-xs">[##if $_SESSION.lang eq 'english'##]type[##else##]类型[##/if##]</td>
+                            <td>[##if $_SESSION.lang eq 'english'##]time[##else##]时间[##/if##]</td>
+                            <td>[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                       </tr> 
                   </thead>
                   <tbody>
@@ -155,12 +155,12 @@
                               </td>
                               <td align="left" class="hidden-xs">
                                   <a href="./data/[##$exportlog[loop].filename ##]">[##$exportlog[loop].basefilename ##]</a>
-                                  [##if $exportlog[loop].method eq 'multivol' && $exportlog[loop].type neq 'zip'##] 
-                                  多卷
+                                  [##if $exportlog[loop].method eq 'multivol' && $exportlog[loop].type neq 'zip'##]
+                                    [##if $_SESSION.lang eq 'english'##]Multiple volumes[##else##]多卷[##/if##]
                                   [##elseif $exportlog[loop].method eq 'multivol'##]
                                   SHELL
                                   [##else##]
-                                  压缩
+                                    [##if $_SESSION.lang eq 'english'##]compress[##else##]压缩[##/if##]
                                   [##/if##]
                                   [##if $exportlog[loop].volume neq ''##]
                                   ([##$exportlog[loop].volume##])
@@ -168,7 +168,7 @@
                               </td>
                               <td class="hidden-xs">[##$exportlog[loop].version ##]</td>
                               <td>[##$exportlog[loop].size##]</td>
-                              <td class="hidden-xs">[##if $exportlog[loop].type == 'custom'##]自定义备份[##else##]全部备份[##/if##]</td>
+                              <td class="hidden-xs">[##if $exportlog[loop].type == 'custom'##][##if $_SESSION.lang eq 'english'##]Custom backup[##else##]自定义备份[##/if##][##else##][##if $_SESSION.lang eq 'english'##]Full backup[##else##]全部备份[##/if##][##/if##]</td>
                               <td>[##$exportlog[loop].dateline|date_format:"%Y-%m-%d %H:%M:%S"##]</td>
                               <td>
                               <a href="admin.php?view=backup&op=import&do=import&datafile=[##$exportlog[loop].filename##]" onClick="return confirm('本操作不可恢复，确认导入？');">导入</a>
@@ -176,13 +176,13 @@
                             </tr>
                             [##sectionelse##]
                             <tr>
-                              <td colspan="8"  class="autocolspancount">没有找到任何备份记录!</td>
+                              <td colspan="8"  class="autocolspancount">[##if $_SESSION.lang eq 'english'##]No backup records were found[##else##]没有找到任何备份记录[##/if##]!</td>
                             </tr>
                             [##/section##]
                               <tr>
                                 <td colspan="8" class="autocolspancount" align="left">
                                       <div class="layui-btn-group">
-                                        <input type="submit" name="deletesubmit"  class="layui-btn  layui-btn-sm" value="删除" onClick="return confirm('本操作不可恢复，确认删除？');"/>
+                                        <input type="submit" name="deletesubmit"  class="layui-btn  layui-btn-sm" value="[##if $_SESSION.lang eq 'english'##]delete[##else##]删除[##/if##]"  [##if $_SESSION.lang eq 'english'##]onClick="return confirm('This operation cannot be restored. Are you sure you want to delete it?');"[##else##]onClick="return confirm('本操作不可恢复，确认删除？');"[##/if##]/>
                                       </div>
                                 </td>
                               </tr>

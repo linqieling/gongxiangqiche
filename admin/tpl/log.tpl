@@ -23,36 +23,36 @@
              <div class="layui-form-item">
 
               <div class="layui-inline">
-                <label class="layui-form-label">日志文件:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]log file [##else##]日志文件[##/if##]:</label>
                 <div class="layui-input-inline">
 
                    <select name="sfile">
-                      <option value="">选择文件</option>
+                      <option value="">[##if $_SESSION.lang eq 'english'##]Select file [##else##]选择文件[##/if##]</option>
                       [##section name=loop loop=$logfiles##]
                       <option value="[##$logfiles[loop]##]" [##if $search.sfile eq $logfiles[loop]##] selected="selected" [##/if##]>[##$logfiles[loop]##]</option>
                       [##sectionelse##]
-                      <optgroup label="暂无Log文件"></optgroup>
+                      <optgroup label="[##if $_SESSION.lang eq 'english'##]No log file [##else##]暂无Log文件[##/if##]"></optgroup>
                       [##/section##]    
                     </select>
                 </div>
               </div>
 
               <div class="layui-inline">
-                <label class="layui-form-label">用户UID:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]user [##else##]用户[##/if##]UID:</label>
                 <div class="layui-input-inline">
-                     <input type="text" name="suid"  class="layui-input" placeholder="用户UID" value="[##$search.suid##]" autocomplete="off" />
+                     <input type="text" name="suid"  class="layui-input" placeholder="[##if $_SESSION.lang eq 'english'##]use r[##else##]用户[##/if##]UID" value="[##$search.suid##]" autocomplete="off" />
                 </div>
               </div>
 
               <div class="layui-inline">
-                <label class="layui-form-label">IP地址:</label>
+                <label class="layui-form-label">IP[##if $_SESSION.lang eq 'english'##]address [##else##]地址[##/if##]:</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="sip"  class="layui-input"  placeholder="IP地址" value="[##$search.sip##]" autocomplete="off" />
+                  <input type="text" name="sip"  class="layui-input"  placeholder="IP[##if $_SESSION.lang eq 'english'##]address [##else##]地址[##/if##]" value="[##$search.sip##]" autocomplete="off" />
                 </div>
               </div>
 
               <div class="layui-inline">
-                <label class="layui-form-label">关键词:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]key word[##else##]关键词[##/if##]:</label>
                 <div class="layui-input-inline">
                   <input type="text" name="skeysearch"  class="layui-input"  placeholder="关键词" value="[##$search.skeysearch##]" autocomplete="off" />
                 </div>
@@ -64,14 +64,14 @@
             <div class="layui-form-item">
 
               <div class="layui-inline">
-                <label class="layui-form-label">开始时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]start time[##else##]开始时间[##/if##]:</label>
                 <div class="layui-input-inline">
                   <input type="text" name="sstarttime" id="sstarttime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" value="[##$search.sstarttime##]" />
                 </div>
               </div>
 
               <div class="layui-inline">
-                <label class="layui-form-label">结束时间:</label>
+                <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]end time[##else##]结束时间[##/if##]:</label>
                 <div class="layui-input-inline">
                   <input type="text" name="sendtime" id="sendtime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"  value="[##$search.sendtime##]" />
                 </div>
@@ -80,7 +80,7 @@
               <div class="layui-inline">
                 <label class="layui-form-label"></label>
                 <div class="layui-input-inline">
-                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="立即提交">
+                 <input name="searchsubmit" type="submit" class="submit layui-btn layui-btn-normal"  value="[##if $_SESSION.lang eq 'english'##]Submit immediately[##else##]立即提交[##/if##]">
                 </div>
               </div>
             </div>            
@@ -98,13 +98,13 @@
                           </colgroup>
                         <thead>
                             <tr>
-                                  <td width="12%">时间</td>   
-                                  <td width="10%" >用户</td>
-                                  <td width="10%" class="hidden-xs">用户UID</td>
+                                  <td width="12%">[##if $_SESSION.lang eq 'english'##]time[##else##]时间[##/if##]</td>
+                                  <td width="10%" >[##if $_SESSION.lang eq 'english'##]user[##else##]用户[##/if##]</td>
+                                  <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]user [##else##]用户[##/if##]UID</td>
                                   <td width="10%" class="hidden-xs">IP</td>
-                                  <td width="10%" class="hidden-xs">终端</td>
-                                  <td width="" class="hidden-xs">链接</td>
-                                  <td width="10%">操作</td>
+                                  <td width="10%" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]terminal [##else##]终端[##/if##]</td>
+                                  <td width="" class="hidden-xs">[##if $_SESSION.lang eq 'english'##]link [##else##]链接[##/if##]</td>
+                                  <td width="10%">[##if $_SESSION.lang eq 'english'##]operation[##else##]操作[##/if##]</td>
                             </tr> 
                         </thead>
                         <tbody>
@@ -117,12 +117,12 @@
                                   <td class="hidden-xs">[##$list.$key.ip##]</td>
                                   <td class="hidden-xs">[##$list.$key.terminal##]</td>
                                   <td class="hidden-xs">[##$list.$key.link##]</td>
-                                  <td><a href="admin.php?view=log&op=view&file=[##$search.sfile##]&line=[##$list.$key.line##]">详细</a></td>
+                                  <td><a href="admin.php?view=log&op=view&file=[##$search.sfile##]&line=[##$list.$key.line##]">[##if $_SESSION.lang eq 'english'##]detailed [##else##]详细[##/if##]</a></td>
                                 </tr>
                                 [##/foreach##]
                                 [##else##]
                                 <tr>
-                                  <td colspan="7" align="center">没有找到任何数据</td>
+                                  <td colspan="7" align="center">[##if $_SESSION.lang eq 'english'##]No data was found[##else##]没有找到任何数据[##/if##]</td>
                                 </tr>
                                 [##/if##]
                                 [##if $multi##]
@@ -161,7 +161,7 @@
       <form class="layui-form" action=""  style='margin-right: 0.5rem;'> 
         
         <div class="layui-form-item">
-          <label class="layui-form-label">时间:</label>
+          <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]time[##else##]时间[##/if##]:</label>
           <div class="layui-input-block">
             <input type="text" name="title"  class="layui-input" value="[##$log.dateline##]" readonly=""/>
           </div>
@@ -173,13 +173,13 @@
           </div>
         </div>
          <div class="layui-form-item">
-          <label class="layui-form-label">用户:</label>
+          <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]user[##else##]用户[##/if##]:</label>
           <div class="layui-input-block">
             <input type="text" name="title"  class="layui-input" value="[##$log.username##]" readonly=""/>
           </div>
         </div>
          <div class="layui-form-item">
-          <label class="layui-form-label">终端：</label>
+          <label class="layui-form-label">[##if $_SESSION.lang eq 'english'##]terminal [##else##]终端[##/if##]：</label>
           <div class="layui-input-block">
             <input type="text" name="title"  class="layui-input" value="[##$log.terminal##]" readonly=""/>
           </div>
@@ -216,7 +216,7 @@
          </div>
          [##/if##]
          <div style="text-align:center; margin-top:10px;">
-              <input type="button" class="submit layui-btn layui-btn-normal" onclick="location.href='[##$_SGLOBAL.refer##]'" class="submit" value="返回"/>
+              <input type="button" class="submit layui-btn layui-btn-normal" onclick="location.href='[##$_SGLOBAL.refer##]'" class="submit" value="[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]"/>
           </div>
 
       </form>
