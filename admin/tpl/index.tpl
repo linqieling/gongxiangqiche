@@ -55,13 +55,13 @@
 			
 				  	[##if $permlist.car ##]
 				  <li class="layui-nav-item">
-					    <a href="javascript:;"><i class="layui-icon">&#xe670;</i>站点车辆</a>
+					    <a href="javascript:;"><i class="layui-icon">&#xe670;</i>[##if $_SESSION.lang eq 'english'##]Station vehicles[##else##]站点车辆[##/if##]</a>
 					    <dl class="layui-nav-child">
 					    	[##foreach from=$permlist.car name=list item=list##]
                                 [##if $list.models eq 'car'##]
                                 <dd>
-                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='car_[##$list.permid##]' data-text="[##$list.permlabel##]">
-									<span class="l-line"></span>[##$list.permlabel##]
+                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='car_[##$list.permid##]' data-text="[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]">
+									<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]
 								    </a>
 								</dd>   
                                 [##/if##]
@@ -72,13 +72,13 @@
                 [##if $permlist.order ##]
 
 				  <li class="layui-nav-item">
-					    <a href="javascript:;"><i class="layui-icon">&#xe63c;</i>订单管理</a>
+					    <a href="javascript:;"><i class="layui-icon">&#xe63c;</i>[##if $_SESSION.lang eq 'english'##]Order management[##else##]订单管理[##/if##]</a>
 					    <dl class="layui-nav-child">
 				            [##foreach from=$permlist.order name=list item=list##]
                                 [##if $list.models eq 'order'##]
                                 <dd>
-                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='order_[##$list.permid##]' data-text="[##$list.permlabel##]">
-									<span class="l-line"></span>[##$list.permlabel##]
+                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='order_[##$list.permid##]' data-text="[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]">
+									<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]
 								    </a>
 								</dd>   
                                 [##/if##]
@@ -88,13 +88,13 @@
 				[##/if##]
                 [##if $permlist.finance ##]
 				  <li class="layui-nav-item">
-					    <a href="javascript:;"><i class="layui-icon">&#xe65e;</i>财务管理</a>
+					    <a href="javascript:;"><i class="layui-icon">&#xe65e;</i>[##if $_SESSION.lang eq 'english'##]financial management[##else##]财务管理[##/if##]</a>
 					    <dl class="layui-nav-child">
 				            [##foreach from=$permlist.finance name=list item=list##]
                                 [##if $list.models eq 'finance'##]
                                 <dd>
-                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='finance_[##$list.permid##]' data-text="[##$list.permlabel##]">
-									<span class="l-line"></span>[##$list.permlabel##]
+                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='finance_[##$list.permid##]' data-text="[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]">
+									<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]
 								    </a>
 								</dd>   
                                 [##/if##]
@@ -104,13 +104,13 @@
 				[##/if##]
                 [##if $permlist.user ##]
 				  <li class="layui-nav-item">
-					    <a href="javascript:;"><i class="layui-icon">&#xe770;</i>用户管理</a>
+					    <a href="javascript:;"><i class="layui-icon">&#xe770;</i>[##if $_SESSION.lang eq 'english'##]user management[##else##]用户管理[##/if##]</a>
 					    <dl class="layui-nav-child">
 				            [##foreach from=$permlist.user name=list item=list##]
                                 [##if $list.models eq 'user'##]
                                 <dd>
-                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='user_[##$list.permid##]' data-text="[##$list.permlabel##]">
-									<span class="l-line"></span>[##$list.permlabel##]
+                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='user_[##$list.permid##]' data-text="[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]">
+									<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]
 								    </a>
 								</dd>   
                                 [##/if##]
@@ -121,13 +121,13 @@
 				[##/if##]
 				[##if $permlist.content ##] 
 				  <li class="layui-nav-item">
-					    <a href="javascript:;"><i class="layui-icon">&#xe6b2;</i>内容管理</a>
+					    <a href="javascript:;"><i class="layui-icon">&#xe6b2;</i>[##if $_SESSION.lang eq 'english'##]Content management[##else##]内容管理[##/if##]</a>
 					    <dl class="layui-nav-child">
 							[##foreach from=$permlist.content name=list item=list##]
                                 [##if $list.models eq 'content'##]
                                 <dd>
-                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='content_[##$list.permid##]' data-text="[##$list.permlabel##]">
-									<span class="l-line"></span>[##$list.permlabel##]
+                                    <a href="javascript:;" data-url="[##$list.url##]" data-id='content_[##$list.permid##]' data-text="[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]">
+									<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##][##$list.permlabel_en##][##else##][##$list.permlabel##][##/if##]
 								    </a>
 								</dd>   
                                 [##/if##]
@@ -138,64 +138,64 @@
                 [##if $permlist.other##]
 				  <li data-name="senior" data-jump="" class="layui-nav-item">
 					    <a href="javascript:;" lay-tips="高级" lay-direction="系统设置" lay-direction="2">
-					    	<i class="layui-icon">&#xe716;</i>系统设置</a>
+					    	<i class="layui-icon">&#xe716;</i>[##if $_SESSION.lang eq 'english'##]System settings[##else##]系统设置[##/if##]</a>
 					    <dl class="layui-nav-child">
 					        <dd data-name="system">
-								<a href="javascript:;"><i class="layui-icon">&#xe631;</i>网站配置</a>
+								<a href="javascript:;"><i class="layui-icon">&#xe631;</i>[##if $_SESSION.lang eq 'english'##]Website configuration[##else##]网站配置[##/if##]</a>
 					            <dl class="layui-nav-child">
 					                <dd>
-										<a href="javascript:;" data-url="admin.php?view=config" data-id='system_1' data-text="基本设置">
-											<span class="l-line"></span>基本设置
+										<a href="javascript:;" data-url="admin.php?view=config" data-id='system_1' data-text="[##if $_SESSION.lang eq 'english'##]Basic settings[##else##]基本设置[##/if##]">
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]basic settings[##else##]基本设置[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=cache" data-id='system_2' data-text="清除缓存">
-											<span class="l-line"></span>清除缓存
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]clear cache[##else##]清除缓存[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=log" data-id='system_3' data-text="系统日志">
-											<span class="l-line"></span>系统日志
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]system log[##else##]系统日志[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=backup" data-id='system_4' data-text="数据备份">
-											<span class="l-line"></span>数据备份
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]data backup[##else##]数据备份[##/if##]
 										</a>
 									</dd>
 					            </dl>
 					        </dd>
 					        <dd data-name="sms" data-jump="">
-					            <a href="javascript:;"><i class="layui-icon" style="font-size: 19px;">&#xe63a;</i>短信管理</a>
+					            <a href="javascript:;"><i class="layui-icon" style="font-size: 19px;">&#xe63a;</i>[##if $_SESSION.lang eq 'english'##]SMS Management[##else##]短信管理[##/if##]</a>
 					            <dl class="layui-nav-child">
 					                <dd>
 										<a href="javascript:;" data-url="admin.php?view=smsconfig" data-id='sms_1' data-text="基本配置">
-											<span class="l-line"></span>基本配置
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Basic configuration[##else##]基本配置[##/if##]
 										</a>
 									</dd>
 									 <dd>
 										<a href="javascript:;" data-url="admin.php?view=smstemplates" data-id='sms_2' data-text="短信模板">
-											<span class="l-line"></span>短信模板
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]sms template[##else##]短信模板[##/if##]>
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=smslist" data-id='sms_3' data-text="发送记录">
-											<span class="l-line"></span>发送记录
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Send record[##else##]发送记录[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=smserror" data-id='sms_4' data-text="错误记录">
-											<span class="l-line"></span>错误记录
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Error record[##else##]错误记录[##/if##]
 										</a>
 									</dd>
 					            </dl>
 					        </dd>
 					        <dd data-name="model" data-jump="">
-					            <a href="javascript:;"><i class="layui-icon" style="font-size: 16px;">&#xe653;</i>模块管理</a>
+					            <a href="javascript:;"><i class="layui-icon" style="font-size: 16px;">&#xe653;</i>[##if $_SESSION.lang eq 'english'##]Module management[##else##]模块管理[##/if##]</a>
 					            <dl class="layui-nav-child">
 					                <dd>
 										<a href="javascript:;" data-url="admin.php?view=model" data-id='model_1' data-text="模型管理">
-											<span class="l-line"></span>模型管理
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Model management[##else##]模型管理[##/if##]
 										</a>
 									</dd>
 									
@@ -203,56 +203,56 @@
 					        </dd>
 
 					        <dd data-name="pay" data-jump="">
-					            <a href="javascript:;"><i class="layui-icon" style="font-size: 18px;">&#xe673;</i>支付配置</a>
+					            <a href="javascript:;"><i class="layui-icon" style="font-size: 18px;">&#xe673;</i>[##if $_SESSION.lang eq 'english'##]Payment allocation[##else##]支付配置[##/if##]</a>
 					            <dl class="layui-nav-child">
 					                <dd>
-										<a href="javascript:;" data-url="admin.php?view=wxpay" data-id='pay_1' data-text="微信支付">
-											<span class="l-line"></span>微信支付
+										<a href="javascript:;" data-url="admin.php?view=wxpay" data-id='pay_1' data-text="[##if $_SESSION.lang eq 'english'##]Wechat payment[##else##]微信支付[##/if##]">
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Wechat payment[##else##]微信支付[##/if##]
 										</a>
 									</dd>
 									 <dd>
 										<a href="javascript:;" data-url="admin.php?view=zfbpay" data-id='pay_2' data-text="支付宝支付">
-											<span class="l-line"></span>支付宝支付
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Alipay payment[##else##]支付宝支付[##/if##]
 										</a>
 									</dd>
 					            </dl>
 					        </dd>
 					        <dd data-name="wechat" data-jump="">
-					            <a href="javascript:;"><i class="layui-icon" style="font-size: 17px;">&#xe677;</i>公众号配置</a>
+					            <a href="javascript:;"><i class="layui-icon" style="font-size: 17px;">&#xe677;</i>[##if $_SESSION.lang eq 'english'##]Official account configuration[##else##]公众号配置[##/if##]</a>
 					            <dl class="layui-nav-child">
 						            <dd>
 										<a href="javascript:;" data-url="admin.php?view=wxconfig" data-id='pay_1' data-text="基本配置">
-											<span class="l-line"></span>基本配置
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Basic configuration[##else##]基本配置[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=wxsummary" data-id='pay_2' data-text="粉丝统计分析">
-											<span class="l-line"></span>粉丝统计分析
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Statistical analysis of fans[##else##]粉丝统计分析[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=appmsgreply" data-id='pay_3' data-text="关键词回复">
-											<span class="l-line"></span>关键词回复
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Keyword reply[##else##]关键词回复[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=subscribereply" data-id='pay_4' data-text="被关注回复">
-											<span class="l-line"></span>被关注回复
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Followed reply[##else##]被关注回复[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=nomatchreply" data-id='pay_5' data-text="收到消息回复">
-											<span class="l-line"></span>收到消息回复
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Receive message reply[##else##]收到消息回复[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=wxmenu" data-id='pay_6' data-text="自定义菜单">
-											<span class="l-line"></span>自定义菜单
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Custom menu[##else##]自定义菜单[##/if##]
 										</a>
 									</dd>
 									<dd>
 										<a href="javascript:;" data-url="admin.php?view=wxtemplate" data-id='pay_7' data-text="模板消息">
-											<span class="l-line"></span>模板消息
+											<span class="l-line"></span>[##if $_SESSION.lang eq 'english'##]Template message[##else##]模板消息[##/if##]
 										</a>
 									</dd>
 							    </dl>
@@ -292,12 +292,12 @@
 					    <a class="top_user_box" href="javascript:;" [##if $result.uid==1##] data-url="admin.php?view=administrator" [##/if##] data-id='user_5' data-text="后台管理员">
 					    	<div class="top_user_img" style="background: url('[##picredirect($result.avatar,1)##]') no-repeat center;background-size: 100%;"></div>
 					    	<div class="top_user_text">
-					    		<p>[##$result.nickname##]</p>
-					    		<p>[##$result.grouptitle##]</p>
+					    		<p>[##if $_SESSION.lang eq 'english'##][##$result.nickname_en##][##else##][##$result.nickname##][##/if##]</p>
+					    		<p>[##if $_SESSION.lang eq 'english'##][##$result.grouptitle_en##][##else##][##$result.grouptitle##][##/if##]</p>
 					    	</div>
 					    </a>
 					  </li>
-					  <li class="layui-nav-item"><a href="admin.php?view=login&ac=exit" style="color:#666 !important;">退出</a></li>
+					  <li class="layui-nav-item"><a href="admin.php?view=login&ac=exit" style="color:#666 !important;">[##if $_SESSION.lang eq 'english'##]sign out[##else##]退出[##/if##]</a></li>
 					</ul>
 				</div>
 				<!--主体内容-->
@@ -305,7 +305,7 @@
 					<!--tab 切换-->
 					<div class="layui-tab layui-tab-brief main-layout-tab" lay-filter="tab" lay-allowClose="true">
 					  <ul class="layui-tab-title">
-					    <li class="layui-this welcome" data-url="admin.php?view=main">后台主页</li>
+					    <li class="layui-this welcome" data-url="admin.php?view=main">[##if $_SESSION.lang eq 'english'##]Backstage home page[##else##]后台主页[##/if##]</li>
 					  </ul>
 					  <div class="layui-tab-content">
 					    <div class="layui-tab-item layui-show" style="background: #f5f5f5;">
@@ -344,7 +344,7 @@
 	    				success:function(res){
 	    					$('#disposal').find('span').html(res);
 	    					if(res > 0){
-	    						tips = layer.tips("有"+res+"条未处理事项", '#disposal', {tips:[1,'#01AAED'], time: 0, area:'auto'});
+	    						tips = layer.tips("[##if $_SESSION.lang eq 'english'##]There is [##else##]有[##/if##]"+res+"[##if $_SESSION.lang eq 'english'##] outstanding item[##else##]条未处理事项[##/if##]", '#disposal', {tips:[1,'#01AAED'], time: 0, area:'auto'});
 	    					}
 				    	}
 					});

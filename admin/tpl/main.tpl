@@ -167,8 +167,8 @@
                   <span class="layui-icon">&#xe612;</span>
                 </div>
                 <div class="right-text-con">
-                  <p class="name">用户数量</p>
-                  <p><span class="color-org">[##$user_count##]</span>人</p>
+                  <p class="name">[##if $_SESSION.lang eq 'english'##]Number of users[##else##]用户数量[##/if##]</p>
+                  <p><span class="color-org">[##$user_count##]</span>[##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##]</p>
                 </div>
               </a>
             </li>
@@ -178,8 +178,8 @@
                   <span class="layui-icon">&#xe629;</span>
                 </div>
                 <div class="right-text-con">
-                  <p class="name">总交易额</p>
-                  <p><span class="color-blue">[##$money_count##]</span>元</p>
+                  <p class="name">[##if $_SESSION.lang eq 'english'##]Total turnover[##else##]总交易额[##/if##]</p>
+                  <p><span class="color-blue">[##$money_count##]</span>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>
                 </div>
               </a>
             </li>
@@ -189,8 +189,8 @@
                   <span class="layui-icon">&#xe672;</span>
                 </div>
                 <div class="right-text-con">
-                  <p class="name">总押金数</p>
-                  <p><span class="color-green">[##$deposit_count##]</span>元</p>
+                  <p class="name">[##if $_SESSION.lang eq 'english'##]Total deposit[##else##]总押金数[##/if##]</p>
+                  <p><span class="color-green">[##$deposit_count##]</span>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>
                 </div>
               </a>
             </li>
@@ -213,30 +213,30 @@
                   </colgroup>
                   <tbody>
                     <tr>
-                      <td colspan="2" class='title'>已注册 / 交押金 / 退押金</td>
+                      <td colspan="2" class='title'>[##if $_SESSION.lang eq 'english'##]Registered[##else##]已注册[##/if##] / [##if $_SESSION.lang eq 'english'##]Deposit[##else##]交押金[##/if##] / [##if $_SESSION.lang eq 'english'##]return the deposit money[##else##]退押金[##/if##]</td>
                     </tr>
                     <tr>
-                       <td width="30" align="right">总计</td>
+                       <td width="30" align="right">[##if $_SESSION.lang eq 'english'##]total[##else##]总计[##/if##]</td>
                        <td align="left">
-                        <h3>[##$user_count##]人 / [##$user.all.rented##]人 / [##$user.all.return##]人</h3>
+                        <h3>[##$user_count##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.all.rented##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.all.return##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##]</h3>
                        </td>
                     </tr>
                     <tr class="even">
-                       <td align="right">本月</td>
+                       <td align="right">[##if $_SESSION.lang eq 'english'##]This month[##else##]本月[##/if##]</td>
                        <td align="left">
-                        <h3>[##$user.month.count##]人 / [##$user.month.rented##]人 / [##$user.month.return##]人</h3>
+                        <h3>[##$user.month.count##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.month.rented##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.month.return##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##]</h3>
                        </td>
                     </tr>
                     <tr class="even">
-                       <td align="right">本周</td>
+                       <td align="right">[##if $_SESSION.lang eq 'english'##]This week[##else##]本周[##/if##]</td>
                        <td align="left">
-                        <h3>[##$user.week.count##]人 / [##$user.week.rented##]人 / [##$user.week.return##]人</h3>
+                        <h3>[##$user.week.count##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.week.rented##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.week.return##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##]</h3>
                        </td>
                     </tr>
                     <tr>
-                       <td align="right">今日</td>
+                       <td align="right">[##if $_SESSION.lang eq 'english'##]today[##else##]今日[##/if##]</td>
                        <td align="left">
-                        <h3>[##$user.now.count##]人 / [##$user.now.rented##]人 / [##$user.now.return##]人</h3>
+                        <h3>[##$user.now.count##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.now.rented##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##] / [##$user.now.return##][##if $_SESSION.lang eq 'english'##]People[##else##]人[##/if##]</h3>
                        </td>
                     </tr>
                     
@@ -261,45 +261,45 @@
                   </colgroup>
                   <tbody>
                     <tr>
-                      <td colspan="2" class='title'>订单统计</td>
+                      <td colspan="2" class='title'>[##if $_SESSION.lang eq 'english'##]Order statistics[##else##]订单统计[##/if##]</td>
                     </tr>
                     <tr>
-                       <td width="30" align="right">总计</td>
+                       <td width="30" align="right">[##if $_SESSION.lang eq 'english'##]total[##else##]总计[##/if##]</td>
                        <td align="left">
                           [##if $order.all.count##]
-                          <h3>￥[##$order.all.totalmoney##]([##$order.all.count##]单)</h3>
+                          <h3>￥[##$order.all.totalmoney##]([##$order.all.count##][##if $_SESSION.lang eq 'english'##] single[##else##]单[##/if##])</h3>
                           [##else##]
-                           暂无
+                           [##if $_SESSION.lang eq 'english'##]Not yet[##else##]暂无[##/if##]
                           [##/if##]
                        </td>
                     </tr>
                     <tr class="even">
-                       <td align="right">本月</td>
+                       <td align="right">[##if $_SESSION.lang eq 'english'##]This month[##else##]本月[##/if##]·</td>
                        <td align="left">
                           [##if $order.month.count##]
-                          <h3>￥[##$order.month.totalmoney##]([##$order.month.count##]单)</h3>
+                          <h3>￥[##$order.month.totalmoney##]([##$order.month.count##][##if $_SESSION.lang eq 'english'##] single[##else##]单[##/if##])</h3>
                           [##else##]
-                           暂无
+                           [##if $_SESSION.lang eq 'english'##]Not yet[##else##]暂无[##/if##]
                           [##/if##]
                        </td>
                     </tr>
                     <tr class="even">
-                       <td align="right">本周</td>
+                       <td align="right">[##if $_SESSION.lang eq 'english'##]This week[##else##]本周[##/if##]</td>
                        <td align="left">
                           [##if $week.count##]
-                          <h3>￥[##$week.totalmoney##]([##$week.count##]单)</h3>
+                          <h3>￥[##$week.totalmoney##]([##$week.count##][##if $_SESSION.lang eq 'english'##] single[##else##]单[##/if##])</h3>
                           [##else##]
-                           暂无
+                           [##if $_SESSION.lang eq 'english'##]Not yet[##else##]暂无[##/if##]
                           [##/if##]
                        </td>
                     </tr>
                     <tr>
-                       <td align="right">今日</td>
+                       <td align="right">[##if $_SESSION.lang eq 'english'##]today[##else##]今日[##/if##]</td>
                        <td align="left">
                           [##if $order.now.count##]
-                            <h3>￥[##$order.now.totalmoney##]([##$order.now.count##]单)</h3>
+                            <h3>￥[##$order.now.totalmoney##]([##$order.now.count##][##if $_SESSION.lang eq 'english'##] single[##else##]单[##/if##])</h3>
                           [##else##]
-                           暂无
+                           [##if $_SESSION.lang eq 'english'##]Not yet[##else##]暂无[##/if##]
                           [##/if##]
                        </td>
                     </tr>
@@ -307,9 +307,9 @@
                        <td align="right">未完</td>
                        <td align="left">
                           [##if $unfinished.count##]
-                            <h3>￥[##$unfinished.totalmoney##]([##$unfinished.count##]单)</h3>
+                            <h3>￥[##$unfinished.totalmoney##]([##$unfinished.count##][##if $_SESSION.lang eq 'english'##] single[##else##]单[##/if##])</h3>
                           [##else##]
-                           暂无
+                           [##if $_SESSION.lang eq 'english'##]Not yet[##else##]暂无[##/if##]
                           [##/if##]
                        </td>
                     </tr>
@@ -317,9 +317,9 @@
                        <td align="right">未付</td>
                        <td align="left">
                           [##if $unpaid.count##]
-                            <h3>￥[##$unpaid.totalmoney##]([##$unpaid.count##]单)</h3>
+                            <h3>￥[##$unpaid.totalmoney##]([##$unpaid.count##][##if $_SESSION.lang eq 'english'##] single[##else##]单[##/if##])</h3>
                           [##else##]
-                           暂无
+                           [##if $_SESSION.lang eq 'english'##]Not yet[##else##]暂无[##/if##]
                           [##/if##]
                        </td>
                     </tr>
@@ -331,17 +331,17 @@
         <!--站点信息-->
         <div class="server-panel panel panel-default clearfix">
           <div class="welcome-left-container col-lg-9">
-            <div class="panel-header">站点显示</div>
+            <div class="panel-header">[##if $_SESSION.lang eq 'english'##]Site display[##else##]站点显示[##/if##]</div>
             <div class="panel-body clearfix">
-               <div  id="allmap" style="height:340px;width:100%;">站点地址</div>
+               <div  id="allmap" style="height:340px;width:100%;">[##if $_SESSION.lang eq 'english'##]Site address[##else##]站点地址[##/if##]</div>
             </div>
           </div>
           <div class="welcome-left-container col-lg-3">
-            <div class="panel-header">站点信息</div>
+            <div class="panel-header">[##if $_SESSION.lang eq 'english'##]Site information[##else##]站点信息[##/if##]</div>
             <div class="panel-body clearfix" id="vehicle">
                   <fieldset class="layui-elem-field site-demo-button" style="margin:10px;padding:10px;">
-                     <legend>点击图标可以查看车辆信息</legend>
-                      <div class="layui-card-header">暂无详情<i style="color:red;font-weight:600;"></i></div>
+                     <legend>[##if $_SESSION.lang eq 'english'##]Click the icon to view the vehicle information[##else##]点击图标可以查看车辆信息[##/if##]</legend>
+                      <div class="layui-card-header">[##if $_SESSION.lang eq 'english'##]No details[##else##]暂无详情[##/if##]<i style="color:red;font-weight:600;"></i></div>
                       <div class="layui-card-body">
                       </div>
                   </fieldset>
@@ -385,7 +385,7 @@
                 myChart.setOption(
                   {
                  title: {
-                    text: "近七日用户统计表",
+                    text: "[##if $_SESSION.lang eq 'english'##]Statistics of orders in recent seven days[##else##]近七日订单统计表[##/if##]",
                     textStyle: {
                         color: "rgb(85, 85, 85)",
                         fontSize: 18,
@@ -397,7 +397,7 @@
                     trigger: "axis"
                 },
                 legend: {
-                    data: ["注册人数","交押金人数","退押金人数"],
+                    data: ["[##if $_SESSION.lang eq 'english'##]Number of registered persons[##else##]注册人数[##/if##]","[##if $_SESSION.lang eq 'english'##]Number of deposits[##else##]交押金人数[##/if##]","[##if $_SESSION.lang eq 'english'##]Number of deposit refunds[##else##]退押金人数[##/if##]"],
                     selectedMode: false,
                 },
                 toolbox: {
@@ -441,7 +441,7 @@
                 },
                 series: [
                     {
-                      name: "退押金人数",
+                      name: "[##if $_SESSION.lang eq 'english'##]Number of deposit refunds[##else##]退押金人数[##/if##]",
                       type: "line",
                       smooth: true,
                       itemStyle: {
@@ -454,7 +454,7 @@
                       data: [[##$user_week_return##]]
                     }
                     ,{
-                      name: "交押金人数",
+                      name: "[##if $_SESSION.lang eq 'english'##]Number of deposits[##else##]交押金人数[##/if##]",
                       type: "line",
                       smooth: true,
                       itemStyle: {
@@ -467,7 +467,7 @@
                       data: [[##$user_week_rented##]]
                     }
                     ,{
-                      name: "注册人数",
+                      name: "[##if $_SESSION.lang eq 'english'##]Number of registered persons[##else##]注册人数[##/if##]",
                       type: "line",
                       smooth: true,
                       itemStyle: {
@@ -496,7 +496,7 @@
                 myChart.setOption(
                   {
                  title: {
-                    text: "近七日订单统计表",
+                    text: "[##if $_SESSION.lang eq 'english'##]Statistics of orders in recent seven days[##else##]近七日订单统计表[##/if##]",
                     textStyle: {
                         color: "rgb(85, 85, 85)",
                         fontSize: 18,
@@ -508,7 +508,7 @@
                     trigger: "axis"
                 },
                 legend: {
-                    data: ["订单总数","订单总额","实付金额"],
+                    data: ["[##if $_SESSION.lang eq 'english'##]Total orders[##else##]订单总数[##/if##]","[##if $_SESSION.lang eq 'english'##]Total order amount[##else##]订单总额[##/if##]","[##if $_SESSION.lang eq 'english'##]Amount actually paid[##else##]实付金额[##/if##]"],
                     selectedMode: false,
                 },
                 toolbox: {
@@ -552,7 +552,7 @@
                 },
                 series: [
                     {
-                        name: "订单总数",
+                        name: "[##if $_SESSION.lang eq 'english'##]Total orders[##else##]订单总数[##/if##]",
                         type: "line",
                         smooth: true,
                         itemStyle: {
@@ -565,7 +565,7 @@
                         data: [[##$order.week.count##] ]
                     },
                     {
-                        name: "订单总额",
+                        name: "[##if $_SESSION.lang eq 'english'##]Total order amount[##else##]订单总额[##/if##]",
                         type: "line",
                         smooth: true,
                         itemStyle: {
@@ -578,7 +578,7 @@
                         data: [[##$order.week.money##] ]
                     },
                     {
-                        name: "实付金额",
+                        name: "[##if $_SESSION.lang eq 'english'##]Amount actually paid[##else##]实付金额[##/if##]",
                         type: "line",
                         smooth: true,
                         itemStyle: {
@@ -665,9 +665,9 @@
                   if(res.code == 0) {
                       var state='';
                       if(res.data.state=='1'){
-                         state='开放';
+                         state="[##if $_SESSION.lang eq 'english'##]to open up[##else##]开放[##/if##]";
                       }else{
-                         state='关闭';
+                         state="[##if $_SESSION.lang eq 'english'##]close[##else##]关闭[##/if##]";
                       }
                       var thml='';
                       res.data.vehicle.map(function(el, index) {
@@ -707,7 +707,7 @@
 
          var url = "/admin.php?view=dnn_vehicle&op=edit&id="+sid;
          var iframeObj = $(window.frameElement).attr('name');
-         parent.page("车辆信息", url, iframeObj, w = "700px", h = "635px");
+         parent.page("[##if $_SESSION.lang eq 'english'##]Vehicle information[##else##]车辆信息[##/if##]", url, iframeObj, w = "700px", h = "635px");
          return false;
 
 

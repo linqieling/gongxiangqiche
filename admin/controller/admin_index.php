@@ -3,7 +3,7 @@ if(!defined('IN_TQCMS')) {
 	exit('Access Denied');
 }
 
-$sql="select u.uid,u.nickname,u.avatar,g.grouptitle from ".$_SC['tablepre']."user as u 
+$sql="select u.uid,u.nickname,u.nickname_en,u.avatar,g.grouptitle,g.grouptitle_en from ".$_SC['tablepre']."user as u 
 left join  ".$_SC['tablepre']."usergroup as g on u.groupid=g.gid 
 where u.uid=".$_SGLOBAL['tq_uid'];
 $query = $_SGLOBAL['db']->query($sql);
@@ -45,7 +45,7 @@ if(!@include_once(S_ROOT.'./data/data_usergroup_'.$user['groupid'].'.php')) {
 }
 $_manageadmin=$_SGLOBAL['usergroup'][$user['groupid']]['manageadmin'];
 //查询所有的基本权限
-$sql="select permid,permname,type,permlabel,url,models from ".$_SC['tablepre']."permission where 1 order by sort desc";
+$sql="select permid,permname,type,permlabel,permlabel_en,url,models from ".$_SC['tablepre']."permission where 1 order by sort desc";
 $query = $_SGLOBAL['db']->query($sql);
 $permlist=[];
 while ($value = $_SGLOBAL['db']->fetch_array($query)) { 
