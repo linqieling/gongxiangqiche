@@ -245,13 +245,12 @@
                 </li>
             </a>
 
-            <a href="[##$_SCONFIG.webroot##]do-login.html?ac=exit">
-                <li class="bui-btn bui-box">
-                    <div class="icon"><i class="icon-infofill danger"></i></div>&nbsp;&nbsp;
-                    <div class="span1">[##if $_SESSION.lang eq 'english'##]sign out[##else##]退出[##/if##]</div>
-                    <div class="item-text"></div>
-                </li>
-            </a>
+            <li class="bui-btn bui-box loginout">
+                <div class="icon"><i class="icon-infofill danger"></i></div>&nbsp;&nbsp;
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]sign out[##else##]退出[##/if##]</div>
+                <div class="item-text"></div>
+            </li>
+
         </ul>
 	</main>
 
@@ -267,5 +266,26 @@
             location.href = url+'?lang='+lang;
         }
     }
+    $('.loginout').click(function () {
+        console.log(44444)
+        $.ajax({
+            url: "[##$_SCONFIG.webroot##]do-login-op-loginout.html",   // 提交到controller的url路径
+            type: "post",   // 提交方式
+            data: {"type":'loginout'}, // data为String类型，必须为 Key/Value 格式。
+            dataType: "json",   // 服务器端返回的数据类型
+            success: function(res) {
+                if(res.msg==1){
+                    bui.hint({
+                        content:"<i class='icon-check'></i><br />[##if $_SESSION.lang eq 'english'##]Exit successful[##else##]退出成功[##/if##]",
+                        position:"center" ,
+                        effect:"fadeInDown"
+                    });
+                    setTimeout(function() {
+                        window.location.href=res.result;
+                    }, 1500);
+                }
+            }
+        });
+    })
 </script>
 	

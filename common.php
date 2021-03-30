@@ -6,6 +6,13 @@ D_BUG?error_reporting(7):error_reporting(0);
 set_magic_quotes_runtime(0);
 
 //error_reporting(E_ALL);
+@session_start();
+if (!empty($_GET['lang'])) {
+	$_SESSION['lang'] = $_GET['lang'];
+	$lang = $_GET['lang'];
+} else {
+	$lang = empty($_SESSION['lang'])?'':$_SESSION['lang'];
+}
 
 $_SGLOBAL = $_SCONFIG = $_SPATH = $_TPL = $_SCOOKIE = $_SMODEL = $_SGET = $_SPOST = $_SCLIENT  = array();
 

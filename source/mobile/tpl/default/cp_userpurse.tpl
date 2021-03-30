@@ -733,7 +733,7 @@
         </div>
     </main>
 
-    [##if $deposit < $_SCONFIG.deposit##]<div class="btn_box" id="pay_btn">[##/if##]>[##if $_SESSION.lang eq 'english'##]Pay deposit[##else##]缴纳押金[##/if##]</div>[##/if##]
+    [##if $deposit < $_SCONFIG.deposit##]<div class="btn_box" id="pay_btn">[##if $_SESSION.lang eq 'english'##]Pay deposit[##else##]缴纳押金[##/if##]</div>[##/if##]
 
     <div id="dialogDetailed" class="bui-dialog" style="display:none;">
         <div class="bui-dialog-head bui-box-align-middle">
@@ -985,7 +985,7 @@
                                 });
                             }
                         },function(res,status){
-                            that.text("[##/if##]>[##if $_SESSION.lang eq 'english'##]Apply for refund of deposit[##else##]申请退押金[##/if##]");
+                            that.text("申请退押金");
                             that.removeAttr('disabled');
                             $('#loadbg').hide();
                             Loading_box.stop();

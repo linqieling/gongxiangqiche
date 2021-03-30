@@ -8,6 +8,17 @@ if(!defined('IN_TQCMS')) {
 }
 
 $op= $_SGET['op']?$_SGET['op']:'';
+if($op == 'loginout'){
+	clearcookie();
+	$url = $_SCONFIG['webroot'].'do-login.html';
+	$return_data=array(
+		'success' => 1,
+		'msg' => 1,
+		'result' => $url
+	);
+	echo json_encode($return_data);
+	exit();
+}
 $return_data = array();
 
 switch ($op) {
