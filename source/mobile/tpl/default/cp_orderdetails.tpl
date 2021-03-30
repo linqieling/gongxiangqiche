@@ -162,31 +162,31 @@
                     [##if $details.status eq 1 || $details.status eq 2##]
                     <div class="span1">
                         <p class="item-text">
-                          <span class="bui-label">电量:</span>
+                          <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Quantity of electricity[##else##]电量[##/if##]:</span>
                           <span class="bui-value"><info id="quantity">[##$vehicle.quantity##]</info>&nbsp;%</span>
                         </p>
                         <p class="item-text">
-                          <span class="bui-label">续航:</span>
+                          <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Endurance[##else##]续航[##/if##]:</span>
                           <span class="bui-value"><info id="endurance">[##$vehicle.endurance##]</info>&nbsp;km</span>
                         </p>
                         <p class="item-text">
-                          <span class="bui-label">密码:</span>
+                          <span class="bui-label">[##if $_SESSION.lang eq 'english'##]password[##else##]密码[##/if##]:</span>
                           <span class="bui-value"><info>[##if $orderbefore > 0##][##$details.pwd##][##else##]******[##/if##]</info></span>
                         </p>
                     </div>
                     [##/if##]
                     <div class="span1">
                         <p class="item-text">
-                            <span class="bui-label">起步:</span>
-                            <span class="bui-value"><info>[##$_SCONFIG.startmoney##]</info>&nbsp;元</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]start[##else##]起步[##/if##]:</span>
+                            <span class="bui-value"><info>[##$_SCONFIG.startmoney##]</info>&nbsp;[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">时长:</span>
-                            <span class="bui-value"><info class='duration'>[##$details.duration##]</info>&nbsp;分钟</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]duration[##else##]时长[##/if##]:</span>
+                            <span class="bui-value"><info class='duration'>[##$details.duration##]</info>&nbsp;[##if $_SESSION.lang eq 'english'##]minute[##else##]分钟[##/if##]</span>
                             <input type="hidden" id="duration" value="[##$details.duration##]" />
                         </p>
                         <p class="item-text">
-                           <span class="bui-label">里程:</span>
+                           <span class="bui-label">[##if $_SESSION.lang eq 'english'##]mileage[##else##]里程[##/if##]:</span>
                            <span class="bui-value">
                             <info class='mileage'>[##if $details.status eq 1 || $details.status eq 2##][##round( $vehicle.totalmileage-$details.totalmileage, 2)##][##else##][##$details.mileage##][##/if##]</info>&nbsp;公里
                            </span>
@@ -205,7 +205,11 @@
                         [##if floatval($_SCONFIG.discount) > 0 && floatval($_SCONFIG.discount) < 100 && $details.discountmoney > 0##]
                           <div><i>￥</i>[##$details.discountmoney##]</div>
                           <div style="font-size: 0.28rem; text-align: center; text-decoration:line-through;">(<i>￥</i>[##$details.totalmoney##])</div>
-                          <div style="text-align: center;line-height: 0;"><p style="display: inline-block; margin: 0 !important; padding: 0 0.1rem; font-size: 0.22rem; background: #FF5722; color: #FFF; line-height: 1.5; border-radius: 0.04rem;">已享<b>[##$_SCONFIG.discount##]</b>折</p></div>
+                          <div style="text-align: center;line-height: 0;"><p style="display: inline-block; margin: 0 !important; padding: 0 0.1rem; font-size: 0.22rem; background: #FF5722; color: #FFF; line-height: 1.5; border-radius: 0.04rem;">
+                                  [##if $_SESSION.lang eq 'english'##]Enjoyed [##else##]已享[##/if##]
+                                  <b>[##$_SCONFIG.discount##]</b>
+                                  [##if $_SESSION.lang eq 'english'##]Enjoyed[##else##]0% off[##/if##]
+                              </p></div>
                         [##else##]
                           <div><i>￥</i>[##$details.totalmoney##]</div>
                         [##/if##]
@@ -220,65 +224,65 @@
                 [##if $details.status==1##]
                 <div class="span1">
                     <p class="item-text">
-                       <span class="bui-label" style="width: 1.5rem;">创建订单</span>
+                       <span class="bui-label" style="width: 1.5rem;">[##if $_SESSION.lang eq 'english'##]Create order [##else##]创建订单[##/if##]</span>
                        <span class="bui-value" >
                          [##$details.dateline|date_format:"%Y-%m-%d %H:%M:%S"##]
                        </span>
                     </p>
                     <p class="item-text" style="margin: 0 !important;">
-                       <span class="bui-label" style="width: 1.5rem;">倒计时中</span>
-                       <span class="bui-value" id="dateline_show" style="color:red;font-weight:600;">计算中</span>
+                       <span class="bui-label" style="width: 1.5rem;">[##if $_SESSION.lang eq 'english'##]The countdown is in progress [##else##]倒计时中[##/if##]</span>
+                       <span class="bui-value" id="dateline_show" style="color:red;font-weight:600;">[##if $_SESSION.lang eq 'english'##]In calculation[##else##]计算中[##/if##]</span>
                        <input  id="dateline" type="hidden"  value='[##$details.dateline|date_format:"%Y-%m-%d %H:%M:%S"##]' />
                     </p>
                 </div>
                 <span class="price">
-                    <div class="bui-btn success" id="cancel">取消订单</div>
+                    <div class="bui-btn success" id="cancel">[##if $_SESSION.lang eq 'english'##]cancellation of order[##else##]取消订单[##/if##]</div>
                 </span>
                 [##elseif $details.status==2##]
                 <div class="span1">
                   <p class="item-text">
-                     <span class="bui-label" style="width: 1.5rem;">开始计时</span>
+                     <span class="bui-label" style="width: 1.5rem;">[##if $_SESSION.lang eq 'english'##]Time starts[##else##]开始计时[##/if##]</span>
                      <span class="bui-value" >
                        [##$details.startdateline|date_format:"%Y-%m-%d %H:%M:%S"##]
                      </span>
                   </p>
                   <p class="item-text" style="margin: 0 !important;">
-                    <span class="bui-label" style="width: 1.5rem;">累计时间</span>
-                    <span class="bui-value" id="startdateline_show">计算中</span>
+                    <span class="bui-label" style="width: 1.5rem;">[##if $_SESSION.lang eq 'english'##]Accumulated time[##else##]累计时间[##/if##]</span>
+                    <span class="bui-value" id="startdateline_show">[##if $_SESSION.lang eq 'english'##]In calculation[##else##]计算中[##/if##]</span>
                     <input  id="startdateline" type="hidden"  value='[##$details.startdateline|date_format:"%Y-%m-%d %H:%M:%S"##]' />
                   </p>
                 </div>
                 <span class="price">
-                  <div class="bui-btn success" id="returncar">&nbsp;&nbsp;还&nbsp;&nbsp;车&nbsp;&nbsp;</div>
+                  <div class="bui-btn success" id="returncar">[##if $_SESSION.lang eq 'english'##]Return the car[##else##]&nbsp;&nbsp;还&nbsp;&nbsp;车&nbsp;&nbsp;[##/if##]</div>
                 </span>
                 [##elseif $details.status eq 3##]
                 <div class="span1">
                   <p class="item-text">
-                    <span class="bui-label" style="width: 1.8rem;">用车订单编号</span>
+                    <span class="bui-label" style="width: 1.8rem;">[##if $_SESSION.lang eq 'english'##]Car order number[##else##]用车订单编号[##/if##]</span>
                     <span class="bui-value">[##$details.orderno##]</span>
                   </p>
                   <p class="item-text">
-                    <span class="bui-label" style="width: 1.8rem;">开始计费时间</span>
+                    <span class="bui-label" style="width: 1.8rem;">[##if $_SESSION.lang eq 'english'##]Start billing time[##else##]开始计费时间[##/if##]</span>
                     <span class="bui-value">[##$details.startdateline|date_format:"%Y-%m-%d %H:%M:%S"##]</span>
                   </p>
                   <p class="item-text" style="margin: 0 !important;">
-                    <span class="bui-label" style="width: 1.8rem;">结束计费时间</span>
+                    <span class="bui-label" style="width: 1.8rem;">[##if $_SESSION.lang eq 'english'##]End billing time[##else##]结束计费时间[##/if##]</span>
                     <span class="bui-value">[##$details.enddateline|date_format:"%Y-%m-%d %H:%M:%S"##]</span>
                   </p>
                   [##if $details.paystatus eq 1##]
                   <p class="item-text">
-                    <span class="bui-label" style="width: 1.8rem;margin-top: 0.18rem !important;">支付订单方式</span>
+                    <span class="bui-label" style="width: 1.8rem;margin-top: 0.18rem !important;">[##if $_SESSION.lang eq 'english'##]Payment order method[##else##]支付订单方式[##/if##]</span>
                     <span class="bui-value">
-                      [##if $details.paytype eq 1##]余额支付
-                      [##elseif $details.paytype eq 2##]微信支付
-                      [##elseif $details.paytype eq 3##]优惠券抵扣
-                      [##elseif $details.paytype eq 4##]支付宝支付
-                      [##else##]其它支付
+                      [##if $details.paytype eq 1##][##if $_SESSION.lang eq 'english'##]Balance payment[##else##]余额支付[##/if##]
+                      [##elseif $details.paytype eq 2##][##if $_SESSION.lang eq 'english'##]Wechat payment[##else##]微信支付[##/if##]
+                      [##elseif $details.paytype eq 3##][##if $_SESSION.lang eq 'english'##]Coupon deduction[##else##]优惠券抵扣[##/if##]
+                      [##elseif $details.paytype eq 4##][##if $_SESSION.lang eq 'english'##]Alipay payment[##else##]支付宝支付[##/if##]
+                      [##else##][##if $_SESSION.lang eq 'english'##]Other payments[##else##]其它支付[##/if##]
                       [##/if##]
                     </span>
                   </p>
                   <p class="item-text" style="margin: 0 !important;">
-                    <span class="bui-label" style="width: 1.8rem;">支付订单时间</span>
+                    <span class="bui-label" style="width: 1.8rem;">[##if $_SESSION.lang eq 'english'##]Payment order time[##else##]支付订单时间[##/if##]</span>
                     <span class="bui-value">[##$details.paydeteline|date_format:"%Y-%m-%d %H:%M:%S"##]</span>
                   </p>
                   [##/if##]
@@ -286,7 +290,7 @@
                 [##elseif $details.status eq 0##]
                   <div class="cancel_box">
                     <img src="[##$_SPATH.images##]order_cancel.png" />
-                    <p>订单已取消</p>
+                    <p>[##if $_SESSION.lang eq 'english'##]Order cancelled[##else##]订单已取消[##/if##]</p>
                   </div>
                 [##/if##]
               </div>
@@ -295,18 +299,18 @@
               [##if $details.status eq 3 && $details.paystatus eq 1##]
               <div class="haspay_box">
                 <img src="[##$_SPATH.images##]order_haspay.png" />
-                <p>订单已支付</p>
+                <p>[##if $_SESSION.lang eq 'english'##]Order paid[##else##]订单已支付[##/if##]</p>
               </div>
               [##elseif $details.status eq 3 && $details.paystatus eq 0##]
               <div class="bui-btn success paybtn_box">
-                <a href="[##$_SCONFIG.webroot##]cp-orderdetailspay-id-[##$details.id##].html" style="color: #FEFEFE;">立即支付</a>
+                <a href="[##$_SCONFIG.webroot##]cp-orderdetailspay-id-[##$details.id##].html" style="color: #FEFEFE;">[##if $_SESSION.lang eq 'english'##]Pay immediately[##else##]立即支付[##/if##]</a>
               </div>
               [##elseif $details.status eq 2 || $details.status eq 1##]
               <ul class="bui-group mini btn_box">
-                <li id="open_btn" class="bui-btn"><i class="icon-unlock"></i>开门</li>
-                <li id="close_btn" class="bui-btn"><i class="icon-lock"></i>锁门</li>
-                <li id="seek_btn" class="bui-btn"><i class="icon-alert"></i>鸣笛</li>
-                <li id="tel_btn" class="bui-btn"><i class="icon-chat"></i>客服</li>
+                <li id="open_btn" class="bui-btn"><i class="icon-unlock"></i>[##if $_SESSION.lang eq 'english'##]Open the door[##else##]开门[##/if##]</li>
+                <li id="close_btn" class="bui-btn"><i class="icon-lock"></i>[##if $_SESSION.lang eq 'english'##]lock the door[##else##]锁门[##/if##]</li>
+                <li id="seek_btn" class="bui-btn"><i class="icon-alert"></i>[##if $_SESSION.lang eq 'english'##]whistle[##else##]鸣笛[##/if##]</li>
+                <li id="tel_btn" class="bui-btn"><i class="icon-chat"></i>[##if $_SESSION.lang eq 'english'##]customer service[##else##]客服[##/if##]</li>
               </ul>
               [##/if##]
             </div>
@@ -315,58 +319,58 @@
 
     <!-- 订单计费信息详情   -->
     <div id="dialogDown" class="bui-dialog" style="display: none;">
-      <div class="bui-dialog-head">订单费用明细</div>
+      <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Order fee details[##else##]订单费用明细[##/if##]</div>
       <div class="bui-dialog-main">
         <div class="bui-list">
           <div class="bui-btn bui-box">
-            <div class="bui-label">起步价</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Starting price[##else##]起步价[##/if##]</div>
             <div class="span1">
-              <div class="price bui-value">[##$details.startmoney##] 元</div>
+              <div class="price bui-value">[##$details.startmoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           <div class="bui-btn bui-box">
-            <div class="bui-label">时长费</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Time charge[##else##]时长费[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.timemoney##] 元</div>
+              <div class="bui-value">[##$details.timemoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           <div class="bui-btn bui-box">
-            <div class="bui-label">里程费</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Mileage fee[##else##]里程费[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.roadmoney##] 元</div>
+              <div class="bui-value">[##$details.roadmoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           <div class="bui-btn bui-box">
-            <div class="bui-label">空置费</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Vacancy fee[##else##]空置费[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.occupymoney##] 元</div>
+              <div class="bui-value">[##$details.occupymoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           <div class="bui-btn bui-box">
-            <div class="bui-label">服务费</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]service charge[##else##]服务费[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.returnmoney##] 元</div>
+              <div class="bui-value">[##$details.returnmoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           <div class="bui-btn bui-box">
-            <div class="bui-label">订单总额</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Total order amount[##else##]订单总额[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.totalmoney##] 元</div>
+              <div class="bui-value">[##$details.totalmoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           [##if floatval($_SCONFIG.discount) > 0 && floatval($_SCONFIG.discount) < 100 && $details.paystatus eq 1 && $details.discountmoney > 0##]
           <div class="bui-btn bui-box">
-            <div class="bui-label">折后金额</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Amount after discount[##else##]折后金额[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.discountmoney##] 元</div>
+              <div class="bui-value">[##$details.discountmoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           [##/if##]
           [##if ($details.paystatus eq 1 && $details.totalmoney !== $details.finalmoney) || $details.couponid##]
           <div class="bui-btn bui-box">
-            <div class="bui-label">优惠金额</div>
+            <div class="bui-label">[##if $_SESSION.lang eq 'english'##]Preferential amount[##else##]优惠金额[##/if##]</div>
             <div class="span1">
-              <div class="bui-value">[##$details.totalmoney-$details.finalmoney##] 元</div>
+              <div class="bui-value">[##$details.totalmoney-$details.finalmoney##] [##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
             </div>
           </div>
           [##/if##]
@@ -986,7 +990,7 @@
                       Loading_box.stop();
                       return false;   
                     }else{
-                      bui_hint('-1','未知错误');
+                      bui_hint('-1',"[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]");
                       Loading_box.stop();
                       return false;   
                     }
@@ -1001,7 +1005,7 @@
           });
 
           //窗口提示--------------------------------
-          function bui_hint(error='1',msg='未知错误'){
+          function bui_hint(error='1',msg="[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]"){
             var content='';
             if(error==1){
               content="<i class='icon-check'></i><br />"+msg;

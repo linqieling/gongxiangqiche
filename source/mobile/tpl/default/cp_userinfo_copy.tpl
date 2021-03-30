@@ -64,7 +64,7 @@
 			<div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-usermanage.html'"><i class="icon-back"></i></a>
 			</div>
-			<div class="bui-bar-main">个人信息</div>
+			<div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]personal information[##else##]个人信息[##/if##]</div>
 			<div class="bui-bar-right">
 			</div>
 		</div>
@@ -84,8 +84,8 @@
            
            <li class="bui-btn bui-box" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_set.html'">
                 <div class="icon"><i class="icon-tel [##if $result.phone##]authen_es[##else##]danger[##/if##]"></i></div>
-                <div class="span1">账号设置</div>
-                <div class="item-text">[##if $result.phone##]已绑定[##else##]<span style="color: #F44336;">未绑定</span>[##/if##]</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Account Settings[##else##]账号设置[##/if##]</div>
+                <div class="item-text">[##if $result.phone##][##if $_SESSION.lang eq 'english'##]Bound[##else##]已绑定[##/if##][##else##]<span style="color: #F44336;">[##if $_SESSION.lang eq 'english'##]Unbound[##else##]未绑定[##/if##]</span>[##/if##]</div>
                 <a href="[##$_SCONFIG.webroot##]cp-userinfo-op-user_set.html">
                     <i class="icon-listright"></i>
                 </a>
@@ -93,12 +93,12 @@
             
             <li class="bui-btn bui-box" [##if $result.idcard eq '0' || $result.idcard eq '-1'##]onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_idcard.html'"[##/if##]>
                 <div class="icon"><i class="icon-userinfo [##if $result.idcard eq '2'##]authen_es[##else##]danger[##/if##]"></i></div>
-                <div class="span1">实名认证</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Real name authentication[##else##]实名认证[##/if##]</div>
                 <div class="item-text">
-                    [##if $result.idcard eq '2'##]已认证
-                    [##elseif $result.idcard eq '-1'##]<span style="color: #F44336;">未通过</span>
-                    [##elseif $result.idcard eq '1'##]<span style="color: #ff9800;">待审核</span>
-                    [##else##]<span style="color: #F44336;">未认证</span>
+                    [##if $result.idcard eq '2'##][##if $_SESSION.lang eq 'english'##]Failed[##else##]已认证[##/if##]
+                    [##elseif $result.idcard eq '-1'##]<span style="color: #F44336;">[##if $_SESSION.lang eq 'english'##]Certified[##else##]未通过[##/if##]</span>
+                    [##elseif $result.idcard eq '1'##]<span style="color: #ff9800;">[##if $_SESSION.lang eq 'english'##]To be reviewed[##else##]待审核[##/if##]</span>
+                    [##else##]<span style="color: #F44336;">[##if $_SESSION.lang eq 'english'##]Not certified[##else##]未认证[##/if##]</span>
                     [##/if##]
                 </div>
                 <i class="icon-listright"></i>
@@ -106,12 +106,12 @@
 
             <li class="bui-btn bui-box" [##if $result.drive eq '0' || $result.drive eq '-1'##]onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_drive.html'"[##/if##]>
                 <div class="icon"><i class="icon-addressbook [##if $result.drive eq '2'##]authen_es[##else##]danger[##/if##]"></i></div>
-                <div class="span1">驾驶认证</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Driving certification[##else##]驾驶认证[##/if##]</div>
                 <div class="item-text">
-                    [##if $result.drive eq '2'##]已认证
-                    [##elseif $result.drive eq '-1'##]<span style="color: #F44336;">未通过</span>
-                    [##elseif $result.drive eq '1'##]<span style="color: #ff9800;">待审核</span>
-                    [##else##]<span style="color: #F44336;">未认证</span>
+                    [##if $result.drive eq '2'##][##if $_SESSION.lang eq 'english'##]Certified[##else##]已认证[##/if##]
+                    [##elseif $result.drive eq '-1'##]<span style="color: #F44336;">[##if $_SESSION.lang eq 'english'##]To be reviewed[##else##]未通过[##/if##]</span>
+                    [##elseif $result.drive eq '1'##]<span style="color: #ff9800;">[##if $_SESSION.lang eq 'english'##]To be reviewed[##else##]待审核[##/if##]</span>
+                    [##else##]<span style="color: #F44336;">[##if $_SESSION.lang eq 'english'##]Not certified[##else##]未认证[##/if##]</span>
                     [##/if##]
                 </div>
                 <i class="icon-listright"></i>
@@ -202,7 +202,7 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">账号设置</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Account Settings[##else##]账号设置[##/if##]</div>
             <div class="bui-bar-right">
             </div>
         </div>
@@ -220,19 +220,19 @@
         </ul>
         <ul class="bui-list contact-list">
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="user">姓名</label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]full name[##else##]姓名[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input" id="nicknameInput">
-                        <input type="text" placeholder="请输入真实姓名" autocomplete="off" value="[##$result.nickname##]" disabled />
+                        <input type="text" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your real name[##else##]请输入真实姓名[##/if##]" autocomplete="off" value="[##$result.nickname##]" disabled />
                         <input id="nickname" type="hidden" value="[##$result.nickname##]" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box">
-                <label class="bui-label">性别</label>
+                <label class="bui-label">[##if $_SESSION.lang eq 'english'##]Gender[##else##]性别[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input" id="sexInput">
-                        <input id="select_sex" type="text" value="[##if $result.sex eq '1'##]男[##elseif $result.sex eq '2'##]女[##else##]保密[##/if##]" readonly="readonly"  autocomplete="off" />
+                        <input id="select_sex" type="text" value="[##if $result.sex eq '1'##][##if $_SESSION.lang eq 'english'##]man[##else##]男[##/if##][##elseif $result.sex eq '2'##][##if $_SESSION.lang eq 'english'##]woman[##else##]女[##/if##][##else##][##if $_SESSION.lang eq 'english'##]secrecy[##else##]保密[##/if##][##/if##]" readonly="readonly"  autocomplete="off" />
                         <input id="sex" type="hidden" value="[##$result.sex##]" />
                     </div>
                 </div>
@@ -241,7 +241,7 @@
             
             [##if $result.phone##]
             <li class="bui-btn bui-box clearactive set_phone">
-                <label class="bui-label" for="user">手机号码</label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input">
                         <input type="text" autocomplete="off" value="[##substr_replace($result.phone,'****', 3, 4)##]" disabled />
@@ -251,31 +251,31 @@
             </li>
             [##else##]
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="user">手机号码</label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input" id="phoneInput">
-                        <input id="phone" type="tel" placeholder="请输入你的手机号码" maxlength="11" autocomplete="off" />
+                        <input id="phone" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your mobile phone number[##else##]请输入你的手机号码[##/if##]" maxlength="11" autocomplete="off" />
                     </div>
                 </div>
                 <i class="icon-listright"></i>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="password">验证码</label>
+                <label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]Verification Code[##else##]验证码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-box">
                         <div class="span1">
                             <div class="bui-input code-input">
-                                <input id="code" type="tel" placeholder="请输入验证码" maxlength="6" autocomplete="off" />
+                                <input id="code" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]" maxlength="6" autocomplete="off" />
                             </div>
                         </div>
-                        <div class="bui-btn round btn-send" rel="1">发送验证码</div>
+                        <div class="bui-btn round btn-send" rel="1">[##if $_SESSION.lang eq 'english'##]Send verification code[##else##]发送验证码[##/if##]</div>
                     </div>
                 </div>
             </li>
             [##/if##]
         </ul>
         <div class="container-xy">
-            <div class="bui-btn round primary" id="submit">提交</div>
+            <div class="bui-btn round primary" id="submit">[##if $_SESSION.lang eq 'english'##]Submit[##else##]提交[##/if##]</div>
         </div>
         <!-- loading 位置 -->
         <div id="loadbg"></div>
@@ -285,29 +285,29 @@
     [##if $result.phone##]
     <!-- 弹出框修改手机 -->
     <div id="dialogCenter" class="bui-dialog" style="display: none;">
-        <div class="bui-dialog-head">修改手机号码</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Modify mobile phone number[##else##]修改手机号码[##/if##]</div>
         <div class="bui-dialog-main">
             <div class="set_phone_box">
                 <ul class="bui-list contact-list">
                     <li class="bui-btn bui-box clearactive">
-                        <label class="bui-label" for="user">手机号码</label>
+                        <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
                         <div class="span1">
                             <div class="bui-input">
-                                <input type="text" placeholder="请输入你的手机号码" autocomplete="off" value="[##substr_replace($result.phone,'****', 3, 4)##]" disabled />
+                                <input type="text" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your mobile phone number[##else##]请输入你的手机号码[##/if##]" autocomplete="off" value="[##substr_replace($result.phone,'****', 3, 4)##]" disabled />
                             </div>
                         </div>
-                        <span id="Shutdown" style="color:#ff9800;font-size: 0.26rem;">手机已停机?</span>
+                        <span id="Shutdown" style="color:#ff9800;font-size: 0.26rem;">[##if $_SESSION.lang eq 'english'##]Modify mobile phone nThe phone is down[##else##]手机已停机[##/if##]?</span>
                     </li>
                     <li class="bui-btn bui-box clearactive">
-                        <label class="bui-label" for="password">验证码</label>
+                        <label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]Verification Code[##else##]验证码[##/if##]</label>
                         <div class="span1">
                             <div class="bui-box">
                                 <div class="span1">
                                     <div class="bui-input code-input">
-                                        <input id="code" type="tel" placeholder="请输入验证码" maxlength="6" autocomplete="off" />
+                                        <input id="code" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]" maxlength="6" autocomplete="off" />
                                     </div>
                                 </div>
-                                <div class="bui-btn round btn-send">发送验证码</div>
+                                <div class="bui-btn round btn-send">[##if $_SESSION.lang eq 'english'##]Send verification code[##else##]发送验证码[##/if##]</div>
                             </div>
                         </div>
                     </li>
@@ -316,36 +316,36 @@
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
-                <div class="span1"><div class="bui-btn">取消</div></div>
-                <div class="span1"><div class="bui-btn blue">确定</div></div>
+                <div class="span1"><div class="bui-btn">[##if $_SESSION.lang eq 'english'##]cancel[##else##]取消[##/if##]</div></div>
+                <div class="span1"><div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
             </div>
         </div>
     </div>
 
     <!-- 弹出框新手机 -->
     <div id="dialogPhone" class="bui-dialog" style="display: none;">
-        <div class="bui-dialog-head">绑定手机号码</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Binding mobile phone number[##else##]绑定手机号码[##/if##]</div>
         <div class="bui-dialog-main">
             <div class="set_phone_box">
                 <ul class="bui-list contact-list">
                     <li class="bui-btn bui-box clearactive">
-                        <label class="bui-label" for="user">手机号码</label>
+                        <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
                         <div class="span1">
                             <div class="bui-input">
-                                <input id="new_phone" type="tel" placeholder="请输入你的手机号码" maxlength="11" autocomplete="off" />
+                                <input id="new_phone" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your mobile phone number[##else##]请输入你的手机号码[##/if##]" maxlength="11" autocomplete="off" />
                             </div>
                         </div>
                     </li>
                     <li class="bui-btn bui-box clearactive">
-                        <label class="bui-label" for="password">验证码</label>
+                        <label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]Verification Code[##else##]验证码[##/if##]</label>
                         <div class="span1">
                             <div class="bui-box">
                                 <div class="span1">
                                     <div class="bui-input code-input">
-                                        <input id="new_code" type="tel" placeholder="请输入验证码" maxlength="6" autocomplete="off" />
+                                        <input id="new_code" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]" maxlength="6" autocomplete="off" />
                                     </div>
                                 </div>
-                                <div class="bui-btn round btn-send" rel="2">发送验证码</div>
+                                <div class="bui-btn round btn-send" rel="2">[##if $_SESSION.lang eq 'english'##]Send verification code[##else##]发送验证码[##/if##]</div>
                             </div>
                         </div>
                     </li>
@@ -354,7 +354,7 @@
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
-                <div class="span1"><div class="bui-btn blue">确定</div></div>
+                <div class="span1"><div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
             </div>
         </div>
     </div>
@@ -378,7 +378,7 @@
                         if(!$('#code').val()){
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>请输入验证码", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -410,7 +410,7 @@
                                     }else{
                                         bui.hint({
                                             appendTo:"#main", 
-                                            content:"<i class='icon-infofill'></i>未知错误", 
+                                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                             position:"top" , 
                                             skin:'warning', 
                                             showClose:true, 
@@ -423,7 +423,7 @@
                                 error:function(res){
                                     bui.hint({
                                         appendTo:"#main", 
-                                        content:"<i class='icon-infofill'></i>请求失败", 
+                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                                         position:"top" , 
                                         skin:'warning', 
                                         showClose:true, 
@@ -489,7 +489,7 @@
                                             } else {
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>未知错误", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -500,7 +500,7 @@
                                         }else{
                                             bui.hint({
                                                 appendTo:"#main", 
-                                                content:"<i class='icon-infofill'></i>上传失败", 
+                                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                 position:"top" , 
                                                 skin:'warning', 
                                                 showClose:true, 
@@ -530,13 +530,13 @@
             //选择性别
             var uiSelect = bui.select({
                 trigger: "#select_sex",
-                title: "选择性别",
+                title: "[##if $_SESSION.lang eq 'english'##]Sex selection[##else##]选择性别[##/if##]",
                 type: "radio",
                 buttons: [{name:"确定",className:"primary-reverse"}],
                 data: [
-                    {"name": "保密", "value": "保密"}, 
-                    {"name": "男", "value": "男"}, 
-                    {"name": "女", "value": "女"}
+                    {"name": "[##if $_SESSION.lang eq 'english'##]secrecy[##else##]保密[##/if##]", "value": "[##if $_SESSION.lang eq 'english'##]secrecy[##else##]保密[##/if##]"},
+                    {"name": "[##if $_SESSION.lang eq 'english'##]man[##else##]男[##/if##]", "value": "[##if $_SESSION.lang eq 'english'##]man[##else##]男[##/if##]"},
+                    {"name": "[##if $_SESSION.lang eq 'english'##]woman[##else##]女[##/if##]", "value": "[##if $_SESSION.lang eq 'english'##]woman[##else##]女[##/if##]"}
                 ],
                 callback: function (e) {
                     uiSelect.hide();
@@ -573,18 +573,18 @@
                     var myreg=/^[1][3,4,5,6,7,8][0-9]{9}$/;
                     if (!phone) {
                         bui.hint({
-                            appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请输入手机号", 
-                            position:"top" , 
-                            skin:'warning', 
-                            showClose:true, 
+                            appendTo:"#main",
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please input mobile phone number[##else##]请输入手机号[##/if##]",
+                            position:"top" ,
+                            skin:'warning',
+                            showClose:true,
                             autoClose: true
                         });
                         return false;
                     } else if(!myreg.test(phone)) {
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>手机号码有误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -623,7 +623,7 @@
                             }else{
                                 bui.hint({
                                     appendTo:"#main", 
-                                    content:"<i class='icon-infofill'></i>未知错误", 
+                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                     position:"top" , 
                                     skin:'warning', 
                                     showClose:true, 
@@ -635,7 +635,7 @@
                         error:function(res){
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>请求失败", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -688,7 +688,7 @@
                     if (!(e.target.value == '') && e.target.value.length < 2) {
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>昵称不能小于两位", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The nickname cannot be less than two digits[##else##]昵称不能小于两位[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -700,7 +700,7 @@
                         if(e.target.value.match(pattern)){
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>昵称不能包含特殊符号", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Nicknames cannot contain special symbols[##else##]昵称不能包含特殊符号[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -722,7 +722,7 @@
                     if (!(e.target.value == '') && e.target.value == '') {
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请输入手机号码", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please input mobile phone number[##else##]请输入手机号[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -734,7 +734,7 @@
                     if (!myreg.test(e.target.value)) {
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>手机号码格式有误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -792,7 +792,7 @@
                     if(!myreg.test(phone)) {
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>手机号码有误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -804,7 +804,7 @@
                     if(!code){
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请输入验证码", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -859,7 +859,7 @@
                             $('#loadbg').hide();
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>未知错误", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -871,7 +871,7 @@
                     error:function(res){
                         bui.hint({
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请求失败", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -900,7 +900,7 @@
                         if (!newPhone) {
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>请输入手机号", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please input mobile phone number[##else##]请输入手机号[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -910,7 +910,7 @@
                         } else if(!myreg.test(newPhone)) {
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>手机号码有误", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -920,7 +920,7 @@
                         } else if(!newCode) {
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>请输入验证码", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -966,7 +966,7 @@
                                     }else{
                                         bui.hint({
                                             appendTo:"#main", 
-                                            content:"<i class='icon-infofill'></i>未知错误", 
+                                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                             position:"top" , 
                                             skin:'warning', 
                                             showClose:true, 
@@ -979,7 +979,7 @@
                                 error:function(res){
                                     bui.hint({
                                         appendTo:"#main", 
-                                        content:"<i class='icon-infofill'></i>请求失败", 
+                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                                         position:"top" , 
                                         skin:'warning', 
                                         showClose:true, 
@@ -1162,7 +1162,7 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">实名认证</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Real name authentication[##else##]实名认证[##/if##]</div>
             <div class="bui-bar-right">
             </div>
         </div>
@@ -1170,23 +1170,23 @@
     <main>
         <ul class="bui-list contact-list">
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="user">真实姓名<b style="color:red;">*</b></label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]Real name[##else##]真实姓名[##/if##]<b style="color:red;">*</b></label>
                 <div class="span1">
                     <div class="bui-input" id="realnameInput">
-                        <input id="realname" type="text" maxlength="6" placeholder="请输入真实姓名" autocomplete="off" value="[##$result.name##]" />
+                        <input id="realname" type="text" maxlength="6" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your real name[##else##]请输入真实姓名[##/if##]" autocomplete="off" value="[##$result.name##]" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="user">身份证号<b style="color:red;">*</b></label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]ID number[##else##]身份证号[##/if##]<b style="color:red;">*</b></label>
                 <div class="span1">
                     <div class="bui-input" id="IDInput">
-                        <input id="ID" type="text" maxlength="18" placeholder="请输入身份证号码" autocomplete="off" value="[##$result.number##]" />
+                        <input id="ID" type="text" maxlength="18" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your ID number.[##else##]请输入身份证号码[##/if##]" autocomplete="off" value="[##$result.number##]" />
                     </div>
                 </div>
             </li>
             <ul class="bui-list personal-info" style="background: #FFF;border-bottom: 0.02rem solid #eee">
-                <h3 class="section-title" style="padding:0;color:#666;">身份证正面<b style="color:red;">*</b></h3>
+                <h3 class="section-title" style="padding:0;color:#666;">[##if $_SESSION.lang eq 'english'##]Front of ID card[##else##]身份证正面[##/if##]<b style="color:red;">*</b></h3>
                 <div id="" class="bui-upload bui-fluid-space-1" style="margin-top:0.2rem;">
                     <div class="span1">
                         <div class="bui-upload-thumbnail upload "  id="ups_frontage" data-num="1" data-width="1024" data-height="1024" data-size="20480" action="[##$_SCONFIG.webroot##]cp-userinfo-op-upload_img-type-2.html"  style="height: 4rem; border-radius: 0.1rem; overflow: hidden;" >
@@ -1197,7 +1197,7 @@
                 </div>
             </ul>
             <ul class="bui-list personal-info">
-                <h3 class="section-title"  style="padding:0;color:#666;">身份证背面<b style="color:red;">*</b></h3>
+                <h3 class="section-title"  style="padding:0;color:#666;">[##if $_SESSION.lang eq 'english'##]Back of ID card[##else##]身份证背面[##/if##]<b style="color:red;">*</b></h3>
                 <div id="ups_opposite" class="bui-upload bui-fluid-space-1" style="margin-top:0.2rem;">
                     <div class="span1">
                         <div class="bui-upload-thumbnail" style="height: 4rem; border-radius: 0.1rem; overflow: hidden;">
@@ -1209,35 +1209,35 @@
             </ul>
         </ul>
         <div class="explain_box">
-            <p>证件照标准要求<i class="icon-info warning"></i></p>
+            [##if $_SESSION.lang eq 'english'##]<p style="width: auto;">Standard requirements of certificate[##else##]<p>证件照标准要求[##/if##]<i class="icon-info warning"></i></p>
             <ul>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="right">标准拍摄</span></div>
+                    <div class="text"><span class="right">[##if $_SESSION.lang eq 'english'##]Standard shooting[##else##]标准拍摄[##/if##]</span></div>
                 </li>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="wrong">边框缺失</span></div>
+                    <div class="text"><span class="wrong">[##if $_SESSION.lang eq 'english'##]Missing border[##else##]边框缺失[##/if##]</span></div>
                 </li>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="wrong">照片模糊</span></div>
+                    <div class="text"><span class="wrong">[##if $_SESSION.lang eq 'english'##]The picture is blurred[##else##]照片模糊[##/if##]</span></div>
                 </li>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="wrong">闪光强烈</span></div>
+                    <div class="text"><span class="wrong">[##if $_SESSION.lang eq 'english'##]The flash is intense[##else##]闪光强烈[##/if##]</span></div>
                 </li>
             </ul>
         </div>
         <div class="section-title" style="margin-top:0.1rem;font-size:0.25rem;line-height:0.4rem;">
             <div class="span1">
-              本公司保证承诺对您的信息严格保密<br/>
-              我已阅读并同意 <span style="color:#52a4ff;" id="publish-open">《电牛牛认证保密协议》</span>
+                [##if $_SESSION.lang eq 'english'##]We promise to keep your information strictly confidential[##else##]本公司保证承诺对您的信息严格保密[##/if##]<br/>
+                [##if $_SESSION.lang eq 'english'##]I have read and agree[##else##]我已阅读并同意[##/if##] <span style="color:#52a4ff;" id="publish-open">[##if $_SESSION.lang eq 'english'##]《Confidentiality agreement for electronic Niuniu certification》[##else##]《电牛牛认证保密协议》[##/if##]</span>
               <input id="protocol" type="checkbox" name="protocol" class="bui-choose" checked />
             </div>
         </div>
         <div class="container-xy">
-            <div class="bui-btn round primary" id="submit">提交</div>
+            <div class="bui-btn round primary" id="submit">[##if $_SESSION.lang eq 'english'##]Submit[##else##]提交[##/if##]</div>
         </div>
         <!-- loading 示例位置 -->
         <div id="loading" class="bui-panel"></div>
@@ -1246,16 +1246,16 @@
     [##if $result.status eq '-1'##]
     <!-- 审核未通过弹出框  -->
     <div id="examineCenter" class="bui-dialog" style="display: none;">
-        <div class="bui-dialog-head">审核结果</div>
+        <div class="bui-dialog-head">>[##if $_SESSION.lang eq 'english'##]findings of audit[##else##]审核结果[##/if##]</div>
         <div class="bui-dialog-main">
             <div class="examine_box">
-                <p>审核未通过</p>
+                <p>[##if $_SESSION.lang eq 'english'##]Failed to pass the audit[##else##]审核未通过[##/if##]</p>
                 <div class="examine_content">[##$result.content##]</div>
             </div>
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
-                <div class="span1"><div class="bui-btn blue">确定</div></div>
+                <div class="span1"><div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
             </div>
         </div>
         <div class="bui-dialog-close"><i class="icon-close"></i></div>
@@ -1484,7 +1484,7 @@
                                                 } else {
                                                     bui.hint({
                                                         appendTo:"#main", 
-                                                        content:"<i class='icon-infofill'></i>未知错误", 
+                                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                         position:"top" , 
                                                         skin:'warning', 
                                                         showClose:true, 
@@ -1495,7 +1495,7 @@
                                             }else{
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>上传失败", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -1538,7 +1538,7 @@
                                                 } else {
                                                     bui.hint({
                                                         appendTo:"#main", 
-                                                        content:"<i class='icon-infofill'></i>未知错误", 
+                                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                         position:"top" , 
                                                         skin:'warning', 
                                                         showClose:true, 
@@ -1549,7 +1549,7 @@
                                             }else{
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>上传失败", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -1622,7 +1622,7 @@
                 if(!$("#protocol").attr('checked')){
                     bui.hint({ 
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请先同意认证协议", 
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please agree to the authentication agreement first[##else##]请先同意认证协议[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -1638,7 +1638,7 @@
                 if(realname=='' || ID==''){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请完善必填信息",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please complete the required information[##else##]请完善必填信息[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -1652,7 +1652,7 @@
                 if(!regName.test(realname)){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请填写正确的中文姓名",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please fill in the correct Chinese name[##else##]请填写正确的中文姓名[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -1666,7 +1666,7 @@
                 if(!regIdNo.test(ID)){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>身份证号填写有误",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The ID number is filled in error.[##else##]身份证号填写有误[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -1679,7 +1679,7 @@
                 if(!frontage){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请上传身份证正面照",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please upload the front photo of ID card[##else##]请上传身份证正面照[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -1692,7 +1692,7 @@
                 if(!opposite){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请上传身份证背面照",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please upload the photo on the back of your ID card[##else##]请上传身份证背面照[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -1719,7 +1719,7 @@
                         Loading_box.stop();
                         if (res.error == 0) {
                             bui.hint({
-                                content:"<i class='icon-check'></i><br />提交成功", 
+                                content:"<i class='icon-check'></i><br />[##if $_SESSION.lang eq 'english'##]Submitted successfully[##else##]提交成功[##/if##]",
                                 position:"center" , 
                                 effect:"fadeInDown"
                             });
@@ -1742,7 +1742,7 @@
                         } else {
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>未知错误", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -1754,7 +1754,7 @@
                     error:function(res){
                         bui.hint({
                             appendTo:"#main",
-                            content:"<i class='icon-infofill'></i>请求失败", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -1996,31 +1996,31 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">驾驶证认证</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Driver's license certification[##else##]驾驶证认证[##/if##]</div>
             <div class="bui-bar-right"></div>
         </div>
     </header>
     <main>
         <ul class="bui-list contact-list">
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="user">驾驶证号<b style="color:red;">*</b></label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]Driver's license number[##else##]驾驶证号[##/if##]<b style="color:red;">*</b></label>
                 <div class="span1">
                     <div class="bui-input">
-                        <input id="certifno" type="text" maxlength="18" placeholder="请输入你的驾驶证证号" value="[##$result.certifno##]" />
+                        <input id="certifno" type="text" maxlength="18" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your driver's license number[##else##]请输入你的驾驶证证号[##/if##]" value="[##$result.certifno##]" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="user">档案编码<b style="color:red;">*</b></label>
+                <label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]File code[##else##]档案编码[##/if##]<b style="color:red;">*</b></label>
                 <div class="span1">
                     <div class="bui-input">
-                        <input id="number" type="text" maxlength="12" placeholder="请输入你的档案编码" value="[##$result.number##]" />
+                        <input id="number" type="text" maxlength="12" placeholder="[##if $_SESSION.lang eq 'english'##]Please input your file code[##else##]请输入你的档案编码[##/if##]" value="[##$result.number##]" />
                     </div>
                 </div>
             </li>
             
             <ul class="bui-list personal-info" style="background: #FFF;border-bottom: 0.02rem solid #eee">
-                <h3 class="section-title" style="padding:0;color:#666;">驾驶证正页<b style="color:red;">*</b></h3>
+                <h3 class="section-title" style="padding:0;color:#666;">[##if $_SESSION.lang eq 'english'##]Front page of driver's license[##else##]驾驶证正页[##/if##]<b style="color:red;">*</b></h3>
                 <div id="ups_frontage" class="bui-upload bui-fluid-space-1" style="margin-top:0.2rem;">
                     <div class="span1">
                         <div class="bui-upload-thumbnail" style="height: 4rem; border-radius: 0.1rem; overflow: hidden;">
@@ -2031,7 +2031,7 @@
                 </div>
             </ul>
             <ul class="bui-list personal-info">
-                <h3 class="section-title"  style="padding:0;color:#666;">驾驶证副页<b style="color:red;">*</b></h3>
+                <h3 class="section-title"  style="padding:0;color:#666;">[##if $_SESSION.lang eq 'english'##]Driver's license sub page[##else##]驾驶证副页[##/if##]<b style="color:red;">*</b></h3>
                 <div id="ups_opposite" class="bui-upload bui-fluid-space-1" style="margin-top:0.2rem;">
                     <div class="span1">
                         <div class="bui-upload-thumbnail" style="height: 4rem; border-radius: 0.1rem; overflow: hidden;">
@@ -2043,35 +2043,35 @@
             </ul>
         </ul>
         <div class="explain_box">
-            <p>证件照标准要求<i class="icon-info warning"></i></p>
+            [##if $_SESSION.lang eq 'english'##]<p style="width: auto;">Standard requirements of certificate[##else##]<p>证件照标准要求[##/if##]<i class="icon-info warning"></i></p>
             <ul>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="right">标准拍摄</span></div>
+                    <div class="text"><span class="right">[##if $_SESSION.lang eq 'english'##]Standard shooting[##else##]标准拍摄[##/if##]</span></div>
                 </li>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="wrong">边框缺失</span></div>
+                    <div class="text"><span class="wrong">[##if $_SESSION.lang eq 'english'##]Missing border[##else##]边框缺失[##/if##]</span></div>
                 </li>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="wrong">照片模糊</span></div>
+                    <div class="text"><span class="wrong">[##if $_SESSION.lang eq 'english'##]The picture is blurred[##else##]照片模糊[##/if##]</span></div>
                 </li>
                 <li>
                     <div class="image"></div>
-                    <div class="text"><span class="wrong">闪光强烈</span></div>
+                    <div class="text"><span class="wrong">[##if $_SESSION.lang eq 'english'##]The flash is intense[##else##]闪光强烈[##/if##]</span></div>
                 </li>
             </ul>
         </div>
         <div class="section-title" style="margin-top:0.1rem;font-size:0.25rem;line-height:0.4rem;">
             <div class="span1">
-              本公司保证承诺对您的信息严格保密<br/>
-              我已阅读并同意 <span style="color:#52a4ff;" id="publish-open">《电牛牛认证保密协议》</span>
+                [##if $_SESSION.lang eq 'english'##]We promise to keep your information strictly confidential[##else##]本公司保证承诺对您的信息严格保密[##/if##]<br/>
+                [##if $_SESSION.lang eq 'english'##]I have read and agree[##else##]我已阅读并同意[##/if##] <span style="color:#52a4ff;" id="publish-open">《电牛牛认证保密协议》</span>
               <input id="protocol" type="checkbox" name="protocol" class="bui-choose" checked />
             </div>
         </div>
         <div class="container-xy">
-            <div class="bui-btn round primary" id="submit">提交</div>
+            <div class="bui-btn round primary" id="submit">[##if $_SESSION.lang eq 'english'##]Submit[##else##]提交[##/if##]</div>
         </div>
         <!-- loading 示例位置 -->
         <div id="loading" class="bui-panel"></div>
@@ -2080,16 +2080,16 @@
     [##if $result.status eq '-1'##]
     <!-- 审核未通过弹出框  -->
     <div id="examineCenter" class="bui-dialog" style="display: none;">
-        <div class="bui-dialog-head">审核结果</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]findings of audit[##else##]审核结果[##/if##]</div>
         <div class="bui-dialog-main">
             <div class="examine_box">
-                <p>审核未通过</p>
+                <p>[##if $_SESSION.lang eq 'english'##]Failed to pass the audit[##else##]审核未通过[##/if##]</p>
                 <div class="examine_content">[##$result.content##]</div>
             </div>
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
-                <div class="span1"><div class="bui-btn blue">确定</div></div>
+                <div class="span1"><div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
             </div>
         </div>
         <div class="bui-dialog-close"><i class="icon-close"></i></div>
@@ -2160,7 +2160,7 @@
                                                 } else {
                                                     bui.hint({
                                                         appendTo:"#main", 
-                                                        content:"<i class='icon-infofill'></i>未知错误", 
+                                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                         position:"top" , 
                                                         skin:'warning', 
                                                         showClose:true, 
@@ -2171,7 +2171,7 @@
                                             }else{
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>上传失败", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -2214,7 +2214,7 @@
                                                 } else {
                                                     bui.hint({
                                                         appendTo:"#main", 
-                                                        content:"<i class='icon-infofill'></i>未知错误", 
+                                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                         position:"top" , 
                                                         skin:'warning', 
                                                         showClose:true, 
@@ -2225,7 +2225,7 @@
                                             }else{
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>上传失败", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -2288,7 +2288,7 @@
                                                 } else {
                                                     bui.hint({
                                                         appendTo:"#main", 
-                                                        content:"<i class='icon-infofill'></i>未知错误", 
+                                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                         position:"top" , 
                                                         skin:'warning', 
                                                         showClose:true, 
@@ -2299,7 +2299,7 @@
                                             }else{
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>上传失败", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -2342,7 +2342,7 @@
                                                 } else {
                                                     bui.hint({
                                                         appendTo:"#main", 
-                                                        content:"<i class='icon-infofill'></i>未知错误", 
+                                                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                                         position:"top" , 
                                                         skin:'warning', 
                                                         showClose:true, 
@@ -2353,7 +2353,7 @@
                                             }else{
                                                 bui.hint({
                                                     appendTo:"#main", 
-                                                    content:"<i class='icon-infofill'></i>上传失败", 
+                                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                                     position:"top" , 
                                                     skin:'warning', 
                                                     showClose:true, 
@@ -2381,7 +2381,7 @@
                 if(!$("#protocol").attr('checked')){
                     bui.hint({ 
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请先同意认证协议", 
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please agree to the authentication agreement first[##else##]请先同意认证协议[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -2397,7 +2397,7 @@
                 if(certifno=='' || number==''){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请完善必填信息",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please complete the required information[##else##]请完善必填信息[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -2411,7 +2411,7 @@
                 if(!regIdNo.test(certifno)){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>驾驶证号填写有误",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong driver's license number[##else##]驾驶证号填写有误[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -2424,7 +2424,7 @@
                 if(!frontage){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请上传驾驶证正页照",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please upload the front page photo of driver's license[##else##]请上传驾驶证正页照[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -2437,7 +2437,7 @@
                 if(!opposite){
                     bui.hint({
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请上传驾驶证副页照",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please upload the driver's license[##else##]请上传驾驶证副页照[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -2464,7 +2464,7 @@
                         Loading_box.stop();
                         if (res.error == 0) {
                             bui.hint({
-                                content:"<i class='icon-check'></i><br />提交成功", 
+                                content:"<i class='icon-check'></i><br />[##if $_SESSION.lang eq 'english'##]Submitted successfully[##else##]提交成功[##/if##]",
                                 position:"center" , 
                                 effect:"fadeInDown"
                             });
@@ -2487,7 +2487,7 @@
                         } else {
                             bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>未知错误", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -2499,7 +2499,7 @@
                     error:function(res){
                         bui.hint({
                             appendTo:"#main",
-                            content:"<i class='icon-infofill'></i>请求失败", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 

@@ -136,7 +136,7 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-usermanage.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">我的钱包</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]My wallet[##else##]我的钱包[##/if##]</div>
             <div class="bui-bar-right">
             </div>
         </div>
@@ -146,7 +146,7 @@
         <div class="bui-panel panel-usercenter">
             <div class="bui-panel-head bui-box-align-middle">
                 <i class="icon-money">&#xe60c;</i>
-                <div class="span1">总资产</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]total assets[##else##]总资产[##/if##]</div>
                 <!-- <a href=""><div class="panel-head-right">账单<i class="icon-listright"></i></div></a> -->
             </div>
             <div class="bui-panel-main">
@@ -155,21 +155,21 @@
                         <a href="[##$_SCONFIG.webroot##]cp-userpurse-op-balance.html">
                             <i class="icon icon-balance"></i>
                             <span>[##$result.money##]</span>
-                            <div class="span1">账户余额</div>
+                            <div class="span1">[##if $_SESSION.lang eq 'english'##]Account balance[##else##]账户余额[##/if##]</div>
                         </a>
                     </li>
                     <li class="bui-btn bui-box-vertical">
                         <a href="[##$_SCONFIG.webroot##]cp-userpurse-op-deposit.html">
                             <i class="icon icon-deposit"></i>
                             <span>[##$result.deposit##]</span>
-                            <div class="span1">租车押金</div>
+                            <div class="span1">[##if $_SESSION.lang eq 'english'##]Car rental deposite[##else##]租车押金[##/if##]</div>
                         </a>
                     </li>
                     <li class="bui-btn bui-box-vertical">
                         <a href="[##$_SCONFIG.webroot##]cp-userpurse-op-coupon.html">
                             <i class="icon icon-coupon"></i>
                             <span>[##$coupon##]</span>
-                            <div class="span1">优惠券</div>
+                            <div class="span1">[##if $_SESSION.lang eq 'english'##]coupon[##else##]优惠券[##/if##]</div>
                         </a>
                     </li>
                 </ul>
@@ -316,13 +316,13 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userpurse.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">账户余额</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Account balance[##else##]账户余额[##/if##]</div>
             <div class="bui-bar-right"></div>
         </div>
     </header>
 
     <div class="balance-header">
-        <div class="balance-title">总金额(元)</div>
+        <div class="balance-title">[##if $_SESSION.lang eq 'english'##]Total amount (yuan)[##else##]总金额(元)[##/if##]</div>
         <div class="balance-number">[##$money##]</div>
     </div>
 
@@ -335,7 +335,7 @@
             <div class="bui-scroll-foot"></div>
         </div>
         <div class="btnList">
-            <a id="recharge" href="javascript:" style="width: 100%;background-color: #00904b;">充值</a>
+            <a id="recharge" href="javascript:" style="width: 100%;background-color: #00904b;">[##if $_SESSION.lang eq 'english'##]Recharge[##else##]充值[##/if##]</a>
             <!-- <a id="extract" href="javascript:">提现</a> -->
         </div>
     </main>
@@ -350,8 +350,8 @@
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
-                <div class="span1"><div class="bui-btn">取消</div></div>
-                <div class="span1"><div class="bui-btn blue">确定</div></div>
+                <div class="span1"><div class="bui-btn">[##if $_SESSION.lang eq 'english'##]cancel[##else##]取消[##/if##]</div></div>
+                <div class="span1"><div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
             </div>
         </div>
         <div class="bui-dialog-close"><i class="icon-close"></i></div>
@@ -394,7 +394,7 @@
                     data: "result"
                 },
                 scrollTips: {
-                    nodata: "没有更多数据了..."
+                    nodata: "[##if $_SESSION.lang eq 'english'##]No more data[##else##]没有更多数据了[##/if##]~"
                 },
                 callback: function(e) {
                     // e.target 为你当前点击的元素
@@ -486,7 +486,7 @@
                                 Loading_box.stop();
                                 bui.hint({
                                     appendTo: "#main",
-                                    content: "<i class='icon-infofill'></i>系统繁忙,请稍后重试",
+                                    content: "<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The system is busy, please try again later[##else##]系统繁忙,请稍后重试[##/if##]",
                                     position: "top" ,
                                     skin: 'warning',
                                     showClose: false,
@@ -713,19 +713,19 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userpurse.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">租车押金</div>
-            <div class="bui-bar-right"><a id="detailed_btn" href="javascript:">明细</a></div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Car rental deposite[##else##]租车押金[##/if##]</div>
+            <div class="bui-bar-right"><a id="detailed_btn" href="javascript:">[##if $_SESSION.lang eq 'english'##]detailed[##else##]明细[##/if##]</a></div>
         </div>
     </header>
 
     <main id="main">
         <div class="content"> 
-            <p style="color:#00904b;">租车押车<span style="font-size:0.65rem;">[##$_SCONFIG.deposit##]</span>元</p>
-            <p style="padding-top:0.2rem;">已缴纳押金<span>[##$deposit##]</span>元</p>
+            <p style="color:#00904b;">租车押车<span style="font-size:0.65rem;">[##$_SCONFIG.deposit##]</span>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>
+            <p style="padding-top:0.2rem;">已缴纳押金<span>[##$deposit##]</span>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>
         </div>
             <div class="return_box" [##if $deposit <= 0##]style="display: none;"[##/if##]>
-                <button id="cancel_btn" [##if !$returnid##]style="display: none;"[##/if##]>取消申请</button>
-                <button id="return_btn" [##if $returnid##]style="display: none;"[##/if##]>申请退押金</button>
+                <button id="cancel_btn" [##if !$returnid##]style="display: none;"[##/if##]>[##if $_SESSION.lang eq 'english'##]withdraw[##else##]取消申请[##/if##]</button>
+                <button id="return_btn" [##if $returnid##]style="display: none;"[##/if##]>[##if $_SESSION.lang eq 'english'##]Apply for refund of deposit[##else##]申请退押金[##/if##]</button>
             </div>
         <div class="tios" style="text-align: center;">
             [##$_SCONFIG.deposit_explain##]
@@ -733,12 +733,12 @@
         </div>
     </main>
 
-    [##if $deposit < $_SCONFIG.deposit##]<div class="btn_box" id="pay_btn">缴纳押金</div>[##/if##]
+    [##if $deposit < $_SCONFIG.deposit##]<div class="btn_box" id="pay_btn">[##/if##]>[##if $_SESSION.lang eq 'english'##]Pay deposit[##else##]缴纳押金[##/if##]</div>[##/if##]
 
     <div id="dialogDetailed" class="bui-dialog" style="display:none;">
         <div class="bui-dialog-head bui-box-align-middle">
-            <div class="span1">押金明细</div>
-            <div id="detailed_close" class="bui-btn primary round">关闭</div>
+            <div class="span1">[##if $_SESSION.lang eq 'english'##]Deposit details[##else##]押金明细[##/if##]</div>
+            <div id="detailed_close" class="bui-btn primary round">[##if $_SESSION.lang eq 'english'##]close[##else##]关闭[##/if##]</div>
         </div>
         <div class="bui-dialog-main">
             <div id="depositList" class="bui-scroll">
@@ -757,49 +757,49 @@
 
     <!-- 中间自定义弹出框结构  -->
     <div id="dialogReturn" class="bui-dialog" style="display: none;">
-        <div class="bui-dialog-head">客户调查问卷</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Customer questionnaire[##else##]客户调查问卷[##/if##]</div>
         <div class="bui-dialog-main">
             <div class="text">
-                <p>您申请退押金的原因是什么？</p>
+                <p>[##if $_SESSION.lang eq 'english'##]What is the reason for your application for refund of deposit[##else##]您申请退押金的原因是什么[##/if##]？</p>
             </div>
             <ul class="bui-list">
                 <li class="bui-btn bui-box">
                     <div class="span1">
-                        <label for="interester1">用不上了</label>
+                        <label for="interester1">[##if $_SESSION.lang eq 'english'##]I can't use it[##else##]用不上了[##/if##]</label>
                     </div>
-                    <input id="interester1" type="checkbox" class="bui-choose" name="reason" value="用不上了" />
+                    <input id="interester1" type="checkbox" class="bui-choose" name="reason" value="[##if $_SESSION.lang eq 'english'##]I can't use it[##else##]用不上了[##/if##]" />
                 </li>
                 <li class="bui-btn bui-box bui-btn-line">
                     <div class="span1">
-                        <label for="interester2">价格太贵</label>
+                        <label for="interester2">[##if $_SESSION.lang eq 'english'##]The price is too high[##else##]价格太贵[##/if##]</label>
                     </div>
-                    <input id="interester2" type="checkbox" class="bui-choose" name="reason" value="价格太贵" />
+                    <input id="interester2" type="checkbox" class="bui-choose" name="reason" value="[##if $_SESSION.lang eq 'english'##]The price is too high[##else##]价格太贵[##/if##]" />
                 </li>
                 <li class="bui-btn bui-box bui-btn-line">
                     <div class="span1">
-                        <label for="interester3">服务不好</label>
+                        <label for="interester3">[##if $_SESSION.lang eq 'english'##]Poor service[##else##]服务不好[##/if##]</label>
                     </div>
-                    <input id="interester3" type="checkbox" class="bui-choose" name="reason" value="服务不好" />
+                    <input id="interester3" type="checkbox" class="bui-choose" name="reason" value="[##if $_SESSION.lang eq 'english'##]Poor service[##else##]服务不好[##/if##]" />
                 </li>
                 <li class="bui-btn bui-box bui-btn-line">
                     <div class="span1">
-                        <label for="interester4">车辆问题(卫生、操作等方面)</label>
+                        <label for="interester4">[##if $_SESSION.lang eq 'english'##]Vehicle problems (hygiene, operation, etc.)[##else##]车辆问题(卫生、操作等方面)[##/if##]</label>
                     </div>
-                    <input id="interester4" type="checkbox" class="bui-choose" name="reason" value="车辆问题(卫生、操作等方面)" />
+                    <input id="interester4" type="checkbox" class="bui-choose" name="reason" value="[##if $_SESSION.lang eq 'english'##]Vehicle problems (hygiene, operation, etc.)[##else##]车辆问题(卫生、操作等方面)[##/if##]" />
                 </li>
             </ul>
-            <div class="section-title" style="text-align: left; font-size: .3rem; color: #666;">其它原因</div>
+            <div class="section-title" style="text-align: left; font-size: .3rem; color: #666;">[##if $_SESSION.lang eq 'english'##]Other reasons[##else##]其它原因[##/if##]</div>
             <div id="comment" class="bui-input">
-                <textarea name="reason" placeholder="输入退押金的其它原因" cols="30" rows="4"></textarea>
+                <textarea name="reason" placeholder="[##if $_SESSION.lang eq 'english'##]Enter other reasons for deposit refund[##else##]输入退押金的其它原因[##/if##]" cols="30" rows="4"></textarea>
             </div>
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
                 <div class="span1">
-                    <div class="bui-btn">取消</div>
+                    <div class="bui-btn">[##if $_SESSION.lang eq 'english'##]cancel[##else##]取消[##/if##]</div>
                 </div>
                 <div class="span1">
-                    <div class="bui-btn blue">确定</div>
+                    <div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div>
                 </div>
             </div>
         </div>
@@ -844,7 +844,7 @@
                         data: "result"
                     },
                     scrollTips: {
-                        nodata: "没有更多数据了..."
+                        nodata: "[##if $_SESSION.lang eq 'english'##]No more data[##else##]没有更多数据了[##/if##]~"
                     },
                     callback: function(e) {
                         // e.target 为你当前点击的元素
@@ -910,7 +910,7 @@
                     Loading_box.stop();
                     bui.hint({
                         appendTo: "#main",
-                        content: "<i class='icon-infofill'></i>系统繁忙,请稍后重试",
+                        content: "<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The system is busy, please try again later[##else##]系统繁忙,请稍后重试[##/if##]",
                         position: "top" ,
                         skin: 'warning',
                         showClose: false,
@@ -985,13 +985,13 @@
                                 });
                             }
                         },function(res,status){
-                            that.text('申请退押金');
+                            that.text("[##/if##]>[##if $_SESSION.lang eq 'english'##]Apply for refund of deposit[##else##]申请退押金[##/if##]");
                             that.removeAttr('disabled');
                             $('#loadbg').hide();
                             Loading_box.stop();
                             bui.hint({
                                 appendTo: "#main",
-                                content: "<i class='icon-infofill'></i>系统繁忙,请稍后重试",
+                                content: "<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The system is busy, please try again later[##else##]系统繁忙,请稍后重试[##/if##]",
                                 position: "top" ,
                                 skin: 'warning',
                                 showClose: false,
@@ -1042,7 +1042,7 @@
                     Loading_box.stop();
                     bui.hint({
                         appendTo: "#main",
-                        content: "<i class='icon-infofill'></i>系统繁忙,请稍后重试",
+                        content: "<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The system is busy, please try again later[##else##]系统繁忙,请稍后重试[##/if##]",
                         position: "top" ,
                         skin: 'warning',
                         showClose: false,
@@ -1055,7 +1055,7 @@
             //取消退押金
             $("#cancel_btn").on("click", function () {
                 var that = $(this);
-                var name = '取消申请';
+                var name = "[##if $_SESSION.lang eq 'english'##]withdraw[##else##]取消申请[##/if##]";
                 var title = '确定要取消退押金申请吗？';
                 var loadtext = '取消申请中';
                 bui.confirm(title, function(e) {
@@ -1100,7 +1100,7 @@
                             Loading_box.stop();
                             bui.hint({
                                 appendTo: "#main",
-                                content: "<i class='icon-infofill'></i>系统繁忙,请稍后重试",
+                                content: "<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The system is busy, please try again later[##else##]系统繁忙,请稍后重试[##/if##]",
                                 position: "top" ,
                                 skin: 'warning',
                                 showClose: false,
@@ -1391,7 +1391,7 @@
             <div class="bui-bar-left">
                 <a class="bui-btn" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userpurse.html'"><i class="icon-back"></i></a>
             </div>
-            <div class="bui-bar-main">优惠券</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]coupon[##else##]优惠券[##/if##]</div>
             <div class="bui-bar-right"></div>
         </div>
     </header>
@@ -1399,10 +1399,10 @@
     <main>
         <div class="bui-tab-head">
             <ul class="bui-nav">
-                <li class="bui-btn active" rel="">全部</li>
-                <li class="bui-btn" rel="3">已使用</li>
-                <li class="bui-btn" rel="2">已过期</li>
-                <li class="bui-btn" rel="1">不可用</li>
+                <li class="bui-btn active" rel="">[##if $_SESSION.lang eq 'english'##]whole[##else##]全部[##/if##]</li>
+                <li class="bui-btn" rel="3">[##if $_SESSION.lang eq 'english'##]Used[##else##]已使用[##/if##]</li>
+                <li class="bui-btn" rel="2">[##if $_SESSION.lang eq 'english'##]Expired[##else##]已过期[##/if##]</li>
+                <li class="bui-btn" rel="1">[##if $_SESSION.lang eq 'english'##]Not available[##else##]不可用[##/if##]</li>
             </ul>
         </div>
 
@@ -1474,13 +1474,13 @@
 
     <!-- 中间自定义弹出框结构  -->
     <div id="dialogCoupon" class="bui-dialog" style="display: none;">
-        <div class="bui-dialog-head">优惠券详情</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Coupon details[##else##]优惠券详情[##/if##]</div>
         <div class="bui-dialog-main">
             <div id="coupon_box"></div>
         </div>
         <div class="bui-dialog-foot">
             <div class="bui-box">
-                <div class="span1"><div class="bui-btn blue">确定</div></div>
+                <div class="span1"><div class="bui-btn blue">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
             </div>
         </div>
         <div class="bui-dialog-close"><i class="icon-close"></i></div>
@@ -1498,8 +1498,8 @@
                 onRefresh: refresh,
                 onLoad: getData,
                 scrollTips: {
-                    last: "已经到底啦~",
-                    nodata: "没有更多数据了..."
+                    last: "[##if $_SESSION.lang eq 'english'##]It's over[##else##]已经到底啦[##/if##]~",
+                    nodata: "[##if $_SESSION.lang eq 'english'##]No more data[##else##]没有更多数据了[##/if##]~"
                 },
                 callback: function (argument) {
                 }
@@ -1718,19 +1718,19 @@
                         console.log(res);
                         var str = '<h3>'+res.result.name+'</h3>';
                         if(res.result.type == 1){
-                            str += '<p>优惠金额：<b>'+res.result.money+'</b>元</p>';
+                            str += '<p>优惠金额：<b>'+res.result.money+"</b>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>";
                         }else if(res.result.type == 2){
-                            str += '<p>立减金额：<b>'+res.result.money+'</b>元</p>';
+                            str += '<p>立减金额：<b>'+res.result.money+"</b>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>";
                             if(res.result.price > 0){
-                                str += '<p>最低消费：<b>'+res.result.price+'</b>元</p>';
+                                str += '<p>最低消费：<b>'+res.result.price+"</b>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>";
                             }
                         }else if(res.result.type == 3){
                             str += '<p>优惠折扣：<b>'+res.result.money+'</b>折</p>';
                             if(res.result.price > 0){
-                                str += '<p>最低消费：<b>'+res.result.price+'</b>元</p>';
+                                str += '<p>最低消费：<b>'+res.result.price+"</b>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>";
                             }
                             if(res.result.sum > 0){
-                                str += '<p>最高优惠：<b>'+res.result.sum+'</b>元</p>';
+                                str += '<p>最高优惠：<b>'+res.result.sum+"</b>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</p>";
                             }
                         }
                         if(res.result.datetype == 1){

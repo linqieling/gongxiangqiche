@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <meta http-equiv="Access-Control-Allow-Origin" content="*">
-<title>[##$_SCONFIG.sitetitle##] - 会员登录</title>
+<title>[##$_SCONFIG.sitetitle##] - [##if $_SESSION.lang eq 'english'##]Member login[##else##]会员登录[##/if##]</title>
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="[##$_SPATH.css##]bui.css" /> 
@@ -108,7 +108,7 @@
 			<div class="bui-bar-left">
                 <a class="bui-btn" href="./"><i class="icon-back"></i></a>
 			</div>
-			<div class="bui-bar-main">会员登录</div>
+			<div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Member login[##else##]会员登录[##/if##]</div>
 			<div   class="bui-bar-right" >
 			</div>
 		</div>
@@ -138,32 +138,32 @@
                 </div>
             </li> -->
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="username">账号</label>
+                <label class="bui-label" for="username">[##if $_SESSION.lang eq 'english'##]account number[##else##]账号[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input" id="usernameInput">
-                        <input id="username" type="text" placeholder="请输入你的账号" autocomplete="off" />
+                        <input id="username" type="text" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your account number[##else##]请输入你的账号[##/if##]" autocomplete="off" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="password">密码</label>
+                <label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]password[##else##]密码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input" id="phoneInput">
-                        <input id="password" type="password" placeholder="请输入你的密码" autocomplete="off" />
+                        <input id="password" type="password" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your password[##else##]请输入你的密码[##/if##]" autocomplete="off" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="password">验证码</label>
+                <label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]Verification Code[##else##]验证码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-box">
                         <div class="span1">
                             <div class="bui-input code-input">
-                                <input id="code" type="tel" placeholder="请输入验证码" maxlength="6" autocomplete="off" />
+                                <input id="code" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]" maxlength="6" autocomplete="off" />
                             </div>
                         </div>
                         <td width="58%">&nbsp;
-                            <img id="img_seccode" src="[##$_SCONFIG.webroot##]do-seccode-width-60-height-30.html" alt="点击更新验证码"
+                            <img id="img_seccode" src="[##$_SCONFIG.webroot##]do-seccode-width-60-height-30.html" alt="[##if $_SESSION.lang eq 'english'##]Click to update the verification code[##else##]点击更新验证码[##/if##]"
                                  onClick="javascript:updateseccode();" style="cursor:pointer; margin-top:5px;">
                         </td>
                     </div>
@@ -172,14 +172,14 @@
 		</ul>
         <div class="section-title" style="margin-top:0.1rem;">
 
-            <div class="span1">我已阅读并同意 <span style="color:#52a4ff;" id="publish-open">《用户协议》</span>
+            <div class="span1">[##if $_SESSION.lang eq 'english'##]I have read and agree[##else##]我已阅读并同意[##/if##] <span style="color:#52a4ff;" id="publish-open">[##if $_SESSION.lang eq 'english'##]《User agreement》[##else##]《用户协议》[##/if##]</span>
               <input id="protocol" type="checkbox" name="protocol" class="bui-choose " style="font-size:0.3rem;" checked />
             </div>
             
        </div>
         <div class="container-xy">
-		  <div class="bui-btn round primary" style="background-color: #00904b; border: none;" id="submit">登录</div>
-          <a class="bui-btn-text" href="[##$_SCONFIG.webroot##]do-register.html" style="margin-top:0.2rem;">没有账号？&nbsp;立即注册</a>
+		  <div class="bui-btn round primary" style="background-color: #00904b; border: none;" id="submit">[##if $_SESSION.lang eq 'english'##]Sign in[##else##]登录[##/if##]</div>
+          <a class="bui-btn-text" href="[##$_SCONFIG.webroot##]do-register.html" style="margin-top:0.2rem;">[##if $_SESSION.lang eq 'english'##]No account? register now![##else##]没有账号？&nbsp;立即注册[##/if##]</a>
         </div>
 	</main>
 
@@ -194,7 +194,7 @@
 
     <!--隐藏的弹出窗口-->
     <div id="dialog" class="bui-dialog" style="display: none;height:7rem;">
-        <div class="bui-dialog-head">协议说明</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Explanation of the agreement[##else##]协议说明[##/if##]</div>
         <article class="bui-dialog-main protocol_box bui-article" id="article_page" style="padding:0px;text-align:left!important">      
         </article>
         <div class="bui-dialog-close"><i class="icon-close"></i></div>
@@ -262,7 +262,7 @@
                  if( e.target.value == '' ){
                     bui.hint({ 
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请输入手机号码", 
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please input mobile phone number[##else##]请输入手机号[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -383,7 +383,7 @@
             if(!$("#protocol").attr('checked')){
                 bui.hint({ 
                     appendTo:"#main", 
-                    content:"<i class='icon-infofill'></i>请先同意认证协议", 
+                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please agree to the authentication agreement first[##else##]请先同意认证协议[##/if##]",
                     position:"top" , 
                     skin:'warning', 
                     showClose:true, 
@@ -488,7 +488,7 @@
                     }else{
                         bui.hint({ 
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>未知错误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -503,7 +503,7 @@
                 error:function(res){
                     bui.hint({ 
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请求失败", 
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 

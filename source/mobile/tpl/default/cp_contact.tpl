@@ -13,7 +13,7 @@
 			<div class="bui-bar-left">
                 <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
 			</div>
-			<div class="bui-bar-main">联系我们</div>
+			<div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]contact us[##else##]联系我们[##/if##]</div>
 			<div class="bui-bar-right">
 			</div>
 		</div>
@@ -31,31 +31,31 @@
         <ul class="bui-list" >
             [##if $result.public##]
             <li class="bui-btn bui-box" href="pages/option/option.html"  style="border-top: 1px solid #ddd9d9;">
-                <div class="span1">微信公众</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]WeChat official account[##else##]微信公众[##/if##]</div>
                 <span>[##$result.public##]</span>
             </li>
             [##/if##]
             [##if $result.customertel##]
             <a class="bui-btn bui-box" href="tel:[##$result.customertel##]" style="color:#666">
-                <div class="span1">客服电话</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]customer service telephone numbers[##else##]客服电话[##/if##]</div>
                 <span>[##$result.customertel##]</span>
             </a>
             [##/if##]
             [##if $result.faulttel##]
             <a class="bui-btn bui-box" href="tel:[##$result.faulttel##]" style="color:#666">
-                <div class="span1">故障维修电话</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Troubleshooting telephone[##else##]故障维修电话[##/if##]</div>
                 <span>[##$result.faulttel##]</span>
             </a>
             [##/if##]
             [##if $result.business##]
             <a class="bui-btn bui-box" href="tel:[##$result.business##]" style="color:#666">
-                <div class="span1">商务洽谈合作电话</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Business negotiation and cooperation telephone[##else##]商务洽谈合作电话[##/if##]</div>
                 <span>[##$result.business##]</span>
             </a>
             [##/if##]
             [##if $result.email##]
             <li class="bui-btn bui-box" href="pages/option/option.html">
-                <div class="span1">电子邮箱</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]E-mail[##else##]电子邮箱[##/if##]</div>
                 <span>[##$result.email##]</span>
             </li>
             [##/if##]

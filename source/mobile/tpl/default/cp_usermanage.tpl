@@ -158,17 +158,17 @@
             </div>
             <p class="name">[##$result.nickname##]</p>
             <p class="item-text">
-                <span class="grade 
-                [##if $result.idcard eq '2'##]authen"><i class="icon-authen"></i> 已实名认证</span>
-                [##elseif $result.idcard eq '1'##]"><i class="icon-infofill"></i> 待实名审核</span>
+                <span class="grade
+                [##if $result.idcard eq '2'##]authen"><i class="icon-authen"></i> [##if $_SESSION.lang eq 'english'##]Real name authentication[##else##]已实名认证[##/if##]</span>
+                [##elseif $result.idcard eq '1'##]"><i class="icon-infofill"></i> [##if $_SESSION.lang eq 'english'##]To be verified by real name[##else##]待实名审核[##/if##]</span>
                 [##elseif $result.idcard eq '-1'##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_idcard.html'"><i class="icon-infofill"></i> 未通过审核</span>
-                [##else##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_idcard.html'"><i class="icon-infofill"></i> 未实名认证</span>
+                [##else##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_idcard.html'"><i class="icon-infofill"></i> [##if $_SESSION.lang eq 'english'##]No real name authentication[##else##]未实名认证[##/if##]</span>
                 [##/if##]
-                <span class="grade 
-                [##if $result.drive eq '2'##]authen"><i class="icon-authen"></i> 已驾驶认证</span>
-                [##elseif $result.drive eq '1'##]"><i class="icon-infofill"></i> 待驾驶审核</span>
-                [##elseif $result.drive eq '-1'##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_drive.html'"><i class="icon-infofill"></i> 未通过审核</span>
-                [##else##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_drive.html'"><i class="icon-infofill"></i> 未驾驶认证</span>
+                <span  [##if $_SESSION.lang eq 'english'##]style="display: inline-block;margin-top: 10px;"[##/if##] class="grade
+                [##if $result.drive eq '2'##]authen"><i class="icon-authen"></i> [##if $_SESSION.lang eq 'english'##]Certified for driving[##else##]已驾驶认证[##/if##]</span>
+                [##elseif $result.drive eq '1'##]"><i class="icon-infofill"></i> [##if $_SESSION.lang eq 'english'##]Pending driving review[##else##]待驾驶审核[##/if##]</span>
+                [##elseif $result.drive eq '-1'##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_drive.html'"><i class="icon-infofill"></i> [##if $_SESSION.lang eq 'english'##]Failed to pass the audit[##else##]未通过审核[##/if##]</span>
+                [##else##]" onclick="window.location.href='[##$_SCONFIG.webroot##]cp-userinfo-op-user_drive.html'"><i class="icon-infofill"></i> [##if $_SESSION.lang eq 'english'##]No driving certification[##else##]未驾驶认证[##/if##]</span>
                 [##/if##]
             </p>
 
@@ -178,22 +178,22 @@
             <a href="[##$_SCONFIG.webroot##]cp-userinfo.html">
                 <li class="bui-btn">
                     <div class="icon_box info"><i></i></div>
-                    <div class="item-title" style="margin-bottom: .1rem;">个人设置</div>
-                    <div class="item-text">信息认证</div>
+                    <div class="item-title" style="margin-bottom: .1rem;">[##if $_SESSION.lang eq 'english'##]Personal settings[##else##]个人设置[##/if##]</div>
+                    <div class="item-text">[##if $_SESSION.lang eq 'english'##]Information authentication[##else##]信息认证[##/if##]</div>
                 </li>
             </a>
             <a href="[##$_SCONFIG.webroot##]cp-userpurse.html">
                 <li class="bui-btn">
                     <div class="icon_box money"><i></i></div>
-                    <div class="item-title" style="margin-bottom: .1rem;">我的钱包</div>
-                    <div class="item-text">财务明细</div>
+                    <div class="item-title" style="margin-bottom: .1rem;">[##if $_SESSION.lang eq 'english'##]My wallet[##else##]我的钱包[##/if##]</div>
+                    <div class="item-text">[##if $_SESSION.lang eq 'english'##]Financial details[##else##]信息认证[##/if##]</div>
                 </li>
             </a>
             <a href="[##$_SCONFIG.webroot##]cp-share.html">
                 <li class="bui-btn">
                     <div class="icon_box share"><i></i></div>
-                    <div class="item-title" style="margin-bottom: .1rem;">推荐有礼</div>
-                    <div class="item-text">赢取大礼</div>
+                    <div class="item-title" style="margin-bottom: .1rem;">[##if $_SESSION.lang eq 'english'##]Courtesy of recommendation[##else##]推荐有礼[##/if##]</div>
+                    <div class="item-text">[##if $_SESSION.lang eq 'english'##]Win a big gift[##else##]赢取大礼[##/if##]</div>
                 </li>
             </a>
         </ul>
@@ -203,7 +203,7 @@
             <a href="[##$_SCONFIG.webroot##]do-articlepage-op-guide-id-4.html">
                <li class="bui-btn bui-box">
                    <div class="icon"><i class="icon-infofill warning "></i></div>&nbsp;&nbsp;
-                    <div class="span1">使用协议</div>
+                    <div class="span1">[##if $_SESSION.lang eq 'english'##]Use agreement[##else##]使用协议[##/if##]</div>
                     <div class="item-text"></div>
                     <i class="icon-listright"></i>
                 </li>
@@ -212,7 +212,7 @@
             <a href="[##$_SCONFIG.webroot##]do-articlepage-op-guide-id-1.html">
                <li class="bui-btn bui-box">
                    <div class="icon"><i class="icon-doubt primary "></i></div>&nbsp;&nbsp;
-                    <div class="span1">用车指南</div>
+                    <div class="span1">[##if $_SESSION.lang eq 'english'##]Car guide[##else##]用车指南[##/if##]</div>
                     <div class="item-text"></div>
                     <i class="icon-listright"></i>
                 </li>
@@ -221,7 +221,7 @@
             <a href="[##$_SCONFIG.webroot##]do-articlepage-op-contact.html">
                <li class="bui-btn bui-box">
                    <div class="icon"><i class="icon-chat success"></i></div>&nbsp;&nbsp;
-                    <div class="span1">联系我们</div>
+                    <div class="span1">[##if $_SESSION.lang eq 'english'##]contact us[##else##]联系我们[##/if##]</div>
                     <div class="item-text"></div>
                     <i class="icon-listright"></i>
                 </li>
@@ -230,14 +230,42 @@
             <a href="[##$_SCONFIG.webroot##]do-articlepage-op-about-id-2.html">
                <li class="bui-btn bui-box">
                    <div class="icon"><i class="icon-fav danger"></i></div>&nbsp;&nbsp;
-                    <div class="span1">关于我们</div>
+                    <div class="span1">[##if $_SESSION.lang eq 'english'##]About us[##else##]关于我们[##/if##]</div>
                     <div class="item-text"></div>
                     <i class="icon-listright"></i>
                 </li>
             </a>
-        
+            <a href="javascript:" id="switch"
+               title=""
+               onclick="gotoUrl('[##if $_SESSION.lang eq 'english'##]ch[##else##]english[##/if##]')">
+                <li class="bui-btn bui-box">
+                    <div class="icon"><i class="icon-fav danger"></i></div>&nbsp;&nbsp;
+                    <div class="span1">[##if $_SESSION.lang eq 'english'##]Switching between Chinese and English[##else##]中英文切换[##/if##]</div>
+                    <div class="item-text"></div>
+                </li>
+            </a>
+
+            <a href="[##$_SCONFIG.webroot##]do-login.html?ac=exit">
+                <li class="bui-btn bui-box">
+                    <div class="icon"><i class="icon-infofill danger"></i></div>&nbsp;&nbsp;
+                    <div class="span1">[##if $_SESSION.lang eq 'english'##]sign out[##else##]退出[##/if##]</div>
+                    <div class="item-text"></div>
+                </li>
+            </a>
         </ul>
 	</main>
 
     [##include file='foot.tpl'##][##*导航文件*##]
+<script type="text/javascript">
+    // 切换中英文
+    function gotoUrl(lang){
+        var url = window.location.href;
+        url = url.replace(/lang=\w*[&]?/i,'')
+        if (/[?]+/.test(url)) {
+            location.href = url+'&lang='+lang;
+        } else {
+            location.href = url+'?lang='+lang;
+        }
+    }
+</script>
 	

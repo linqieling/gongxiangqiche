@@ -42,16 +42,16 @@
         <div class="bui-bar">
             <div class="bui-bar-left">
             </div>
-            <div class="bui-bar-main">我的订单</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]My order[##else##]我的订单[##/if##]</div>
             <div class="bui-bar-right"></div>
         </div>
     </header>
     <main>
         <div class="bui-tab-head">
             <ul class="bui-nav order_status">
-                <li class="bui-btn active" rel="">全部</li>
-                <li class="bui-btn" rel="1">已完成</li>
-                <li class="bui-btn" rel="2">已取消</li>
+                <li class="bui-btn active" rel="">[##if $_SESSION.lang eq 'english'##]whole[##else##]全部[##/if##]</li>
+                <li class="bui-btn" rel="1">[##if $_SESSION.lang eq 'english'##]Completed[##else##]已完成[##/if##]</li>
+                <li class="bui-btn" rel="2">[##if $_SESSION.lang eq 'english'##]Cancelled[##else##]已取消[##/if##]</li>
             </ul>
         </div>
 
@@ -77,8 +77,8 @@
                 onRefresh: refresh,
                 onLoad: getData,
                 scrollTips: {
-                    last: "已经到底啦~",
-                    nodata: "没有更多数据了..."
+                    last: "[##if $_SESSION.lang eq 'english'##]It's over[##else##]已经到底啦[##/if##]~~",
+                    nodata: "[##if $_SESSION.lang eq 'english'##]No more data[##else##]没有更多数据了[##/if##]~"
                 },
                 callback: function (argument) {
                 }
@@ -169,7 +169,7 @@
                             }
                             break;
                         case '0':
-                            status = '已取消';
+                            status = "[##if $_SESSION.lang eq 'english'##]Cancelled[##else##]已取消[##/if##]";
                             label_color='danger';
                             break;
                         default:

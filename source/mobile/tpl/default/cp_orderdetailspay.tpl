@@ -398,21 +398,21 @@
                     </div>
                     <div class="span1">
                         <p class="item-text">
-                            <span class="bui-label">使用时长</span>
-                            <span class="bui-value"><info>[##$result.duration##]</info>分钟</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Duration of use[##else##]使用时长[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.duration##]</info>[##if $_SESSION.lang eq 'english'##]minute[##else##]分钟[##/if##]</span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">行驶里程</span>
-                            <span class="bui-value"><info>[##$result.mileage##]</info>公里</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Mileage[##else##]行驶里程[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.mileage##]</info>[##if $_SESSION.lang eq 'english'##]kilometre[##else##]公里[##/if##]</span>
                         </p>
                     </div>
                 </div>
             </div>
             <div class="bui-panel charging_box"> 
                 <div class="bui-panel-head bui-box-center charging_choose">
-                <div class="span1">支付金额</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Payment amount[##else##]支付金额[##/if##]</div>
                     <div class="span1" style="text-align:right">
-                        <info id="totalmoneyshow">[##$result.paymoney##]</info>元&nbsp;
+                        <info id="totalmoneyshow">[##$result.paymoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]&nbsp;
                         <input type="hidden" name="paymoney" id="paymoney" value="[##$result.paymoney##]">
                     </div>
                     <!--最后支付金额-->
@@ -422,70 +422,70 @@
                     <!-- 示例搜索过滤 -->
                     <div class="span1">
                         <p class="item-text">
-                            <span class="bui-label">订单编号</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Order number[##else##]订单编号[##/if##]</span>
                             <span class="bui-value">[##$result.orderno##]</span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">起步价格</span>
-                            <span class="bui-value"><info>[##$result.startmoney##]</info>元 [##if $startmileage || $starttime##]([##if $startmileage##]含[##$startmileage##]公里[##/if##][##if $starttime##]+[##$starttime##]分钟[##/if##])[##/if##]</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Starting price[##else##]起步价格[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.startmoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##] [##if $startmileage || $starttime##]([##if $startmileage##]含[##$startmileage##]公里[##/if##][##if $starttime##]+[##$starttime##]分钟[##/if##])[##/if##]</span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">里程费用</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Mileage cost[##else##]里程费用[##/if##]</span>
                             <span class="bui-value">
-                                <info>[##$result.roadmoney##]</info>元
-                                [##if $result.mileage < $startmileage##]([##$startmileage##]公里内不计费)
-                                [##elseif $maxmileage>0 && $result.mileage > $maxmileage##]([##$maxmileage-$startmileage##]公里×[##$mileagemoney##]元+[##$result.mileage-$maxmileage##]公里×[##$maxmileagemoney##]元)
-                                [##else##]([##$result.mileage-$startmileage##]公里×[##$mileagemoney##]元)
+                                <info>[##$result.roadmoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]
+                                [##if $result.mileage < $startmileage##]([##$startmileage##][##if $_SESSION.lang eq 'english'##]No charge within km[##else##]公里内不计费[##/if##])
+                                [##elseif $maxmileage>0 && $result.mileage > $maxmileage##]([##$maxmileage-$startmileage##]公里×[##$mileagemoney##][##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]+[##$result.mileage-$maxmileage##]公里×[##$maxmileagemoney##]元)
+                                [##else##]([##$result.mileage-$startmileage##]公里×[##$mileagemoney##][##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##])
                                 [##/if##]
                             </span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">时长费用</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Time charge[##else##]时长费[##/if##]</span>
                             <span class="bui-value">
-                                <info>[##$result.timemoney##]</info>元
-                                ([##if $result.duration-$starttime > 0##][##$result.duration-$starttime##]分钟×[##$minutemoney##]元[##else##][##$starttime##]分钟内不计费[##/if##])
+                                <info>[##$result.timemoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]
+                                ([##if $result.duration-$starttime > 0##][##$result.duration-$starttime##]分钟×[##$minutemoney##][##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##][##else##][##$starttime##]分钟内不计费[##/if##])
                             </span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">空置费用</span>
-                            <span class="bui-value"><info>[##$result.occupymoney##]</info>元
-                            [##if $kilometre && $occupy##](每小时低于[##$kilometre##]公里加收[##$occupy##]元/分钟)[##/if##]
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Vacancy cost[##else##]空置费用[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.occupymoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]
+                            [##if $kilometre && $occupy##]([##if $_SESSION.lang eq 'english'##]Less than[##else##]每小时低于[##/if##][##$kilometre##][##if $_SESSION.lang eq 'english'##]Additional charge per kilometer[##else##]公里加收[##/if##][##$occupy##][##if $_SESSION.lang eq 'english'##]yuan/minute[##else##]元/分钟[##/if##])[##/if##]
                             </span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">服务费用</span>
-                            <span class="bui-value"><info>[##$result.returnmoney##]</info>元</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Service fee[##else##]服务费用[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.returnmoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</span>
                         </p>
                         <p class="item-text">
-                            <span class="bui-label">订单总额</span>
-                            <span class="bui-value"><info>[##$result.totalmoney##]</info>元</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Total order amount[##else##]订单总额[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.totalmoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</span>
                         </p>
                         [##if floatval($_SCONFIG.discount) > 0 && floatval($_SCONFIG.discount) < 100 && $result.discountmoney > 0##]
                         <p class="item-text">
-                            <span class="bui-label">折后金额</span>
-                            <span class="bui-value"><info>[##$result.discountmoney##]</info>元
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Amount after discount[##else##]折后金额[##/if##]</span>
+                            <span class="bui-value"><info>[##$result.discountmoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]
                             ([##floatval($_SCONFIG.discount)##]折)
                             </span>
                         </p>
                         [##/if##]
                         <p class="item-text">
-                            <span class="bui-label">优惠金额</span>
-                            <span class="bui-value" id='couponshow'><info>[##$result.totalmoney-$result.discountmoney##]</info>元</span>
+                            <span class="bui-label">[##if $_SESSION.lang eq 'english'##]Preferential amount[##else##]优惠金额[##/if##]</span>
+                            <span class="bui-value" id='couponshow'><info>[##$result.totalmoney-$result.discountmoney##]</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</span>
                         </p>
                     </div>
 
                 </div>
             </div>
             <li class="bui-btn bui-box" id="btnOpenCoupon">
-                <label class="bui-label">优惠券</label>
+                <label class="bui-label">[##if $_SESSION.lang eq 'english'##]coupon[##else##]优惠券[##/if##]</label>
                 <!--优惠券优惠金额-->
                 <div class="span1" style="text-align:right"><info id="couponmoney"></info></div>
                 <input type="hidden" id="coupon" />
                 <i class="icon-listright"></i>
             </li>
             <li id="money_pay" class="bui-btn bui-box clearactive">
-                <label class="bui-label">余额支付</label>
-                <div class="span1">[##$result.umoney##]元</div>
+                <label class="bui-label">[##if $_SESSION.lang eq 'english'##]Balance payment[##else##]余额支付[##/if##]</label>
+                <div class="span1">[##$result.umoney##][##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</div>
                 <div class="bui-value wallet">
                     <input id="umoney" type="hidden" value="[##$result.umoney##]" />
                     <div class="checkbox"></div>
@@ -494,7 +494,7 @@
 
             <div class="bui-panel pay_box" style="border-top:0.1rem solid #eee;">
                 <div class="bui-panel-head bui-box-center pay_choose">
-                <div class="span1">其它支付</div>
+                <div class="span1">[##if $_SESSION.lang eq 'english'##]Other payments[##else##]其它支付[##/if##]</div>
                 <i class="icon-accordion"></i></div>
                 <div class="bui-panel-main pay_main">
                     <!-- <li class="bui-btn bui-box">
@@ -505,7 +505,7 @@
                     </li> -->
                     <li class="bui-btn bui-box" style="border: none;border-bottom:1px solid #eee;">
                         <div class="icon"><i class="wxpay-icon"></i></div>
-                        <div class="span1">微信</div>
+                        <div class="span1">[##if $_SESSION.lang eq 'english'##]WeChat[##else##]微信[##/if##]</div>
                         <input id="wxpay" type="radio" class="bui-radio" name="paytype" value="2" />
                         <label for="wxpay"></label>
                     </li>
@@ -523,7 +523,7 @@
     <!-- 优惠券弹出层 -->
     <div id="CouponBox" class="bui-dialog" style="display:none;">
         <div class="bui-dialog-head bui-box-align-middle bui-bar">
-            <div class="span1">请选择优惠券</div>
+            <div class="span1">[##if $_SESSION.lang eq 'english'##]Please select a coupon[##else##]请选择优惠券[##/if##]</div>
             <div class="bui-dialog-close"><i class="icon-close" style="color:#FFF;"></i></div>
         </div>
         <div id="CouponList" class="bui-scroll">
@@ -533,11 +533,11 @@
             </div>
             <div class="bui-scroll-foot"></div>
         </div>
-        <div id="nousebtn" class="bui-btn primary">不使用优惠券</div>
+        <div id="nousebtn" class="bui-btn primary">[##if $_SESSION.lang eq 'english'##]No coupons[##else##]不使用优惠券[##/if##]</div>
     </div>
 
     <footer>
-        <div id="pay_btn" class="bui-btn pay round primary">立即支付</div>
+        <div id="pay_btn" class="bui-btn pay round primary">[##if $_SESSION.lang eq 'english'##]Pay immediately[##else##]立即支付[##/if##]</div>
     </footer>
    
   </body>
@@ -767,20 +767,20 @@
                                     couponshow='<info>'+(result.sum+oldcoupon)+'</info>元&nbsp;(最高优惠金额)';
                                 }else{
                                     totalmoneyshow=testMoney(paymoney-paymoney*(result.money/10));
-                                    couponshow='<info>'+testMoney(paymoney*(result.money/10)+oldcoupon)+'</info>元';
+                                    couponshow='<info>'+testMoney(paymoney*(result.money/10)+oldcoupon)+"</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]";
                                 }
                             }else{
                                 totalmoneyshow=testMoney(paymoney-paymoney*(result.money/10));
-                                couponshow='<info>'+testMoney(paymoney*(result.money/10)+oldcoupon)+'</info>元';
+                                couponshow='<info>'+testMoney(paymoney*(result.money/10)+oldcoupon)+"</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]";
                             }
                         }else if(result.type==4){
-                            couponmoney = '-'+paymoney+'元&nbsp;';
+                            couponmoney = '-'+paymoney+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]&nbsp;";
                             totalmoneyshow = 0.00;
-                            couponshow='<info>'+paymoney+'</info>元';
+                            couponshow='<info>'+paymoney+"</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]";
                         }else{
-                            couponmoney='-'+testMoney(result.money)+'元&nbsp;';
+                            couponmoney='-'+testMoney(result.money)+"[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]&nbsp;";
                             totalmoneyshow=testMoney(paymoney-result.money);
-                            couponshow='<info>'+testMoney(result.money+oldcoupon)+'</info>元';
+                            couponshow='<info>'+testMoney(result.money+oldcoupon)+"</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]";
                         }
                         
                         $('#coupon').val(id);//优惠券ID
@@ -872,7 +872,7 @@
             $('#couponmoney').html('');
             $('#paymoney').val('[##$result.paymoney##]');//支付金额
             $('#totalmoneyshow').html('[##$result.paymoney##]');
-            $('#couponshow').html('<info>'+[##$result.totalmoney-$result.paymoney##]+'</info>元');
+            $('#couponshow').html('<info>'+[##$result.totalmoney-$result.paymoney##]+"</info>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]");
             $('#money_pay').show();
             $('.pay_box').show();
             $('#money_pay').show();
@@ -947,7 +947,7 @@
                 loading.stop();
                 bui.hint({
                     appendTo: "#main",
-                    content: "<i class='icon-infofill'></i>系统繁忙,请稍后重试",
+                    content: "<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The system is busy, please try again later[##else##]系统繁忙,请稍后重试[##/if##]",
                     position: "top" ,
                     skin: 'warning',
                     showClose: false,

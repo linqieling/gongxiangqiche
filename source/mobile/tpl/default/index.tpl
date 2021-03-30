@@ -303,12 +303,12 @@
         <div class="bui-bar-main" style="padding-left: 0.35rem;">
           <div id="searchbar" class="bui-input ring mini">
             <i class="icon-search"></i>
-            <input type="search" id="suggestId" placeholder="搜索地址" onkeydown="keyup_submit(event);" />
+            <input type="search" id="suggestId" placeholder="[##if $_SESSION.lang eq 'english'##]Search address[##else##]搜索地址[##/if##]" onkeydown="keyup_submit(event);" />
             <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
           </div>
         </div>
         <div class="bui-bar-right">
-          <div id="btnSearch" class="bui-btn">搜索</div>  
+          <div id="btnSearch" class="bui-btn">[##if $_SESSION.lang eq 'english'##]Search[##else##]搜索[##/if##]</div>
         </div>
     </div>
     <div class="mapbox">
@@ -343,14 +343,14 @@
 
   <!-- 预订车辆框 -->
   <div id="dialogVehicle" class="bui-dialog" style="display: none;">
-    <div class="bui-dialog-head">车辆预订确认</div>
+    <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Vehicle booking confirmation[##else##]车辆预订确认[##/if##]</div>
     <div class="bui-dialog-main">
       <div id="vehicle_box"></div>
     </div>
     <div class="bui-dialog-foot">
       <div class="bui-box">
-        <div class="span1"><div class="bui-btn vehicle_btn">返回</div></div>
-        <div class="span1"><div class="bui-btn vehicle_btn green">确定</div></div>
+        <div class="span1"><div class="bui-btn vehicle_btn">[##if $_SESSION.lang eq 'english'##]return[##else##]返回[##/if##]</div></div>
+        <div class="span1"><div class="bui-btn vehicle_btn green">[##if $_SESSION.lang eq 'english'##]determine[##else##]确定[##/if##]</div></div>
       </div>
     </div>
     <div class="bui-dialog-close vehicle_btn"><i class="icon-close"></i></div>
@@ -360,12 +360,12 @@
   <div id="loadbg"></div>
   <div id="loading" class="bui-panel"></div>
 
-  <div class="endNavigation_btn" onClick="endNavigation($(this))"><p>退出导航</p></div>
+  <div class="endNavigation_btn" onClick="endNavigation($(this))"><p>[##if $_SESSION.lang eq 'english'##]Exit navigation[##else##]退出导航[##/if##]</p></div>
 
 
   <!-- 中间自定义弹出框结构  -->
   <div id="dialogCenter" class="bui-dialog" style="display: none;">
-    <div class="bui-dialog-head">请从此公众号进入系统用车</div>
+    <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Please enter the system from this official account.[##else##]请从此公众号进入系统用车[##/if##]</div>
     <div class="bui-dialog-main">
       <img src="[##$_SPATH.images##]wxqrcode.png" />
     </div>
@@ -388,7 +388,7 @@
 
       Loading_box.show();
       $('#loadbg').show();
-      Loading_box.text("地图加载中");
+      Loading_box.text("[##if $_SESSION.lang eq 'english'##]Map loading[##else##]地图加载中[##/if##]");
 
       // 创建Map实例
       var map = new BMap.Map("map");
@@ -421,7 +421,7 @@
       });
 
       wx.error(function(res) {
-        alert("出错了：" + res.errMsg);
+        alert("[##if $_SESSION.lang eq 'english'##]Error[##else##]出错了[##/if##]：" + res.errMsg);
       });
 
       wx.ready(function(){
@@ -899,7 +899,7 @@
                 quantity = res.result.quantity;
               }
               if(res.result.starttime){
-                starttime = '+'+res.result.starttime+'分钟';
+                starttime = '+'+res.result.starttime+"[##if $_SESSION.lang eq 'english'##]minute[##else##]分钟[##/if##]";
               }
               if(res.result.exclusive == 1){
                 exclusive = '<div class="exclusive"><p>仅包月客户使用</p><span>如需了解包月资费请咨询店内工作人员</span></div>';
@@ -916,11 +916,11 @@
               if(parseFloat(res.result.kilometre)>0 && parseFloat(res.result.occupy)>0){
                 occupy = '<p>';
                 if(res.result.reserve){
-                  occupy+='给予<b>'+res.result.reserve+'分钟</b>的卸货时间<br />之后';
+                  occupy+='给予<b>'+res.result.reserve+"[##if $_SESSION.lang eq 'english'##]minute[##else##]分钟[##/if##]</b>的卸货时间<br />之后";
                 }
-                occupy+='每小时用车行驶低于<b>'+res.result.kilometre+'公里</b>将加收<b>'+res.result.occupy+'元/分钟</b>的车辆空置占用费</p>';
+                occupy+='每小时用车行驶低于<b>'+res.result.kilometre+'公里</b>将加收<b>'+res.result.occupy+"[##if $_SESSION.lang eq 'english'##]yuan/minute[##else##]元/分钟[##/if##]</b>的车辆空置占用费</p>";
               }
-              var str = '<div class="img"><img src="'+res.result.picfilepath+'" /></div><div class="text"><h3>'+res.result.platenumber+'</h3>'+fastigium_time+occupy+'<div class="info"><span>电量:'+quantity+'</span><span>续航:'+res.result.endurance+'</span><span>座位:'+res.result.seat+'人</span></div>'+exclusive+'<div class="price" '+exclusive_s+'><p><i'+fastigium+'起步</i><span>'+res.result.startmoney+'</span>元(含'+res.result.startmileage+'公里'+starttime+')</p><p><i'+fastigium+'计费</i><span>'+res.result.mileagemoney+'</span>元/公里+<span>'+res.result.minutemoney+'</span>元/分钟</p></div></div>';
+              var str = '<div class="img"><img src="'+res.result.picfilepath+'" /></div><div class="text"><h3>'+res.result.platenumber+'</h3>'+fastigium_time+occupy+'<div class="info"><span>电量:'+quantity+'</span><span>续航:'+res.result.endurance+'</span><span>座位:'+res.result.seat+'人</span></div>'+exclusive+'<div class="price" '+exclusive_s+'><p><i'+fastigium+'起步</i><span>'+res.result.startmoney+'</span>元(含'+res.result.startmileage+'公里'+starttime+')</p><p><i'+fastigium+'计费</i><span>'+res.result.mileagemoney+'</span>元/公里+<span>'+res.result.minutemoney+"</span>元/分钟</p></div></div>";
               $('#vehicle_box').html(str);
               Vehicleinfo.open();
             }else{

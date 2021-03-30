@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-<title>[##$_SCONFIG.sitetitle##] - 会员注册</title>
+<title>[##$_SCONFIG.sitetitle##] - [##if $_SESSION.lang eq 'english'##]Member registration[##else##]会员注册[##/if##]</title>
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="[##$_SPATH.css##]bui.css" />
@@ -93,7 +93,7 @@
 			<div class="bui-bar-left">
                 <a class="bui-btn" href="./"><i class="icon-back"></i></a>
 			</div>
-			<div class="bui-bar-main">会员注册</div>
+			<div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Member registration[##else##]会员注册[##/if##]</div>
 			<div class="bui-bar-right"></div>
 		</div>
 	</header>
@@ -101,67 +101,67 @@
         <div class="logo"><img src="[##$_SPATH.images##]applogo.png" /></div>
         <ul class="bui-list">
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="username">账号</label>
+                <label class="bui-label" for="username">[##if $_SESSION.lang eq 'english'##]account number[##else##]账号[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input" id="usernameInput">
-                        <input id="username" type="text" placeholder="请输入你的账号" autocomplete="off" />
+                        <input id="username" type="text" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your account number[##else##]请输入你的账号[##/if##]" autocomplete="off" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="password">登陆密码</label>
+                <label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]Login password[##else##]登陆密码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input">
-                        <input id="password" type="password" placeholder="请输入你的登陆密码" autocomplete="off" />
+                        <input id="password" type="password" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your login password[##else##]请输入你的登陆密码[##/if##]" autocomplete="off" />
                     </div>
                 </div>
             </li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="pwds">确认密码</label>
+                <label class="bui-label" for="pwds">[##if $_SESSION.lang eq 'english'##]Confirm password[##else##]确认密码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input">
-                        <input id="pwds" type="password" placeholder="请输入你的确认密码" autocomplete="off" />
+                        <input id="pwds" type="password" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your confirmation password[##else##]请输入你的确认密码[##/if##]" autocomplete="off" />
                     </div>
                 </div>
             </li>
 			<li class="bui-btn bui-box clearactive">
-				<label class="bui-label" for="user">手机号码</label>
+				<label class="bui-label" for="user">[##if $_SESSION.lang eq 'english'##]phone number[##else##]手机号码[##/if##]</label>
 				<div class="span1">
 					<div class="bui-input" id="phoneInput">
-						<input id="phone" type="tel" placeholder="请输入你的手机号码" maxlength="11" autocomplete="off" />
+						<input id="phone" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter your mobile phone number[##else##]请输入你的手机号码[##/if##]" maxlength="11" autocomplete="off" />
 					</div>
 				</div>
 			</li>
 			<li class="bui-btn bui-box clearactive">
-				<label class="bui-label" for="password">验证码</label>
+				<label class="bui-label" for="password">[##if $_SESSION.lang eq 'english'##]Verification Code[##else##]验证码[##/if##]</label>
 				<div class="span1">
                     <div class="bui-box">
                         <div class="span1">
                             <div class="bui-input code-input">
-                                <input id="code" type="tel" placeholder="请输入验证码" maxlength="6" autocomplete="off" />
+                                <input id="code" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the verification code[##else##]请输入验证码[##/if##]" maxlength="6" autocomplete="off" />
                             </div>
                         </div>
-                        <div class="bui-btn round btn-send">发送验证码</div>
+                        <div class="bui-btn round btn-send">[##if $_SESSION.lang eq 'english'##]Send verification code[##else##]发送验证码[##/if##]</div>
                     </div>
 				</div>
 			</li>
             <li class="bui-btn bui-box clearactive">
-                <label class="bui-label" for="rcode">推荐码</label>
+                <label class="bui-label" for="rcode">[##if $_SESSION.lang eq 'english'##]Recommendation code[##else##]推荐码[##/if##]</label>
                 <div class="span1">
                     <div class="bui-input">
-                        <input id="rcode" type="tel" placeholder="请输入推荐码（选填）" maxlength="24" autocomplete="off" />
+                        <input id="rcode" type="tel" placeholder="[##if $_SESSION.lang eq 'english'##]Please enter the recommendation code (optional)[##else##]请输入推荐码（选填）[##/if##]" maxlength="24" autocomplete="off" />
                     </div>
                 </div>
             </li>
 		</ul>
         <div class="section-title" style="margin-top:0.1rem;">
-            <div class="span1">我已阅读并同意 <span style="color:#52a4ff;" id="publish-open">《用户协议》</span>
+            <div class="span1">[##if $_SESSION.lang eq 'english'##]I have read and agree[##else##]我已阅读并同意[##/if##] <span style="color:#52a4ff;" id="publish-open">[##if $_SESSION.lang eq 'english'##]《User agreement》[##else##]《用户协议》[##/if##]</span>
               <input id="protocol" type="checkbox" name="protocol" class="bui-choose " style="font-size:0.3rem;" >
             </div>
        </div>
         <div class="container-xy">
-		  <div class="bui-btn round primary" style="background-color: #00904b; border: none;" id="register">注册</div>
-          <a class="bui-btn-text" href="[##$_SCONFIG.webroot##]do-login.html" style="margin-top:0.2rem;">如已有账号，立即登录</a>
+		  <div class="bui-btn round primary" style="background-color: #00904b; border: none;" id="register">[##if $_SESSION.lang eq 'english'##]register[##else##]注册[##/if##]</div>
+          <a class="bui-btn-text" href="[##$_SCONFIG.webroot##]do-login.html" style="margin-top:0.2rem;">[##if $_SESSION.lang eq 'english'##]If you already have an account, log in immediately[##else##]如已有账号，立即登录[##/if##]</a>
         </div>
 	</main>
 
@@ -176,7 +176,7 @@
 
     <!--隐藏的弹出窗口-->
     <div id="dialog" class="bui-dialog" style="display: none;height:7rem;">
-        <div class="bui-dialog-head">协议说明</div>
+        <div class="bui-dialog-head">[##if $_SESSION.lang eq 'english'##]Explanation of the agreement[##else##]协议说明[##/if##]</div>
         <article class="bui-dialog-main protocol_box bui-article" id="article_page" id="article_page" style="padding:0px;text-align:left!important" >      
         </article>
         <div class="bui-dialog-close"><i class="icon-close"></i></div>
@@ -243,7 +243,7 @@
                      if( e.target.value == '' ){
                         bui.hint({ 
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请输入手机号码", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please input mobile phone number[##else##]请输入手机号[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -255,7 +255,7 @@
                     if (!myreg.test(e.target.value)) {
                         bui.hint({ 
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>手机号码格式错误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -276,7 +276,7 @@
                 if( phone == ''){
                     bui.hint({ 
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请输入手机号", 
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please input mobile phone number[##else##]请输入手机号[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -288,7 +288,7 @@
                     if (!myreg.test(phone)) {
                         bui.hint({ 
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>手机号码格式错误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -331,7 +331,7 @@
                             }else{
                                 bui.hint({ 
                                     appendTo:"#main", 
-                                    content:"<i class='icon-infofill'></i>未知错误", 
+                                    content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                     position:"top" , 
                                     skin:'warning', 
                                     showClose:true, 
@@ -344,7 +344,7 @@
                         error:function(res){
                             bui.hint({ 
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>请求失败", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -364,7 +364,7 @@
                if(!$("#protocol").attr('checked')){
                     bui.hint({ 
                         appendTo:"#main", 
-                        content:"<i class='icon-infofill'></i>请先同意认证协议", 
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please agree to the authentication agreement first[##else##]请先同意认证协议[##/if##]",
                         position:"top" , 
                         skin:'warning', 
                         showClose:true, 
@@ -384,7 +384,7 @@
                if(username == ''){
                     bui.hint({
                         appendTo:"#main",
-                        content:"<i class='icon-infofill'></i>账号不能为空",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Account number cannot be empty[##else##]账号不能为空[##/if##]",
                         position:"top" ,
                         skin:'warning',
                         showClose:true,
@@ -395,7 +395,7 @@
                 }else if(password == '' ||pwds ==''){
                     bui.hint({
                         appendTo:"#main",
-                        content:"<i class='icon-infofill'></i>密码不能为空",
+                        content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Password cannot be empty[##else##]密码不能为空[##/if##]",
                         position:"top" ,
                         skin:'warning',
                         showClose:true,
@@ -406,7 +406,7 @@
                 }else if( password != pwds ){
                    bui.hint({
                        appendTo:"#main",
-                       content:"<i class='icon-infofill'></i>确认密码和登陆密码不一致",
+                       content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]The confirmation password and login password are inconsistent[##else##]确认密码和登陆密码不一致[##/if##]",
                        position:"top" ,
                        skin:'warning',
                        showClose:true,
@@ -417,7 +417,7 @@
                }else if( phone == '' || code == '' ){
                    bui.hint({
                        appendTo:"#main",
-                       content:"<i class='icon-infofill'></i>请输入手机号及验证码",
+                       content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Please enter the phone number and verification code[##else##]请输入手机号及验证码[##/if##]",
                        position:"top" ,
                        skin:'warning',
                        showClose:true,
@@ -430,7 +430,7 @@
                     if (!myreg.test(phone)) {
                         bui.hint({ 
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>手机号码格式错误", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Wrong mobile phone number[##else##]手机号码有误[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 
@@ -485,7 +485,7 @@
                         }else{
                             bui.hint({ 
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>未知错误", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 
@@ -498,7 +498,7 @@
                     error:function(res){
                         bui.hint({ 
                             appendTo:"#main", 
-                            content:"<i class='icon-infofill'></i>请求失败", 
+                            content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]request was aborted[##else##]请求失败[##/if##]",
                             position:"top" , 
                             skin:'warning', 
                             showClose:true, 

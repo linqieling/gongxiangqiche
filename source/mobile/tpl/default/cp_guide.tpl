@@ -31,7 +31,7 @@
     			<div class="bui-bar-left">
                     <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a>
     			</div>
-    			<div class="bui-bar-main">[##$result.name##]</div>
+    			<div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Use agreement[##else##][##$result.name##][##/if##]</div>
     			<div class="bui-bar-right">
     			</div>
     		</div>

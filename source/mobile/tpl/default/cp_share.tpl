@@ -75,8 +75,8 @@
 <!--         <div class="header"></div> -->
         <div class="content">
            <div class="tips">
-             <p class="notice">您有未领取红包</p>
-             <div class="money">[##$setting.share_money##]<i>元</i></div>
+             <p class="notice">[##if $_SESSION.lang eq 'english'##]Do you have any unclaimed red envelopes[##else##]您有未领取红包[##/if##]</p>
+             <div class="money">[##$setting.share_money##]<i>[##if $_SESSION.lang eq 'english'##]yuan[##else##]元[##/if##]</i></div>
              <div class="lan">[##$setting.share_account##]</div>
            </div>
             <div class="share">
@@ -94,10 +94,10 @@
 
            </div>
            <div class="box">
-             活动规则<br/>
+               [##if $_SESSION.lang eq 'english'##]Activity rules[##else##]活动规则[##/if##]<br/>
              [##$setting.share_rule##]
            </div>
-           <div class="bui-btn share_btn" id="share">推荐好友</div>
+           <div class="bui-btn share_btn" id="share">[##if $_SESSION.lang eq 'english'##]Recommended friends[##else##]推荐好友[##/if##]</div>
            <!-- loading 示例位置 -->
           <div id="loadbg"></div>
           <div id="loading" class="bui-panel"></div>

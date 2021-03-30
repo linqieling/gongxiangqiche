@@ -13,7 +13,7 @@ function uploadimg(data64,url,show_id,input_id){
         if(data64=='' || url=='' || show_id=='' ||input_id==''){
            bui.hint({
                 appendTo:"#main", 
-                content:"<i class='icon-infofill'></i>参数错误", 
+                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Parameter error[##else##]参数错误[##/if##]",
                 position:"top" , 
                 skin:'warning', 
                 showClose:true, 
@@ -65,7 +65,7 @@ function uploadimg(data64,url,show_id,input_id){
                  error: function (returndata) { 
                     bui.hint({
                                 appendTo:"#main", 
-                                content:"<i class='icon-infofill'></i>上传失败", 
+                                content:"<i class='icon-infofill'></i>[##if $_SESSION.lang eq 'english'##]Upload failed[##else##]上传失败[##/if##]",
                                 position:"top" , 
                                 skin:'warning', 
                                 showClose:true, 

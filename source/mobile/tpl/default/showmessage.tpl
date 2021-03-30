@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>温馨提示</title>
+        <title>[##if $_SESSION.lang eq 'english'##]reminder[##else##]温馨提示[##/if##]</title>
         <link type="text/css" rel="stylesheet" href="[##$_SPATH.css##]showmessage.css" />
     </head>
     <body>
@@ -20,7 +20,11 @@
                     <div class="textThis">
                         <h2>[##$message##]</h2>
                         <p>
+                            [##if $_SESSION.lang eq 'english'##]
+                            <span>The page will jump in <b id="wait">[##$second##]</b> seconds<a id="href" href="[##$url_forward##]">Jump</a></span>
+                            [##else##]
                             <span>页面将在<b id="wait">[##$second##]</b>秒后<a id="href" href="[##$url_forward##]">跳转</a></span>
+                            [##/if##]
                         </p>
                     </div>
                 </div>

@@ -194,7 +194,7 @@
         <div class="bui-bar">
             <div class="bui-bar-left">
             </div>
-            <div class="bui-bar-main">请你用车之前拍照</div>
+            <div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]Please take photos before using the car[##else##]请你用车之前拍照[##/if##]</div>
             <div class="bui-bar-right">
             </div>
         </div>
@@ -206,7 +206,7 @@
             <input type="hidden" name="vid" id="vid" value="[##$order.vid##]">   <!--车辆ID-->
             <input type="hidden" name="oid" id="oid" value="[##$order.id##]">    <!--订单ID-->
             <ul class="bui-list personal-info" style="background: #FFF;border-bottom: 0.02rem solid #eee">
-                <h3 class="section-title" style="padding:0;color:#666;">车辆正前方左侧45°以及正前方右侧45° <b style="color:red;">*</b></h3>
+                <h3 class="section-title" style="padding:0;color:#666;">[##if $_SESSION.lang eq 'english'##]45 ° right front of vehicle 45 ° forward and 45 ° right[##else##]车辆正前方左侧45°以及正前方右侧45°[##/if##] <b style="color:red;">*</b></h3>
                 <div class="bui-upload bui-fluid-space-2" style="margin-top:0.2rem;">
                     <div class="span1" id="ups_front_right">
                         <div class="bui-upload-thumbnail upload-container" style="height: 2rem; border-radius: 0.1rem; overflow: hidden;">
@@ -225,7 +225,7 @@
                 </div>
             </ul>
             <ul class="bui-list personal-info" style="background: #FFF;border-bottom: 0.02rem solid #eee">
-                <h3 class="section-title" style="padding:0;color: #666;">车辆后前方左侧45°以及后前方右侧45° <b style="color:red;">*</b></h3>
+                <h3 class="section-title" style="padding:0;color: #666;">[##if $_SESSION.lang eq 'english'##]45 ° left rear front and 45 ° right rear front of the vehicle[##else##]车辆后前方左侧45°以及后前方右侧45°[##/if##] <b style="color:red;">*</b></h3>
                 <div class="bui-upload bui-fluid-space-2" style="margin-top:0.2rem;">
                     <div class="span1" id="ups_rear_right">
                         <div class="bui-upload-thumbnail upload-container" style="height: 2rem; border-radius: 0.1rem; overflow: hidden;">
@@ -246,7 +246,7 @@
                 </div>
             </ul>
             <ul class="bui-list personal-info">
-                <h3 class="section-title">更多图片</h3>
+                <h3 class="section-title">[##if $_SESSION.lang eq 'english'##]More pictures[##else##]更多图片[##/if##]</h3>
                 <div id="morePhoto_box" class="bui-upload bui-fluid-space-4">
                     [##foreach from=$result['more_upload'] name=list item=list##]
                         [##if $list##]
@@ -268,7 +268,7 @@
             </ul>
             <div class="section-title" style="margin-top:0.1rem;font-size:0.25rem;line-height:0.4rem;">
                 <div class="span1">
-                  为了保证您车辆信息准确性,可多选上传多张车辆图片<br>
+                    [##if $_SESSION.lang eq 'english'##]In order to ensure the accuracy of your vehicle information, you can upload multiple vehicle pictures[##else##]为了保证您车辆信息准确性,可多选上传多张车辆图片[##/if##]<br>
                 </div>
             </div>
         </ul>
@@ -278,7 +278,7 @@
             <!-- 底部d导航栏 -->
             <ul class="bui-nav footer-nav">
               <div class="container-xy" style="width: 100%;">
-                <div class="bui-btn round primary" id="submit">提交</div>
+                <div class="bui-btn round primary" id="submit">[##if $_SESSION.lang eq 'english'##]Submit[##else##]提交[##/if##]</div>
               </div>
             </ul>
         </footer>
@@ -333,22 +333,22 @@
                   more_upload.push($(element).val());
                 });
                 if(!front_right){
-                    bui_hint('请上传车辆正面左侧照');
+                    bui_hint("[##if $_SESSION.lang eq 'english'##]Please upload the left front photo of the vehicle[##else##]请上传车辆正面左侧照[##/if##]");
                     loading.stop();
                     return false; 
                 }
                 if(!front_left){
-                     bui_hint('请上传车辆正面右侧照');
+                     bui_hint("[##if $_SESSION.lang eq 'english'##]Please upload the front right side photo of the vehicle[##else##]请上传车辆正面右侧照[##/if##]");
                     loading.stop();
                     return false; 
                 }
                 if(!rear_right){
-                     bui_hint('请上传车辆后方右侧照');
+                     bui_hint("[##if $_SESSION.lang eq 'english'##]Please upload the rear right side photo of the vehicle[##else##]请上传车辆后方右侧照[##/if##]");
                     loading.stop();
                     return false; 
                 }
                 if(!rear_left){
-                     bui_hint('请上传车辆后方左侧照');
+                     bui_hint("[##if $_SESSION.lang eq 'english'##]Please upload the rear left side photo of the vehicle[##else##]请上传车辆后方左侧照[##/if##]");
                     loading.stop();
                     return false; 
                 }
@@ -368,7 +368,7 @@
                         Loading_box.stop();
                         if (res.error == 0) {
                             bui.hint({
-                                content:"<i class='icon-order'></i><br />提交成功",
+                                content:"<i class='icon-order'></i><br />[##if $_SESSION.lang eq 'english'##]Submitted successfully[##else##]提交成功[##/if##]",
                                 position:"center",
                                 effect:"fadeInDown"
                             });
@@ -381,7 +381,7 @@
                         } else if(res.error == '-1') {
                             bui_hint(res.msg)
                         } else {
-                            bui_hint('未知错误');
+                            bui_hint("[##if $_SESSION.lang eq 'english'##]unknown error[##else##]未知错误[##/if##]");
                         }
                     },
                     error:function(res){

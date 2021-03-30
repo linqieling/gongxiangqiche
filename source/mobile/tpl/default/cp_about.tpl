@@ -73,7 +73,7 @@
     			<div class="bui-bar-left">
                     <!-- <a class="bui-btn" onclick="bui.back();"><i class="icon-back"></i></a> -->
     			</div>
-    			<div class="bui-bar-main">[##$result.name##]</div>
+    			<div class="bui-bar-main">[##if $_SESSION.lang eq 'english'##]About us[##else##][##$result.name##][##/if##]</div>
     			<div class="bui-bar-right">
     			</div>
     		</div>
@@ -106,12 +106,20 @@
                                 </div>
                                 <div class="name" data-width="56%">
                                     <p>
+                                        [##if $_SESSION.lang eq 'english'##]
+                                        Long press the identification QR code, the coupon will be sent when you register, more surprises are waiting for you.
+                                        [##else##]
                                         长按识别二维码，<br/>注册即送优惠券，<br/>更多惊喜等着您。
+                                        [##/if##]
                                     </p>
                                 </div>
-                                <div class="title" data-width="8%">
-                                    关注公众号
-                                </div>
+
+                                    [##if $_SESSION.lang eq 'english'##]
+                                <div class="title" style="width: 100px;!important;margin-top: 3px;">Official account </div>
+                                    [##else##]
+                                <div class="title" data-width="8%">关注公众号 </div>
+                                    [##/if##]
+
                             </div>
                             <div style="width:100%;margin-top:-80px" data-width="100%">
                                 <div style="width: 0;height: 0;border: 0 solid transparent;border-left-width: 0px;border-right-width: 36px;border-bottom: 18px solid rgb(0, 144, 75)" data-width="0px"></div>
