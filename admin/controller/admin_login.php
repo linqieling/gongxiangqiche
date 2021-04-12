@@ -35,7 +35,7 @@ if(submitcheck('submit')) {
 	    ssetcookie('admin_auth', tq_authcode("$setarr[password]\t$setarr[uid]", 'ENCODE'), $cookietime);
 		cpmessage($_SESSION['lang'] == 'english'?'Login to background system succeeded!':'登录后台系统成功', 'admin.php?view=index');
 	} elseif($uid == -1) {
-	    cpmessage($_SESSION['lang'] == 'english'?'Login to background system succeeded!':'The administrator does not exist or has been deleted!', 'admin.php?view=index');
+	    cpmessage($_SESSION['lang'] == 'english'?'The administrator does not exist or has been deleted!':'管理员不存在,或者被删除', 'admin.php?view=index');
 	} elseif($uid == -2) {
 	    cpmessage($_SESSION['lang'] == 'english'?'Wrong password!':'密码错误', 'admin.php?view=index');
 	} else {
